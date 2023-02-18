@@ -7,5 +7,5 @@
 
 <Navbar />
 <Breadcrumb />
-<slot />
+<slot/>
 <Footer />
