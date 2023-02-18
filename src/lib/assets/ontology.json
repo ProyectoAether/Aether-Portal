@@ -1,0 +1,2509 @@
+{
+  "@context": {
+    "brick": "https://brickschema.org/schema/Brick#",
+    "cdterms": "http://purl.org/dc/terms/",
+    "csvw": "http://www.w3.org/ns/csvw#",
+    "dc": "http://purl.org/dc/elements/1.1/",
+    "dcam": "http://purl.org/dc/dcam/",
+    "dcat": "http://www.w3.org/ns/dcat#",
+    "dcmitype": "http://purl.org/dc/dcmitype/",
+    "doap": "http://usefulinc.com/ns/doap#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "geo": "http://www.opengis.net/ont/geosparql#",
+    "odrl": "http://www.w3.org/ns/odrl/2/",
+    "org": "http://www.w3.org/ns/org#",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "prof": "http://www.w3.org/ns/dx/prof/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "qb": "http://purl.org/linked-data/cube#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "sdo": "https://schema.org/",
+    "sh": "http://www.w3.org/ns/shacl#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "sosa": "http://www.w3.org/ns/sosa/",
+    "ssn": "http://www.w3.org/ns/ssn/",
+    "time": "http://www.w3.org/2006/time#",
+    "vann": "http://purl.org/vocab/vann/",
+    "void": "http://rdfs.org/ns/void#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@graph": [
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/solves",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/Algorithm"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLProblems/Problem"
+          }
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ModelingAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#MachineLearningAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/DTCTesting",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationTestingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/WebServiceAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/DataProcessingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/SVMTesting",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationTestingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/DataFlowAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/Algorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/DTCPredict",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationPredictingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/ConvNetLSTMTesting",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationTestingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/DataProcessingAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/Algorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationTestingAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/TestingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/KNN",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModelingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/DataSinkAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/Algorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/DTC",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModelingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/ConvNetLSTM",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModelingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/KNNTesting",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationTestingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms",
+          "@type": "owl:Ontology",
+          "cdterms:created": {
+            "@type": "xsd:dateTime",
+            "@value": "2022-07-14T09:00:00"
+          },
+          "cdterms:creator": "Aether Group",
+          "cdterms:description": " This ontology covers all possible kinds. It has two main subclasses: DataMiningAlgorithm and OptimizationAlgorithm, which are used to distinguish between these two families of algorithms. The former is included in the form of equivalence with the class DM-Algorithm, which is linked from DMOP.",
+          "cdterms:license": {
+            "@type": "rdfs:Literal",
+            "@value": "https://opensource.org/licenses/MIT"
+          },
+          "cdterms:publisher": "Aether Group",
+          "cdterms:rights": [
+            {
+              "@type": "rdfs:Literal",
+              "@value": "(c) Aether Group"
+            },
+            "Aether"
+          ],
+          "cdterms:title": "BIGOWLAlgorithms",
+          "owl:imports": [
+            {
+              "@id": "https://w3id.org/BIGOWLData"
+            },
+            {
+              "@id": "https://w3id.org/BIGOWLProblems"
+            }
+          ],
+          "owl:versionIRI": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms"
+          },
+          "rdfs:label": "BIGOWLAlgorithms Ontology",
+          "vann:preferredNamespacePrefix": "BIGOWLAlgorithms",
+          "vann:preferredNamespaceUri": "https://w3id.org/BIGOWLAlgorithms"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/DataAnalysingAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/Algorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/RF",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModelingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/DataCollectionAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/Algorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationPredictingAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/PredictingAlgorithm"
+          }
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModelingAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ModelingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/ConvNetLSTMPredict",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationPredictingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/Algorithm",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#MachineLearningAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/DataAnalysingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/KNNPredict",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationPredictingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/SVM",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModelingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/SVMPredict",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationPredictingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/TestingAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#MachineLearningAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/RFPredict",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationPredictingAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/PredictingAlgorithm",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#MachineLearningAlgorithm"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLAlgorithms/RFTesting",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/ClassificationTestingAlgorithm"
+          }
+        }
+      ],
+      "@id": "https://w3id.org/BIGOWLAlgorithms"
+    },
+    {
+      "@graph": [
+        {
+          "@id": "https://w3id.org/BIGOWLData/Folder",
+          "@type": [
+            "owl:NamedIndividual",
+            "https://w3id.org/BIGOWLData/StructuredType"
+          ]
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Float",
+          "@type": [
+            "owl:NamedIndividual",
+            "https://w3id.org/BIGOWLData/PrimitiveType"
+          ]
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Bin",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/strict",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:boolean"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/lineDelimiter",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/InputColumn",
+          "@type": [
+            "owl:NamedIndividual",
+            "https://w3id.org/BIGOWLData/StructuredType"
+          ]
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Pdf",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/encoding",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/n_jobs",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#KNearestNeighborModel"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/delimiter",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/RDF",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Text"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/commentChar",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Rar",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          }
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#DataSetClass",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Text"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Boolean",
+          "@type": [
+            "owl:NamedIndividual",
+            "https://w3id.org/BIGOWLData/PrimitiveType"
+          ]
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Image",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/escapeChar",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/label",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#KNearestNeighborModel"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/hasHeader",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:boolean"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/hasColumnName",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/Column"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/resource",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#KNearestNeighborModel"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/mapping",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/TempFile",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/doubleQuote",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/skipInitialSpace",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:boolean"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/hasRowPosition",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/Cell"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/represents",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "owl:Thing"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/pathTabularDataSet",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/numberOfLines",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/metric",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#KNearestNeighborModel"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Fastq",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/leaf_size",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#KNearestNeighborModel"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/weights",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#KNearestNeighborModel"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Date",
+          "@type": [
+            "owl:NamedIndividual",
+            "https://w3id.org/BIGOWLData/PrimitiveType"
+          ]
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/HTML",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Text"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/ClassificationMetric",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/algorithm",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#KNearestNeighborModel"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#DiscriminantFunctionModel",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModel"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/quoting",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Json",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Text"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/n_neighbors",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#KNearestNeighborModel"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Integer",
+          "@type": [
+            "owl:NamedIndividual",
+            "https://w3id.org/BIGOWLData/PrimitiveType"
+          ]
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/String",
+          "@type": [
+            "owl:NamedIndividual",
+            "https://w3id.org/BIGOWLData/PrimitiveType"
+          ]
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/DataType",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Data",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/isLabel",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/Column"
+          },
+          "rdfs:range": {
+            "@id": "xsd:boolean"
+          }
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#DM-Model",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#KNearestNeighborModel",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#DiscriminativeModel"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/PrimitiveType",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/DataType"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/hasPosition",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/Column"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Column",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/hasRow",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLData/Row"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Timestamp",
+          "@type": [
+            "owl:NamedIndividual",
+            "https://w3id.org/BIGOWLData/PrimitiveType"
+          ]
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/TabularDataSet",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#DataSetClass"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Cell",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#NeuralNetworkModel",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#DiscriminantFunctionModel"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Zip",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/fileFormat",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/numberOfColumns",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/p",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#KNearestNeighborModel"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/metric_params",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#KNearestNeighborModel"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Map",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/List",
+          "@type": [
+            "owl:NamedIndividual",
+            "https://w3id.org/BIGOWLData/StructuredType"
+          ]
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/skiprows",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Row",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData",
+          "@type": "owl:Ontology",
+          "cdterms:created": {
+            "@type": "xsd:dateTime",
+            "@value": "2022-07-14T09:00:00"
+          },
+          "cdterms:creator": "Aether Group",
+          "cdterms:description": " This ontology contains all the classes and properties related to data. Data is devoted to annotating all the data flowing throughout the analytic workflow. It is declared as EquivalentTo IO-Class of DMOP. This aligning enables datatypes defined by third parties’ ontologies to be contextualised in the analysis. BIGOWLData contains the main data properties defined for this class, namely: path, to annotate the origin of data; and hasDataType, which establishes the relationship with class DataType. This last is used to define the data type, i.e. PrimitiveType (Double, Integer, Boolean, etc.) or StructuredType (Graph, Tree, Matrix, Vector, Tuple, etc.).",
+          "cdterms:license": {
+            "@type": "rdfs:Literal",
+            "@value": "https://opensource.org/licenses/MIT"
+          },
+          "cdterms:publisher": "Aether Group",
+          "cdterms:rights": [
+            {
+              "@type": "rdfs:Literal",
+              "@value": "(c) Aether Group"
+            },
+            "Aether"
+          ],
+          "cdterms:title": "BIGOWLData",
+          "owl:versionIRI": {
+            "@id": "https://w3id.org/BIGOWLData"
+          },
+          "rdfs:label": "BIGOWLData Ontology",
+          "vann:preferredNamespacePrefix": "BIGOWLData",
+          "vann:preferredNamespaceUri": "https://w3id.org/BIGOWLData"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/hasCellInColumn",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/Column"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLData/Cell"
+          }
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#PredictiveModel",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#DM-Model"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/StructuredType",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/DataType"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Text",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/hasCellInRow",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/Row"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLData/Cell"
+          }
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#DiscriminativeModel",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModel"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/hasColumn",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLData/Column"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/File",
+          "@type": [
+            "owl:NamedIndividual",
+            "https://w3id.org/BIGOWLData/StructuredType"
+          ]
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/Double",
+          "@type": [
+            "owl:NamedIndividual",
+            "https://w3id.org/BIGOWLData/PrimitiveType"
+          ]
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/hasColumnPosition",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/Cell"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#ClassificationModel",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#PredictiveModel"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/quoteChar",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/TabularDataSet"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLData/hasDataPrimitiveTypeColumn",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLData/Column"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLData/PrimitiveType"
+          }
+        }
+      ],
+      "@id": "https://w3id.org/BIGOWLData"
+    },
+    {
+      "@graph": [
+        {
+          "@id": "https://w3id.org/OntoGraphDB/GraphsDatabase",
+          "@type": "owl:Class",
+          "rdfs:comment": "This class represents the concept of a Graphs database in a generic way.",
+          "rdfs:label": "Graphs Databases",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoGraphDB/NoSQLDatabase"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/hasRelationshipFrom",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "This property link the origin node that participate in a relationship.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/Relationship"
+          },
+          "rdfs:label": "Has Relationship From",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoGraphDB/Node"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/fieldhasName",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Indicate the name of the field.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/NoSQLField"
+          },
+          "rdfs:label": "Field Has Name",
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/Node",
+          "@type": "owl:Class",
+          "rdfs:label": "Node",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoGraphDB/Element"
+          }
+        },
+        {
+          "@id": "cdterms:created",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/FieldReference",
+          "@type": [
+            "owl:ObjectProperty",
+            "owl:TransitiveProperty"
+          ],
+          "rdfs:comment": "Indicate a field that reference other field.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/Field"
+          },
+          "rdfs:label": "Field Reference",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoGraphDB/Field"
+          }
+        },
+        {
+          "@id": "cdterms:modified",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "cdterms:issued",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "http://www.ontologies.khaos.uma.es/bigowl/DataType",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "cdterms:publisher",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "cdterms:citation",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/",
+          "@type": "owl:Ontology",
+          "cdterms:citation": "Manuel Paneque, María del Mar Roldán-García, Carlos Blanco, Alejandro Maté, Eduardo Fernández-Medina, Juan Trujillo, (2022) - Ontology-based Secure Design for Graph-based Databases. W3ID. https://w3id.org/OntoGraphDB",
+          "cdterms:created": {
+            "@type": "xsd:dateTime",
+            "@value": "2022-06-30T08:24:00"
+          },
+          "cdterms:creator": [
+            {
+              "@type": "rdfs:Literal",
+              "@value": "Alejandro Maté, (Universidad de Alicante)"
+            },
+            {
+              "@type": "rdfs:Literal",
+              "@value": "Carlos Blanco, (Universidad de Cantabria)"
+            },
+            {
+              "@type": "rdfs:Literal",
+              "@value": "Eduardo Fernández-Medina, (Universidad de Castilla - La Mancha)"
+            },
+            {
+              "@type": "rdfs:Literal",
+              "@value": "Juan Trujillo, (Universidad de Alicante)"
+            },
+            {
+              "@type": "rdfs:Literal",
+              "@value": "Manuel Paneque, (Universidad de Málaga)"
+            },
+            {
+              "@type": "rdfs:Literal",
+              "@value": "María del Mar Roldán-García, (Universidad de Málaga)"
+            }
+          ],
+          "cdterms:issued": {
+            "@type": "xsd:dateTime",
+            "@value": "2022-06-30T08:24:00"
+          },
+          "cdterms:license": {
+            "@type": "rdfs:Literal",
+            "@value": "https://opensource.org/licenses/MIT"
+          },
+          "cdterms:modified": {
+            "@type": "xsd:dateTime",
+            "@value": "2022-06-30T08:24:01"
+          },
+          "cdterms:publisher": "Aether Group",
+          "cdterms:rights": "(c) Aether Group",
+          "cdterms:title": "Graph Databases Ontology",
+          "owl:versionIRI": {
+            "@id": "https://w3id.org/OntoGraphDB/"
+          },
+          "rdfs:comment": {
+            "@type": "rdfs:Literal",
+            "@value": "Ontologie that generically encompass and represent the domain in graph-oriented database."
+          },
+          "rdfs:label": "Graph Databases Ontology",
+          "vann:preferredNamespacePrefix": [
+            {
+              "@type": "rdfs:Literal",
+              "@value": "OntoGraphDB"
+            },
+            {
+              "@type": "rdfs:Literal",
+              "@value": "https://w3id.org/OntoGraphDB/"
+            }
+          ]
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/hasElementField",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "This property link specific element with graph Field.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/Element"
+          },
+          "rdfs:label": "Has Element Field",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoGraphDB/NoSQLFieldGraph"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/elementHasName",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Indicate the name of the element.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/Element"
+          },
+          "rdfs:label": "Element Has Name",
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/NoSQLFieldGraph",
+          "@type": "owl:Class",
+          "rdfs:comment": "Represent the specific graph database type to which the field belongs.",
+          "rdfs:label": "NoSQL Field",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoGraphDB/NoSQLField"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/hasElements",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "This property link a graph database with their elements.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/GraphsDatabase"
+          },
+          "rdfs:label": "Has Element",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoGraphDB/Element"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/Field",
+          "@type": "owl:Class",
+          "rdfs:comment": "The Field class represents the concept of a data field in any database.",
+          "rdfs:label": "Field"
+        },
+        {
+          "@id": "vann:preferredNamespaceUri",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/hasDatatype",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "This object property link the field with the type.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/NoSQLField"
+          },
+          "rdfs:label": "Has Datatype",
+          "rdfs:range": {
+            "@id": "http://www.ontologies.khaos.uma.es/bigowl/DataType"
+          }
+        },
+        {
+          "@id": "http://www.ontologies.khaos.uma.es/bigowl/Data",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/Relationship",
+          "@type": "owl:Class",
+          "rdfs:label": "Relationship",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoGraphDB/Element"
+          }
+        },
+        {
+          "@id": "cdterms:title",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "http://www.ontologies.khaos.uma.es/bigowl/StructuredType",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.ontologies.khaos.uma.es/bigowl/DataType"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/NoSQLField",
+          "@type": "owl:Class",
+          "rdfs:comment": "Represent the specific NoSQL database type to which the field belongs.",
+          "rdfs:label": "NoSQL Field",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoGraphDB/Field"
+          }
+        },
+        {
+          "@id": "cdterms:creator",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "vann:preferredNamespacePrefix",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/Element",
+          "@type": "owl:Class",
+          "rdfs:comment": "According to graph theory, the element class generically defines the common properties of the terms that make up a graph.",
+          "rdfs:label": "Element"
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/databaseHasName",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Indicate the name of the database.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/Database"
+          },
+          "rdfs:label": "Database Has Name",
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/hasValue",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Indicate the value of the field.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/NoSQLField"
+          },
+          "rdfs:label": "Has Value",
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "http://www.ontologies.khaos.uma.es/bigowl/PrimitiveType",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "http://www.ontologies.khaos.uma.es/bigowl/DataType"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/fieldIsIndex",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/NoSQLFieldGraph"
+          },
+          "rdfs:label": [
+            "Field Is Index",
+            "Indicate is the field is an index."
+          ],
+          "rdfs:range": {
+            "@id": "xsd:boolean"
+          }
+        },
+        {
+          "@id": "cdterms:license",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/isRequired",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Indicate if field is required.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/NoSQLField"
+          },
+          "rdfs:range": {
+            "@id": "xsd:boolean"
+          }
+        },
+        {
+          "@id": "cdterms:rights",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/NoSQLDatabase",
+          "@type": "owl:Class",
+          "rdfs:comment": "This class represents the concept of a NoSQL database in a generic way.",
+          "rdfs:label": "NoSQL Database",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoGraphDB/Database"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/Database",
+          "@type": "owl:Class",
+          "rdfs:comment": "This class represents the concept of a database in a generic way.",
+          "rdfs:label": "Database",
+          "rdfs:subClassOf": {
+            "@id": "http://www.ontologies.khaos.uma.es/bigowl/Data"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/hasRelationshipTo",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "This property link the destination node that participate in a relationship.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/Relationship"
+          },
+          "rdfs:label": "Has Relationship To",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoGraphDB/Node"
+          }
+        }
+      ],
+      "@id": "https://w3id.org/OntoGraphDB/"
+    },
+    {
+      "@graph": [
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRuleDefineElements",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "Security Rule define over elements.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRuleElement"
+          },
+          "rdfs:label": "Security rule define elements.",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoGraphDB/Element"
+          },
+          "rdfs:subPropertyOf": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRuleDefined"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/hasPrivilege",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "CRUD",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Privilege"
+          },
+          "rdfs:label": "Has Privileges",
+          "rdfs:range": {
+            "@id": "_:N60ca30a401e54c1c8956440aabe2b5ae"
+          }
+        },
+        {
+          "@id": "_:N60ca30a401e54c1c8956440aabe2b5ae",
+          "@type": "rdfs:Datatype",
+          "owl:oneOf": {
+            "@list": [
+              "Create",
+              "Delete",
+              "Read",
+              "Update"
+            ]
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/privilegeCondition",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Specify if the privilege has condition",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Privilege"
+          },
+          "rdfs:label": "Privilege has Condition",
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/ruleName",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Indicate the name of the rule.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRule"
+          },
+          "rdfs:label": "Rule has name",
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/userPass",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Indicate the pass of the user.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/User"
+          },
+          "rdfs:label": "User has Password",
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/",
+          "@type": "owl:Ontology",
+          "cdterms:citation": {
+            "@type": "rdfs:Literal",
+            "@value": "Manuel Paneque, María del Mar Roldán-García, Carlos Blanco, Alejandro Maté, Eduardo Fernández-Medina, Juan Trujillo, (2022) - Ontology-based Secure Design for Graph-based Databases. W3ID. https://w3id.org/OntoSecurityGraphDB"
+          },
+          "cdterms:created": {
+            "@type": "xsd:dateTime",
+            "@value": "2022-06-30T13:24:00"
+          },
+          "cdterms:creator": [
+            {
+              "@type": "rdfs:Literal",
+              "@value": "Alejandro Maté, (Universidad de Alicante)"
+            },
+            {
+              "@type": "rdfs:Literal",
+              "@value": "Carlos Blanco, (Universidad de Cantabria)"
+            },
+            {
+              "@type": "rdfs:Literal",
+              "@value": "Eduardo Fernández-Medina, (Universidad de Castilla - La Mancha)"
+            },
+            {
+              "@type": "rdfs:Literal",
+              "@value": "Juan Trujillo, (Universidad de Alicante)"
+            },
+            {
+              "@type": "rdfs:Literal",
+              "@value": "Manuel Paneque, (Universidad de Málaga)"
+            },
+            {
+              "@type": "rdfs:Literal",
+              "@value": "María del Mar Roldán-García, (Universiad de Málaga)"
+            }
+          ],
+          "cdterms:issued": {
+            "@type": "xsd:dateTime",
+            "@value": "2022-06-30T13:24:01"
+          },
+          "cdterms:license": {
+            "@type": "rdfs:Literal",
+            "@value": "https://opensource.org/licenses/MIT"
+          },
+          "cdterms:modified": {
+            "@type": "xsd:dateTime",
+            "@value": "2022-06-30T13:24:01"
+          },
+          "cdterms:publisher": "Aether Group",
+          "cdterms:rights": "(c) Aether Group",
+          "cdterms:title": "Security Graph Databases Ontology",
+          "owl:imports": {
+            "@id": "https://w3id.org/OntoGraphDB/"
+          },
+          "owl:versionIRI": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/"
+          },
+          "rdfs:comment": {
+            "@type": "rdfs:Literal",
+            "@value": "Ontologie that generically encompass and represent the domain in security policies of graph-oriented database."
+          },
+          "rdfs:label": "Security Graph Databases Ontology",
+          "vann:preferredNamespacePrefix": {
+            "@type": "rdfs:Literal",
+            "@value": "OntoSecurityGraphDB"
+          },
+          "vann:preferredNamespaceUri": {
+            "@type": "rdfs:Literal",
+            "@value": "https://w3id.org/OntoSecurityGraphDB/"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/userName",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Indicate the name of the user.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/User"
+          },
+          "rdfs:label": "user has name",
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/Privilege",
+          "@type": "owl:Class",
+          "rdfs:comment": "This class represents the privileges associated with a security rule.",
+          "rdfs:label": "Privilege"
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/Field",
+          "@type": "owl:Class",
+          "rdfs:comment": "The Field class represents the concept of a security data field in any database.",
+          "rdfs:label": "Field"
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/Node",
+          "@type": "owl:Class",
+          "rdfs:label": "Node",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoGraphDB/Element"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/Create",
+          "@type": "owl:Class",
+          "rdfs:label": [
+            "Create",
+            "This class represents the create privilege associated with a security rule."
+          ],
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Privilege"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/DatabaseHasUser",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "This property links the users contained in that database.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/Database"
+          },
+          "rdfs:label": "Database Has User",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/User"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/Read",
+          "@type": "owl:Class",
+          "rdfs:comment": "This class represents the read privilege associated with a security rule.",
+          "rdfs:label": "Read",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Privilege"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/Delete",
+          "@type": "owl:Class",
+          "rdfs:comment": "This class represents the delete privilege associated with a security rule.",
+          "rdfs:label": "Delete",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Privilege"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/NoSQLFieldGraph",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoGraphDB/NoSQLField"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/Update",
+          "@type": "owl:Class",
+          "rdfs:comment": "This class represents the update privilege associated with a security rule.",
+          "rdfs:label": "Update",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Privilege"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/ruleSign",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Indicate the sign of the role.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRule"
+          },
+          "rdfs:label": "Rule has sign",
+          "rdfs:range": {
+            "@id": "_:N5d545f94ae09415eb09a2a430e96a433"
+          }
+        },
+        {
+          "@id": "_:N5d545f94ae09415eb09a2a430e96a433",
+          "@type": "rdfs:Datatype",
+          "owl:oneOf": {
+            "@list": [
+              "+",
+              "-"
+            ]
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRuleDefineField",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "Security Rule define over field.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRuleField"
+          },
+          "rdfs:label": "Security rule define field.",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoGraphDB/Field"
+          },
+          "rdfs:subPropertyOf": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRuleDefined"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/DatabaseHasRole",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "This property links the roles contained in that database.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/Database"
+          },
+          "rdfs:label": "Database Has Role",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Role"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/UserHasRole",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "Object property that binds a user to the assigned roles.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/User"
+          },
+          "rdfs:label": "User has Role",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Role"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/hasDatatype",
+          "rdfs:range": {
+            "@id": "http://www.ontologies.khaos.uma.es/bigowl/DataType"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/Relationship",
+          "@type": "owl:Class",
+          "rdfs:label": "Relationship",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoGraphDB/Element"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/DatabaseHasSecurityRule",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "This property links the security rules contained in that database.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoGraphDB/Database"
+          },
+          "rdfs:label": "Database Has Security Rules",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRule"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/NoSQLField",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Field"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRuleElement",
+          "@type": "owl:Class",
+          "rdfs:comment": "A rule that affects an element.",
+          "rdfs:label": "Rule element",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRule"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/User",
+          "@type": "owl:Class",
+          "rdfs:comment": "The User class represents the users defined in the database management system.",
+          "rdfs:label": "User"
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/roleName",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Indicate the name of the role.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Role"
+          },
+          "rdfs:label": "Role has Name",
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRuleContainsPrivilege",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "Links the rule with the privilege that the rule grants or revokes",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRule"
+          },
+          "rdfs:label": "Rule contains Privilege",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Privilege"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRuleDefined",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "Links the rule to the database artifact in which it is defined.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRule"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/Element",
+          "@type": "owl:Class",
+          "rdfs:label": "Element"
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/RoleHasRules",
+          "@type": "owl:ObjectProperty",
+          "rdfs:comment": "This property links the role with the rules.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Role"
+          },
+          "rdfs:label": "Role has Rules",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRule"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/Role",
+          "@type": "owl:Class",
+          "rdfs:comment": "This class represents the roles that are defined in a database.",
+          "rdfs:label": "Role"
+        },
+        {
+          "@id": "cdterms:license",
+          "@type": "owl:AnnotationProperty"
+        },
+        {
+          "@id": "https://w3id.org/OntoGraphDB/Database",
+          "@type": "owl:Class",
+          "rdfs:label": "Database"
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/HasSubRole",
+          "@type": [
+            "owl:ObjectProperty",
+            "owl:TransitiveProperty"
+          ],
+          "rdfs:comment": "Allows defining hierarchies between roles.",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Role"
+          },
+          "rdfs:label": "Role Has Subrole",
+          "rdfs:range": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/Role"
+          }
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRule",
+          "@type": "owl:Class",
+          "rdfs:comment": "Security rule",
+          "rdfs:label": "Rule"
+        },
+        {
+          "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRuleField",
+          "@type": "owl:Class",
+          "rdfs:comment": "A rule that affects a field.",
+          "rdfs:label": "Rule field",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/OntoSecurityGraphDB/SecurityRule"
+          }
+        }
+      ],
+      "@id": "https://w3id.org/OntoSecurityGraphDB/"
+    },
+    {
+      "@graph": [
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/isCorrectWorkflow",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"
+          },
+          "rdfs:range": {
+            "@id": "xsd:boolean"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/range",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasDefaultValue",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/connectedTo",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/className",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Implementation"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/DataCollection",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/private",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+          },
+          "rdfs:range": {
+            "@id": "xsd:boolean"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/specifiesInputClass",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "_:Nda3aeeeaaea54435b3e9fe6948050578"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          }
+        },
+        {
+          "@id": "_:Nda3aeeeaaea54435b3e9fe6948050578",
+          "@type": "owl:Class",
+          "owl:unionOf": {
+            "@list": [
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+              },
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/MachineLearning",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/DataAnalysing"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows",
+          "@type": "owl:Ontology",
+          "cdterms:created": {
+            "@type": "xsd:dateTime",
+            "@value": "2022-07-14T09:00:00"
+          },
+          "cdterms:creator": "Aether Group",
+          "cdterms:description": " This ontology is used tto guide the correct orchestration of a workflow, including elements like tasks, components, parameters, etc. This ontology imports BIGOWLData and BIGOWLAlgorithms to define all the pieces in a workflow.",
+          "cdterms:license": {
+            "@type": "rdfs:Literal",
+            "@value": "https://opensource.org/licenses/MIT"
+          },
+          "cdterms:publisher": "Aether Group",
+          "cdterms:rights": [
+            {
+              "@type": "rdfs:Literal",
+              "@value": "(c) Aether Group"
+            },
+            "Aether"
+          ],
+          "cdterms:title": "BIGOWLWorkflows",
+          "owl:imports": [
+            {
+              "@id": "https://w3id.org/BIGOWLAlgorithms"
+            },
+            {
+              "@id": "https://w3id.org/BIGOWLData"
+            }
+          ],
+          "owl:versionIRI": {
+            "@id": "https://w3id.org/BIGOWLWorkflows"
+          },
+          "rdfs:label": "BIGOWLWorkflows Ontology",
+          "vann:preferredNamespacePrefix": "BIGOWLWorkflows",
+          "vann:preferredNamespaceUri": "https://w3id.org/BIGOWLWorkflows"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/DataMining",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/MachineLearning"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/specifiesOutputClass",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "_:N26416e58da47421cb1107294251abcf3"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLData/Data"
+          }
+        },
+        {
+          "@id": "_:N26416e58da47421cb1107294251abcf3",
+          "@type": "owl:Class",
+          "owl:unionOf": {
+            "@list": [
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+              },
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasAlgorithm",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLAlgorithms/Algorithm"
+          }
+        },
+        {
+          "@id": "http://purl.org/net/opmv/ns#Agent",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/DataIngestion",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/DataCollection"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/workflow",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/module",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Implementation"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/DataProcessing",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasImplementation",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Implementation"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/correspondsToTemplate",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"
+          },
+          "rdfs:range": {
+            "@id": "http://www.opmw.org/ontology/WorkflowTemplate"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasDocumentation",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "Property that binds a workflow template to its documentation.\n\nhttp://www.opmw.org/ontology/hasDocumentation",
+          "rdfs:domain": {
+            "@id": "http://www.opmw.org/ontology/WorkflowTemplate"
+          },
+          "rdfs:range": {
+            "@id": "_:N760c598ce1b442d78181fee63be608f6"
+          }
+        },
+        {
+          "@id": "_:N760c598ce1b442d78181fee63be608f6",
+          "@type": "rdfs:Datatype",
+          "owl:unionOf": {
+            "@list": [
+              {
+                "@id": "xsd:anyURI"
+              },
+              {
+                "@id": "xsd:string"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/classNameSerialized",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Channel"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/Channel",
+          "@type": "owl:Class",
+          "rdfs:comment": "Represents a topic when a workflow is executed, this class is used for annotating the process of execution"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/WebService",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/DataProcessing"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/DataTransform",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/DataProcessing"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/implementationLanguage",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Implementation"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasName",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "owl:Thing"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasDataValue",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/instanceParameterOf",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+          },
+          "rdfs:range": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/wasLaunchedBy",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"
+          },
+          "rdfs:range": {
+            "@id": "http://purl.org/net/opmv/ns#Agent"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/DataAnalysing",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/DataFlow",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/DataSink",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/order",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/isAVersionOf",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/endedAt",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "The time at which an activity ended. See also prov:startedAtTime.\nhttp://www.w3.org/ns/prov#endedAtTime",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+          },
+          "rdfs:range": {
+            "@id": "_:N3abf77e6796743d1bbc2c198822345d1"
+          }
+        },
+        {
+          "@id": "_:N3abf77e6796743d1bbc2c198822345d1",
+          "@type": "rdfs:Datatype",
+          "owl:unionOf": {
+            "@list": [
+              {
+                "@id": "xsd:dateTime"
+              },
+              {
+                "@id": "xsd:string"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/startedAt",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:comment": "The time at which an activity started. See also prov:endedAtTime.\n\nhttp://www.w3.org/ns/prov#startedAtTime",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+          },
+          "rdfs:range": {
+            "@id": "_:Nf9eca7e7284048ae9daf22eb297ee33e"
+          }
+        },
+        {
+          "@id": "_:Nf9eca7e7284048ae9daf22eb297ee33e",
+          "@type": "rdfs:Datatype",
+          "owl:unionOf": {
+            "@list": [
+              {
+                "@id": "xsd:dateTime"
+              },
+              {
+                "@id": "xsd:string"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/numberOfOutputs",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "_:N1930eecce1d84e7b81da98466e32136f"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "_:N1930eecce1d84e7b81da98466e32136f",
+          "@type": "owl:Class",
+          "owl:unionOf": {
+            "@list": [
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+              },
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasComponent",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+          }
+        },
+        {
+          "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/RemoveOutlier",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/DataProcessing"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasParameter",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "_:N5b7310fd63f64f9fa039bf9c22e72125"
+          },
+          "rdfs:range": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+          }
+        },
+        {
+          "@id": "_:N5b7310fd63f64f9fa039bf9c22e72125",
+          "@type": "owl:Class",
+          "owl:unionOf": {
+            "@list": [
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+              },
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/SplitShuffle",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Split"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasListValue",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/numberOfInputs",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "_:Nb0cf26cc09f64c509d9d0828ee94422d"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "_:Nb0cf26cc09f64c509d9d0828ee94422d",
+          "@type": "owl:Class",
+          "owl:unionOf": {
+            "@list": [
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+              },
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/Split",
+          "@type": "owl:Class",
+          "rdfs:subClassOf": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/DataProcessing"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/Component",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/version",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "_:Nd780d4d48abc406b80a4bff6cfbc685a"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "_:Nd780d4d48abc406b80a4bff6cfbc685a",
+          "@type": "owl:Class",
+          "owl:unionOf": {
+            "@list": [
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Component"
+              },
+              {
+                "@id": "https://w3id.org/BIGOWLWorkflows/Implementation"
+              }
+            ]
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/Implementation",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasDataType",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLData/DataType"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasTask",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/hasChannelOutput",
+          "@type": "owl:ObjectProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Task"
+          },
+          "rdfs:range": {
+            "@id": "https://w3id.org/BIGOWLWorkflows/Channel"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/numTask",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"
+          },
+          "rdfs:range": {
+            "@id": "xsd:int"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/Task",
+          "@type": "owl:Class"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLWorkflows/isObligatory",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+          },
+          "rdfs:range": {
+            "@id": "xsd:boolean"
+          }
+        },
+        {
+          "@id": "http://www.opmw.org/ontology/WorkflowTemplate",
+          "@type": "owl:Class"
+        }
+      ],
+      "@id": "https://w3id.org/BIGOWLWorkflows"
+    },
+    {
+      "@graph": [
+        {
+          "@id": "https://w3id.org/BIGOWLProblems",
+          "@type": "owl:Ontology",
+          "cdterms:created": {
+            "@type": "xsd:dateTime",
+            "@value": "2022-07-14T09:00:00"
+          },
+          "cdterms:creator": "Aether Group",
+          "cdterms:description": " This ontology is used to represent the problem class and its properties. Problem is oriented to the specific problem domain (Smart Cities, Biology, etc.).",
+          "cdterms:license": {
+            "@type": "rdfs:Literal",
+            "@value": "https://opensource.org/licenses/MIT"
+          },
+          "cdterms:publisher": "Aether Group",
+          "cdterms:rights": [
+            {
+              "@type": "rdfs:Literal",
+              "@value": "(c) Aether Group"
+            },
+            "Aether"
+          ],
+          "cdterms:title": "BIGOWLProblems",
+          "owl:imports": {
+            "@id": "https://w3id.org/BIGOWLData"
+          },
+          "owl:versionIRI": {
+            "@id": "https://w3id.org/BIGOWLProblems"
+          },
+          "rdfs:label": "BIGOWLProblems Ontology",
+          "vann:preferredNamespacePrefix": "BIGOWLProblems",
+          "vann:preferredNamespaceUri": "https://w3id.org/BIGOWLProblems"
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLProblems/hasFeature",
+          "@type": "owl:DatatypeProperty",
+          "rdfs:domain": {
+            "@id": "https://w3id.org/BIGOWLProblems/Problem"
+          },
+          "rdfs:range": {
+            "@id": "xsd:string"
+          }
+        },
+        {
+          "@id": "https://w3id.org/BIGOWLProblems/Problem",
+          "@type": "owl:Class"
+        }
+      ],
+      "@id": "https://w3id.org/BIGOWLProblems"
+    },
+    {
+      "@graph": [
+        {
+          "@id": "https://w3id.org/BIGOWL",
+          "@type": "owl:Ontology",
+          "cdterms:created": {
+            "@type": "xsd:dateTime",
+            "@value": "2022-07-14T09:00:00"
+          },
+          "cdterms:creator": "Aether Group",
+          "cdterms:description": " BIGOWL (BIG data analytics OWL2 ontology) acts as a formal schema for representing and consolidating knowledge in Big Data analytics. Knowledge incorporation is, in turn, beneficial for efficient algorithmic performance by taking part in the operator’s design, parameter selection, and human interactive and decision-making strategies.",
+          "cdterms:license": {
+            "@type": "rdfs:Literal",
+            "@value": "https://opensource.org/licenses/MIT"
+          },
+          "cdterms:publisher": "Aether Group",
+          "cdterms:rights": [
+            {
+              "@type": "rdfs:Literal",
+              "@value": "(c) Aether Group"
+            },
+            "Aether"
+          ],
+          "cdterms:title": "BIGOWL",
+          "owl:imports": [
+            {
+              "@id": "https://w3id.org/BIGOWLAlgorithms"
+            },
+            {
+              "@id": "https://w3id.org/BIGOWLData"
+            },
+            {
+              "@id": "https://w3id.org/BIGOWLProblems"
+            },
+            {
+              "@id": "https://w3id.org/BIGOWLWorkflows"
+            }
+          ],
+          "owl:versionIRI": {
+            "@id": "https://w3id.org/BIGOWL"
+          },
+          "rdfs:label": "BIGOWL Ontology",
+          "vann:preferredNamespacePrefix": "BIGOWL",
+          "vann:preferredNamespaceUri": "https://w3id.org/BIGOWL"
+        }
+      ],
+      "@id": "https://w3id.org/BIGOWL"
+    }
+  ]
+}
