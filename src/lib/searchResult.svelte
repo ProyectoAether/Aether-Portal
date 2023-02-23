@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { filteredData, searchStore } from '$lib/stores/search';
 	import { expandURI, isURI } from '$lib/utils';
+	import namespaces from '$lib/assets/namespaces.json';
 </script>
 
 {#if $filteredData.slice($searchStore.options.offset * $searchStore.options.limit, ($searchStore.options.offset + 1) * $searchStore.options.limit).length > 0}
@@ -17,7 +18,7 @@
 						<td class="whitespace-pre-wrap"
 							><a
 								class="link link-primary"
-								href={expandURI(filtered['subject'])}
+								href={expandURI(filtered['subject'], namespaces)}
 								rel="noreferrer"
 								target="_blank">{filtered['subject']}</a
 							></td
@@ -25,16 +26,16 @@
 						<td class="whitespace-pre-wrap"
 							><a
 								class="link link-primary"
-								href={expandURI(filtered['predicate'])}
+								href={expandURI(filtered['predicate'], namespaces)}
 								rel="noreferrer"
 								target="_blank">{filtered['predicate']}</a
 							></td
 						>
 						<td class="whitespace-pre-wrap">
-							{#if isURI(expandURI(filtered['object']))}
+							{#if isURI(expandURI(filtered['object'], namespaces))}
 								<a
 									class="link link-primary"
-									href={expandURI(filtered['object'])}
+									href={expandURI(filtered['object'], namespaces)}
 									rel="noreferrer"
 									target="_blank">{filtered['object']}</a
 								>

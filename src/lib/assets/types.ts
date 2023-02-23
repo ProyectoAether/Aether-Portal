@@ -6,8 +6,16 @@ export interface Triple  {
 export interface Ontology {
     [key:string]: Triple[]
 }
+export interface Namespace{
+    [key:string]: string
+}
+export type TypesURI = {
+    [keys in keyof OWLType]: string
+}
 
-export const typeURI = {
+export type OWLType = 'owlClass' & 'owlNamedIndividual' & 'owlObjectProperty' & 'owlNamedIndividual';
+
+export const typeURI : TypesURI = {
 	owlClass: 'http://www.w3.org/2002/07/owl#Class',
 	owlDatatypeProperty: 'http://www.w3.org/2002/07/owl#DatatypeProperty',
 	owlObjectProperty: 'http://www.w3.org/2002/07/owl#ObjectProperty',

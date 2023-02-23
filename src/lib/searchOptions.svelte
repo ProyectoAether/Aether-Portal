@@ -55,13 +55,13 @@
 	</div>
 	<div class="form-control ">
 		<label class="cursor-pointer label">
-			<span class="label-text ml-auto mr-2">A-Z</span>
+			<span class="label-text ml-auto mr-2">Z-A</span>
 			<input
 				type="checkbox"
 				class="toggle toggle-primary"
 				bind:checked={$searchStore.options.alphabeticalOrder}
 			/>
-			<span class="label-text mr-auto ml-2">Z-A</span>
+			<span class="label-text mr-auto ml-2">A-Z</span>
 		</label>
 	</div>
 

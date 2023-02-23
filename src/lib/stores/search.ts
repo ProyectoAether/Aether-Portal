@@ -1,8 +1,10 @@
 import { writable, derived } from 'svelte/store';
 import ontologies from '$lib/assets/ontologies.json';
-import { compactURI } from '$lib/utils';
-import type { Triple, Ontology } from '$lib/assets/types';
+import namespaces from '$lib/assets/namespaces.json';
+import { SearchFilter, TripleSorter, URIFormatter, type TypesFilter } from '$lib/utils';
+import type { Ontology, Triple } from '$lib/assets/types';
 import { typeURI, rdfsType } from '$lib/assets/types';
+import { getOntologiesTriples } from '$lib/utils';
 
 interface SearchOptions {
 	owlClass: true;
@@ -27,7 +29,7 @@ const defaultSearchOptions: SearchOptions = {
 	owlObjectProperty: true,
 	owlNamedIndividual: true,
 	isCompacted: true,
-	alphabeticalOrder: false,
+	alphabeticalOrder: true,
 	limit: 10,
 	offset: 0
 };
@@ -38,81 +40,26 @@ export const searchStore = writable<SearchParams>({
 });
 export const filteredData = derived(searchStore, ($searchStore) => searchHandler($searchStore));
 
-function filterByType(data: Triple[], options: SearchOptions): Triple[] {
-	const elements = data.reduce((acc, curr) => {
-		if (!acc.has(curr.subject)) {
-			acc.set(curr.subject, true);
-		}
-		return acc;
-	}, new Map<string, boolean>());
-	for (const curr of data) {
-		if (!options.owlClass && curr.object === typeURI.owlClass && curr.predicate === rdfsType) {
-			elements.delete(curr.subject);
-		}
-		if (
-			!options.owlDatatypeProperty &&
-			curr.object === typeURI.owlDatatypeProperty &&
-			curr.predicate === rdfsType
-		) {
-			elements.delete(curr.subject);
-		}
-		if (
-			!options.owlObjectProperty &&
-			curr.object === typeURI.owlObjectProperty &&
-			curr.predicate === rdfsType
-		) {
-			elements.delete(curr.subject);
-		}
-		if (
-			options.owlNamedIndividual &&
-			curr.object === typeURI.owlNamedIndividual &&
-			curr.predicate === rdfsType
-		) {
-			elements.delete(curr.subject);
-		}
-	}
-	return data.filter((d) => elements.has(d.subject));
-}
-
-function getCompactedURI(data: Triple[]): Triple[] {
-	return data.map((d) => {
-		return {
-			subject: compactURI(d.subject),
-			predicate: compactURI(d.predicate),
-			object: compactURI(d.object)
-		};
-	});
-}
 
 function searchHandler(searchStore: SearchParams) {
 	const { searchQuery, ontologies, options } = searchStore;
-	const triples: Triple[] = Object.values(ontologies).reduce((acc, curr) => {
-		acc.push(...curr);
-		return acc;
-	}, []);
-	const typeFiltered = filterByType(triples, options);
-	const queryFiltered: Triple[] = typeFiltered
-		.filter(
-			(el) =>
-				el.subject.toLowerCase().includes(searchQuery.toLowerCase()) ||
-				el.predicate.toLowerCase().includes(searchQuery.toLowerCase()) ||
-				el.object.toLowerCase().includes(searchQuery.toLowerCase())
-		)
+	const triples: Triple[] = getOntologiesTriples(ontologies);
+	const filterer = new SearchFilter(triples);
+	const typesToShow: TypesFilter = {
+		owlClass: options.owlClass,
+		owlDatatypeProperty: options.owlDatatypeProperty,
+		owlObjectProperty: options.owlObjectProperty,
+		owlNamedIndividual: options.owlNamedIndividual
+	};
+	const queryFiltered = filterer
+		.filterByType(typesToShow, typeURI, rdfsType)
+		.filterByQuery(searchQuery)
+		.getResult();
+	const uriFormatter = new URIFormatter(queryFiltered, namespaces);
+	const compacted = options.isCompacted ? uriFormatter.getCompactedURI() : queryFiltered;
 
-	const compacted = options.isCompacted ? getCompactedURI(queryFiltered) : queryFiltered;
-
-	const result = compacted.sort((a, b) => {
-		if (!options.alphabeticalOrder) {
-			return (a.subject + a.predicate + a.object).toLowerCase() >
-				(b.subject + b.predicate + b.object).toLowerCase()
-				? 1
-				: -1;
-		} else {
-			return (a.subject + a.predicate + a.object).toLowerCase() <=
-				(b.subject + b.predicate + b.object).toLowerCase()
-				? 1
-				: -1;
-		}
-	});
-	return result;
+	const sorter = new TripleSorter(compacted);
+	return options.alphabeticalOrder
+		? sorter.alphabeticalSort().getResult()
+		: sorter.reverseAlphabeticalSort().getResult();
 }
