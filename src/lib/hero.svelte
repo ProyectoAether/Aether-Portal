@@ -1,20 +1,22 @@
 <script lang="ts">
+	import AetherIcon from '$lib/aetherIcon.svelte';
+	import Stats from '$lib/stats.svelte';
 	export let heroButton: HTMLButtonElement;
 </script>
 
-<div
-	class="hero min-h-screen"
-	style="background-image: url(/images/stock/photo-1507358522600-9f71e620c44e.jpg);"
->
+<div class="hero min-h-screen">
 	<div class="hero-overlay bg-opacity-60" />
 	<div class="hero-content text-center text-neutral-content">
-		<div class="max-w-md">
-			<h1 class="mb-5 text-5xl font-bold">Hello there</h1>
-			<p class="mb-5">
-				Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-				quasi. In deleniti eaque aut repudiandae et a id nisi.
+		<div class="max-w-md flex flex-col justify-center items-center">
+			<AetherIcon />
+			<p class="italic mb-10 md:text-xl">
+				This is an ontology portal that allows for quick search and preview of the most relevant
+				ontologies of the Aether project. For more information checkout <a
+					href="http://www.aether.es">here</a
+				>
 			</p>
-			<button class="btn btn-primary" bind:this={heroButton}>Get Started</button>
+			<Stats />
+			<button class="btn btn-primary my-10" bind:this={heroButton}>Get Started</button>
 		</div>
 	</div>
 </div>

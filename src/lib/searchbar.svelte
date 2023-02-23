@@ -1,16 +1,24 @@
 <script lang="ts">
-	import { searchQuery } from '$lib/stores/search';
+	import { searchStore } from '$lib/stores/search';
 	import { onMount } from 'svelte';
+	import SearchOptions from '$lib/searchOptions.svelte';
+	import { goto } from '$app/navigation';
 	import SearchResult from '$lib/searchResult.svelte';
 
-	export let searchInput : HTMLInputElement;
+	export let searchInput: HTMLInputElement;
+	export let showInlineResult = true;
+
+	function handleOnSubmit(event: SubmitEvent) {
+		event.preventDefault();
+		goto('/ontologies');
+	}
 
 	onMount(() => {
 		const handler = (event: KeyboardEvent) => {
 			if (event.key.toLowerCase() === 'f' && event.ctrlKey === true) {
-                event.preventDefault();
+				event.preventDefault();
 				searchInput.focus();
-            }
+			}
 		};
 		document.addEventListener('keydown', (event) => {
 			handler(event);
@@ -19,18 +27,19 @@
 	});
 </script>
 
-<form id="search">
+<form on:submit={handleOnSubmit}>
 	<div class="w-full mx-auto px-6">
 		<div class="flex justify-center p-4 px-3 py-10">
-			<div class="w-full max-w-3xl">
+			<div class="w-full max-w-6xl">
 				<div class="bg-white shadow-md rounded-lg px-3 py-2 mb-4">
-					<div class="block text-gray-700 text-lg font-semibold py-2 px-2">Search</div>
-					<div class="mx-4 mb-4 italic bg-gray-200 rounded-lg px-4 py-2 inline-block">
+					<h2 class="block text-gray-700 text-2xl font-semibold py-2 px-2">Search</h2>
+					<div class="mx-4 italic bg-gray-200 rounded-lg px-4 py-2 inline-block">
 						Press <kbd class="kbd kbd-sm">Ctrl</kbd> +
 						<kbd class="kbd kbd-sm">f</kbd>
 						to start searching
 					</div>
-					<div class="flex items-center bg-gray-200 rounded-md">
+					<SearchOptions />
+					<div class="mb-4 flex items-center bg-gray-200 rounded-md">
 						<div class="pl-2">
 							<svg
 								class="fill-current text-gray-500 w-6 h-6"
@@ -47,13 +56,13 @@
 							class="w-full rounded-md bg-gray-200 text-gray-700 leading-tight focus:outline-none py-2 px-2"
 							id="search"
 							type="text"
-							bind:value={$searchQuery}
+							bind:value={$searchStore.searchQuery}
 							placeholder="Search class or ontology"
 							bind:this={searchInput}
-                            autocomplete="off"
+							autocomplete="off"
 						/>
 					</div>
-					<SearchResult />
+					<svelte:component this={showInlineResult ? SearchResult : undefined} />
 				</div>
 			</div>
 		</div>

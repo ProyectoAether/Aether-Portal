@@ -41,7 +41,7 @@
 				<li><a>Item 3</a></li>
 			</ul>
 		</div>
-		<a class="btn btn-ghost normal-case text-xl">Ontology Portal</a>
+		<h1><a class="text-2xl p-6 font-bold" href="/">Ontology Portal</a></h1>
 	</div>
 	<div class="navbar-center hidden lg:flex">
 		<ul class="menu menu-horizontal px-1">
@@ -67,6 +67,6 @@
 		</ul>
 	</div>
 	<div class="navbar-end">
-		<a class="btn">Show all</a>
+		<a class="btn btn-primary" href="/ontologies">Show all</a>
 	</div>
 </div>
