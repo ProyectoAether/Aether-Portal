@@ -13,7 +13,7 @@
 			/>
 		</label>
 	</div>
-	<div class="form-control"> 
+	<div class="form-control">
 		<label class="cursor-pointer label">
 			<span class="label-text ml-auto mr-2">Datatype Properties</span>
 			<input
@@ -64,5 +64,4 @@
 			<span class="label-text mr-auto ml-2">A-Z</span>
 		</label>
 	</div>
-
 </div>

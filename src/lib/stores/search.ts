@@ -38,8 +38,7 @@ export const searchStore = writable<SearchParams>({
 	searchQuery: '',
 	options: defaultSearchOptions
 });
-export const filteredData = derived(searchStore, ($searchStore) => searchHandler($searchStore));
-
+export const filteredData = derived(searchStore, searchHandler);
 
 function searchHandler(searchStore: SearchParams) {
 	const { searchQuery, ontologies, options } = searchStore;
@@ -51,6 +50,7 @@ function searchHandler(searchStore: SearchParams) {
 		owlObjectProperty: options.owlObjectProperty,
 		owlNamedIndividual: options.owlNamedIndividual
 	};
+
 	const queryFiltered = filterer
 		.filterByType(typesToShow, typeURI, rdfsType)
 		.filterByQuery(searchQuery)

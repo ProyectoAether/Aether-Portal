@@ -27,7 +27,7 @@
 			>
 		{/if}
 	{/each}
-	{#if $searchStore.options.offset + 1 < $filteredData.length / $searchStore.options.limit + 1}
+	{#if $searchStore.options.offset + 2 < $filteredData.length / $searchStore.options.limit + 1}
 		<button class="btn btn-md" on:click={() => ($searchStore.options.offset += 1)}>Next</button>
 	{/if}
 </div>

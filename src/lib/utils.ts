@@ -1,5 +1,106 @@
 import type { Namespace, Ontology, OWLType, Triple, TypesURI } from '$lib/assets/types';
 
+const metadataFields = [
+	'Title',
+	'Publisher',
+	'Creator',
+	'Created',
+	'Rights',
+	'URI',
+	'Description',
+	'Imports'
+] as const;
+
+export function isMetadataField(value: any): value is MetadataField {
+	return metadataFields.includes(value);
+}
+
+export type MetadataField = (typeof metadataFields)[number];
+
+const statistics = [
+	'Number of classes',
+	'Number of datatype properties',
+	'Number of object properties'
+] as const;
+type Statistic = (typeof statistics)[number];
+
+export function isStatistic(value: any): value is Statistic {
+	return statistics.includes(value);
+}
+
+type MetadataFieldPredicate = {
+	[key in MetadataField | Statistic]: string;
+};
+
+const fields: MetadataFieldPredicate = {
+	Title: 'http://purl.org/dc/terms/title',
+	Publisher: 'http://purl.org/dc/terms/publisher',
+	Creator: 'http://purl.org/dc/terms/creator',
+	Created: 'http://purl.org/dc/terms/created',
+	Rights: 'http://purl.org/dc/terms/rights',
+	URI: 'http://purl.org/vocab/vann/preferredNamespaceUri',
+	Description: 'http://purl.org/dc/terms/description',
+	Imports: 'http://www.w3.org/2002/07/owl#imports',
+	'Number of classes': 'http://www.w3.org/2002/07/owl#Class',
+	'Number of datatype properties': 'http://www.w3.org/2002/07/owl#DatatypeProperty',
+	'Number of object properties': 'http://www.w3.org/2002/07/owl#ObjectProperty'
+};
+
+export type OntologyMetadata<T, K> = Map<T, K>;
+
+export class MetadataExtractor {
+	private data: Ontology;
+	private baseURI: string;
+	private imported: string[];
+	public constructor(data: Ontology, baseURI: string) {
+		this.baseURI = baseURI;
+		this.data = data;
+		this.imported = [];
+	}
+    public updateImported(imported: string[]): this{
+        this.imported = imported;
+        return this;
+    }
+
+	public getMetadata(fieldsToShow: MetadataFieldPredicate = fields): OntologyMetadata<MetadataField, string[] | number> {
+		const metadata: OntologyMetadata<MetadataField, string[] | number> = new Map<
+			MetadataField,
+			string[] | number
+		>();
+		const baseTriples = this.data[this.baseURI];
+		const allTriples = this.getTiples();
+		for (const [field, predicate] of Object.entries(fieldsToShow)) {
+			if (isMetadataField(field)) {
+				metadata.set(
+					field as MetadataField,
+					baseTriples.filter((x) => x.predicate === predicate).map((x) => x.object)
+				);
+			} else if (isStatistic(field)) {
+				metadata.set(
+					field as MetadataField,
+					// in this case it's the object
+					allTriples.filter((x) => x.object === predicate).map((x) => x.object).length
+				);
+			}
+		}
+		return metadata;
+	}
+	public getTiples(): Triple[] {
+		const imported = this.getImportedOntologies(this.data, this.imported);
+		return [...Object.values(imported).flat(), ...this.data[this.baseURI]];
+	}
+	private getImportedOntologies(
+		data: Ontology,
+		imported: string[]
+	): Ontology {
+		return Object.entries(data)
+			.filter(([uri, _]) => imported.includes(uri))
+			.reduce((acc, [uri, triples]) => {
+				acc[uri] = triples;
+				return acc;
+			}, {} as Ontology);
+	}
+}
 export class URIFormatter {
 	private namespaces: Namespace;
 	private triples: Triple[];
@@ -66,8 +167,8 @@ export class TripleSorter implements Sorter<Triple> {
 }
 
 export type TypesFilter = {
-    [keys in keyof OWLType]: boolean;
-}
+	[keys in keyof OWLType]: boolean;
+};
 
 export class SearchFilter implements Filter<Triple> {
 	triples: Triple[];
@@ -138,9 +239,13 @@ export function expandURI(uri: string, namespaces: Namespace): string {
 	}
 	return tmp;
 }
+
 export function getOntologiesTriples(ontologies: Ontology) {
-	return Object.values(ontologies).reduce((acc, curr) => {
-		acc.push(...curr);
-		return acc;
-	}, []);
+	let result = new Set<string>();
+	for (const triples of Object.values(ontologies)) {
+		for (const triple of triples) {
+			result.add(JSON.stringify(triple));
+		}
+	}
+	return Array.from(result).map((r: string) => JSON.parse(r));
 }

@@ -12,11 +12,14 @@
 		event.preventDefault();
 		goto('/ontologies');
 	}
-
 	onMount(() => {
 		const handler = (event: KeyboardEvent) => {
-			if (event.key.toLowerCase() === 'f' && event.ctrlKey === true) {
+			if (event.key.toLowerCase() === 'k' && event.ctrlKey === true) {
 				event.preventDefault();
+				const yOffsetPixels: number = -250;
+				const y: number =
+					searchInput.getBoundingClientRect().top + window.pageYOffset + yOffsetPixels;
+				window.scrollTo({ top: y, behavior: 'smooth' });
 				searchInput.focus();
 			}
 		};
@@ -31,18 +34,20 @@
 	<div class="w-full mx-auto px-6">
 		<div class="flex justify-center p-4 px-3 py-10">
 			<div class="w-full max-w-6xl">
-				<div class="bg-white shadow-md rounded-lg px-3 py-2 mb-4">
-					<h2 class="block text-gray-700 text-2xl font-semibold py-2 px-2">Search</h2>
+				<div class="shadow-md rounded-lg px-3 py-2 mb-4">
+					<h2 class="dark:text-white block  text-2xl font-semibold py-2 px-2">Search</h2>
 					<div class="mx-4 italic bg-gray-200 rounded-lg px-4 py-2 inline-block">
-						Press <kbd class="kbd kbd-sm">Ctrl</kbd> +
-						<kbd class="kbd kbd-sm">f</kbd>
-						to start searching
+						<span class="text-black">Press</span>
+						<kbd class="kbd">Ctrl</kbd>
+						<span class="text-black">+</span>
+						<kbd class="kbd">k</kbd>
+						<span class="text-black">to start searching</span>
 					</div>
 					<SearchOptions />
-					<div class="mb-4 flex items-center bg-gray-200 rounded-md">
+					<div class="mb-4 flex items-center input input-bordered w-full max-w-x  rounded-lg shadow">
 						<div class="pl-2">
 							<svg
-								class="fill-current text-gray-500 w-6 h-6"
+								class="fill-current  w-6 h-6"
 								xmlns="http://www.w3.org/2000/svg"
 								viewBox="0 0 24 24"
 							>
@@ -53,14 +58,33 @@
 							</svg>
 						</div>
 						<input
-							class="w-full rounded-md bg-gray-200 text-gray-700 leading-tight focus:outline-none py-2 px-2"
+							class="w-full focus:outline-none py-2 px-2"
 							id="search"
 							type="text"
+							tabindex="0"
 							bind:value={$searchStore.searchQuery}
 							placeholder="Search class or ontology"
 							bind:this={searchInput}
 							autocomplete="off"
 						/>
+						<div
+							class="tooltip text-left tooltip-left"
+							data-tip="http://purl.org/vocab/vann/preferredNamespacePrefix"
+						>
+							<button
+								type="reset"
+								class="ml-auto mr-4 p-2 badge badge-secondary"
+								on:click={(e) => {
+									e.preventDefault();
+									$searchStore.searchQuery = 'http://purl.org/vocab/vann/preferredNamespacePrefix';
+								}}
+								on:focus={() => undefined}
+								on:mouseover={() =>
+									(searchInput.placeholder = 'http://purl.org/vocab/vann/preferredNamespacePrefix')}
+								on:mouseleave={() => (searchInput.placeholder = 'Search class or ontology')}
+								>#Ontologies</button
+							>
+						</div>
 					</div>
 					<svelte:component this={showInlineResult ? SearchResult : undefined} />
 				</div>
