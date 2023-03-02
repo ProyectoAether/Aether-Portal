@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { searchStore } from '$lib/stores/search';
+	export let compacted: boolean;
 </script>
 
 <div class="grid place-items-start sm:grid-cols-2 lg:grid-cols-4 md:grid-cols-3 py-6 px-3">
@@ -46,11 +47,7 @@
 	<div class="form-control ">
 		<label class="cursor-pointer label">
 			<span class="label-text ml-auto mr-2">Compact</span>
-			<input
-				type="checkbox"
-				class="toggle toggle-primary"
-				bind:checked={$searchStore.options.isCompacted}
-			/>
+			<input type="checkbox" class="toggle toggle-primary" bind:checked={compacted} />
 		</label>
 	</div>
 	<div class="form-control ">

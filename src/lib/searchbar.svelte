@@ -3,10 +3,9 @@
 	import { onMount } from 'svelte';
 	import SearchOptions from '$lib/searchOptions.svelte';
 	import { goto } from '$app/navigation';
-	import SearchResult from '$lib/searchResult.svelte';
 
 	export let searchInput: HTMLInputElement;
-	export let showInlineResult = true;
+	export let compacted: boolean;
 
 	function handleOnSubmit(event: SubmitEvent) {
 		event.preventDefault();
@@ -16,7 +15,7 @@
 		const handler = (event: KeyboardEvent) => {
 			if (event.key.toLowerCase() === 'k' && event.ctrlKey === true) {
 				event.preventDefault();
-				const yOffsetPixels: number = -250;
+				const yOffsetPixels: number = -350;
 				const y: number =
 					searchInput.getBoundingClientRect().top + window.pageYOffset + yOffsetPixels;
 				window.scrollTo({ top: y, behavior: 'smooth' });
@@ -43,8 +42,10 @@
 						<kbd class="kbd">k</kbd>
 						<span class="text-black">to start searching</span>
 					</div>
-					<SearchOptions />
-					<div class="mb-4 flex items-center input input-bordered w-full max-w-x  rounded-lg shadow">
+					<SearchOptions bind:compacted />
+					<div
+						class="mb-4 flex items-center input input-bordered w-full max-w-x  rounded-lg shadow"
+					>
 						<div class="pl-2">
 							<svg
 								class="fill-current  w-6 h-6"
@@ -69,24 +70,25 @@
 						/>
 						<div
 							class="tooltip text-left tooltip-left"
-							data-tip="http://purl.org/vocab/vann/preferredNamespacePrefix"
+							data-tip="http://www.w3.org/2002/07/owl#Ontology"
 						>
 							<button
 								type="reset"
 								class="ml-auto mr-4 p-2 badge badge-secondary"
 								on:click={(e) => {
 									e.preventDefault();
-									$searchStore.searchQuery = 'http://purl.org/vocab/vann/preferredNamespacePrefix';
+									$searchStore.searchQuery = 'http://www.w3.org/2002/07/owl#Ontology';
+									searchInput.focus();
 								}}
 								on:focus={() => undefined}
 								on:mouseover={() =>
-									(searchInput.placeholder = 'http://purl.org/vocab/vann/preferredNamespacePrefix')}
+									(searchInput.placeholder = 'http://www.w3.org/2002/07/owl#Ontology')}
 								on:mouseleave={() => (searchInput.placeholder = 'Search class or ontology')}
 								>#Ontologies</button
 							>
 						</div>
 					</div>
-					<svelte:component this={showInlineResult ? SearchResult : undefined} />
+					<slot />
 				</div>
 			</div>
 		</div>

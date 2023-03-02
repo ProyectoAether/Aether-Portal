@@ -1,7 +1,6 @@
 import { writable, derived } from 'svelte/store';
 import ontologies from '$lib/assets/ontologies.json';
-import namespaces from '$lib/assets/namespaces.json';
-import { SearchFilter, TripleSorter, URIFormatter, type TypesFilter } from '$lib/utils';
+import { SearchFilter, TripleSorter, type TypesFilter } from '$lib/utils';
 import type { Ontology, Triple } from '$lib/assets/types';
 import { typeURI, rdfsType } from '$lib/assets/types';
 import { getOntologiesTriples } from '$lib/utils';
@@ -11,7 +10,6 @@ interface SearchOptions {
 	owlDatatypeProperty: true;
 	owlObjectProperty: true;
 	owlNamedIndividual: true;
-	isCompacted: boolean;
 	limit: number;
 	offset: number;
 	alphabeticalOrder: boolean;
@@ -28,7 +26,6 @@ const defaultSearchOptions: SearchOptions = {
 	owlDatatypeProperty: true,
 	owlObjectProperty: true,
 	owlNamedIndividual: true,
-	isCompacted: true,
 	alphabeticalOrder: true,
 	limit: 10,
 	offset: 0
@@ -55,11 +52,17 @@ function searchHandler(searchStore: SearchParams) {
 		.filterByType(typesToShow, typeURI, rdfsType)
 		.filterByQuery(searchQuery)
 		.getResult();
-	const uriFormatter = new URIFormatter(queryFiltered, namespaces);
-	const compacted = options.isCompacted ? uriFormatter.getCompactedURI() : queryFiltered;
 
-	const sorter = new TripleSorter(compacted);
-	return options.alphabeticalOrder
+	const sorter = new TripleSorter(queryFiltered);
+
+	const result = options.alphabeticalOrder
 		? sorter.alphabeticalSort().getResult()
 		: sorter.reverseAlphabeticalSort().getResult();
+
+	if (
+		result.slice(options.offset * options.limit, (options.offset + 1) * options.limit).length <= 0
+	) {
+		options.offset = 0;
+	}
+	return result;
 }

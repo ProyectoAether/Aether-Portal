@@ -2,7 +2,12 @@
 	import AetherIcon from '$lib/aetherIcon.svelte';
 	import Stats from '$lib/stats.svelte';
 	import { typewriter } from '$lib/customTransitions';
+	import { onMount } from 'svelte';
 	export let heroButton: HTMLButtonElement;
+	let show = false;
+	onMount(() => {
+		show = true;
+	});
 </script>
 
 <div class="hero min-h-screen relative">
@@ -10,12 +15,15 @@
 	<div class="hero-content text-center text-neutral-content">
 		<div class="max-w-md flex flex-col justify-center items-center">
 			<AetherIcon />
-			<p class="italic mb-10 md:text-xl text-[#1E1D82] " in:typewriter={{ speed: 3 }}>
-				This is an ontology portal that allows for quick search and preview of the most relevant
-				ontologies of the Aether project.
-			</p>
+			{#if show}
+				<p class="italic mb-10 md:text-xl text-[#1E1D82] " in:typewriter={{ speed: 3 }}>
+					This is an ontology portal that allows for quick search and preview of the most relevant
+					ontologies of the Aether project.
+				</p>
+			{/if}
 			<Stats />
-			<button class="btn glass shadow text-primary my-10" bind:this={heroButton}>Get Started</button>
+			<button class="btn glass shadow text-primary my-10" bind:this={heroButton}>Get Started</button
+			>
 		</div>
 	</div>
 </div>

@@ -1,33 +1,26 @@
 <script lang="ts">
-	import { searchStore, filteredData } from '$lib/stores/search';
+	import type { Triple } from '$lib/assets/types';
+	export let offset: number;
+	export let triples: Triple[];
+	export let limit: number;
 </script>
 
 <div class="btn-group m-12">
-	{#if $searchStore.options.offset + 1 > 1}
-		<button
-			class="btn btn-md"
-			on:click={() => ($searchStore.options.offset = $searchStore.options.offset - 1)}
-			>Previous</button
-		>
+	{#if offset + 1 > 1}
+		<button class="btn btn-md" on:click={() => (offset = offset - 1)}>Prev</button>
 	{/if}
 	{#each [1, 0] as i}
-		{#if $searchStore.options.offset - i > 0}
-			<button
-				class="btn btn-md"
-				on:click={() => ($searchStore.options.offset = $searchStore.options.offset - i - 1)}
-				>{$searchStore.options.offset - i}</button
-			>
+		{#if offset - i > 0}
+			<button class="btn btn-md" on:click={() => (offset = offset - i - 1)}>{offset - i}</button>
 		{/if}
 	{/each}
-	<button class="btn btn-md btn-active">{$searchStore.options.offset + 1}</button>
+	<button class="btn btn-md btn-active">{offset + 1}</button>
 	{#each [0, 1] as i}
-		{#if $searchStore.options.offset + i + 2 < $filteredData.length / $searchStore.options.limit + 1}
-			<button class="btn btn-md" on:click={() => ($searchStore.options.offset += i + 1)}
-				>{$searchStore.options.offset + i + 2}</button
-			>
+		{#if offset + i + 2 < triples.length / limit + 1}
+			<button class="btn btn-md" on:click={() => (offset += i + 1)}>{offset + i + 2}</button>
 		{/if}
 	{/each}
-	{#if $searchStore.options.offset + 2 < $filteredData.length / $searchStore.options.limit + 1}
-		<button class="btn btn-md" on:click={() => ($searchStore.options.offset += 1)}>Next</button>
+	{#if offset + 2 < triples.length / limit + 1}
+		<button class="btn btn-md" on:click={() => (offset += 1)}>Next</button>
 	{/if}
 </div>

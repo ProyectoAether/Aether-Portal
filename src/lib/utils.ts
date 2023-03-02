@@ -38,7 +38,7 @@ const fields: MetadataFieldPredicate = {
 	Creator: 'http://purl.org/dc/terms/creator',
 	Created: 'http://purl.org/dc/terms/created',
 	Rights: 'http://purl.org/dc/terms/rights',
-	URI: 'http://purl.org/vocab/vann/preferredNamespaceUri',
+	URI: 'http://www.w3.org/2002/07/owl#versionIRI',
 	Description: 'http://purl.org/dc/terms/description',
 	Imports: 'http://www.w3.org/2002/07/owl#imports',
 	'Number of classes': 'http://www.w3.org/2002/07/owl#Class',
@@ -57,12 +57,14 @@ export class MetadataExtractor {
 		this.data = data;
 		this.imported = [];
 	}
-    public updateImported(imported: string[]): this{
-        this.imported = imported;
-        return this;
-    }
+	public updateImported(imported: string[]): this {
+		this.imported = imported;
+		return this;
+	}
 
-	public getMetadata(fieldsToShow: MetadataFieldPredicate = fields): OntologyMetadata<MetadataField, string[] | number> {
+	public getMetadata(
+		fieldsToShow: MetadataFieldPredicate = fields
+	): OntologyMetadata<MetadataField, string[] | number> {
 		const metadata: OntologyMetadata<MetadataField, string[] | number> = new Map<
 			MetadataField,
 			string[] | number
@@ -89,10 +91,7 @@ export class MetadataExtractor {
 		const imported = this.getImportedOntologies(this.data, this.imported);
 		return [...Object.values(imported).flat(), ...this.data[this.baseURI]];
 	}
-	private getImportedOntologies(
-		data: Ontology,
-		imported: string[]
-	): Ontology {
+	private getImportedOntologies(data: Ontology, imported: string[]): Ontology {
 		return Object.entries(data)
 			.filter(([uri, _]) => imported.includes(uri))
 			.reduce((acc, [uri, triples]) => {
@@ -217,6 +216,28 @@ export function isURI(sequence: string): boolean {
 	} catch {
 		return false;
 	}
+}
+
+export function getRootsURI(triples: Triple[]): string[] {
+	const classes = triples.filter((el) => el.object === 'http://www.w3.org/2002/07/owl#Class');
+	return classes
+		.filter(
+			(c) =>
+				triples.find(
+					(t) =>
+						t.subject === c.subject &&
+						t.predicate === 'http://www.w3.org/2000/01/rdf-schema#subClassOf'
+				) === undefined
+		)
+		.map((el) => el.subject);
+}
+export function getChildren(classURI: string, triples: Triple[]): string[] {
+	return triples
+		.filter(
+			(el) =>
+				el.predicate === 'http://www.w3.org/2000/01/rdf-schema#subClassOf' && el.object === classURI
+		)
+		.map((el) => el.subject);
 }
 
 export function compactURI(uri: string, namespaces: Namespace): string {
