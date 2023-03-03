@@ -1,10 +1,9 @@
 <script lang="ts">
-	import AetherIcon from '$lib/aetherIcon.svelte';
-	import Stats from '$lib/stats.svelte';
-	import { typewriter } from '$lib/customTransitions';
+	import AetherIcon from '$lib/svg/aetherIcon.svelte';
+	import Stats from '$lib/components/stats.svelte';
+	import { typewriter } from '$lib/transitions/typewriter';
 	import { onMount } from 'svelte';
-	export let heroButton: HTMLButtonElement;
-	let show = false;
+	export let show = false;
 	onMount(() => {
 		show = true;
 	});
@@ -22,7 +21,6 @@
 				</p>
 			{/if}
 			<Stats />
-			<button class="btn glass shadow text-primary my-10" bind:this={heroButton}>Get Started</button
 			>
 		</div>
 	</div>

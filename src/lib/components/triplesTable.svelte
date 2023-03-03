@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Triple } from '$lib/assets/types';
-	import { compactURI } from './utils';
+	import { compactURI } from '$lib/utils';
 	import namespaces from '$lib/assets/namespaces.json';
 	export let triples: Triple[];
 	export let compacted: boolean;

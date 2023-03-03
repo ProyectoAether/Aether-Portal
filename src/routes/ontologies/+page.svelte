@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Pagination from '$lib/pagination.svelte';
-	import Searchbar from '$lib/searchbar.svelte';
-	import SearchResult from '$lib/searchResult.svelte';
+	import Pagination from '$lib/components/pagination.svelte';
+	import Searchbar from '$lib/components/searchbar.svelte';
+	import SearchResult from '$lib/components/searchResult.svelte';
 	import { searchStore, filteredData } from '$lib/stores/search';
 
 	let searchInput: HTMLInputElement;

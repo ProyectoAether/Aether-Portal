@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
-	let show = false;
+	export let show = false;
 
 	onMount(() => {
 		show = true;
@@ -10,6 +10,7 @@
 </script>
 
 <svg
+    id="aether-icon"
 	version="1.0"
 	class="h-[202px] w-[502px] md:h-[324px] md:w-[982px]"
 	xmlns="http://www.w3.org/2000/svg"

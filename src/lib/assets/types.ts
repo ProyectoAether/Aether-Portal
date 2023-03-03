@@ -9,16 +9,7 @@ export interface Ontology {
 export interface Namespace {
 	[key: string]: string;
 }
-export type TypesURI = {
-	[keys in OWLType]: string;
-};
-
-export type OWLType = 'owlClass' &
-	'owlNamedIndividual' &
-	'owlObjectProperty' &
-	'owlNamedIndividual';
-
-export const typeURI: TypesURI = {
+export const typeURI =  {
 	owlClass: 'http://www.w3.org/2002/07/owl#Class',
 	owlDatatypeProperty: 'http://www.w3.org/2002/07/owl#DatatypeProperty',
 	owlObjectProperty: 'http://www.w3.org/2002/07/owl#ObjectProperty',

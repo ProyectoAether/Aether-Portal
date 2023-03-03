@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { filteredData, searchStore } from '$lib/stores/search';
-	import TriplesTable from '$lib/triplesTable.svelte';
+	import TriplesTable from '$lib/components/triplesTable.svelte';
 	export let compacted: boolean;
     $: hasData = $filteredData.slice($searchStore.options.offset * $searchStore.options.limit, ($searchStore.options.offset + 1) * $searchStore.options.limit).length > 0;
 </script>

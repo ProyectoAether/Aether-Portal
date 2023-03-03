@@ -219,17 +219,17 @@ export function isURI(sequence: string): boolean {
 }
 
 export function getRootsURI(triples: Triple[]): string[] {
-	const classes = triples.filter((el) => el.object === 'http://www.w3.org/2002/07/owl#Class');
-	return classes
+	const subClasses = triples
+		.filter((el) => el.predicate === 'http://www.w3.org/2000/01/rdf-schema#subClassOf')
+		.map((el) => el.subject);
+	const classes = triples
 		.filter(
-			(c) =>
-				triples.find(
-					(t) =>
-						t.subject === c.subject &&
-						t.predicate === 'http://www.w3.org/2000/01/rdf-schema#subClassOf'
-				) === undefined
+			(el) =>
+				el.predicate === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' &&
+				el.object === 'http://www.w3.org/2002/07/owl#Class'
 		)
 		.map((el) => el.subject);
+	return classes.filter((el) => !subClasses.includes(el));
 }
 export function getChildren(classURI: string, triples: Triple[]): string[] {
 	return triples

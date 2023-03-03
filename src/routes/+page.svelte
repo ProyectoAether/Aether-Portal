@@ -1,28 +1,8 @@
 <script lang="ts">
-	import Searchbar from '$lib/searchbar.svelte';
-	import SearchResult from '$lib/searchResult.svelte';
-	import Hero from '$lib/hero.svelte';
-	import { onMount } from 'svelte';
-	let searchInput: HTMLInputElement;
-	let heroButton: HTMLButtonElement;
+	import Searchbar from '$lib/components/searchbar.svelte';
+	import SearchResult from '$lib/components/searchResult.svelte';
+	import Hero from '$lib/components/hero.svelte';
 	let compacted: boolean = false;
-
-	onMount(() => {
-		const focusSearchBar = (event: MouseEvent) => {
-			event.preventDefault();
-			searchInput.focus();
-			// get div height
-			const yOffsetPixels: number = -250;
-			const y: number =
-				searchInput.getBoundingClientRect().top + window.pageYOffset + yOffsetPixels;
-			window.scrollTo({ top: y, behavior: 'smooth' });
-		};
-
-		heroButton.addEventListener('click', (event: MouseEvent) => {
-			focusSearchBar(event);
-		});
-		return () => heroButton.removeEventListener('click', focusSearchBar);
-	});
 </script>
 
 <svelte:head>
@@ -30,9 +10,9 @@
 </svelte:head>
 
 <main class="min-h-screen">
-	<Hero bind:heroButton />
+	<Hero/>
 	<div class="container">
-		<Searchbar bind:searchInput bind:compacted>
+		<Searchbar bind:compacted>
 			<SearchResult {compacted} />
 		</Searchbar>
 	</div>

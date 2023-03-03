@@ -5,7 +5,7 @@ import type { Ontology, Triple } from '$lib/assets/types';
 import { typeURI, rdfsType } from '$lib/assets/types';
 import { getOntologiesTriples } from '$lib/utils';
 
-interface SearchOptions {
+export interface SearchOptions {
 	owlClass: true;
 	owlDatatypeProperty: true;
 	owlObjectProperty: true;
@@ -15,7 +15,7 @@ interface SearchOptions {
 	alphabeticalOrder: boolean;
 }
 
-interface SearchParams {
+export interface SearchParams {
 	ontologies: Ontology;
 	searchQuery: string;
 	options: SearchOptions;
@@ -30,6 +30,12 @@ const defaultSearchOptions: SearchOptions = {
 	limit: 10,
 	offset: 0
 };
+export const reset = () =>
+	searchStore.set({
+		ontologies: ontologies,
+		searchQuery: '',
+		options: defaultSearchOptions
+	});
 export const searchStore = writable<SearchParams>({
 	ontologies: ontologies,
 	searchQuery: '',
@@ -37,7 +43,7 @@ export const searchStore = writable<SearchParams>({
 });
 export const filteredData = derived(searchStore, searchHandler);
 
-function searchHandler(searchStore: SearchParams) {
+function searchHandler(searchStore: SearchParams): Triple[] {
 	const { searchQuery, ontologies, options } = searchStore;
 	const triples: Triple[] = getOntologiesTriples(ontologies);
 	const filterer = new SearchFilter(triples);
