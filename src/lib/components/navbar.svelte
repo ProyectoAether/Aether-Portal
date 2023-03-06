@@ -1,18 +1,25 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { themeChange } from 'theme-change';
 
-	// NOTE: the element that is using one of the theme attributes must be in the DOM on mount
+	let theme: boolean = false;
+	let mounted: boolean = false;
 	onMount(() => {
-		themeChange(false);
-		// 👆 false parameter is required for svelte
+		mounted = true;
 	});
+
+	$: if (mounted) {
+		theme
+			? document.getElementsByTagName('html')[0].setAttribute('data-theme', 'dracula')
+			: document.getElementsByTagName('html')[0].setAttribute('data-theme', 'light');
+	}
 </script>
 
 <nav class="navbar bg-base-100">
 	<div class="navbar-start">
 		<h1>
-			<a data-testid="home-link" class="text-2xl p-4 font-bold inline-block" href="/">Ontology Portal</a>
+			<a data-testid="home-link" class="text-2xl p-4 font-bold inline-block" href="/"
+				>Ontology Portal</a
+			>
 		</h1>
 	</div>
 
@@ -25,7 +32,7 @@
 				d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
 			/>
 		</svg>
-		<input type="checkbox" data-toggle-theme="light,dracula" data-act-class="ACTIVECLASS" class="toggle toggle-secondary" />
+		<input type="checkbox" class="toggle toggle-secondary" bind:checked={theme} />
 		<svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 			<path
 				stroke-linecap="round"

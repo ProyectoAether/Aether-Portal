@@ -9,6 +9,7 @@
 	import TriplesTable from '$lib/components/triplesTable.svelte';
 	import Hierarchy from '$lib/components/hierarchy.svelte';
 	import Pagination from '$lib/components/pagination.svelte';
+	import PreviewOptions from '$lib/components/previewOptions.svelte';
 
 	const uri = $page.url.searchParams.get('uri');
 	if (uri === null || uri === undefined || !Object.keys(ontologies).includes(uri)) {
@@ -37,29 +38,7 @@
 </svelte:head>
 <main class="container min-h-screen py-6">
 	<MetadataTable bind:metadata bind:imported />
-	<div class="my-6 flex gap-4">
-		<input
-			type="radio"
-			id="table-view"
-			bind:group={view}
-			name="radio-7"
-			class="radio radio-info"
-			value={0}
-		/>
-		<label for="table-view">Table View</label>
-
-		<input
-			type="radio"
-			id="hierarchy-view"
-			bind:group={view}
-			name="radio-7"
-			class="radio radio-info"
-			value={1}
-		/>
-		<label for="hierarchy-view">Class Hierarchy View</label>
-		<label for="compact" class="ml-10">Compact</label>
-		<input type="checkbox" id="compact" class="toggle toggle-accent" bind:checked={compacted} />
-	</div>
+	<PreviewOptions bind:view bind:compacted />
 	{#if view === 0}
 		<TriplesTable {triples} {compacted} {offset} {limit} />
 		<Pagination bind:offset {limit} {triples} />

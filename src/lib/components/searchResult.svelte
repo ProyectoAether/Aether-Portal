@@ -1,17 +1,14 @@
 <script lang="ts">
-	import { filteredData, searchStore } from '$lib/stores/search';
 	import TriplesTable from '$lib/components/triplesTable.svelte';
+	import type { Triple } from '$lib/assets/types';
 	export let compacted: boolean;
-    $: hasData = $filteredData.slice($searchStore.options.offset * $searchStore.options.limit, ($searchStore.options.offset + 1) * $searchStore.options.limit).length > 0;
+	export let results: Triple[];
+	export let offset: number;
+	export let limit: number;
 </script>
 
-{#if hasData}
-	<TriplesTable
-		triples={$filteredData}
-		offset={$searchStore.options.offset}
-		limit={$searchStore.options.limit}
-		{compacted}
-	/>
+{#if results.length > 0}
+	<TriplesTable triples={results} {offset} {limit} {compacted} />
 {:else}
 	<h2 class="p-10 italic font-bold text-3xl">No matching results</h2>
 {/if}

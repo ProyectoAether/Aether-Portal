@@ -15,5 +15,3 @@ export const typeURI =  {
 	owlObjectProperty: 'http://www.w3.org/2002/07/owl#ObjectProperty',
 	owlNamedIndividual: 'http://www.w3.org/2002/07/owl#NamedIndividual'
 };
-
-export const rdfsType = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';

@@ -2,8 +2,9 @@ import { writable, derived } from 'svelte/store';
 import ontologies from '$lib/assets/ontologies.json';
 import { SearchFilter, TripleSorter, type TypesFilter } from '$lib/utils';
 import type { Ontology, Triple } from '$lib/assets/types';
-import { typeURI, rdfsType } from '$lib/assets/types';
+import { typeURI } from '$lib/assets/types';
 import { getOntologiesTriples } from '$lib/utils';
+import { RDF_TYPE } from '$lib/uri';
 
 export interface SearchOptions {
 	owlClass: true;
@@ -55,7 +56,7 @@ function searchHandler(searchStore: SearchParams): Triple[] {
 	};
 
 	const queryFiltered = filterer
-		.filterByType(typesToShow, typeURI, rdfsType)
+		.filterByType(typesToShow, typeURI, RDF_TYPE)
 		.filterByQuery(searchQuery)
 		.getResult();
 

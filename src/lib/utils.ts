@@ -1,4 +1,12 @@
-import type { Namespace, Ontology, OWLType, Triple, TypesURI } from '$lib/assets/types';
+import type { Namespace, Ontology, Triple } from '$lib/assets/types';
+import {
+	OWL_CLASS,
+	OWL_DATATYPE_PROPERTY,
+	OWL_IMPORTS,
+	OWL_OBJECT_PROPERTY,
+	RDFS_SUBCLASS_OF,
+	RDF_TYPE
+} from './uri';
 
 const metadataFields = [
 	'Title',
@@ -40,10 +48,10 @@ const fields: MetadataFieldPredicate = {
 	Rights: 'http://purl.org/dc/terms/rights',
 	URI: 'http://www.w3.org/2002/07/owl#versionIRI',
 	Description: 'http://purl.org/dc/terms/description',
-	Imports: 'http://www.w3.org/2002/07/owl#imports',
-	'Number of classes': 'http://www.w3.org/2002/07/owl#Class',
-	'Number of datatype properties': 'http://www.w3.org/2002/07/owl#DatatypeProperty',
-	'Number of object properties': 'http://www.w3.org/2002/07/owl#ObjectProperty'
+	Imports: OWL_IMPORTS,
+	'Number of classes': OWL_CLASS,
+	'Number of datatype properties': OWL_DATATYPE_PROPERTY,
+	'Number of object properties': OWL_OBJECT_PROPERTY
 };
 
 export type OntologyMetadata<T, K> = Map<T, K>;
@@ -128,7 +136,7 @@ export class URIFormatter {
 	}
 }
 interface Filter<T> {
-	filterByType(typeToShow: TypesURI, typesUris: TypesURI, typePredicate: string): this;
+	filterByType(typeToShow: string, typesUris: string, typePredicate: string): this;
 	filterByQuery(searchQuery: string): this;
 	getResult(): T[];
 }
@@ -165,10 +173,6 @@ export class TripleSorter implements Sorter<Triple> {
 	}
 }
 
-export type TypesFilter = {
-	[keys in keyof OWLType]: boolean;
-};
-
 export class SearchFilter implements Filter<Triple> {
 	triples: Triple[];
 	constructor(triples: Triple[]) {
@@ -183,7 +187,7 @@ export class SearchFilter implements Filter<Triple> {
 		);
 		return this;
 	}
-	public filterByType(typeToShow: TypesFilter, typesUris: TypesURI, typePredicate: string): this {
+	public filterByType(typeToShow: any, typesUris: any, typePredicate: string): this {
 		const elements = this.triples.reduce((acc, curr) => {
 			if (!acc.has(curr.subject)) {
 				acc.set(curr.subject, true);
@@ -193,8 +197,8 @@ export class SearchFilter implements Filter<Triple> {
 		for (const curr of this.triples) {
 			for (const type of Object.keys(typesUris)) {
 				if (
-					!typeToShow[type as OWLType] &&
-					curr.object === typesUris[type as OWLType] &&
+					!typeToShow[type] &&
+					curr.object === typesUris[type] &&
 					curr.predicate === typePredicate
 				) {
 					elements.delete(curr.subject);
@@ -220,23 +224,16 @@ export function isURI(sequence: string): boolean {
 
 export function getRootsURI(triples: Triple[]): string[] {
 	const subClasses = triples
-		.filter((el) => el.predicate === 'http://www.w3.org/2000/01/rdf-schema#subClassOf')
+		.filter((el) => el.predicate === RDFS_SUBCLASS_OF)
 		.map((el) => el.subject);
 	const classes = triples
-		.filter(
-			(el) =>
-				el.predicate === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type' &&
-				el.object === 'http://www.w3.org/2002/07/owl#Class'
-		)
+		.filter((el) => el.predicate === RDF_TYPE && el.object === OWL_CLASS)
 		.map((el) => el.subject);
 	return classes.filter((el) => !subClasses.includes(el));
 }
 export function getChildren(classURI: string, triples: Triple[]): string[] {
 	return triples
-		.filter(
-			(el) =>
-				el.predicate === 'http://www.w3.org/2000/01/rdf-schema#subClassOf' && el.object === classURI
-		)
+		.filter((el) => el.predicate === RDFS_SUBCLASS_OF && el.object === classURI)
 		.map((el) => el.subject);
 }
 

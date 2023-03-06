@@ -4,7 +4,6 @@
 	import SearchResult from '$lib/components/searchResult.svelte';
 	import { searchStore, filteredData } from '$lib/stores/search';
 
-	let searchInput: HTMLInputElement;
 	let compacted: boolean;
 </script>
 
@@ -13,13 +12,18 @@
 </svelte:head>
 
 <main class="min-h-screen">
-	<Searchbar bind:searchInput bind:compacted />
+	<Searchbar bind:compacted />
 	<section class="container ">
-		<SearchResult bind:compacted />
+		<SearchResult
+			results={$filteredData}
+			offset={$searchStore.options.offset}
+			limit={$searchStore.options.limit}
+			bind:compacted
+		/>
 		{#if $filteredData.length > 0}
 			<Pagination
 				triples={$filteredData}
-                bind:offset={$searchStore.options.offset}
+				bind:offset={$searchStore.options.offset}
 				limit={$searchStore.options.limit}
 			/>
 		{/if}
