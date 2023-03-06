@@ -12,7 +12,7 @@
 <svg
     id="aether-icon"
 	version="1.0"
-	class="h-[202px] w-[502px] md:h-[324px] md:w-[982px]"
+	class="h-[202px] w-[502px]  lg:h-[324px] lg:w-[982px]"
 	xmlns="http://www.w3.org/2000/svg"
 	viewBox="0 0 321.000000 157.000000"
 	preserveAspectRatio="xMidYMid meet"

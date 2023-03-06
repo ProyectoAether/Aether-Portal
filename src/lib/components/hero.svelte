@@ -21,7 +21,6 @@
 				</p>
 			{/if}
 			<Stats />
-			>
 		</div>
 	</div>
 </div>

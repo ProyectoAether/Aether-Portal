@@ -5,6 +5,7 @@
 	import { slide } from 'svelte/transition';
 	import OpenIcon from '$lib/svg/openIcon.svelte';
 	import namespaces from '$lib/assets/namespaces.json';
+	import { afterUpdate } from 'svelte';
 	export let data: string;
 	export let triples: Triple[];
 	export let level: number;
@@ -13,7 +14,11 @@
 	const leftPaddingPX = level * 55;
 	const children = getChildren(data, triples);
 	$: data = compacted ? compactURI(data, namespaces) : data;
-	export let visited = new Set<string>();
+	export let visited: Set<string>;
+
+	afterUpdate(() => {
+		visited.add(data);
+	});
 </script>
 
 <li transition:slide class="p-2 flex" style="padding-left: {leftPaddingPX}px">
@@ -32,10 +37,9 @@
 </li>
 
 {#if show}
-	{#each children as d}
-		{#if !visited.has(data)}
-			{visited.add(data)}
+	{#if visited.has(data)}
+		{#each children as d}
 			<svelte:self bind:triples data={d} level={level + 1} bind:compacted bind:visited />
-		{/if}
-	{/each}
+		{/each}
+	{/if}
 {/if}

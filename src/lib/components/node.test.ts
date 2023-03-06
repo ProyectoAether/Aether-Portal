@@ -16,22 +16,33 @@ describe('Hierarchy node', () => {
 		{ subject: 'foo', predicate: 'http://www.w3.org/2000/01/rdf-schema#subClassOf', object: 'bar' }
 	];
 	it('shows the root classes', async () => {
-		render(HierarchyNode, { triples: triples, data: 'bar', level: 0 });
+		render(HierarchyNode, { triples: triples, data: 'bar', level: 0, visited: new Set<string>() });
 		expect(screen.getByText('bar')).toBeInTheDocument();
 	});
 
 	it('shows the children classes', async () => {
-		render(HierarchyNode, { triples: triples, data: 'bar', level: 0 });
+		render(HierarchyNode, {
+			triples: triples,
+			data: 'bar',
+			level: 0,
+			visited: new Set<string>()
+		});
 		expect(screen.getByText('foo')).toBeInTheDocument();
 	});
 
 	it('shows the open icon', async () => {
-		render(HierarchyNode, { triples: triples, data: 'bar', level: 0 });
+		render(HierarchyNode, { triples: triples, data: 'bar', level: 0, visited: new Set<string>() });
 		expect(screen.getByTestId('open-icon')).toBeInTheDocument();
 	});
 
 	it('shows the close icon', async () => {
-		render(HierarchyNode, { triples: triples, data: 'bar', level: 0, show: false });
+		render(HierarchyNode, {
+			triples: triples,
+			data: 'bar',
+			level: 0,
+			show: false,
+			visited: new Set<string>()
+		});
 		expect(screen.getByTestId('close-icon')).toBeInTheDocument();
 	});
 
@@ -45,7 +56,8 @@ describe('Hierarchy node', () => {
 				}
 			],
 			data: 'bar',
-			level: 0
+			level: 0,
+			visited: new Set<string>()
 		});
 		expect(screen.queryByTestId('close-icon')).not.toBeInTheDocument();
 		expect(screen.queryByTestId('open-icon')).not.toBeInTheDocument();
@@ -67,7 +79,8 @@ describe('Hierarchy node', () => {
 				}
 			],
 			data: 'bar',
-			level: 0
+			level: 0,
+			visited: new Set<string>()
 		});
 	});
 });

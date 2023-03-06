@@ -6,10 +6,11 @@
 	export let triples: Triple[] = [];
 	export let compacted: boolean = false;
 	const roots = getRootsURI(triples);
+	let visited = new Set<string>();
 </script>
 
 <ul data-testid="hierarchy-tree" class="container">
 	{#each roots as root}
-		<HierarchyNode data={root} {triples} level={0} bind:compacted />
+		<HierarchyNode data={root} {triples} level={0} bind:compacted bind:visited />
 	{/each}
 </ul>
