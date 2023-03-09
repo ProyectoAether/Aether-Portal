@@ -47,8 +47,8 @@ describe('Pagination', async () => {
 		expect(screen.getByText('1')).toBeInTheDocument();
 	});
 	it('shows the next page numbers', async () => {
-		const offset: number = 2;
-		const limit = 5;
+		const offset: number = 1;
+		const limit = 3;
 		render(Pagination, { limit, triples, offset });
 		expect(screen.queryByText('3')).not.toBeInTheDocument();
 		expect(screen.queryByText('2')).toBeInTheDocument();

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { theme } from '$lib/stores/theme';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 
@@ -10,16 +11,15 @@
 </script>
 
 <svg
-    id="aether-icon"
+	id="aether-icon"
 	version="1.0"
-	class="h-[202px] w-[502px]  lg:h-[324px] lg:w-[982px]"
 	xmlns="http://www.w3.org/2000/svg"
 	viewBox="0 0 321.000000 157.000000"
 	preserveAspectRatio="xMidYMid meet"
 >
 	<g
 		transform="translate(0.000000,157.000000) scale(0.10000,-0.100000)"
-		fill="#1E1D82"
+		fill={$theme ? '#Dd1c7F' : '#1E1D82'}
 		stroke="none"
 	>
 		{#if show}

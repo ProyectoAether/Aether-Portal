@@ -12,13 +12,17 @@
 <div class="overflow-x-auto my-10">
 	<table data-testid="triples-table" class="table table-compact w-full">
 		<thead>
-			<th>Subject</th>
-			<th>Predicate</th>
-			<th>Object</th>
+			<tr>
+				<th />
+				<th>Subject</th>
+				<th>Predicate</th>
+				<th>Object</th>
+			</tr>
 		</thead>
 		<tbody>
-			{#each triples.slice(offset * limit, (offset + 1) * limit) as triple}
+			{#each triples.slice(offset * limit, (offset + 1) * limit) as triple, index}
 				<tr class="hover">
+					<th>{index + 1}</th>
 					<td class="whitespace-pre-wrap"
 						><a class="link link-primary" href={triple.subject} rel="noreferrer" target="_blank"
 							>{compacted ? compactURI(triple.subject, namespaces) : triple.subject}</a

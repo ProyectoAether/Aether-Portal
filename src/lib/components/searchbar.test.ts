@@ -15,7 +15,7 @@ it('shows search header', async () => {
 describe('ontology filter button', async () => {
 	it('shows the ontology placeholder on hover', async () => {
 		render(Searchbar, { compacted: false });
-		const ontologyFilterBtn = screen.getByTestId('ontology-filter');
+		const ontologyFilterBtn = screen.getAllByTestId('ontology-filter')[0];
 		expect(ontologyFilterBtn).toBeInTheDocument();
 		const user = userEvent.setup();
 		await user.hover(ontologyFilterBtn);
@@ -25,7 +25,7 @@ describe('ontology filter button', async () => {
 	});
 	it('writes the ontology filter on click', async () => {
 		render(Searchbar, { compacted: false });
-		const ontologyFilterBtn = screen.getByTestId('ontology-filter');
+		const ontologyFilterBtn = screen.getAllByTestId('ontology-filter')[0];
 		expect(ontologyFilterBtn).toBeInTheDocument();
 		const user = userEvent.setup();
 		await user.click(ontologyFilterBtn);
@@ -35,7 +35,7 @@ describe('ontology filter button', async () => {
 	});
 	it('resets the ontology placeholder on leave', async () => {
 		render(Searchbar, { compacted: false });
-		const ontologyFilterBtn = screen.getByTestId('ontology-filter');
+		const ontologyFilterBtn = screen.getAllByTestId('ontology-filter')[0];
 		expect(ontologyFilterBtn).toBeInTheDocument();
 		const user = userEvent.setup();
 		await user.hover(ontologyFilterBtn);

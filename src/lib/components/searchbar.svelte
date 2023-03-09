@@ -40,7 +40,14 @@
 		<kbd class="kbd">k</kbd>
 		<span class="text-black">to start searching</span>
 	</div>
-	<SearchOptions bind:compacted />
+	<SearchOptions
+		bind:compacted
+		bind:alphabeticalOrder={$searchStore.options.alphabeticalOrder}
+		bind:owlClass={$searchStore.options.owlClass}
+		bind:owlDatatypeProperty={$searchStore.options.owlDatatypeProperty}
+		bind:owlObjectProperty={$searchStore.options.owlObjectProperty}
+		bind:owlIndividuals={$searchStore.options.owlNamedIndividual}
+	/>
 	<div class="mb-4 flex items-center input input-bordered w-full max-w-x  rounded-lg shadow">
 		<div class="pl-2">
 			<svg class="fill-current  w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -65,7 +72,7 @@
 			<button
 				data-testid="ontology-filter"
 				type="reset"
-				class="ml-auto mr-4 p-2 badge badge-secondary"
+				class="ml-auto mr-4 p-2 hidden lg:flex badge badge-secondary"
 				on:click={(e) => {
 					e.preventDefault();
 					$searchStore.searchQuery = 'http://www.w3.org/2002/07/owl#Ontology';
@@ -78,5 +85,19 @@
 			>
 		</div>
 	</div>
+
+	<button
+		data-testid="ontology-filter"
+		type="reset"
+		class="ml-auto lg:hidden mr-4 p-2 badge badge-secondary"
+		on:click={(e) => {
+			e.preventDefault();
+			$searchStore.searchQuery = 'http://www.w3.org/2002/07/owl#Ontology';
+			searchInput.focus();
+		}}
+		on:focus={() => undefined}
+		on:mouseover={() => (searchInput.placeholder = 'http://www.w3.org/2002/07/owl#Ontology')}
+		on:mouseleave={() => (searchInput.placeholder = 'Search class or ontology')}>#Ontologies</button
+	>
 	<slot />
 </form>

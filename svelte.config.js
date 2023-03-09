@@ -15,9 +15,6 @@ const config = {
 
 	kit: {
 		adapter: adapter(),
-		alias: {
-			$public: 'static/public'
-		}
 	}
 };
 

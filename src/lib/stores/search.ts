@@ -66,10 +66,5 @@ function searchHandler(searchStore: SearchParams): Triple[] {
 		? sorter.alphabeticalSort().getResult()
 		: sorter.reverseAlphabeticalSort().getResult();
 
-	if (
-		result.slice(options.offset * options.limit, (options.offset + 1) * options.limit).length <= 0
-	) {
-		options.offset = 0;
-	}
 	return result;
 }

@@ -9,8 +9,8 @@
 	<tbody>
 		{#each Array.from(metadata) as [field, value]}
 			<tr>
-				<th class="bg-base-200">{field}</th>
-				<td class="whitespace-pre-wrap ">
+				<th class="whitespace-pre-wrap bg-base-200">{field}</th>
+				<td class="whitespace-pre-wrap">
 					<MetadataTableRow {value} {field} bind:imported />
 				</td>
 			</tr>

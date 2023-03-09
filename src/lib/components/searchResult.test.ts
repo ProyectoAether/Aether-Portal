@@ -17,5 +17,5 @@ it('shows result if there is result', async () => {
 	const offset = 0;
 	const limit = 10;
 	render(SearchResult, { compacted, results, offset, limit });
-	expect(screen.getByText('No matching results')).not.toBeInTheDocument();
+	expect(screen.queryByText('No matching results')).not.toBeInTheDocument();
 });
