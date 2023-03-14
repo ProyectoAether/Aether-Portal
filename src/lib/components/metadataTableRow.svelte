@@ -1,9 +1,9 @@
 <script lang="ts">
 	import type { MetadataField } from '$lib/utils';
+	import { imports } from '$lib/stores/imports';
 
 	export let value: number | string[];
 	export let field: MetadataField;
-	export let imported: string[];
 </script>
 
 {#if Array.isArray(value)}
@@ -13,7 +13,7 @@
 				<label class="cursor-pointer label justify-start gap-2">
 					<input
 						type="checkbox"
-						bind:group={imported}
+						bind:group={$imports}
 						value={v}
 						name="imported"
 						class="checkbox checkbox-secondary"

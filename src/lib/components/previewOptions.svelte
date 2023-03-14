@@ -1,6 +1,8 @@
 <script lang="ts">
+	import type { CompactURIProps } from '$lib/utils';
+
 	export let view: number;
-	export let compacted: boolean;
+	export let compacted: CompactURIProps;
 </script>
 
 <div class="my-6 p-6 grid grid-cols-1 gap-10 md:grid-cols-3">
@@ -37,7 +39,7 @@
 			data-testid="compact-toggle"
 			id="compact"
 			class="toggle toggle-accent"
-			bind:checked={compacted}
+			bind:checked={compacted.compacted}
 		/>
 	</label>
 </div>

@@ -1,14 +1,13 @@
 <script lang="ts">
-	import type { Triple } from '$lib/assets/types';
 	import { afterUpdate } from 'svelte';
 	export let offset: number;
-	export let triples: Triple[];
+	export let total: number;
 	export let limit: number;
-	if ((offset + 1) * limit > triples.length) {
+	if ((offset + 1) * limit > total) {
 		offset = 0;
 	}
 	afterUpdate(() => {
-		if (triples.slice((offset - 1) * limit, offset * limit).length === 0) {
+		if (total < offset * limit) {
 			offset = 0;
 		}
 	});
@@ -27,11 +26,11 @@
 	{/each}
 	<button class="btn btn-md btn-active">{offset + 1}</button>
 	{#each [1, 2] as i}
-		{#if offset + 1 + i <= triples.length / limit + 1}
+		{#if offset + 1 + i <= total / limit + 1}
 			<button class="btn btn-md" on:click={() => (offset += i)}>{offset + i + 1}</button>
 		{/if}
 	{/each}
-	{#if offset + 1 <= triples.length / limit}
+	{#if offset + 1 <= total / limit}
 		<button data-testid="go-next-btn" class="btn btn-md" on:click={() => (offset += 1)}>Next</button
 		>
 	{/if}

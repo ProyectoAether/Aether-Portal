@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { Triple } from '$lib/assets/types';
 	import CloseIcon from '$lib/svg/closeIcon.svelte';
-	import { compactURI, getChildren } from '$lib/utils';
+	import { compactURI, getChildren, type CompactURIProps } from '$lib/utils';
 	import { slide } from 'svelte/transition';
 	import OpenIcon from '$lib/svg/openIcon.svelte';
 	import namespaces from '$lib/assets/namespaces.json';
@@ -10,10 +10,10 @@
 	export let triples: Triple[];
 	export let level: number;
 	export let show: boolean = true;
-	export let compacted: boolean;
+	export let compacted: CompactURIProps;
 	const leftPaddingPX = level * 55;
 	const children = getChildren(data, triples);
-	$: data = compacted ? compactURI(data, namespaces) : data;
+	$: data = compacted.compacted ? compactURI(data, namespaces, compacted.sep) : data;
 	export let visited: Set<string>;
 
 	afterUpdate(() => {

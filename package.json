@@ -48,6 +48,7 @@
 	"type": "module",
 	"dependencies": {
 		"daisyui": "^2.50.1",
+		"fuzzysort": "^2.0.4",
 		"vitest": "^0.29.2"
 	}
 }

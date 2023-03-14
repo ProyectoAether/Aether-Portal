@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { searchStore } from '$lib/stores/search';
 	import { onMount } from 'svelte';
-	import SearchOptions from '$lib/components/searchOptions.svelte';
 	import { goto } from '$app/navigation';
 
-	export let compacted: boolean;
+	export let searchQuery: string;
+	export let title: string;
+	export let kbShortcut: string;
 	let searchInput: HTMLInputElement;
 	function handleOnSubmit(event: SubmitEvent) {
 		event.preventDefault();
@@ -12,7 +12,7 @@
 	}
 	onMount(() => {
 		const handler = (event: KeyboardEvent) => {
-			if (event.key.toLowerCase() === 'k' && event.ctrlKey === true) {
+			if (event.key.toLowerCase() === kbShortcut && event.ctrlKey === true) {
 				event.preventDefault();
 				const yOffsetPixels: number = -350;
 				const y: number =
@@ -29,25 +29,15 @@
 </script>
 
 <form on:submit={handleOnSubmit} class="container p-10">
-	<h2 class="text-2xl font-semibold py-2 px-2">Search</h2>
-	<div
-		data-testid="shortcut-hint"
-		class="mx-4 italic bg-gray-200 rounded-lg px-4 py-2 inline-block"
-	>
+	<h2 class="text-2xl font-semibold py-2 px-2">{title}</h2>
+	<div data-testid="shortcut-hint" class="italic bg-gray-200 rounded-lg px-4 py-2 inline-block">
 		<span class="text-black">Press</span>
 		<kbd class="kbd">Ctrl</kbd>
 		<span class="text-black">+</span>
-		<kbd class="kbd">k</kbd>
+		<kbd class="kbd">{kbShortcut}</kbd>
 		<span class="text-black">to start searching</span>
 	</div>
-	<SearchOptions
-		bind:compacted
-		bind:alphabeticalOrder={$searchStore.options.alphabeticalOrder}
-		bind:owlClass={$searchStore.options.owlClass}
-		bind:owlDatatypeProperty={$searchStore.options.owlDatatypeProperty}
-		bind:owlObjectProperty={$searchStore.options.owlObjectProperty}
-		bind:owlIndividuals={$searchStore.options.owlNamedIndividual}
-	/>
+	<slot name="search-options" />
 	<div class="mb-4 flex items-center input input-bordered w-full max-w-x  rounded-lg shadow">
 		<div class="pl-2">
 			<svg class="fill-current  w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
@@ -63,41 +53,11 @@
 			id="search"
 			type="text"
 			tabindex="0"
-			bind:value={$searchStore.searchQuery}
+			bind:value={searchQuery}
 			bind:this={searchInput}
-			placeholder="Search class or ontology"
+			placeholder="Search Class"
 			autocomplete="off"
 		/>
-		<div class="tooltip text-left tooltip-left" data-tip="http://www.w3.org/2002/07/owl#Ontology">
-			<button
-				data-testid="ontology-filter"
-				type="reset"
-				class="ml-auto mr-4 p-2 hidden lg:flex badge badge-secondary"
-				on:click={(e) => {
-					e.preventDefault();
-					$searchStore.searchQuery = 'http://www.w3.org/2002/07/owl#Ontology';
-					searchInput.focus();
-				}}
-				on:focus={() => undefined}
-				on:mouseover={() => (searchInput.placeholder = 'http://www.w3.org/2002/07/owl#Ontology')}
-				on:mouseleave={() => (searchInput.placeholder = 'Search class or ontology')}
-				>#Ontologies</button
-			>
-		</div>
 	</div>
-
-	<button
-		data-testid="ontology-filter"
-		type="reset"
-		class="ml-auto lg:hidden mr-4 p-2 badge badge-secondary"
-		on:click={(e) => {
-			e.preventDefault();
-			$searchStore.searchQuery = 'http://www.w3.org/2002/07/owl#Ontology';
-			searchInput.focus();
-		}}
-		on:focus={() => undefined}
-		on:mouseover={() => (searchInput.placeholder = 'http://www.w3.org/2002/07/owl#Ontology')}
-		on:mouseleave={() => (searchInput.placeholder = 'Search class or ontology')}>#Ontologies</button
-	>
-	<slot />
+	<slot name="search-results" />
 </form>

@@ -1,16 +1,24 @@
 <script lang="ts">
-	import type { Triple } from '$lib/assets/types';
-	import { compactURI } from '$lib/utils';
+	import { compactURI, type CompactURIProps } from '$lib/utils';
 	import namespaces from '$lib/assets/namespaces.json';
 	import { OWL_ONTOLOGY, RDF_TYPE } from '$lib/uri';
-	export let triples: Triple[];
-	export let compacted: boolean;
+	import type { Triple } from '$lib/assets/types';
+	export let compacted: CompactURIProps;
 	export let offset: number;
 	export let limit: number;
+	export let ontologies: Triple[];
+	function isURL(target: string): boolean {
+		try {
+			new URL(target);
+			return true;
+		} catch {
+			return false;
+		}
+	}
 </script>
 
 <div class="overflow-x-auto my-10">
-	<table data-testid="triples-table" class="table table-compact w-full">
+	<table id="data" data-testid="triples-table" class="table table-compact w-full">
 		<thead>
 			<tr>
 				<th />
@@ -20,12 +28,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each triples.slice(offset * limit, (offset + 1) * limit) as triple, index}
+			{#each ontologies.slice(offset * limit, (offset + 1) * limit) as triple, index}
 				<tr class="hover">
 					<th>{index + 1}</th>
 					<td class="whitespace-pre-wrap"
 						><a class="link link-primary" href={triple.subject} rel="noreferrer" target="_blank"
-							>{compacted ? compactURI(triple.subject, namespaces) : triple.subject}</a
+							>{compacted.compacted
+								? compactURI(triple.subject, namespaces, compacted.sep)
+								: triple.subject}</a
 						>
 						{#if triple.predicate === RDF_TYPE && triple.object === OWL_ONTOLOGY}
 							<a
@@ -36,16 +46,22 @@
 					</td>
 					<td class="whitespace-pre-wrap"
 						><a class="link link-primary" href={triple.predicate} rel="noreferrer" target="_blank"
-							>{compacted ? compactURI(triple.predicate, namespaces) : triple.predicate}</a
+							>{compacted.compacted
+								? compactURI(triple.predicate, namespaces, compacted.sep)
+								: triple.predicate}</a
 						></td
 					>
 					<td class="whitespace-pre-wrap">
-						{#if triple['object']}
+						{#if isURL(triple['object'])}
 							<a class="link link-primary" href={triple.object} rel="noreferrer" target="_blank"
-								>{compacted ? compactURI(triple.object, namespaces) : triple.object}</a
+								>{compacted.compacted
+									? compactURI(triple.object, namespaces, compacted.sep)
+									: triple.object}</a
 							>
 						{:else}
-							{compacted ? compactURI(triple.object, namespaces) : triple.object}
+							{compacted.compacted
+								? compactURI(triple.object, namespaces, compacted.sep)
+								: triple.object}
 						{/if}
 					</td>
 				</tr>
