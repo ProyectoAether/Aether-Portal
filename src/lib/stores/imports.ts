@@ -21,9 +21,7 @@ async function getOntologies(data: [string[], string]): Promise<any[]> {
 		return [[], []];
 	}
 	const base = getOntology(data[1]);
-	const promises = data[0].map(
-		(el) => import(`../assets/${(indexes as IndexFile)[el + '/']}.json`)
-	);
+	const promises = data[0].map((el) => import(`../assets/${(indexes as IndexFile)[el]}.json`));
 	promises.push(base);
 	return [await Promise.all(promises), await Promise.all([base])];
 }

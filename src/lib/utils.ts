@@ -1,4 +1,4 @@
-import type { Namespace, Ontology, Triple } from '$lib/assets/types';
+import type { IndexFile, Namespace, Ontology, Quad, Triple } from '$lib/assets/types';
 import indexes from './assets/index.json';
 import {
 	OWL_CLASS,
@@ -20,13 +20,16 @@ const metadataFields = [
 	'Imports'
 ] as const;
 
-export function getAllOntologies(): Promise<Ontology>[] {
-	return Object.values(indexes).map((dir) => import(`./assets/${dir}.json`));
+async function getAllOntologies(index: IndexFile): Promise<Quad[][]> {
+	const imports = Object.entries(index).map(async ([uri, fileName]) => {
+		const module = await import(`./assets/${fileName}.json`);
+		const triples = module.default as Triple[];
+		return triples.map((el) => ({ ...el, ontology: uri } as Quad));
+	});
+	return Promise.all(imports);
 }
 
-export const ontologies: Triple[] = (await Promise.all(getAllOntologies()))
-	.map((el) => el['default'])
-	.flat();
+export const ontologies = (await Promise.all(await getAllOntologies(indexes))).flat();
 
 export function isMetadataField(value: any): value is MetadataField {
 	return metadataFields.includes(value);
@@ -70,9 +73,9 @@ interface Sorter<T> {
 	reverseAlphabeticalSort(): this;
 	getResult(): T[];
 }
-export class TripleSorter implements Sorter<Triple> {
-	private triples: Triple[];
-	constructor(triples: Triple[]) {
+export class QuadSorter implements Sorter<Quad> {
+	private triples: Quad[];
+	constructor(triples: Quad[]) {
 		this.triples = triples;
 	}
 	public alphabeticalSort(): this {
@@ -87,7 +90,7 @@ export class TripleSorter implements Sorter<Triple> {
 		);
 		return this;
 	}
-	public getResult(): Triple[] {
+	public getResult(): Quad[] {
 		return this.triples;
 	}
 }
@@ -121,14 +124,24 @@ export interface CompactURIProps {
 }
 
 export function compactURI(uri: string, namespaces: Namespace, sep: string = ''): string {
-	if (!isURI(uri)) {
+	if (!isURI(uri) || uri.length === 0) {
 		return uri;
 	}
-	let tmp = uri;
-	for (const [elUri, alias] of Object.entries(namespaces)) {
-		tmp = tmp.replace(elUri, alias + sep);
+	if (uri[uri.length - 1] !== '/') {
+		uri += '/';
 	}
-	return tmp;
+	const nm = Object.keys(namespaces).find((el) => uri.includes(el));
+	if (nm === undefined) {
+		let chars = [...uri];
+		chars[chars.length - 1] = '#';
+		const result = chars.join('');
+		const nm = Object.keys(namespaces).find((el) => result.includes(el));
+		if (nm === undefined) {
+			return result;
+		}
+		return uri.replace(nm, namespaces[nm] + sep).slice(0, -1);
+	}
+	return uri.replace(nm, namespaces[nm] + sep).slice(0, -1);
 }
 export function expandURI(uri: string, namespaces: Namespace): string {
 	if (!isURI(uri)) {

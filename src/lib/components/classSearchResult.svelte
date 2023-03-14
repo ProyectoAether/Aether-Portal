@@ -22,7 +22,9 @@
 					<tr>
 						<th>{i + 1}</th>
 						<td>
-							<a href={result.uri} class="link link-primary link-hover whitespace-nowrap"
+							<a
+								href={`/ontologies/previews?uri=${result.ontologyURI}`}
+								class="link link-primary link-hover whitespace-nowrap"
 								>{compacted.compacted
 									? compactURI(result.uri, namespaces, compacted.sep)
 									: result.uri}</a

@@ -55,7 +55,7 @@
 			tabindex="0"
 			bind:value={searchQuery}
 			bind:this={searchInput}
-			placeholder="Search Class"
+			placeholder={title}
 			autocomplete="off"
 		/>
 	</div>

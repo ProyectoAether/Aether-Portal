@@ -7,11 +7,13 @@
 	import Hierarchy from '$lib/components/hierarchy.svelte';
 	import Pagination from '$lib/components/pagination.svelte';
 	import PreviewOptions from '$lib/components/previewOptions.svelte';
+	import Mappings from '$lib/components/mappings.svelte';
 	import { ontologies, ontologyURI } from '$lib/stores/imports';
 	import { fade } from 'svelte/transition';
-	import type { CompactURIProps } from '$lib/utils';
+	import { compactURI, type CompactURIProps } from '$lib/utils';
+	import namespaces from '$lib/assets/namespaces.json';
 
-	const uri = $page.url.searchParams.get('uri') + '/';
+	const uri = $page.url.searchParams.get('uri');
 	if (uri === null || uri === undefined || !Object.keys(indexes).includes(uri)) {
 		throw error(404, {
 			message: 'Not found'
@@ -26,11 +28,21 @@
 </script>
 
 <svelte:head>
-	<title>{uri}</title>
+	<title>{compactURI(uri, namespaces)}</title>
 </svelte:head>
 <main class="container min-h-screen py-6">
 	{#await $ontologies}
-		Loading...
+		<div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+			<div
+				class="inline-block h-24 w-24 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
+				role="status"
+			>
+				<span
+					class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+					>Loading...</span
+				>
+			</div>
+		</div>
 	{:then data}
 		{@const allOntologies = data[0].map((el) => el['default']).flat()}
 		{@const baseOntology = data[1].map((el) => el['default']).flat()}
@@ -42,6 +54,8 @@
 				<Pagination bind:offset {limit} total={allOntologies.length} />
 			{:else if view === 1}
 				<Hierarchy {compacted} ontologies={allOntologies} />
+			{:else if view === 2}
+				<Mappings ontologies={allOntologies} />
 			{/if}
 		</section>
 	{/await}

@@ -8,7 +8,6 @@
 </script>
 
 {#if results.length > 0}
-	<!-- <TriplesTable triples={results} {offset} {limit} {compacted} /> -->
 	<div class="overflow-x-auto">
 		<table class="table w-full">
 			<thead>
@@ -27,8 +26,7 @@
 							><a
 								class="link link-primary link-hover block"
 								href={`/ontologies/previews?uri=${result.uri}`}
-								rel="noreferrer"
-								target="_blank">{compactURI(result.uri, namespaces)}</a
+								>{compactURI(result.uri, namespaces)}</a
 							>
 						</td>
 						<td>{result.label || ''}</td>

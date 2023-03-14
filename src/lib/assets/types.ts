@@ -3,11 +3,17 @@ export interface Triple {
 	predicate: string;
 	object: string;
 }
+export interface Quad {
+	subject: string;
+	predicate: string;
+	object: string;
+	ontology: string;
+}
 export interface Ontology {
 	[key: string]: Triple[];
 }
-export interface IndexFile{
-    [key: string]: string;
+export interface IndexFile {
+	[key: string]: string;
 }
 export interface Namespace {
 	[key: string]: string;
@@ -18,4 +24,3 @@ export const typeURI = {
 	owlObjectProperty: 'http://www.w3.org/2002/07/owl#ObjectProperty',
 	owlNamedIndividual: 'http://www.w3.org/2002/07/owl#NamedIndividual'
 };
-

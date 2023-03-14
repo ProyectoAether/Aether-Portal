@@ -1,10 +1,10 @@
 import { writable, derived } from 'svelte/store';
-import type { Triple } from '$lib/assets/types';
+import type { Quad, Triple } from '$lib/assets/types';
 import { OWL_CLASS, OWL_ONTOLOGY, RDFS_LABEL, TERMS_DESCRIPTION } from '$lib/uri';
 import fuzzysort from 'fuzzysort';
-import { ontologies, TripleSorter } from '$lib/utils';
+import { ontologies, QuadSorter } from '$lib/utils';
 
-function filter(query: string, data: Triple[], guard: (el: Triple) => boolean): Triple[] {
+function filter(query: string, data: Quad[], guard: (el: Quad) => boolean): Quad[] {
 	return fuzzysort
 		.go(query, data, { keys: ['subject', 'predicate', 'object'], all: true })
 		.filter((el) => el[0] && guard(el.obj))
@@ -22,7 +22,7 @@ export interface SearchOptions {
 }
 
 export interface SearchParams {
-	data: Triple[];
+	data: Quad[];
 	searchQuery: string;
 	options: SearchOptions;
 }
@@ -90,6 +90,7 @@ export const filteredOntologies = derived(ontologySearchStore, ontologySearchHan
 
 export interface ClassSearchResult {
 	uri: string;
+	ontologyURI: string;
 }
 
 export interface OntologySearchResult {
@@ -124,7 +125,7 @@ function ontologySearchHandler(searchStore: SearchParams): OntologySearchResult[
 		ontologies,
 		(el) => el.object === OWL_ONTOLOGY && !isCommonVocab(el.subject)
 	);
-	const sorter = new TripleSorter(queryFiltered);
+	const sorter = new QuadSorter(queryFiltered);
 
 	const result = options.alphabeticalOrder
 		? sorter.alphabeticalSort().getResult()
@@ -132,7 +133,7 @@ function ontologySearchHandler(searchStore: SearchParams): OntologySearchResult[
 	return Array.from(
 		new Set(
 			result.map((el) => ({
-				uri: el.subject + '/',
+				uri: el.subject,
 				...getLabelAndDescription(el.subject, ontologies)
 			}))
 		)
@@ -158,11 +159,11 @@ function classSearchHandler(searchStore: SearchParams): ClassSearchResult[] {
 	// 	.filterByQuery(searchQuery
 	// 	.getResult();
 
-	const sorter = new TripleSorter(queryFiltered);
+	const sorter = new QuadSorter(queryFiltered);
 
 	const result = options.alphabeticalOrder
 		? sorter.alphabeticalSort().getResult()
 		: sorter.reverseAlphabeticalSort().getResult();
 
-	return Array.from(new Set(result.map((el) => ({ uri: el.subject }))));
+	return Array.from(new Set(result.map((el) => ({ uri: el.subject, ontologyURI: el.ontology }))));
 }

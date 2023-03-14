@@ -5,14 +5,13 @@
 	export let compacted: CompactURIProps;
 </script>
 
-<div class="my-6 p-6 grid grid-cols-1 gap-10 md:grid-cols-3">
+<div class="my-6 p-6 grid grid-cols-1 gap-10 md:grid-cols-4">
 	<label for="table-view" class="flex justify-center items-center gap-4">
 		<input
 			type="radio"
 			id="table-view"
 			data-testid="table-view"
 			bind:group={view}
-			name="radio-7"
 			class="radio radio-info"
 			value={0}
 		/>
@@ -25,12 +24,23 @@
 			id="hierarchy-view"
 			data-testid="hierarchy-view"
 			bind:group={view}
-			name="radio-7"
 			class="radio radio-info"
 			value={1}
 		/>
 
 		<span>Class Hierarchy View</span>
+	</label>
+
+	<label for="mappings" class="flex justify-center items-center gap-4">
+		<input
+			type="radio"
+			data-testid="mappings-toggle"
+			id="mappings"
+			class="radio radio-info"
+			bind:group={view}
+			value={2}
+		/>
+		<span>Mappings</span>
 	</label>
 	<label for="compact" class="flex justify-center items-center gap-4">
 		<span>Compact</span>
