@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { compactURI, type CompactURIProps } from '$lib/utils';
-	import namespaces from '$lib/assets/namespaces.json';
-	import { OWL_ONTOLOGY, RDF_TYPE } from '$lib/uri';
+	import namespaces from '$lib/assets/ontologies/namespaces.json';
 	import type { Triple } from '$lib/assets/types';
 	import LinkIcon from '$lib/svg/linkIcon.svelte';
 	export let compacted: CompactURIProps;

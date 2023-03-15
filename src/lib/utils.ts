@@ -1,10 +1,11 @@
 import type { IndexFile, Namespace, Ontology, Quad, Triple } from '$lib/assets/types';
-import indexes from './assets/index.json';
+import indexes from './assets/ontologies/index.json';
 import {
 	OWL_CLASS,
 	OWL_DATATYPE_PROPERTY,
 	OWL_IMPORTS,
 	OWL_OBJECT_PROPERTY,
+	OWL_THING,
 	RDFS_SUBCLASS_OF,
 	RDF_TYPE
 } from './uri';
@@ -20,9 +21,16 @@ const metadataFields = [
 	'Imports'
 ] as const;
 
+export function formatURI(uri: string): string {
+	if (uri[uri.length - 1] === '#') {
+		uri = uri.slice(0, -1) + '&hasTag';
+	}
+	return uri;
+}
+
 async function getAllOntologies(index: IndexFile): Promise<Quad[][]> {
-	const imports = Object.entries(index).map(async ([uri, fileName]) => {
-		const module = await import(`./assets/${fileName}.json`);
+	const imports = Object.entries(index).map(async ([uri, file]) => {
+		const module = await import(`./assets/ontologies/${file.filename}.json`);
 		const triples = module.default as Triple[];
 		return triples.map((el) => ({ ...el, ontology: uri } as Quad));
 	});
@@ -106,8 +114,9 @@ export function isURI(sequence: string): boolean {
 
 export function getRootsURI(triples: Triple[]): string[] {
 	const subClasses = triples
-		.filter((el) => el.predicate === RDFS_SUBCLASS_OF)
+		.filter((el) => el.predicate === RDFS_SUBCLASS_OF && el.object !== OWL_THING)
 		.map((el) => el.subject);
+	console.log(triples.filter((el) => el.predicate === OWL_IMPORTS));
 	const classes = triples
 		.filter((el) => el.predicate === RDF_TYPE && el.object === OWL_CLASS)
 		.map((el) => el.subject);
@@ -123,7 +132,14 @@ export interface CompactURIProps {
 	sep: string;
 }
 
-export function compactURI(uri: string, namespaces: Namespace, sep: string = ''): string {
+export function compactURI(
+	uri: string | null,
+	namespaces: Namespace,
+	sep: string = ''
+): string | null {
+	if (uri === null) {
+		return null;
+	}
 	if (!isURI(uri) || uri.length === 0) {
 		return uri;
 	}

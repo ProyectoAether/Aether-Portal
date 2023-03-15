@@ -1,7 +1,7 @@
 <script lang="ts">
-	import namespaces from '$lib/assets/namespaces.json';
+	import namespaces from '$lib/assets/ontologies/namespaces.json';
 	import type { OntologySearchResult } from '$lib/stores/search';
-	import { compactURI } from '$lib/utils';
+	import { compactURI, formatURI } from '$lib/utils';
 	export let results: OntologySearchResult[];
 	export let offset: number;
 	export let limit: number;
@@ -25,7 +25,7 @@
 						<td
 							><a
 								class="link link-primary link-hover block"
-								href={`/ontologies/previews?uri=${result.uri}`}
+								href={`/ontologies/previews?uri=${formatURI(result.uri)}`}
 								>{compactURI(result.uri, namespaces)}</a
 							>
 						</td>

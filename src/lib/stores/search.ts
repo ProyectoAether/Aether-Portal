@@ -1,20 +1,19 @@
 import { writable, derived } from 'svelte/store';
-import type { Quad, Triple } from '$lib/assets/types';
+import type { Quad } from '$lib/assets/types';
+import indexes from '$lib/assets/ontologies/index.json';
 import {
 	OWL_CLASS,
 	OWL_DATATYPE_PROPERTY,
 	OWL_NAMED_PROPERTY as OWL_NAMED_INDIVIDUAL,
 	OWL_OBJECT_PROPERTY,
-	OWL_ONTOLOGY,
-	RDFS_LABEL,
-	TERMS_DESCRIPTION
+	OWL_ONTOLOGY
 } from '$lib/uri';
 import fuzzysort from 'fuzzysort';
 import { ontologies, QuadSorter } from '$lib/utils';
 
-function filter(query: string, data: Quad[], guard: (el: Quad) => boolean): Quad[] {
+function filter(query: string, data: Quad[], guard: (el: Quad) => boolean, keys: string[]): Quad[] {
 	return fuzzysort
-		.go(query, data, { keys: ['subject', 'predicate', 'object'], all: true })
+		.go(query, data, { keys, all: true })
 		.filter((el) => el[0] && guard(el.obj))
 		.map((el) => el.obj);
 }
@@ -53,12 +52,12 @@ export const reset = () =>
 export const classSearchStore = writable<SearchParams>({
 	data: ontologies,
 	searchQuery: '',
-	options: defaultSearchOptions
+	options: structuredClone(defaultSearchOptions)
 });
 export const ontologySearchStore = writable<SearchParams>({
 	data: ontologies,
 	searchQuery: '',
-	options: defaultSearchOptions
+	options: structuredClone(defaultSearchOptions)
 });
 
 const namespaces = [
@@ -116,13 +115,13 @@ function isCommonVocab(element: string): boolean {
 	return false;
 }
 
-function getLabelAndDescription(
-	uri: string,
-	data: Triple[]
-): { label: string | undefined; description: string | undefined } {
+function getLabelAndDescription(uri: string): {
+	label: string | undefined;
+	description: string | undefined;
+} {
 	return {
-		label: data.find((el) => el.subject === uri && el.predicate === RDFS_LABEL)?.object,
-		description: data.find((el) => el.subject === uri && el.predicate === TERMS_DESCRIPTION)?.object
+		label: indexes[uri].label,
+		description: indexes[uri].description
 	};
 }
 
@@ -136,7 +135,8 @@ function ontologySearchHandler(searchStore: SearchParams): OntologySearchResult[
 				el.object === OWL_NAMED_INDIVIDUAL ||
 				el.object === OWL_DATATYPE_PROPERTY ||
 				el.object === OWL_OBJECT_PROPERTY) &&
-			!isCommonVocab(el.subject)
+			!isCommonVocab(el.subject),
+		['subject', 'predicate', 'object']
 	);
 
 	const sorter = new QuadSorter(queryFiltered);
@@ -148,7 +148,7 @@ function ontologySearchHandler(searchStore: SearchParams): OntologySearchResult[
 	const uris = new Set(sortedResult.map((el) => el.ontology));
 	const results = Array.from(uris).map((el) => ({
 		uri: el,
-		...getLabelAndDescription(el, ontologies)
+		...getLabelAndDescription(el)
 	}));
 	return results;
 }
@@ -158,7 +158,8 @@ function classSearchHandler(searchStore: SearchParams): ClassSearchResult[] {
 	const queryFiltered = filter(
 		searchQuery,
 		ontologies,
-		(el) => el.object === OWL_CLASS && !isCommonVocab(el.subject)
+		(el) => el.object === OWL_CLASS && !isCommonVocab(el.subject),
+		['subject', 'ontologyURI']
 	);
 	// const typesToShow = {
 	// 	owlClass: options.owlClass,

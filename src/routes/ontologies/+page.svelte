@@ -22,6 +22,7 @@
 <main class="min-h-screen">
 	<section class="grid grid-cols-1 xl:grid-cols-2 grid-flow-row container px-5">
 		<Searchbar
+			id="class-input"
 			title={'Search Classes'}
 			kbShortcut={'k'}
 			bind:searchQuery={$classSearchStore.searchQuery}
@@ -56,6 +57,7 @@
 			</section></Searchbar
 		>
 		<Searchbar
+			id="ontology-input"
 			bind:searchQuery={$ontologySearchStore.searchQuery}
 			title={'Search Ontologies'}
 			kbShortcut={'i'}
@@ -88,3 +90,6 @@
 		</Searchbar>
 	</section>
 </main>
+
+<style>
+</style>

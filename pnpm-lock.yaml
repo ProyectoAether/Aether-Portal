@@ -5,6 +5,7 @@ specifiers:
   '@popperjs/core': ^2.11.6
   '@sveltejs/adapter-auto': ^2.0.0
   '@sveltejs/kit': ^1.5.0
+  '@tailwindcss/line-clamp': ^0.4.2
   '@testing-library/dom': ^9.0.0
   '@testing-library/jest-dom': ^5.16.5
   '@testing-library/svelte': ^3.2.2
@@ -35,6 +36,7 @@ specifiers:
   vitest: ^0.29.2
 
 dependencies:
+  '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.7
   daisyui: 2.50.1_gbtt6ss3tbiz4yjtvdr6fbrj44
   fuzzysort: 2.0.4
   vitest: 0.29.2_jsdom@21.1.0
@@ -462,6 +464,14 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: true
+
+  /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.7:
+    resolution: {integrity: sha512-HFzAQuqYCjyy/SX9sLGB1lroPzmcnWv1FHkIpmypte10hptf4oPUfucryMKovZh2u0uiS9U5Ty3GghWfEJGwVw==}
+    peerDependencies:
+      tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
+    dependencies:
+      tailwindcss: 3.2.7_postcss@8.4.21
+    dev: false
 
   /@testing-library/dom/8.20.0:
     resolution: {integrity: sha512-d9ULIT+a4EXLX3UU8FBjauG9NnsZHkHztXoIcTsOKoOw030fyjheN9svkTULjJxtYag9DZz5Jz5qkWZDPxTFwA==}

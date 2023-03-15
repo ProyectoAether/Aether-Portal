@@ -9,10 +9,10 @@ const config = {
 		extend: {}
 	},
 
-	plugins: [require('daisyui')],
-    daisyui: {
-        themes: ["light", "dracula"]
-    },
+	plugins: [require('daisyui'), require('@tailwindcss/line-clamp')],
+	daisyui: {
+		themes: ['light', 'dracula']
+	},
 	darkMode: 'class'
 };
 module.exports = config;

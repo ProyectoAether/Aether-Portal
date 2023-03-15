@@ -9,3 +9,4 @@ export const OWL_OBJECT_PROPERTY = 'http://www.w3.org/2002/07/owl#ObjectProperty
 export const OWL_NAMED_PROPERTY = 'http://www.w3.org/2002/07/owl#NamedIndividual';
 export const OWL_ONTOLOGY = 'http://www.w3.org/2002/07/owl#Ontology';
 export const OWL_IMPORTS = 'http://www.w3.org/2002/07/owl#imports';
+export const OWL_THING= 'http://www.w3.org/2002/07/owl#Thing'

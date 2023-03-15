@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { goto } from '$app/navigation';
-
+	import { page } from '$app/stores';
+	export let id: string;
 	export let searchQuery: string;
 	export let title: string;
 	export let kbShortcut: string;
@@ -10,14 +11,21 @@
 		event.preventDefault();
 		goto('/ontologies');
 	}
+	function smoothScroll(element: HTMLInputElement, offset: number = -350) {
+		const yOffsetPixels: number = offset;
+		const y: number = element.getBoundingClientRect().top + window.pageYOffset + yOffsetPixels;
+		window.scrollTo({ top: y, behavior: 'smooth' });
+	}
 	onMount(() => {
+		const hash = $page.url.hash;
+		if (hash === searchInput.id) {
+			smoothScroll(searchInput, 400);
+			searchInput.focus();
+		}
 		const handler = (event: KeyboardEvent) => {
 			if (event.key.toLowerCase() === kbShortcut && event.ctrlKey === true) {
 				event.preventDefault();
-				const yOffsetPixels: number = -350;
-				const y: number =
-					searchInput.getBoundingClientRect().top + window.pageYOffset + yOffsetPixels;
-				window.scrollTo({ top: y, behavior: 'smooth' });
+				smoothScroll(searchInput);
 				searchInput.focus();
 			}
 		};
@@ -50,7 +58,7 @@
 		<input
 			data-testid="search-input"
 			class="w-full focus:outline-none py-2 px-2"
-			id="search"
+			{id}
 			type="text"
 			tabindex="0"
 			bind:value={searchQuery}
@@ -61,3 +69,4 @@
 	</div>
 	<slot name="search-results" />
 </form>
+

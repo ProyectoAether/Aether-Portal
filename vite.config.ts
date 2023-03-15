@@ -9,6 +9,9 @@ const config: UserConfig & { test: VitestConfig['test'] } = {
 		// Eliminate in-source test code
 		'import.meta.vitest': 'undefined'
 	},
+	build: {
+		target: 'esnext'
+	},
 	test: {
 		// jest like globals
 		globals: true,

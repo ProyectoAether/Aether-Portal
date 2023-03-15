@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Triple } from '$lib/assets/types';
-	import namespaces from '$lib/assets/namespaces.json';
+	import namespaces from '$lib/assets/ontologies/namespaces.json';
 
 	export let ontologies: Triple[];
 	function getOntology(uri: string): string {
@@ -28,7 +28,6 @@
 			for (const s of ['object', 'predicate', 'subject']) {
 				const ontology = getOntology(d[s as TripleKey]);
 				let currSet = count.get(ontology);
-				console.log(currSet, ontology);
 				if (currSet !== undefined && ontology !== undefined) {
 					count.set(ontology, currSet.add(d[s as TripleKey]));
 				}

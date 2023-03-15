@@ -1,43 +1,12 @@
 <script lang="ts">
 	import Hero from '$lib/components/hero.svelte';
-	const cardsImgs = [
-		{
-			name: 'clm',
-			type: 'jpg',
-			title: 'Universidad de Castilla la Mancha',
-			span: '1/2'
-		},
-		{
-			name: 'khaos',
-			type: 'jpeg',
-			title: 'Grupo de investigación Khaos Research',
-			span: '2/4'
-		},
-		{
-			name: 'uma',
-			type: 'jpg',
-			title: 'Universidad de Málaga',
-			span: '1/3'
-		},
-		{
-			name: 'alicante',
-			type: 'jpg',
-			title: 'Universidad de Alicante',
-			span: 3
-		},
-		{
-			name: 'us',
-			type: 'png',
-			title: 'Universidad de Sevilla',
-			span: '1/3'
-		},
-		{
-			name: 'aether',
-			type: 'png',
-			title: 'Aether',
-			span: '1/3'
-		}
-	];
+	import indexes from '$lib/assets/ontologies/index.json';
+	import { compactURI, formatURI } from '$lib/utils';
+	import fallback from '$lib/assets/img/fallback.svg';
+	import namespaces from '$lib/assets/ontologies/namespaces.json';
+	function fallbackImage(img: Event) {
+		img.target.src = fallback;
+	}
 </script>
 
 <svelte:head>
@@ -47,15 +16,26 @@
 <main class="min-h-screen">
 	<Hero />
 	<div class="container grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-10">
-		{#each cardsImgs as { name, type, title }}
-			<div class="card shadow-xl">
+		{#each Object.entries(indexes) as [uri, file]}
+			<a href={`/ontologies/previews?uri=${formatURI(uri)}`} class="card glass shadow-xl">
 				<figure class="px-10 pt-10">
-					<img class="rounded-xl" src={`/src/lib/assets/img/${name}.${type}`} alt={title} />
+					<img
+						src={file.logo}
+						height="100px"
+						width="100px"
+						alt="ontology-icon"
+						class="rounded-xl"
+						on:error={fallbackImage}
+					/>
 				</figure>
-				<div class={`card-body`}>
-					<p>{title}</p>
+				<div class="card-body items-center text-center">
+					<h2 class="card-title">{compactURI(uri, namespaces)}</h2>
+					<div class="p-4">
+						<span>{file.label}</span>
+						<span class="italic text-neutral line-clamp-6">{file.description}</span>
+					</div>
 				</div>
-			</div>
+			</a>
 		{/each}
 	</div>
 </main>

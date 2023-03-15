@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { error } from '@sveltejs/kit';
-	import indexes from '$lib/assets/index.json';
+	import indexes from '$lib/assets/ontologies/index.json';
 	import MetadataTable from '$lib/components/metadataTable.svelte';
 	import TriplesTable from '$lib/components/triplesTable.svelte';
 	import Hierarchy from '$lib/components/hierarchy.svelte';
@@ -11,10 +11,18 @@
 	import { ontologies, ontologyURI } from '$lib/stores/imports';
 	import { fade } from 'svelte/transition';
 	import { compactURI, type CompactURIProps } from '$lib/utils';
-	import namespaces from '$lib/assets/namespaces.json';
+	import namespaces from '$lib/assets/ontologies/namespaces.json';
 
-	const uri = $page.url.searchParams.get('uri');
-	if (uri === null || uri === undefined || !Object.keys(indexes).includes(uri)) {
+	let uri = $page.url.searchParams.get('uri');
+	if (uri === null || uri === undefined) {
+		throw error(404, {
+			message: 'Not found'
+		});
+	}
+	if ($page.url.searchParams.get('hasTag') === '') {
+		uri = uri + '#';
+	}
+	if (!Object.keys(indexes).includes(uri)) {
 		throw error(404, {
 			message: 'Not found'
 		});

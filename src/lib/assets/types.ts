@@ -13,7 +13,7 @@ export interface Ontology {
 	[key: string]: Triple[];
 }
 export interface IndexFile {
-	[key: string]: string;
+	[key: string]: { filename: string; logo: string; description: string; label: string };
 }
 export interface Namespace {
 	[key: string]: string;

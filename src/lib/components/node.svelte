@@ -4,7 +4,7 @@
 	import { compactURI, getChildren, type CompactURIProps } from '$lib/utils';
 	import { slide } from 'svelte/transition';
 	import OpenIcon from '$lib/svg/openIcon.svelte';
-	import namespaces from '$lib/assets/namespaces.json';
+	import namespaces from '$lib/assets/ontologies/namespaces.json';
 	import { afterUpdate } from 'svelte';
 	export let data: string;
 	export let triples: Triple[];

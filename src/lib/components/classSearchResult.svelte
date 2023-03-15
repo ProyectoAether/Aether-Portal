@@ -1,8 +1,8 @@
 <script lang="ts">
-	import namespaces from '$lib/assets/namespaces.json';
+	import namespaces from '$lib/assets/ontologies/namespaces.json';
 	import type { ClassSearchResult } from '$lib/stores/search';
 	import LinkIcon from '$lib/svg/linkIcon.svelte';
-	import { compactURI, type CompactURIProps } from '$lib/utils';
+	import { compactURI, formatURI, type CompactURIProps } from '$lib/utils';
 	export let compacted: CompactURIProps;
 	export let results: ClassSearchResult[];
 	export let offset: number;
@@ -14,7 +14,7 @@
 		<table class="table w-full">
 			<thead>
 				<th />
-				<th>Name</th>
+				<th>Class Name (Ontology)</th>
 				<th>Documentation</th>
 			</thead>
 			<tbody>
@@ -23,17 +23,21 @@
 						<th>{i + 1}</th>
 						<td>
 							<a
-								href={`/ontologies/previews?uri=${result.ontologyURI}`}
+								href={`/ontologies/previews?uri=${formatURI(result.ontologyURI)}`}
 								class="link link-primary link-hover whitespace-nowrap"
 								>{compacted.compacted
-									? compactURI(result.uri, namespaces, compacted.sep)
-									: result.uri}</a
+									? `${compactURI(result.uri, namespaces, compacted.sep)} (${compactURI(
+											result.ontologyURI,
+											namespaces,
+											''
+									  )})`
+									: `${result.uri} (${result.ontologyURI})`}</a
 							>
 						</td>
 
 						<td class="flex justify-center">
 							<a
-								href={result.uri}
+								href={formatURI(result.uri)}
 								class="link link-primary whitespace-nowrap bg-base-200 p-2 rounded-md hover:bg-base-300 transition-colors"
 								><LinkIcon /></a
 							>
