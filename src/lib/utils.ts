@@ -130,16 +130,13 @@ export function compactURI(uri: string, namespaces: Namespace, sep: string = '')
 	if (uri[uri.length - 1] !== '/') {
 		uri += '/';
 	}
+	const isOntology = Object.keys(namespaces).find((el) => el === uri);
+	if (isOntology) {
+		return uri.replace(isOntology, namespaces[isOntology]);
+	}
 	const nm = Object.keys(namespaces).find((el) => uri.includes(el));
-	if (nm === undefined) {
-		let chars = [...uri];
-		chars[chars.length - 1] = '#';
-		const result = chars.join('');
-		const nm = Object.keys(namespaces).find((el) => result.includes(el));
-		if (nm === undefined) {
-			return result;
-		}
-		return uri.replace(nm, namespaces[nm] + sep).slice(0, -1);
+	if (!nm) {
+		return uri.slice(0, -1);
 	}
 	return uri.replace(nm, namespaces[nm] + sep).slice(0, -1);
 }

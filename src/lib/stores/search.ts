@@ -1,6 +1,14 @@
 import { writable, derived } from 'svelte/store';
 import type { Quad, Triple } from '$lib/assets/types';
-import { OWL_CLASS, OWL_ONTOLOGY, RDFS_LABEL, TERMS_DESCRIPTION } from '$lib/uri';
+import {
+	OWL_CLASS,
+	OWL_DATATYPE_PROPERTY,
+	OWL_NAMED_PROPERTY as OWL_NAMED_INDIVIDUAL,
+	OWL_OBJECT_PROPERTY,
+	OWL_ONTOLOGY,
+	RDFS_LABEL,
+	TERMS_DESCRIPTION
+} from '$lib/uri';
 import fuzzysort from 'fuzzysort';
 import { ontologies, QuadSorter } from '$lib/utils';
 
@@ -123,21 +131,26 @@ function ontologySearchHandler(searchStore: SearchParams): OntologySearchResult[
 	const queryFiltered = filter(
 		searchQuery,
 		ontologies,
-		(el) => el.object === OWL_ONTOLOGY && !isCommonVocab(el.subject)
+		(el) =>
+			(el.object === OWL_ONTOLOGY ||
+				el.object === OWL_NAMED_INDIVIDUAL ||
+				el.object === OWL_DATATYPE_PROPERTY ||
+				el.object === OWL_OBJECT_PROPERTY) &&
+			!isCommonVocab(el.subject)
 	);
+
 	const sorter = new QuadSorter(queryFiltered);
 
-	const result = options.alphabeticalOrder
+	const sortedResult = options.alphabeticalOrder
 		? sorter.alphabeticalSort().getResult()
 		: sorter.reverseAlphabeticalSort().getResult();
-	return Array.from(
-		new Set(
-			result.map((el) => ({
-				uri: el.subject,
-				...getLabelAndDescription(el.subject, ontologies)
-			}))
-		)
-	);
+
+	const uris = new Set(sortedResult.map((el) => el.ontology));
+	const results = Array.from(uris).map((el) => ({
+		uri: el,
+		...getLabelAndDescription(el, ontologies)
+	}));
+	return results;
 }
 
 function classSearchHandler(searchStore: SearchParams): ClassSearchResult[] {

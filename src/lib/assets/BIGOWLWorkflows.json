@@ -1,1 +1,1062 @@
-[{"subject": "Nbadd83c762cf4776b5e4ebd9dffb56bf", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"}, {"subject": "https://w3id.org/BIGOWLWorkflows/version", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "Nc55f3718898649378e3b8b1ce114d6e8"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://purl.org/dc/terms/rights", "object": "Aether"}, {"subject": "https://w3id.org/BIGOWLWorkflows/isAVersionOf", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "https://w3id.org/BIGOWLWorkflows/classNameSerialized", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Channel"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://purl.org/dc/terms/title", "object": "BIGOWLWorkflows"}, {"subject": "N3673a6fe02b44070a6d205cd25580425", "predicate": "http://www.w3.org/2002/07/owl#unionOf", "object": "N2f830c7675ef447aab48fa174a1ff160"}, {"subject": "Nc16887114d87415c8243654700244563", "predicate": "http://www.w3.org/2002/07/owl#unionOf", "object": "Nc0a2be0f87ab440482ecf2d1a075c01d"}, {"subject": "https://w3id.org/BIGOWLWorkflows/startedAt", "predicate": "http://www.w3.org/2000/01/rdf-schema#comment", "object": "The time at which an activity started. See also prov:endedAtTime.\n\nhttp://www.w3.org/ns/prov#startedAtTime"}, {"subject": "https://w3id.org/BIGOWLWorkflows/Split", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/DataProcessing"}, {"subject": "https://w3id.org/BIGOWLWorkflows/range", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows/numTask", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/RemoveOutlier", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/DataProcessing"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDataValue", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows/classNameSerialized", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataMining", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "http://www.opmw.org/ontology/WorkflowTemplate", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/wasLaunchedBy", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://purl.org/net/opmv/ns#Agent"}, {"subject": "Nf49f9b904c40437881b88704eb6e5d75", "predicate": "http://www.w3.org/2002/07/owl#unionOf", "object": "N0c23eac1461a4fcb93472f2f3e99e123"}, {"subject": "https://w3id.org/BIGOWLWorkflows/module", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "N53e177ac7f8e4491bdbb2b6733eaa63e", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "N5710baa571b54a3a9ff8287239a1e902", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/specifiesOutputClass", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "N486243d2705b4a718b292f19fe0c79b4", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"}, {"subject": "https://w3id.org/BIGOWLWorkflows/isAVersionOf", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/version", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows/module", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Implementation"}, {"subject": "https://w3id.org/BIGOWLWorkflows/MachineLearning", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/DataAnalysing"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasAlgorithm", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "Nbadd83c762cf4776b5e4ebd9dffb56bf", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "https://w3id.org/BIGOWLWorkflows/order", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#int"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasAlgorithm", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/private", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#boolean"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataProcessing", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "https://w3id.org/BIGOWLWorkflows/order", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/Task", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataFlow", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/WebService", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/DataProcessing"}, {"subject": "N0c23eac1461a4fcb93472f2f3e99e123", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "Nbb62e8a80b5c4a119f0d134a35aa1134"}, {"subject": "Nb5a68002f7cd4d30bb0d085b3a2df2f6", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"}, {"subject": "N0c23eac1461a4fcb93472f2f3e99e123", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "http://www.w3.org/2001/XMLSchema#anyURI"}, {"subject": "https://w3id.org/BIGOWLWorkflows/numberOfOutputs", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "N58ba21e767644d37a42fa47724e54162"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDataType", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasTask", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "N822e3ab066f84da8989f247fd6019d99", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"}, {"subject": "N10d2b7ae017e4a12b2f9c443e51ae93a", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "Nbfed0cd731424471b788fc67a7187365"}, {"subject": "N82b556005ceb4eb5b217c3b042050b9d", "predicate": "http://www.w3.org/2002/07/owl#unionOf", "object": "N10d2b7ae017e4a12b2f9c443e51ae93a"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDefaultValue", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows/isCorrectWorkflow", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasComponent", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://purl.org/dc/terms/description", "object": " This ontology is used tto guide the correct orchestration of a workflow, including elements like tasks, components, parameters, etc. This ontology imports BIGOWLData and BIGOWLAlgorithms to define all the pieces in a workflow."}, {"subject": "Nf49f9b904c40437881b88704eb6e5d75", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2000/01/rdf-schema#Datatype"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasName", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.w3.org/2002/07/owl#Thing"}, {"subject": "https://w3id.org/BIGOWLWorkflows/numberOfOutputs", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/range", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataMining", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/MachineLearning"}, {"subject": "https://w3id.org/BIGOWLWorkflows/isCorrectWorkflow", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://purl.org/dc/terms/created", "object": "2022-07-14T09:00:00"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://www.w3.org/2002/07/owl#versionIRI", "object": "https://w3id.org/BIGOWLWorkflows"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasImplementation", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/correspondsToTemplate", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"}, {"subject": "N884a418c90234a59ab0cfc1678a3aba4", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/specifiesOutputClass", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "N82b556005ceb4eb5b217c3b042050b9d"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasImplementation", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "N486243d2705b4a718b292f19fe0c79b4", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows/numberOfInputs", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#int"}, {"subject": "N884a418c90234a59ab0cfc1678a3aba4", "predicate": "http://www.w3.org/2002/07/owl#unionOf", "object": "N4b3ce1f0ef5b40e4bf363117672644d2"}, {"subject": "https://w3id.org/BIGOWLWorkflows/private", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"}, {"subject": "https://w3id.org/BIGOWLWorkflows/isObligatory", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"}, {"subject": "https://w3id.org/BIGOWLWorkflows/implementationLanguage", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/numberOfInputs", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/numTask", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#int"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDocumentation", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "Nf49f9b904c40437881b88704eb6e5d75"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasParameter", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "N884a418c90234a59ab0cfc1678a3aba4"}, {"subject": "N893370ab052f4cc6a73241a86a179cdb", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "N486243d2705b4a718b292f19fe0c79b4"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataAnalysing", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "Nbb62e8a80b5c4a119f0d134a35aa1134", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"}, {"subject": "Nb5a68002f7cd4d30bb0d085b3a2df2f6", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDataType", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "Nf92020c721264b31bc13bf8630535a45", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2000/01/rdf-schema#Datatype"}, {"subject": "N53e177ac7f8e4491bdbb2b6733eaa63e", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "N16d25baf5eef49a48f81006269eb1406"}, {"subject": "N822e3ab066f84da8989f247fd6019d99", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasComponent", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "Nf92020c721264b31bc13bf8630535a45", "predicate": "http://www.w3.org/2002/07/owl#unionOf", "object": "N893370ab052f4cc6a73241a86a179cdb"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://purl.org/dc/terms/creator", "object": "Aether Group"}, {"subject": "https://w3id.org/BIGOWLWorkflows/specifiesInputClass", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "https://w3id.org/BIGOWLData/Data"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataIngestion", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/DataCollection"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasTask", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"}, {"subject": "https://w3id.org/BIGOWLWorkflows/wasLaunchedBy", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasChannelOutput", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "https://w3id.org/BIGOWLWorkflows/workflow", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "https://w3id.org/BIGOWLWorkflows/startedAt", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "Nf92020c721264b31bc13bf8630535a45"}, {"subject": "Nc0a2be0f87ab440482ecf2d1a075c01d", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "http://www.w3.org/2001/XMLSchema#dateTime"}, {"subject": "https://w3id.org/BIGOWLWorkflows/connectedTo", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasName", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/SplitShuffle", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/Split"}, {"subject": "N5710baa571b54a3a9ff8287239a1e902", "predicate": "http://www.w3.org/2002/07/owl#unionOf", "object": "Ncbfcf3c479cb40e895b9a668b836fb7e"}, {"subject": "https://w3id.org/BIGOWLWorkflows/numberOfInputs", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "N5710baa571b54a3a9ff8287239a1e902"}, {"subject": "https://w3id.org/BIGOWLWorkflows/range", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "Nbfed0cd731424471b788fc67a7187365", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasListValue", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows/Channel", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://purl.org/vocab/vann/preferredNamespacePrefix", "object": "BIGOWLWorkflows"}, {"subject": "https://w3id.org/BIGOWLWorkflows/className", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Implementation"}, {"subject": "https://w3id.org/BIGOWLWorkflows/implementationLanguage", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Implementation"}, {"subject": "https://w3id.org/BIGOWLWorkflows/correspondsToTemplate", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataSink", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "Nc55f3718898649378e3b8b1ce114d6e8", "predicate": "http://www.w3.org/2002/07/owl#unionOf", "object": "N53e177ac7f8e4491bdbb2b6733eaa63e"}, {"subject": "https://w3id.org/BIGOWLWorkflows/specifiesOutputClass", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "https://w3id.org/BIGOWLData/Data"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDataType", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "https://w3id.org/BIGOWLData/DataType"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasComponent", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasParameter", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/isObligatory", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/numberOfOutputs", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#int"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataCollection", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "Nc0a2be0f87ab440482ecf2d1a075c01d", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "N859cb22515d04bdf83d9d08c0ea6ac46"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDocumentation", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://www.w3.org/2002/07/owl#imports", "object": "https://w3id.org/BIGOWLAlgorithms"}, {"subject": "https://w3id.org/BIGOWLWorkflows/workflow", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/Split", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasParameter", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"}, {"subject": "Nbfed0cd731424471b788fc67a7187365", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "https://w3id.org/BIGOWLWorkflows/private", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/endedAt", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/order", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "http://purl.org/net/opmv/ns#Agent", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "N10d2b7ae017e4a12b2f9c443e51ae93a", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "https://w3id.org/BIGOWLWorkflows/MachineLearning", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/correspondsToTemplate", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.opmw.org/ontology/WorkflowTemplate"}, {"subject": "https://w3id.org/BIGOWLWorkflows/connectedTo", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "https://w3id.org/BIGOWLWorkflows/className", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataTransform", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/startedAt", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/Implementation", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "N16d25baf5eef49a48f81006269eb1406", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://purl.org/dc/terms/rights", "object": "(c) Aether Group"}, {"subject": "https://w3id.org/BIGOWLWorkflows/instanceParameterOf", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"}, {"subject": "N58ba21e767644d37a42fa47724e54162", "predicate": "http://www.w3.org/2002/07/owl#unionOf", "object": "N3376782fc5084d47838028c723512c09"}, {"subject": "N3376782fc5084d47838028c723512c09", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "https://w3id.org/BIGOWLWorkflows/implementationLanguage", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows/classNameSerialized", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Ontology"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDefaultValue", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"}, {"subject": "Nc16887114d87415c8243654700244563", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2000/01/rdf-schema#Datatype"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasListValue", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"}, {"subject": "https://w3id.org/BIGOWLWorkflows/connectedTo", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "N4b3ce1f0ef5b40e4bf363117672644d2", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "N16d25baf5eef49a48f81006269eb1406", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Implementation"}, {"subject": "N58ba21e767644d37a42fa47724e54162", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDocumentation", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.opmw.org/ontology/WorkflowTemplate"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://purl.org/dc/terms/license", "object": "https://opensource.org/licenses/MIT"}, {"subject": "N893370ab052f4cc6a73241a86a179cdb", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "http://www.w3.org/2001/XMLSchema#dateTime"}, {"subject": "https://w3id.org/BIGOWLWorkflows/Channel", "predicate": "http://www.w3.org/2000/01/rdf-schema#comment", "object": "Represents a topic when a workflow is executed, this class is used for annotating the process of execution"}, {"subject": "https://w3id.org/BIGOWLWorkflows/WebService", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasImplementation", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "https://w3id.org/BIGOWLWorkflows/Implementation"}, {"subject": "https://w3id.org/BIGOWLWorkflows/instanceParameterOf", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/startedAt", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://purl.org/dc/terms/publisher", "object": "Aether Group"}, {"subject": "https://w3id.org/BIGOWLWorkflows/specifiesInputClass", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "N3673a6fe02b44070a6d205cd25580425"}, {"subject": "https://w3id.org/BIGOWLWorkflows/endedAt", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "Nbb62e8a80b5c4a119f0d134a35aa1134", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "Nc55f3718898649378e3b8b1ce114d6e8", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/numTask", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"}, {"subject": "https://w3id.org/BIGOWLWorkflows/Component", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataFlow", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "https://w3id.org/BIGOWLWorkflows/instanceParameterOf", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"}, {"subject": "Ncbfcf3c479cb40e895b9a668b836fb7e", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "Nbadd83c762cf4776b5e4ebd9dffb56bf"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDocumentation", "predicate": "http://www.w3.org/2000/01/rdf-schema#comment", "object": "Property that binds a workflow template to its documentation.\n\nhttp://www.opmw.org/ontology/hasDocumentation"}, {"subject": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDataValue", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"}, {"subject": "https://w3id.org/BIGOWLWorkflows/module", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "N2f830c7675ef447aab48fa174a1ff160", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "N822e3ab066f84da8989f247fd6019d99"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataIngestion", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataSink", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://www.w3.org/2000/01/rdf-schema#label", "object": "BIGOWLWorkflows Ontology"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataTransform", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/DataProcessing"}, {"subject": "https://w3id.org/BIGOWLWorkflows/RemoveOutlier", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasName", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasTask", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/version", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "Ne18eb17f30974e3e8592dece1f78b0e0", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Task"}, {"subject": "N82b556005ceb4eb5b217c3b042050b9d", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "N3673a6fe02b44070a6d205cd25580425", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "N859cb22515d04bdf83d9d08c0ea6ac46", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"}, {"subject": "https://w3id.org/BIGOWLWorkflows/SplitShuffle", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "N3376782fc5084d47838028c723512c09", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "Nb5a68002f7cd4d30bb0d085b3a2df2f6"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataAnalysing", "predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "https://w3id.org/BIGOWLWorkflows/isObligatory", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#boolean"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasAlgorithm", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "https://w3id.org/BIGOWLAlgorithms/Algorithm"}, {"subject": "N2f830c7675ef447aab48fa174a1ff160", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasListValue", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/workflow", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows/isCorrectWorkflow", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#boolean"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataProcessing", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasChannelOutput", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "https://w3id.org/BIGOWLWorkflows/Channel"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDefaultValue", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/isAVersionOf", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "https://w3id.org/BIGOWLWorkflows/className", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasChannelOutput", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "Ne18eb17f30974e3e8592dece1f78b0e0", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://www.w3.org/2002/07/owl#imports", "object": "https://w3id.org/BIGOWLData"}, {"subject": "Ncbfcf3c479cb40e895b9a668b836fb7e", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "https://w3id.org/BIGOWLWorkflows/Component"}, {"subject": "https://w3id.org/BIGOWLWorkflows/endedAt", "predicate": "http://www.w3.org/2000/01/rdf-schema#comment", "object": "The time at which an activity ended. See also prov:startedAtTime.\nhttp://www.w3.org/ns/prov#endedAtTime"}, {"subject": "https://w3id.org/BIGOWLWorkflows/endedAt", "predicate": "http://www.w3.org/2000/01/rdf-schema#range", "object": "Nc16887114d87415c8243654700244563"}, {"subject": "N4b3ce1f0ef5b40e4bf363117672644d2", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest", "object": "Ne18eb17f30974e3e8592dece1f78b0e0"}, {"subject": "https://w3id.org/BIGOWLWorkflows", "predicate": "http://purl.org/vocab/vann/preferredNamespaceUri", "object": "https://w3id.org/BIGOWLWorkflows"}, {"subject": "https://w3id.org/BIGOWLWorkflows/wasLaunchedBy", "predicate": "http://www.w3.org/2000/01/rdf-schema#domain", "object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"}, {"subject": "https://w3id.org/BIGOWLWorkflows/specifiesInputClass", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#ObjectProperty"}, {"subject": "N859cb22515d04bdf83d9d08c0ea6ac46", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first", "object": "http://www.w3.org/2001/XMLSchema#string"}, {"subject": "https://w3id.org/BIGOWLWorkflows/hasDataValue", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#DatatypeProperty"}, {"subject": "https://w3id.org/BIGOWLWorkflows/DataCollection", "predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", "object": "http://www.w3.org/2002/07/owl#Class"}]
+[
+	{
+		"subject": "Nbadd83c762cf4776b5e4ebd9dffb56bf",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/version",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "Nc55f3718898649378e3b8b1ce114d6e8"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://purl.org/dc/terms/rights",
+		"object": "Aether"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/isAVersionOf",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/classNameSerialized",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Channel"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://purl.org/dc/terms/title",
+		"object": "BIGOWLWorkflows"
+	},
+	{
+		"subject": "N3673a6fe02b44070a6d205cd25580425",
+		"predicate": "http://www.w3.org/2002/07/owl#unionOf",
+		"object": "N2f830c7675ef447aab48fa174a1ff160"
+	},
+	{
+		"subject": "Nc16887114d87415c8243654700244563",
+		"predicate": "http://www.w3.org/2002/07/owl#unionOf",
+		"object": "Nc0a2be0f87ab440482ecf2d1a075c01d"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/startedAt",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#comment",
+		"object": "The time at which an activity started. See also prov:endedAtTime.\n\nhttp://www.w3.org/ns/prov#startedAtTime"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/Split",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/DataProcessing"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/range",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/numTask",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/RemoveOutlier",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/DataProcessing"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDataValue",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/classNameSerialized",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataMining",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "http://www.opmw.org/ontology/WorkflowTemplate",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/wasLaunchedBy",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://purl.org/net/opmv/ns#Agent"
+	},
+	{
+		"subject": "Nf49f9b904c40437881b88704eb6e5d75",
+		"predicate": "http://www.w3.org/2002/07/owl#unionOf",
+		"object": "N0c23eac1461a4fcb93472f2f3e99e123"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/module",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "N53e177ac7f8e4491bdbb2b6733eaa63e",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "N5710baa571b54a3a9ff8287239a1e902",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/specifiesOutputClass",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "N486243d2705b4a718b292f19fe0c79b4",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/isAVersionOf",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/version",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/module",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Implementation"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/MachineLearning",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/DataAnalysing"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasAlgorithm",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "Nbadd83c762cf4776b5e4ebd9dffb56bf",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/order",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#int"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasAlgorithm",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/private",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#boolean"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataProcessing",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/order",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/Task",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataFlow",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/WebService",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/DataProcessing"
+	},
+	{
+		"subject": "N0c23eac1461a4fcb93472f2f3e99e123",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "Nbb62e8a80b5c4a119f0d134a35aa1134"
+	},
+	{
+		"subject": "Nb5a68002f7cd4d30bb0d085b3a2df2f6",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"
+	},
+	{
+		"subject": "N0c23eac1461a4fcb93472f2f3e99e123",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "http://www.w3.org/2001/XMLSchema#anyURI"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/numberOfOutputs",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "N58ba21e767644d37a42fa47724e54162"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDataType",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasTask",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "N822e3ab066f84da8989f247fd6019d99",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"
+	},
+	{
+		"subject": "N10d2b7ae017e4a12b2f9c443e51ae93a",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "Nbfed0cd731424471b788fc67a7187365"
+	},
+	{
+		"subject": "N82b556005ceb4eb5b217c3b042050b9d",
+		"predicate": "http://www.w3.org/2002/07/owl#unionOf",
+		"object": "N10d2b7ae017e4a12b2f9c443e51ae93a"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDefaultValue",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/isCorrectWorkflow",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasComponent",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://purl.org/dc/terms/description",
+		"object": " This ontology is used tto guide the correct orchestration of a workflow, including elements like tasks, components, parameters, etc. This ontology imports BIGOWLData and BIGOWLAlgorithms to define all the pieces in a workflow."
+	},
+	{
+		"subject": "Nf49f9b904c40437881b88704eb6e5d75",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2000/01/rdf-schema#Datatype"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasName",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.w3.org/2002/07/owl#Thing"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/numberOfOutputs",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/range",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataMining",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/MachineLearning"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/isCorrectWorkflow",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://purl.org/dc/terms/created",
+		"object": "2022-07-14T09:00:00"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://www.w3.org/2002/07/owl#versionIRI",
+		"object": "https://w3id.org/BIGOWLWorkflows"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasImplementation",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/correspondsToTemplate",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"
+	},
+	{
+		"subject": "N884a418c90234a59ab0cfc1678a3aba4",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/specifiesOutputClass",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "N82b556005ceb4eb5b217c3b042050b9d"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasImplementation",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "N486243d2705b4a718b292f19fe0c79b4",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/numberOfInputs",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#int"
+	},
+	{
+		"subject": "N884a418c90234a59ab0cfc1678a3aba4",
+		"predicate": "http://www.w3.org/2002/07/owl#unionOf",
+		"object": "N4b3ce1f0ef5b40e4bf363117672644d2"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/private",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/isObligatory",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/implementationLanguage",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/numberOfInputs",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/numTask",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#int"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDocumentation",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "Nf49f9b904c40437881b88704eb6e5d75"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasParameter",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "N884a418c90234a59ab0cfc1678a3aba4"
+	},
+	{
+		"subject": "N893370ab052f4cc6a73241a86a179cdb",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "N486243d2705b4a718b292f19fe0c79b4"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataAnalysing",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "Nbb62e8a80b5c4a119f0d134a35aa1134",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"
+	},
+	{
+		"subject": "Nb5a68002f7cd4d30bb0d085b3a2df2f6",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDataType",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "Nf92020c721264b31bc13bf8630535a45",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2000/01/rdf-schema#Datatype"
+	},
+	{
+		"subject": "N53e177ac7f8e4491bdbb2b6733eaa63e",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "N16d25baf5eef49a48f81006269eb1406"
+	},
+	{
+		"subject": "N822e3ab066f84da8989f247fd6019d99",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasComponent",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "Nf92020c721264b31bc13bf8630535a45",
+		"predicate": "http://www.w3.org/2002/07/owl#unionOf",
+		"object": "N893370ab052f4cc6a73241a86a179cdb"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://purl.org/dc/terms/creator",
+		"object": "Aether Group"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/specifiesInputClass",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "https://w3id.org/BIGOWLData/Data"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataIngestion",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/DataCollection"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasTask",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/wasLaunchedBy",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasChannelOutput",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/workflow",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/startedAt",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "Nf92020c721264b31bc13bf8630535a45"
+	},
+	{
+		"subject": "Nc0a2be0f87ab440482ecf2d1a075c01d",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "http://www.w3.org/2001/XMLSchema#dateTime"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/connectedTo",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasName",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/SplitShuffle",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/Split"
+	},
+	{
+		"subject": "N5710baa571b54a3a9ff8287239a1e902",
+		"predicate": "http://www.w3.org/2002/07/owl#unionOf",
+		"object": "Ncbfcf3c479cb40e895b9a668b836fb7e"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/numberOfInputs",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "N5710baa571b54a3a9ff8287239a1e902"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/range",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "Nbfed0cd731424471b788fc67a7187365",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasListValue",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/Channel",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://purl.org/vocab/vann/preferredNamespacePrefix",
+		"object": "BIGOWLWorkflows"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/className",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Implementation"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/implementationLanguage",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Implementation"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/correspondsToTemplate",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataSink",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "Nc55f3718898649378e3b8b1ce114d6e8",
+		"predicate": "http://www.w3.org/2002/07/owl#unionOf",
+		"object": "N53e177ac7f8e4491bdbb2b6733eaa63e"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/specifiesOutputClass",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "https://w3id.org/BIGOWLData/Data"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDataType",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "https://w3id.org/BIGOWLData/DataType"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasComponent",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasParameter",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/isObligatory",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/numberOfOutputs",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#int"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataCollection",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "Nc0a2be0f87ab440482ecf2d1a075c01d",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "N859cb22515d04bdf83d9d08c0ea6ac46"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDocumentation",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://www.w3.org/2002/07/owl#imports",
+		"object": "https://w3id.org/BIGOWLAlgorithms"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/workflow",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/Split",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasParameter",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+	},
+	{
+		"subject": "Nbfed0cd731424471b788fc67a7187365",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/private",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/endedAt",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/order",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "http://purl.org/net/opmv/ns#Agent",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "N10d2b7ae017e4a12b2f9c443e51ae93a",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/MachineLearning",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/correspondsToTemplate",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.opmw.org/ontology/WorkflowTemplate"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/connectedTo",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/className",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataTransform",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/startedAt",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/Implementation",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "N16d25baf5eef49a48f81006269eb1406",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://purl.org/dc/terms/rights",
+		"object": "(c) Aether Group"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/instanceParameterOf",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+	},
+	{
+		"subject": "N58ba21e767644d37a42fa47724e54162",
+		"predicate": "http://www.w3.org/2002/07/owl#unionOf",
+		"object": "N3376782fc5084d47838028c723512c09"
+	},
+	{
+		"subject": "N3376782fc5084d47838028c723512c09",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/implementationLanguage",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/classNameSerialized",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Ontology"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDefaultValue",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+	},
+	{
+		"subject": "Nc16887114d87415c8243654700244563",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2000/01/rdf-schema#Datatype"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasListValue",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/connectedTo",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "N4b3ce1f0ef5b40e4bf363117672644d2",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "N16d25baf5eef49a48f81006269eb1406",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Implementation"
+	},
+	{
+		"subject": "N58ba21e767644d37a42fa47724e54162",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDocumentation",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.opmw.org/ontology/WorkflowTemplate"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://purl.org/dc/terms/license",
+		"object": "https://opensource.org/licenses/MIT"
+	},
+	{
+		"subject": "N893370ab052f4cc6a73241a86a179cdb",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "http://www.w3.org/2001/XMLSchema#dateTime"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/Channel",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#comment",
+		"object": "Represents a topic when a workflow is executed, this class is used for annotating the process of execution"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/WebService",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasImplementation",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "https://w3id.org/BIGOWLWorkflows/Implementation"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/instanceParameterOf",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/startedAt",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://purl.org/dc/terms/publisher",
+		"object": "Aether Group"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/specifiesInputClass",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "N3673a6fe02b44070a6d205cd25580425"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/endedAt",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "Nbb62e8a80b5c4a119f0d134a35aa1134",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "Nc55f3718898649378e3b8b1ce114d6e8",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/numTask",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/Component",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataFlow",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/instanceParameterOf",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+	},
+	{
+		"subject": "Ncbfcf3c479cb40e895b9a668b836fb7e",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "Nbadd83c762cf4776b5e4ebd9dffb56bf"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDocumentation",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#comment",
+		"object": "Property that binds a workflow template to its documentation.\n\nhttp://www.opmw.org/ontology/hasDocumentation"
+	},
+	{
+		"subject": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDataValue",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Parameter"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/module",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "N2f830c7675ef447aab48fa174a1ff160",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "N822e3ab066f84da8989f247fd6019d99"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataIngestion",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataSink",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#label",
+		"object": "BIGOWLWorkflows Ontology"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataTransform",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/DataProcessing"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/RemoveOutlier",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasName",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasTask",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/version",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "Ne18eb17f30974e3e8592dece1f78b0e0",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Task"
+	},
+	{
+		"subject": "N82b556005ceb4eb5b217c3b042050b9d",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "N3673a6fe02b44070a6d205cd25580425",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "N859cb22515d04bdf83d9d08c0ea6ac46",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/SplitShuffle",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "N3376782fc5084d47838028c723512c09",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "Nb5a68002f7cd4d30bb0d085b3a2df2f6"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataAnalysing",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#subClassOf",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/isObligatory",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#boolean"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasAlgorithm",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "https://w3id.org/BIGOWLAlgorithms/Algorithm"
+	},
+	{
+		"subject": "N2f830c7675ef447aab48fa174a1ff160",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasListValue",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/workflow",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/isCorrectWorkflow",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#boolean"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataProcessing",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasChannelOutput",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "https://w3id.org/BIGOWLWorkflows/Channel"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDefaultValue",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/isAVersionOf",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/className",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasChannelOutput",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "Ne18eb17f30974e3e8592dece1f78b0e0",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://www.w3.org/2002/07/owl#imports",
+		"object": "https://w3id.org/BIGOWLData"
+	},
+	{
+		"subject": "Ncbfcf3c479cb40e895b9a668b836fb7e",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "https://w3id.org/BIGOWLWorkflows/Component"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/endedAt",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#comment",
+		"object": "The time at which an activity ended. See also prov:startedAtTime.\nhttp://www.w3.org/ns/prov#endedAtTime"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/endedAt",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#range",
+		"object": "Nc16887114d87415c8243654700244563"
+	},
+	{
+		"subject": "N4b3ce1f0ef5b40e4bf363117672644d2",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#rest",
+		"object": "Ne18eb17f30974e3e8592dece1f78b0e0"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows",
+		"predicate": "http://purl.org/vocab/vann/preferredNamespaceUri",
+		"object": "https://w3id.org/BIGOWLWorkflows"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/wasLaunchedBy",
+		"predicate": "http://www.w3.org/2000/01/rdf-schema#domain",
+		"object": "http://www.e-lico.eu/ontologies/dmo/DMOP/DMOP.owl#Workflow"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/specifiesInputClass",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#ObjectProperty"
+	},
+	{
+		"subject": "N859cb22515d04bdf83d9d08c0ea6ac46",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+		"object": "http://www.w3.org/2001/XMLSchema#string"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/hasDataValue",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#DatatypeProperty"
+	},
+	{
+		"subject": "https://w3id.org/BIGOWLWorkflows/DataCollection",
+		"predicate": "http://www.w3.org/1999/02/22-rdf-syntax-ns#type",
+		"object": "http://www.w3.org/2002/07/owl#Class"
+	}
+]

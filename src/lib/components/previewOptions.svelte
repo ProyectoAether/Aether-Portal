@@ -15,7 +15,7 @@
 			class="radio radio-info"
 			value={0}
 		/>
-		<span>Table View</span></label
+		<span>Table</span></label
 	>
 
 	<label for="hierarchy-view" class="flex justify-center items-center gap-4">
@@ -28,7 +28,7 @@
 			value={1}
 		/>
 
-		<span>Class Hierarchy View</span>
+		<span>Class Hierarchy</span>
 	</label>
 
 	<label for="mappings" class="flex justify-center items-center gap-4">
