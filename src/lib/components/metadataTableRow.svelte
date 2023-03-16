@@ -1,19 +1,17 @@
 <script lang="ts">
-	import type { MetadataField } from '$lib/utils';
-	import { imports } from '$lib/stores/imports';
-
-	export let value: number | string[];
-	export let field: MetadataField;
+	export let value: string[] | string | number;
+	export let field: string;
+	export let imports: string[];
 </script>
 
 {#if Array.isArray(value)}
 	{#each value as v}
-		{#if field === 'Imports'}
+		{#if field === 'imports'}
 			<div class="form-control">
 				<label class="cursor-pointer label justify-start gap-2">
 					<input
 						type="checkbox"
-						bind:group={$imports}
+						bind:group={imports}
 						value={v}
 						name="imported"
 						class="checkbox checkbox-secondary"

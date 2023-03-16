@@ -1,6 +1,6 @@
 <script lang="ts">
-	import AetherIcon from '$lib/svg/aetherIcon.svelte';
 	import Stats from '$lib/components/stats.svelte';
+	import AetherPortalLogo from '$lib/svg/aetherPortalLogo.svelte';
 	import { typewriter } from '$lib/transitions/typewriter';
 	import { onMount } from 'svelte';
 	export let show = false;
@@ -12,14 +12,16 @@
 <div class="hero min-h-screen relative">
 	<div class="hero-overlay absolute inset-0 gradient" />
 	<div class="hero-content text-center text-neutral-content">
-		<div class="max-w-md flex flex-col justify-center items-center">
-			<AetherIcon />
-			{#if show}
-				<p class="italic mb-10 md:text-xl text-[#1E1D82] " in:typewriter={{ speed: 3 }}>
-					This is an ontology portal that allows for quick search and preview of the most relevant
-					ontologies of the Aether project.
-				</p>
-			{/if}
+		<div class="max-w-md flex flex-col justify-center items-center gap-5">
+			<AetherPortalLogo height="" width="" />
+			<div class="h-32">
+				{#if show}
+					<p class="italic mb-10 md:text-xl text-[#1E1D82] " in:typewriter={{ speed: 3 }}>
+						This is an ontology portal that allows for quick search and preview of the most relevant
+						ontologies of the Aether project.
+					</p>
+				{/if}
+			</div>
 			<Stats />
 		</div>
 	</div>

@@ -1,41 +1,43 @@
 <script lang="ts">
-	import type { Triple } from '$lib/assets/types';
-	import namespaces from '$lib/assets/ontologies/namespaces.json';
+	import type { Triple } from '$lib/assets/data';
+	import { getUniformURI, isURI } from '$lib/utils';
 
-	export let ontologies: Triple[];
-	function getOntology(uri: string): string {
-		const coincidence = [];
-		for (const ontologyURI of Object.keys(namespaces)) {
-			if (uri.includes(ontologyURI)) {
-				coincidence.push(ontologyURI);
+	export let triples: Triple[];
+	export let excludedURI: string;
+	function getOntology(uri: string): string | undefined {
+		let result;
+		for (let i = uri.length - 1; i > 0; i--) {
+			if (uri[i] === '/' || uri[i] === '#') {
+				result = uri.slice(0, i);
+				break;
 			}
 		}
-		let result = coincidence[0];
-		for (const c of coincidence) {
-			if (c.length > result.length) {
-				result = c;
-			}
-		}
-		return result;
+		return isURI(result) ? result : undefined;
 	}
 	type TripleKey = 'object' | 'predicate' | 'subject';
 	function getMappings(data: Triple[]) {
 		const count = new Map<string, Set<string>>();
-		for (const uri of Object.keys(namespaces)) {
-			count.set(uri, new Set());
-		}
 		for (const d of data) {
 			for (const s of ['object', 'predicate', 'subject']) {
-				const ontology = getOntology(d[s as TripleKey]);
+				let ontology = getOntology(d[s as TripleKey]);
+				if (ontology === undefined || ontology === getUniformURI(excludedURI)) {
+					continue;
+				}
+
+				if (new URL(ontology).pathname === '/') {
+					ontology = d[s as TripleKey];
+				}
 				let currSet = count.get(ontology);
-				if (currSet !== undefined && ontology !== undefined) {
+				if (currSet !== undefined) {
 					count.set(ontology, currSet.add(d[s as TripleKey]));
+				} else {
+					count.set(ontology, new Set());
 				}
 			}
 		}
 		return count;
 	}
-	$: mappings = Array.from(getMappings(ontologies)).filter(([_, count]) => count.size > 0);
+	$: mappings = Array.from(getMappings(triples)).filter(([_, count]) => count.size > 0);
 </script>
 
 <div class="overflow-x-auto">

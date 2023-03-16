@@ -9,6 +9,10 @@ const config: UserConfig & { test: VitestConfig['test'] } = {
 		// Eliminate in-source test code
 		'import.meta.vitest': 'undefined'
 	},
+
+	optimizeDeps: {
+		include: ['svelte-countup', 'fuzzysort']
+	},
 	build: {
 		target: 'esnext'
 	},

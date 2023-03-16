@@ -38,7 +38,7 @@
 						<td class="flex justify-center">
 							<a
 								href={formatURI(result.uri)}
-								class="link link-primary whitespace-nowrap bg-base-200 p-2 rounded-md hover:bg-base-300 transition-colors"
+								class="link link-primary whitespace-nowrap bg-primary-focus p-2 rounded-md hover:bg-base-300 transition-colors"
 								><LinkIcon /></a
 							>
 						</td>

@@ -1,20 +1,20 @@
 import { writable, derived } from 'svelte/store';
-import type { Quad } from '$lib/assets/types';
-import indexes from '$lib/assets/ontologies/index.json';
 import {
 	OWL_CLASS,
 	OWL_DATATYPE_PROPERTY,
-	OWL_NAMED_PROPERTY as OWL_NAMED_INDIVIDUAL,
+	OWL_NAMED_INDIVIDUAL,
 	OWL_OBJECT_PROPERTY,
 	OWL_ONTOLOGY
-} from '$lib/uri';
+} from '$lib/assets/data';
+import type { Quad } from '$lib/assets/data';
+import indexes from '$lib/assets/ontologies/index.json';
 import fuzzysort from 'fuzzysort';
 import { ontologies, QuadSorter } from '$lib/utils';
 
 function filter(query: string, data: Quad[], guard: (el: Quad) => boolean, keys: string[]): Quad[] {
 	return fuzzysort
 		.go(query, data, { keys, all: true })
-		.filter((el) => el[0] && guard(el.obj))
+		.filter((el) => el[0] && guard(el.obj) && (el.score === -Infinity || el.score > -300))
 		.map((el) => el.obj);
 }
 

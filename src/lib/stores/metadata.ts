@@ -1,4 +1,4 @@
-import type { Triple } from '$lib/assets/types';
+import type { Triple } from '$lib/assets/data';
 import {
 	isMetadataField,
 	isStatistic,
@@ -9,7 +9,6 @@ import { readable } from 'svelte/store';
 
 export function getMetadata(
 	fields: MetadataFieldPredicate,
-	ontology: Triple[],
 	ontologies: Triple[]
 ) {
 	const metadata = new Map<MetadataField, string[] | number>();
@@ -32,5 +31,5 @@ export function getMetadata(
 
 export const metadata = readable(
 	(fields: MetadataFieldPredicate, ontology: Triple[], ontologies: Triple[]) =>
-		getMetadata(fields, ontology, ontologies)
+		getMetadata(fields, ontologies)
 );

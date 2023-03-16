@@ -69,4 +69,3 @@
 	</div>
 	<slot name="search-results" />
 </form>
-

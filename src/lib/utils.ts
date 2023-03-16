@@ -1,4 +1,4 @@
-import type { IndexFile, Namespace, Ontology, Quad, Triple } from '$lib/assets/types';
+import type { IndexFile, Namespace, Quad, Triple } from '$lib/assets/data';
 import indexes from './assets/ontologies/index.json';
 import {
 	OWL_CLASS,
@@ -8,7 +8,7 @@ import {
 	OWL_THING,
 	RDFS_SUBCLASS_OF,
 	RDF_TYPE
-} from './uri';
+} from '$lib/assets/data';
 
 const metadataFields = [
 	'Title',
@@ -102,8 +102,17 @@ export class QuadSorter implements Sorter<Quad> {
 		return this.triples;
 	}
 }
+export function getUniformURI(uri: string) {
+	if (uri[uri.length - 1] === '/' || uri[uri.length - 1] === '#') {
+		return uri.slice(0, -1);
+	}
+	return uri;
+}
 
-export function isURI(sequence: string): boolean {
+export function isURI(sequence: string | undefined): boolean {
+	if (sequence === undefined) {
+		return false;
+	}
 	try {
 		new URL(sequence);
 		return true;
@@ -116,7 +125,6 @@ export function getRootsURI(triples: Triple[]): string[] {
 	const subClasses = triples
 		.filter((el) => el.predicate === RDFS_SUBCLASS_OF && el.object !== OWL_THING)
 		.map((el) => el.subject);
-	console.log(triples.filter((el) => el.predicate === OWL_IMPORTS));
 	const classes = triples
 		.filter((el) => el.predicate === RDF_TYPE && el.object === OWL_CLASS)
 		.map((el) => el.subject);
@@ -165,14 +173,4 @@ export function expandURI(uri: string, namespaces: Namespace): string {
 		tmp = tmp.replace(alias + ':', elUri);
 	}
 	return tmp;
-}
-
-export function getOntologiesTriples(ontologies: Ontology) {
-	let result = new Set<string>();
-	for (const triples of Object.values(ontologies)) {
-		for (const triple of triples) {
-			result.add(JSON.stringify(triple));
-		}
-	}
-	return Array.from(result).map((r: string) => JSON.parse(r));
 }

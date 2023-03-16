@@ -1,4 +1,4 @@
-import type { IndexFile, Triple } from '$lib/assets/types';
+import type { IndexFile, Triple } from '$lib/assets/data';
 import { derived, writable } from 'svelte/store';
 import indexes from '$lib/assets/ontologies/index.json';
 

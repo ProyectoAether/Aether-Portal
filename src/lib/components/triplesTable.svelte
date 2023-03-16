@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { compactURI, type CompactURIProps } from '$lib/utils';
 	import namespaces from '$lib/assets/ontologies/namespaces.json';
-	import type { Triple } from '$lib/assets/types';
+	import type { Triple } from '$lib/assets/data';
 	import LinkIcon from '$lib/svg/linkIcon.svelte';
+	import Modal from './modal.svelte';
 	export let compacted: CompactURIProps;
 	export let offset: number;
 	export let limit: number;
-	export let ontologies: Triple[];
+	export let triples: Triple[];
 	function isURL(target: string): boolean {
 		try {
 			new URL(target);
@@ -18,7 +19,7 @@
 </script>
 
 <div class="overflow-x-auto my-10">
-	<table id="data" data-testid="triples-table" class="table table-compact w-full">
+	<table id="data" data-testid="triples-table" class=" table table-compact w-full">
 		<thead>
 			<tr>
 				<th />
@@ -28,39 +29,55 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each ontologies.slice(offset * limit, (offset + 1) * limit) as triple, index}
-				<tr class="hover">
+			{#each triples.slice(offset * limit, (offset + 1) * limit) as triple, index}
+				<tr>
 					<th>{index + 1}</th>
 					<td>
-						<span>
-							{compacted.compacted
-								? compactURI(triple.subject, namespaces, compacted.sep)
-								: triple.subject}
-						</span>
-						<a href={triple.subject} class="inline-block" rel="noreferrer" target="_blank"
-							><LinkIcon /></a
-						>
-					</td>
-					<td class="">
-						<span>
-							{compacted.compacted
-								? compactURI(triple.predicate, namespaces, compacted.sep)
-								: triple.predicate}
-						</span>
-						<a href={triple.predicate} class="inline-block" rel="noreferrer" target="_blank"
-							><LinkIcon /></a
-						>
-					</td>
-					<td class="whitespace-nowrap">
-						{#if isURL(triple['object'])}
+						<div class="flex items-center gap-3">
 							<span>
 								{compacted.compacted
-									? compactURI(triple.object, namespaces, compacted.sep)
-									: triple.object}
+									? compactURI(triple.subject, namespaces, compacted.sep)
+									: triple.subject}
 							</span>
-							<a href={triple.object} rel="noreferrer" class="inline-block" target="_blank"
-								><LinkIcon /></a
+							<a
+								href={triple.subject}
+								class="link link-primary whitespace-nowrap bg-primary-focus p-2 rounded-md hover:bg-base-300 transition-colors"
+								rel="noreferrer"
+								target="_blank"><LinkIcon /></a
 							>
+						</div>
+					</td>
+					<td>
+						<div class="flex items-center gap-3">
+							<span>
+								{compacted.compacted
+									? compactURI(triple.predicate, namespaces, compacted.sep)
+									: triple.predicate}
+							</span>
+						</div></td
+					>
+					<td class="whitespace-nowrap">
+						{#if isURL(triple['object'])}
+							<div class="flex items-center gap-3">
+								<span>
+									{compacted.compacted
+										? compactURI(triple.object, namespaces, compacted.sep)
+										: triple.object}
+								</span>
+								<a
+									href={triple.object}
+									rel="noreferrer"
+									class="link link-primary whitespace-nowrap bg-primary-focus p-2 rounded-md hover:bg-base-300 transition-colors"
+									target="_blank"><LinkIcon /></a
+								>
+							</div>
+						{:else if triple.object.length > 30}
+							<Modal
+								value={triple.object}
+								title={compacted.compacted
+									? compactURI(triple.subject, namespaces, compacted.sep)
+									: triple.subject}
+							/>
 						{:else}
 							{compacted.compacted
 								? compactURI(triple.object, namespaces, compacted.sep)

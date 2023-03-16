@@ -1,17 +1,14 @@
 <script lang="ts">
-	import type { Triple } from '$lib/assets/types';
-	import CloseIcon from '$lib/svg/closeIcon.svelte';
+	import type { Triple } from '$lib/assets/data';
 	import { compactURI, getChildren, type CompactURIProps } from '$lib/utils';
-	import { slide } from 'svelte/transition';
-	import OpenIcon from '$lib/svg/openIcon.svelte';
 	import namespaces from '$lib/assets/ontologies/namespaces.json';
 	import { afterUpdate } from 'svelte';
+	import { fade } from 'svelte/transition';
+	import { typewriter } from '$lib/transitions/typewriter';
 	export let data: string;
 	export let triples: Triple[];
-	export let level: number;
 	export let show: boolean = true;
 	export let compacted: CompactURIProps;
-	const leftPaddingPX = level * 55;
 	const children = getChildren(data, triples);
 	$: data = compacted.compacted ? compactURI(data, namespaces, compacted.sep) : data;
 	export let visited: Set<string>;
@@ -19,27 +16,103 @@
 	afterUpdate(() => {
 		visited.add(data);
 	});
+	const id = crypto.randomUUID();
 </script>
 
-<li transition:slide class="p-2 flex" style="padding-left: {leftPaddingPX}px">
-	{#if children.length > 0}
-		{#if !show}
-			<button on:click={() => (show = true)}>
-				<CloseIcon />
-			</button>
-		{:else}
-			<button on:click={() => (show = false)}>
-				<OpenIcon />
-			</button>
-		{/if}
-	{/if}
-	<a class="link link-primary" href={data}>{data}</a>
-</li>
-
+<input class="absolute" type="checkbox" {id} bind:checked={show} />
+{#if children.length > 0}
+	<label
+		in:typewriter={{ speed: 12 }}
+		for={id}
+		class="tree-label cursor-pointer relative inline-block">{data}</label
+	>
+{:else}
+	<span in:typewriter={{ speed: 12 }} class="tree-label relative inline-block">{data}</span>
+{/if}
 {#if show}
 	{#if visited.has(data)}
-		{#each children as d}
-			<svelte:self bind:triples data={d} level={level + 1} bind:compacted bind:visited />
-		{/each}
+		<ul>
+			{#each children as d, i}
+				<li class="py-4 leading-5 relative pl-4 pb-4" transition:fade>
+					<svelte:self
+						bind:triples
+						data={d}
+						id={id + children.length + i}
+						bind:compacted
+						bind:visited
+					/>
+				</li>
+			{/each}
+		</ul>
 	{/if}
 {/if}
+
+<style>
+	input {
+		clip: rect(0, 0, 0, 0);
+	}
+	input:checked ~ ul {
+		display: block;
+	}
+
+	label.tree-label:before {
+		background: #0af;
+		color: #fff;
+		position: relative;
+		z-index: 1;
+		float: left;
+		margin: 0 1em 0 -2em;
+		width: 1em;
+		height: 1em;
+		border-radius: 1em;
+		content: '+';
+		text-align: center;
+		line-height: 0.9em;
+	}
+
+	:checked ~ label.tree-label:before {
+		content: '–';
+	}
+
+	li:before {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: -0.5em;
+		display: block;
+		width: 0;
+		border-left: 1px dashed #777;
+		content: '';
+	}
+
+	.tree-label:after {
+		position: absolute;
+		top: 0;
+		left: -1.45em;
+		display: block;
+		height: 0.5em;
+		width: 1em;
+		border-bottom: 1px dashed #777;
+		border-left: 1px dashed #777;
+		border-radius: 0 0 0 0.3em;
+		content: '';
+	}
+
+	label.tree-label:after {
+		border-bottom: 0;
+	}
+
+	:checked ~ label.tree-label:after {
+		border-radius: 0 0.3em 0 0;
+		border-top: 1px dashed #777;
+		border-right: 1px dashed #777;
+		border-bottom: 0;
+		border-left: 0;
+		bottom: 2px;
+		top: 0.5em;
+	}
+
+	li:last-child:before {
+		height: 1em;
+	}
+</style>

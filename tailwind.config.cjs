@@ -9,7 +9,11 @@ const config = {
 		extend: {}
 	},
 
-	plugins: [require('daisyui'), require('@tailwindcss/line-clamp')],
+	plugins: [
+		require('daisyui'),
+		require('@tailwindcss/line-clamp'),
+		require('@tailwindcss/typography')
+	],
 	daisyui: {
 		themes: ['light', 'dracula']
 	},

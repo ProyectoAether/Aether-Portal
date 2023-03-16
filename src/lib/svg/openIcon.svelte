@@ -1,5 +1,5 @@
 <svg
-    data-testid="open-icon"
+	data-testid="open-icon"
 	xmlns="http://www.w3.org/2000/svg"
 	width="24"
 	height="24"
