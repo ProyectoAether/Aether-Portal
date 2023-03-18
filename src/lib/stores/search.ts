@@ -1,15 +1,18 @@
 import { writable, derived } from 'svelte/store';
 import {
+	indexFile,
 	OWL_CLASS,
 	OWL_DATATYPE_PROPERTY,
 	OWL_NAMED_INDIVIDUAL,
 	OWL_OBJECT_PROPERTY,
-	OWL_ONTOLOGY
+	OWL_ONTOLOGY,
+	type Index,
+	type OntologyURI,
+	type Triple
 } from '$lib/assets/data';
 import type { Quad } from '$lib/assets/data';
-import indexes from '$lib/assets/ontologies/index.json';
 import fuzzysort from 'fuzzysort';
-import { ontologies, QuadSorter } from '$lib/utils';
+import { QuadSorter } from '$lib/utils';
 
 function filter(query: string, data: Quad[], guard: (el: Quad) => boolean, keys: string[]): Quad[] {
 	return fuzzysort
@@ -17,6 +20,16 @@ function filter(query: string, data: Quad[], guard: (el: Quad) => boolean, keys:
 		.filter((el) => el[0] && guard(el.obj) && (el.score === -Infinity || el.score > -300))
 		.map((el) => el.obj);
 }
+
+async function getAllOntologies(index: Index): Promise<Quad[][]> {
+	const imports = Object.entries(index).map(async ([uri, file]) => {
+		const module = await import(`../../lib/assets/ontologies/${file.filename}.json`);
+		const triples = module.default as Triple[];
+		return triples.map((el) => ({ ...el, ontology: uri } as Quad));
+	});
+	return Promise.all(imports);
+}
+const ontologies = (await Promise.all(await getAllOntologies(indexFile))).flat();
 
 export interface SearchOptions {
 	owlClass: true;
@@ -101,7 +114,7 @@ export interface ClassSearchResult {
 }
 
 export interface OntologySearchResult {
-	uri: string;
+	uri: OntologyURI;
 	label?: string;
 	description?: string;
 }
@@ -113,16 +126,6 @@ function isCommonVocab(element: string): boolean {
 		}
 	}
 	return false;
-}
-
-function getLabelAndDescription(uri: string): {
-	label: string | undefined;
-	description: string | undefined;
-} {
-	return {
-		label: indexes[uri].label,
-		description: indexes[uri].description
-	};
 }
 
 function ontologySearchHandler(searchStore: SearchParams): OntologySearchResult[] {
@@ -147,8 +150,7 @@ function ontologySearchHandler(searchStore: SearchParams): OntologySearchResult[
 
 	const uris = new Set(sortedResult.map((el) => el.ontology));
 	const results = Array.from(uris).map((el) => ({
-		uri: el,
-		...getLabelAndDescription(el)
+		uri: el as OntologyURI
 	}));
 	return results;
 }

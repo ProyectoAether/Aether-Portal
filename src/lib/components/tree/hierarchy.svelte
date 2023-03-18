@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { getRootsURI, type CompactURIProps } from '$lib/utils';
-	import HierarchyNode from '$lib/components/node.svelte';
+	import HierarchyNode from '$lib/components/tree/node.svelte';
 	import type { Triple } from '$lib/assets/data';
 	import { fade } from 'svelte/transition';
 

@@ -1,11 +1,15 @@
 <script lang="ts">
 	import type { CompactURIProps } from '$lib/utils';
+	import { fade } from 'svelte/transition';
 
 	export let view: number;
 	export let compacted: CompactURIProps;
+
+	let disable: boolean = false;
+	$: disable = view === 2 ? false : true;
 </script>
 
-<div class="my-6 p-6 grid grid-cols-1 gap-10 md:grid-cols-4">
+<div class="my-6 p-6 grid grid-cols-1 place-items-start gap-10 md:grid-cols-4">
 	<label for="table-view" class="flex justify-center items-center gap-4">
 		<input
 			type="radio"
@@ -42,14 +46,16 @@
 		/>
 		<span>Mappings</span>
 	</label>
-	<label for="compact" class="flex justify-center items-center gap-4">
-		<span>Compact</span>
-		<input
-			type="checkbox"
-			data-testid="compact-toggle"
-			id="compact"
-			class="toggle toggle-accent"
-			bind:checked={compacted.compacted}
-		/>
-	</label>
+	{#if disable}
+		<label for="compact" class="flex justify-center items-center gap-4" transition:fade>
+			<span>Compact</span>
+			<input
+				type="checkbox"
+				data-testid="compact-toggle"
+				id="compact"
+				class="toggle toggle-accent"
+				bind:checked={compacted.compacted}
+			/>
+		</label>
+	{/if}
 </div>

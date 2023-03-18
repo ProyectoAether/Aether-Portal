@@ -1,28 +1,28 @@
 import {
 	indexFile,
-	type IndexFile,
+	type Index,
 	type OntologyData,
 	type OntologyMetadata,
-	type Triple
+	type OntologyURI
 } from '$lib/assets/data';
 import type { PageLoad } from './$types';
 
-async function getOntology(uri: string, indexes: IndexFile): Promise<OntologyData> {
+async function getOntology(uri: OntologyURI, indexes: Index): Promise<OntologyData> {
 	return { [uri]: await import(`../../../lib/assets/ontologies/${indexes[uri].filename}.json`) };
 }
 async function getOntologies(
-	uri: string,
-	imports: string[],
-	indexes: IndexFile
+	uri: OntologyURI,
+	imports: OntologyURI[],
+	indexes: Index
 ): Promise<OntologyData> {
 	const base = getOntology(uri, indexes);
 	const promises = imports.map((el) => getOntology(el, indexes));
 	promises.push(base);
 	try {
 		const datas = await Promise.all(promises);
-
 		const ontologyData: OntologyData = {};
 		for (const data of datas) {
+			// @ts-ignore
 			ontologyData[Object.keys(data)[0]] = Object.values(data)[0].default;
 		}
 		return ontologyData;
@@ -33,27 +33,27 @@ async function getOntologies(
 export interface OntologyPageResponse {
 	metadata?: OntologyMetadata;
 	ontologies?: OntologyData;
-	uri?: string;
+	uri?: OntologyURI;
 	statusCode: number;
 }
 export const load = (async ({ url }) => {
 	let result: OntologyPageResponse = {
 		statusCode: 200
 	};
-	let uri = url.searchParams.get('uri');
+	let uri = url.searchParams.get('uri') as OntologyURI;
 	if (uri === null || uri === undefined) {
 		result.statusCode = 404;
 		return result;
 	}
 	if (url.searchParams.get('hasTag') === '') {
-		uri = uri + '#';
+		uri = (uri + '#') as OntologyURI;
 	}
 	if (!Object.keys(indexFile).includes(uri)) {
 		result.statusCode = 404;
 		return result;
 	}
 	result.uri = uri;
-	const imports = indexFile[uri].imports;
+	const imports = indexFile[uri].imports as OntologyURI[];
 
 	result.ontologies = await getOntologies(uri, imports, indexFile);
 	result.metadata = indexFile[uri];

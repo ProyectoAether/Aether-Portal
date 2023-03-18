@@ -15,7 +15,7 @@ const config = {
 		require('@tailwindcss/typography')
 	],
 	daisyui: {
-		themes: ['light', 'dracula']
+		themes: ['corporate']
 	},
 	darkMode: 'class'
 };

@@ -14,7 +14,7 @@
 						bind:group={imports}
 						value={v}
 						name="imported"
-						class="checkbox checkbox-secondary"
+						class="checkbox checkbox-primary"
 					/>
 					<span class="label-text">{v}</span>
 				</label>

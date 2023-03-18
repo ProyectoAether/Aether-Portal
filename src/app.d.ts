@@ -7,13 +7,14 @@ declare global {
 		// interface Locals {}
 		// interface PageData {}
 		// interface Platform {}
+		//
 	}
 
 	namespace svelteHTML {
 		interface HTMLAttributes<T> {
-		'on:outclick'?: (event: CustomEvent) => void
+			'on:outclick'?: (event: CustomEvent) => void;
+		}
 	}
-}
 }
 
 export {};

@@ -1,10 +1,10 @@
 <script lang="ts">
-	import type { Triple } from '$lib/assets/data';
+	import type { OntologyURI, Triple } from '$lib/assets/data';
 	import { getUniformURI, isURI } from '$lib/utils';
 
 	export let triples: Triple[];
 	export let excludedURI: string;
-	function getOntology(uri: string): string | undefined {
+	function getOntology(uri: string): OntologyURI | undefined {
 		let result;
 		for (let i = uri.length - 1; i > 0; i--) {
 			if (uri[i] === '/' || uri[i] === '#') {
@@ -12,24 +12,24 @@
 				break;
 			}
 		}
-		return isURI(result) ? result : undefined;
+		return isURI(result) ? (result as OntologyURI) : undefined;
 	}
 	type TripleKey = 'object' | 'predicate' | 'subject';
 	function getMappings(data: Triple[]) {
-		const count = new Map<string, Set<string>>();
+		const count = new Map<OntologyURI, Set<OntologyURI>>();
 		for (const d of data) {
 			for (const s of ['object', 'predicate', 'subject']) {
-				let ontology = getOntology(d[s as TripleKey]);
+				let ontology = getOntology(d[s as TripleKey]) as OntologyURI;
 				if (ontology === undefined || ontology === getUniformURI(excludedURI)) {
 					continue;
 				}
 
 				if (new URL(ontology).pathname === '/') {
-					ontology = d[s as TripleKey];
+					ontology = d[s as TripleKey] as OntologyURI;
 				}
 				let currSet = count.get(ontology);
 				if (currSet !== undefined) {
-					count.set(ontology, currSet.add(d[s as TripleKey]));
+					count.set(ontology, currSet.add(d[s as TripleKey] as OntologyURI));
 				} else {
 					count.set(ontology, new Set());
 				}
@@ -55,10 +55,10 @@
 					<tr>
 						<th>{i + 1}</th>
 						<td
-							><a href={ontology} target="_blank" rel="noreferrer" class="link link-primary"
-								>{ontology}</a
-							></td
-						>
+							><a href={ontology} target="_blank" rel="noreferrer" class="link link-primary">
+								{ontology}
+							</a>
+						</td>
 						<td>{count.size}</td>
 					</tr>
 				{/each}

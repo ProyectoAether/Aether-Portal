@@ -1,16 +1,10 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	export let id: string;
 	export let searchQuery: string;
 	export let title: string;
 	export let kbShortcut: string;
 	let searchInput: HTMLInputElement;
-	function handleOnSubmit(event: SubmitEvent) {
-		event.preventDefault();
-		goto('/ontologies');
-	}
 	function smoothScroll(element: HTMLInputElement, offset: number = -350) {
 		const yOffsetPixels: number = offset;
 		const y: number = element.getBoundingClientRect().top + window.pageYOffset + yOffsetPixels;
@@ -36,7 +30,7 @@
 	});
 </script>
 
-<form on:submit={handleOnSubmit} class="container p-10">
+<form on:submit={(e) => e.preventDefault()} class="container p-10">
 	<h2 class="text-2xl font-semibold py-2 px-2">{title}</h2>
 	<div data-testid="shortcut-hint" class="italic bg-gray-200 rounded-lg px-4 py-2 inline-block">
 		<span class="text-black">Press</span>
@@ -58,7 +52,6 @@
 		<input
 			data-testid="search-input"
 			class="w-full focus:outline-none py-2 px-2"
-			{id}
 			type="text"
 			tabindex="0"
 			bind:value={searchQuery}

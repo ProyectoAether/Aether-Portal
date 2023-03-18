@@ -5,8 +5,8 @@
 		OWL_NAMED_INDIVIDUAL,
 		OWL_OBJECT_PROPERTY,
 		RDF_TYPE,
-		type OntologyData,
 		type OntologyMetadata,
+		type OWLType,
 		type Triple
 	} from '$lib/assets/data';
 	import MetadataTableRow from './metadataTableRow.svelte';
@@ -14,7 +14,7 @@
 	export let metadata: OntologyMetadata;
 	export let triples: Triple[];
 	export let imports: string[];
-	const stringFields: string[] = [
+	const stringFields: (keyof OntologyMetadata)[] = [
 		'title',
 		'uri',
 		'label',
@@ -43,7 +43,7 @@
 			if (predicate !== RDF_TYPE) {
 				continue;
 			}
-			const adder = options[object];
+			const adder = options[object as OWLType];
 			if (adder) {
 				adder();
 			}
@@ -53,7 +53,7 @@
 	$: stats = getStats(triples);
 </script>
 
-<table class="table table-normal border border-base-200">
+<table class="table table-normal">
 	<tbody>
 		{#each stringFields as field}
 			<tr>
@@ -102,3 +102,9 @@
 		</tr>
 	</tbody>
 </table>
+
+<style>
+	table {
+		font-size: clamp(0.5rem, -0.875rem + 8.333vw, 1rem);
+	}
+</style>

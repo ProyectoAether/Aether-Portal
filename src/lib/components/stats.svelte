@@ -1,28 +1,34 @@
 <script lang="ts">
-	import { numTotalTriples, numTotalClasses, numOntologies } from '$lib/stores/statistics';
+	import { statsFile } from '$lib/assets/data';
 	// @ts-ignore
 	import Countup from 'svelte-countup';
+	const duration: number = 1200;
 </script>
 
-<div class="stats shadow stats-vertical md:stats-horizontal">
-	<div class="stat">
-		<div class="stat-title">Number of Triples</div>
-		<div data-testid="num-triples" class="stat-value text-secondary">
-			<Countup value={$numTotalTriples} />
-		</div>
-	</div>
-
-	<div class="stat">
-		<div class="stat-title">Number of Classes</div>
-		<div data-testid="num-classes" class="stat-value text-secondary">
-			<Countup value={$numTotalClasses} />
-		</div>
-	</div>
-
+<div class="stats shadow-lg stats-vertical lg:stats-horizontal text-sm md:text-lg">
 	<div class="stat">
 		<div class="stat-title">Number of Ontologies</div>
-		<div data-testid="num-ontologies" class="stat-value text-secondary">
-			<Countup value={$numOntologies} />
+		<div data-testid="num-ontologies" class="stat-value text-primary">
+			<Countup value={statsFile.numOntologies} {duration} />
+		</div>
+	</div>
+	<div class="stat">
+		<div class="stat-title">Number of Classes</div>
+		<div data-testid="num-classes" class="stat-value text-primary">
+			<Countup value={statsFile.numClasses} {duration} />
+		</div>
+	</div>
+	<div class="stat">
+		<div class="stat-title">Number of Datatype Properties</div>
+		<div data-testid="num-triples" class="stat-value text-primary">
+			<Countup value={statsFile.numDatatypeProperties} {duration} />
+		</div>
+	</div>
+
+	<div class="stat">
+		<div class="stat-title">Number of Object Properties</div>
+		<div data-testid="num-triples" class="stat-value text-primary">
+			<Countup value={statsFile.numObjectProperties} {duration} />
 		</div>
 	</div>
 </div>

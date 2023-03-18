@@ -1,4 +1,4 @@
-import type { IndexFile, Namespace, Quad, Triple } from '$lib/assets/data';
+import type { Index, Namespace, Quad, Triple } from '$lib/assets/data';
 import indexes from './assets/ontologies/index.json';
 import {
 	OWL_CLASS,
@@ -28,16 +28,6 @@ export function formatURI(uri: string): string {
 	return uri;
 }
 
-async function getAllOntologies(index: IndexFile): Promise<Quad[][]> {
-	const imports = Object.entries(index).map(async ([uri, file]) => {
-		const module = await import(`./assets/ontologies/${file.filename}.json`);
-		const triples = module.default as Triple[];
-		return triples.map((el) => ({ ...el, ontology: uri } as Quad));
-	});
-	return Promise.all(imports);
-}
-
-export const ontologies = (await Promise.all(await getAllOntologies(indexes))).flat();
 
 export function isMetadataField(value: any): value is MetadataField {
 	return metadataFields.includes(value);

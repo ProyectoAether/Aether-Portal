@@ -14,28 +14,31 @@
 		<table class="table w-full">
 			<thead>
 				<th />
-				<th>Class Name (Ontology)</th>
+				<th>Class Name</th>
+				<th>Ontology</th>
 				<th>Documentation</th>
 			</thead>
 			<tbody>
-				{#each results.slice(offset * limit, (offset + 1) * limit) as result, i}
-					<tr>
-						<th>{i + 1}</th>
+				{#each results.slice(offset * limit, (offset + 1) * limit) as result, index}
+					<tr class="hover">
+						<th>{index + 1 + limit * offset}</th>
+						<td>
+							<p class="whitespace-nowrap">
+								{compacted.compacted
+									? compactURI(result.uri, namespaces, compacted.sep)
+									: result.uri}
+							</p>
+						</td>
 						<td>
 							<a
 								href={`/ontologies/previews?uri=${formatURI(result.ontologyURI)}`}
 								class="link link-primary link-hover whitespace-nowrap"
 								>{compacted.compacted
-									? `${compactURI(result.uri, namespaces, compacted.sep)} (${compactURI(
-											result.ontologyURI,
-											namespaces,
-											''
-									  )})`
-									: `${result.uri} (${result.ontologyURI})`}</a
+									? compactURI(result.ontologyURI, namespaces, '')
+									: result.ontologyURI}</a
 							>
 						</td>
-
-						<td class="flex justify-center">
+						<td class="flex">
 							<a
 								href={formatURI(result.uri)}
 								class="link link-primary whitespace-nowrap bg-primary-focus p-2 rounded-md hover:bg-base-300 transition-colors"
