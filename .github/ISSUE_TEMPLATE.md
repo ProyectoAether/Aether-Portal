@@ -1,6 +1,8 @@
 ---
-title: #{{ issue.issue_number }} Deployment failure
+title: Deployment failure
 labels: bug
 ---
 
-{{ date | date('dddd, MMMM Do') }}: Pull Request #{{ pullRequest.pull_number }} from {{ payload.sender.login }}.
+Issue: #{{ issue.issue_number }} {{ date | date('dddd, MMMM Do') }}
+
+Pull Request #{{ pullRequest.pull_number }} from {{ payload.sender.login }}.
