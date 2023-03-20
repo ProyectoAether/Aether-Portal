@@ -100,7 +100,8 @@ jobs:
         shell: bash
         run: |
           output_file="./frontend/src/lib/assets/ontologies/_ontologies"
-          mv ontologies-json-files $output_file
+          ls
+          mv _ontologies $output_file
           tar -xvf $output_file
           rm -v $output_file
       - name: Build
