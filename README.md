@@ -74,8 +74,6 @@ docker stop AetherPortal
 
 ## More information about AETHER
 
-[Aether Project](aether.es/)
-
-[El proyecto nacional 'Aether', punto de encuentro de cinco de los principales grupos de I+D en análisis de datos y Big Data](https://www.uma.es/sala-de-prensa/noticias/el-proyecto-nacional-aether-punto-de-encuentro-de-cinco-de-los-principales-grupos-de-id-en-analisis-de-datos-y-big-data/)
-
-[Aether-US:Una aproximación holística de smart data para el análisis de datos guiado por el contexto: procesos de negocio inteligentes](https://investigacion.us.es/sisius/sis_proyecto.php?idproy=33855)
+- [Aether Project](aether.es/)
+- [El proyecto nacional 'Aether', punto de encuentro de cinco de los principales grupos de I+D en análisis de datos y Big Data](https://www.uma.es/sala-de-prensa/noticias/el-proyecto-nacional-aether-punto-de-encuentro-de-cinco-de-los-principales-grupos-de-id-en-analisis-de-datos-y-big-data/)
+- [Aether-US:Una aproximación holística de smart data para el análisis de datos guiado por el contexto: procesos de negocio inteligentes](https://investigacion.us.es/sisius/sis_proyecto.php?idproy=33855)
