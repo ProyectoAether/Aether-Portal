@@ -2,8 +2,6 @@ import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 
-const DEPLOY_PLATFORM = process.env.NODE_ENV === 'production' ? '/Aether-Portal' : '';
-
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
@@ -18,7 +16,7 @@ const config = {
 	kit: {
 		adapter: adapter(),
 		paths: {
-			base: DEPLOY_PLATFORM
+			base: process.env.NODE_ENV === 'production' ? '/Aether-Portal' : ''
 		},
 		prerender: {
 			handleMissingId: 'warn'

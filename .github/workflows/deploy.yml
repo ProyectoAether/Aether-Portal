@@ -6,10 +6,10 @@ on:
   push:
     branches:
       - "feat/ci-cd"
-  #   paths:
-  #     - "./scripts/*.txt"
-  # schedule:
-  #   - cron: "30 7 21 * *"
+    paths:
+      - "./scripts/*.txt"
+  schedule:
+    - cron: "30 7 21 * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

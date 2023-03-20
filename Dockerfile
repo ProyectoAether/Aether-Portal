@@ -14,12 +14,11 @@ RUN pnpm fetch --prod
 COPY frontend .
 RUN pnpm install -r --offline --prod
 COPY --from=data-builder /scripts/output /app/src/lib/assets/ontologies
-ENV NODE_ENV=nginx
 RUN pnpm build
 
 
 FROM nginx:1.23.3 AS deploy-static
-WORKDIR /usr/share/nginx/html
+WORKDIR /usr/share/nginx/html/Aether-Portal
 RUN rm -rvf ./*
 COPY --from=app-builder /app/build .
 CMD ["nginx", "-g", "daemon off;"]
