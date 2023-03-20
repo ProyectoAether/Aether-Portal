@@ -104,7 +104,7 @@ jobs:
         working-directory: ./frontend
         shell: bash
         run: |
-          pnpm build
+          NODE_ENV=production pnpm build
           touch ./build/.nojekyll
           tar -cvf build.tar ./build/*
       - name: Upload Build
@@ -118,13 +118,16 @@ jobs:
     runs-on: ubuntu-20.04
     environment:
       name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Download build
         uses: actions/download-artifact@v3
         with:
           name: build
       - name: Untar build
-        run: tar -xvf build.tar
+        run: |
+          tar -xvf build.tar
+          touch .nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
