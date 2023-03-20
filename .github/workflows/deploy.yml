@@ -104,6 +104,7 @@ jobs:
         working-directory: ./frontend
         shell: bash
         run: |
+          export NODE_OPTIONS="--max-old-space-size=8192"
           NODE_ENV=production pnpm build
           touch ./build/.nojekyll
           tar -cvf build.tar ./build/*
