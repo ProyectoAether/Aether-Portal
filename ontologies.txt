@@ -2,6 +2,6 @@ https://w3id.org/BIGOWLWorkflows
 https://w3id.org/moody#
 https://w3id.org/BIGOWLData
 https://w3id.org/BIGOWL/
-https://w3id.org/EUTaxO#
+https://w3id.org/EUTaxO/hierarchy#
 https://w3id.org/BIGOWLAlgorithms
 https://w3id.org/BIGOWLProblems
