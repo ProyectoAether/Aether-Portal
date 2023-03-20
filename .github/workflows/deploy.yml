@@ -46,7 +46,7 @@ jobs:
           mkdir ontologies
           pip install -r requirements.txt
           python main.py input.txt ontologies
-          tar -cvf data ontologies/*
+          tar -cvf data.tar ontologies/*
 
       - name: Upload JSON files
         uses: actions/upload-artifact@v3
@@ -98,22 +98,20 @@ jobs:
       - name: Move ontologies to assets/ontologies
         shell: bash
         run: |
-          ls
           mkdir ontologies
-          ls ./frontend/src/lib/assets/ontologies
-          tar -xvf data -C ./frontend/src/lib/assets/ontologies
+          tar -xvf data.tar -C ./frontend/src/lib/assets/ontologies
       - name: Build
         working-directory: ./frontend
         shell: bash
         run: |
           pnpm build
           touch ./build/.nojekyll
-          tar -cvf _build ./build/*
+          tar -cvf build.tar ./build/*
       - name: Upload Build
         uses: actions/upload-artifact@v3
         with:
           name: build
-          path: _build
+          path: ./frontend/_build.tar
   deploy:
     name: Deploy static site to gh pages
     needs: build
@@ -127,7 +125,7 @@ jobs:
         with:
           name: build
       - name: Untar build
-        run: tar -xvf _build
+        run: tar -xvf build.tar
       - name: Setup Pages
         uses: actions/configure-pages@v3
         with:
