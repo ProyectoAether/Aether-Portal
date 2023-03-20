@@ -50,7 +50,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: data
-          path: data
+          path: ./scripts/data
   notify-job:
     runs-on: ubuntu-20.04
     needs: pre-build
@@ -99,7 +99,7 @@ jobs:
           ls
           mkdir ontologies
           ls ./frontend/src/lib/assets/ontologies
-          tar -xvf data --directory ./frontend/src/lib/assets/ontologies
+          tar -xvf data -C ./frontend/src/lib/assets/ontologies
       - name: Build
         working-directory: ./frontend
         shell: bash
