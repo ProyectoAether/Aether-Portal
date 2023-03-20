@@ -98,13 +98,13 @@ jobs:
       - name: Move ontologies to assets/ontologies
         shell: bash
         run: |
+          rm -r ./frontend/src/lib/assets/ontologies
           mkdir ontologies
           tar -xvf data.tar -C ./frontend/src/lib/assets
       - name: Build
         working-directory: ./frontend
         shell: bash
         run: |
-          export NODE_OPTIONS="--max-old-space-size=8192"
           NODE_ENV=production pnpm build
           touch ./build/.nojekyll
           tar -cvf build.tar ./build/*
