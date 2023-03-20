@@ -1,38 +1,81 @@
-# create-svelte
+# Aether Portal ![](https://img.shields.io/twitter/follow/aether_social?style=social)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+![node-current](https://img.shields.io/node/v/@sveltejs/kit)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/rdflib)
+![](https://github.com/ProyectoAether/Aether-Portal/actions/workflows/deploy.yml/badge.svg)
 
-## Creating a project
+_`Aether Portal` is an ontology repository for visualizing and previewing the most relevant
+ontologies from the [Aether Project](https://aether.es/)._
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Quickstart
+
+[ProyectoAether.github.io/Aether-Portal](https://ProyectoAether.github.io/Aether-Portal)
+
+## :computer: Development
+
+### :package: Install dependencies
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
+# Frontend
+cd frontend
+npm install
 
-# create a new project in my-app
-npm create svelte@latest my-app
+# Scripts
+cd scripts
+
+# a) using venv module
+python -m venv ontserpy
+source ontserpy/bin/activate
+
+# b) using pyenv
+pyenv virtualenv ontserpy
+pyenv activate ontserpy
+pip install -r requirements.txt
 ```
 
-## Developing
+### :star2: Lint and format
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```bash
+# Frontend
+cd frontend
+npm run format && npm run lint
+
+# Scripts
+cd scripts
+black . && mypy .
+```
+
+### :test_tube: Testing
+
+```bash
+# Frontend
+npm run test:unit
+
+# Script
+cd scripts
+pytest
+```
+
+### :globe_with_meridians: Dev server
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
-
-To create a production version of your app:
+### :whale: Try out production build
 
 ```bash
-npm run build
+# https://docs.docker.com/get-docker/
+docker build -t aether-portal .
+docker run -p 5000:80 -d --rm --name AetherPortal aether-portal
+docker stop AetherPortal
 ```
 
-You can preview the production build with `npm run preview`.
+## More information about AETHER
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+[Aether Project](aether.es/)
+
+[El proyecto nacional 'Aether', punto de encuentro de cinco de los principales grupos de I+D en análisis de datos y Big Data](https://www.uma.es/sala-de-prensa/noticias/el-proyecto-nacional-aether-punto-de-encuentro-de-cinco-de-los-principales-grupos-de-id-en-analisis-de-datos-y-big-data/)
+
+[Aether-US:Una aproximación holística de smart data para el análisis de datos guiado por el contexto: procesos de negocio inteligentes](https://investigacion.us.es/sisius/sis_proyecto.php?idproy=33855)
