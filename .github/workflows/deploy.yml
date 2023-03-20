@@ -118,7 +118,6 @@ jobs:
     runs-on: ubuntu-20.04
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Download build
         uses: actions/download-artifact@v3
@@ -126,10 +125,6 @@ jobs:
           name: build
       - name: Untar build
         run: tar -xvf build.tar
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-        with:
-          static_site_generator: sveltekit
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
