@@ -163,17 +163,6 @@ function classSearchHandler(searchStore: SearchParams): ClassSearchResult[] {
 		(el) => el.object === OWL_CLASS && !isCommonVocab(el.subject),
 		['subject', 'ontologyURI']
 	);
-	// const typesToShow = {
-	// 	owlClass: options.owlClass,
-	// 	owlDatatypeProperty: options.owlDatatypeProperty,
-	// 	owlObjectProperty: options.owlObjectProperty,
-	// 	owlNamedIndividual: options.owlNamedIndividual
-	// };
-	//
-	// const queryFiltered = filterer
-	// 	.filterByType(typesToShow, typeURI, RDF_TYPE)
-	// 	.filterByQuery(searchQuery
-	// 	.getResult();
 
 	const sorter = new QuadSorter(queryFiltered);
 

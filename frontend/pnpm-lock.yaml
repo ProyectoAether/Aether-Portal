@@ -24,6 +24,7 @@ specifiers:
   eslint-plugin-svelte3: ^4.0.0
   fuzzysort: ^2.0.4
   gh-pages: ^5.0.0
+  js-sha256: ^0.9.0
   jsdom: ^21.1.0
   postcss: ^8.4.14
   postcss-load-config: ^4.0.1
@@ -48,6 +49,7 @@ dependencies:
   daisyui: 2.50.1_gbtt6ss3tbiz4yjtvdr6fbrj44
   fuzzysort: 2.0.4
   gh-pages: 5.0.0
+  js-sha256: 0.9.0
   svelte: 3.55.1
   svelte-countup: 0.2.6_svelte@3.55.1
   svelte-preprocess: 4.10.7_b25a55hc532q56kmuqlrolam2i
@@ -2238,6 +2240,10 @@ packages:
   /js-sdsl/4.3.0:
     resolution: {integrity: sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==}
     dev: true
+
+  /js-sha256/0.9.0:
+    resolution: {integrity: sha512-sga3MHh9sgQN2+pJ9VYZ+1LPwXOxuBJBA5nrR5/ofPfuiJBE2hnjsaN8se8JznOmGLN2p49Pe5U/ttafcs/apA==}
+    dev: false
 
   /js-tokens/4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}

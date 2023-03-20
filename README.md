@@ -23,7 +23,7 @@ _It uses docker and nginx to serve static content locally_
 # https://docs.docker.com/get-docker/
 docker build -t aether-portal .
 
-# Deploy container locally on 127.0.0.1:5000/Aether-Portal
+# Deploy container locally on 127.0.0.1:5000
 docker run -p 5000:80 -d --rm --name AetherPortal aether-portal
 
 # Shutdown container

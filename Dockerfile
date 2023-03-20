@@ -19,7 +19,7 @@ RUN pnpm build
 
 
 FROM nginx:1.23.3 AS deploy-static
-WORKDIR /usr/share/nginx/html/Aether-Portal
+WORKDIR /usr/share/nginx/html
 RUN rm -rvf ./*
 COPY --from=app-builder /app/build .
 CMD ["nginx", "-g", "daemon off;"]
