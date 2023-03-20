@@ -1,0 +1,19 @@
+{
+	"/": [
+		"src/routes/+layout.ts",
+		"src/routes/+layout.ts"
+	],
+	"/classes": [
+		"src/routes/+layout.ts"
+	],
+	"/help": [
+		"src/routes/+layout.ts"
+	],
+	"/ontologies": [
+		"src/routes/+layout.ts"
+	],
+	"/ontologies/previews": [
+		"src/routes/ontologies/previews/+page.ts",
+		"src/routes/+layout.ts"
+	]
+}
