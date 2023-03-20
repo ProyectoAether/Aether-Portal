@@ -111,7 +111,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: build
-          path: ./frontend/_build.tar
+          path: ./frontend/build.tar
   deploy:
     name: Deploy static site to gh pages
     needs: build
