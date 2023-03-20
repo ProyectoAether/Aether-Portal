@@ -26,7 +26,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  update-json:
+  pre-build:
     name: Updates Ontologies' JSON files
     runs-on: ubuntu-20.04
     steps:
@@ -47,13 +47,9 @@ jobs:
         with:
           name: ontologies-json-files
           path: ./frontend/src/lib/assets/ontologies/
-      - name: Clean up
-        shell: bash
-        run: rm -v _ontologies
-
   notify-job:
     runs-on: ubuntu-20.04
-    needs: update-json
+    needs: pre-build
     name: Create failure issue
     if: ${{ failure() }}
     steps:
@@ -64,9 +60,9 @@ jobs:
       - run: "echo Created issue number ${{ steps.create-issue.outputs.number }}"
       - run: "echo Created ${{ steps.create-issue.outputs.url }}"
 
-  build-page:
+  build:
     name: Build Svelte static site
-    needs: update-json
+    needs: pre-build
     runs-on: ubuntu-20.04
     strategy:
       matrix:
@@ -110,7 +106,7 @@ jobs:
           path: ./frontend/build
   deploy:
     name: Deply static site to gh pages
-    needs: update-json
+    needs: build
     runs-on: ubuntu-20.04
     environment:
       name: github-pages
