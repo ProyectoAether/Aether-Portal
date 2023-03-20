@@ -99,7 +99,7 @@ jobs:
         shell: bash
         run: |
           mkdir ontologies
-          tar -xvf data.tar -C ./frontend/src/lib/assets/ontologies
+          tar -xvf data.tar -C ./frontend/src/lib/assets
       - name: Build
         working-directory: ./frontend
         shell: bash

@@ -9,8 +9,14 @@ from rdflib import DCTERMS, OWL, RDFS, SDO, VANN, Graph, URIRef
 from rdflib._type_checking import _NamespaceSetString
 from rdflib.namespace import NamespaceManager
 from rdflib.term import _is_valid_uri
-from type_checking import (IndexFile, MetadataField, MetadataFile,
-                           NamespaceFile, OptionalMetadataField, StatField)
+from type_checking import (
+    IndexFile,
+    MetadataField,
+    MetadataFile,
+    NamespaceFile,
+    OptionalMetadataField,
+    StatField,
+)
 
 _URIREF_TO_METADATA_FIELDS: dict[URIRef, MetadataField] = {
     VANN.preferredNamespacePrefix: "prefix",
@@ -255,9 +261,9 @@ class IndexBuilder:
         Returns:
             IndexBuilder
         """
-        hasher = hashlib.sha256()
-        hasher.update(uri.encode())
-        self._index[hasher.hexdigest()] = metadata
+        # hasher = hashlib.sha256()
+        # hasher.update(uri.encode())
+        self._index[uri] = metadata
         return self
 
 
