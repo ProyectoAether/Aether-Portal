@@ -42,7 +42,7 @@ jobs:
         shell: bash
         run: |
           mkdir ontologies
-          pip install -r scripts/requirements.txt
+          pip install -r requirements.txt
           python main.py input.txt ontologies
 
       - name: Upload JSON files
@@ -56,6 +56,7 @@ jobs:
     name: Create failure issue
     if: ${{ failure() }}
     steps:
+      - uses: actions/checkout@v3
       - uses: JasonEtco/create-an-issue@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
