@@ -1,4 +1,4 @@
-import { c as create_ssr_component, f as validate_store, a as subscribe, e as escape, d as add_attribute } from "./index3.js";
+import { c as create_ssr_component, a as subscribe, e as escape, d as add_attribute } from "./index3.js";
 import { p as page } from "./stores.js";
 import { _ as __variableDynamicImportRuntimeHelper } from "./dynamic-import-helper.js";
 import { w as writable, d as derived } from "./index2.js";
@@ -7,7 +7,6 @@ import fuzzysort from "fuzzysort";
 import { Q as QuadSorter } from "./utils.js";
 const Searchbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $$unsubscribe_page;
-  validate_store(page, "page");
   $$unsubscribe_page = subscribe(page, (value) => value);
   let { searchQuery } = $$props;
   let { title } = $$props;

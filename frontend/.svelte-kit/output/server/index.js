@@ -1,8 +1,8 @@
+import { a as assets, b as base } from "./chunks/paths.js";
 import { H as HttpError, j as json, t as text, R as Redirect, e as error, A as ActionFailure } from "./chunks/index.js";
 import { r as readable, w as writable } from "./chunks/index2.js";
-import { a as assets, b as base } from "./chunks/paths.js";
 import { p as public_env, v as version, o as options, g as get_hooks, s as set_public_env } from "./chunks/internal.js";
-const DEV = true;
+const DEV = false;
 function negotiate(accept, types) {
   const parts = [];
   accept.split(",").forEach((str, i) => {
@@ -1788,13 +1788,6 @@ async function render_response({
     html,
     done: true
   }) || "";
-  if (page_config.csr) {
-    if (transformed.split("<!--").length < html.split("<!--").length) {
-      console.warn(
-        "\x1B[1m\x1B[31mRemoving comments in transformPageChunk can break Svelte's hydration\x1B[39m\x1B[22m"
-      );
-    }
-  }
   const headers = new Headers({
     "x-sveltekit-page": "true",
     "content-type": "text/html",
@@ -2902,6 +2895,12 @@ async function respond(request, options2, manifest, state) {
   }
   let route = null;
   let params = {};
+  if (!state.prerendering?.fallback) {
+    if (!decoded.startsWith(base)) {
+      return text("Not found", { status: 404 });
+    }
+    decoded = decoded.slice(base.length) || "/";
+  }
   const is_data_request = has_data_suffix(decoded);
   let invalidated_data_nodes;
   if (is_data_request) {
@@ -2977,47 +2976,14 @@ async function respond(request, options2, manifest, state) {
           ...route.page.layouts.map((n) => n == void 0 ? n : manifest._.nodes[n]()),
           manifest._.nodes[route.page.leaf]()
         ]);
-        if (DEV) {
-          const layouts = nodes.slice(0, -1);
-          const page = nodes.at(-1);
-          for (const layout of layouts) {
-            if (layout) {
-              validate_common_exports(
-                layout.server,
-                /** @type {string} */
-                layout.server_id
-              );
-              validate_common_exports(
-                layout.universal,
-                /** @type {string} */
-                layout.universal_id
-              );
-            }
-          }
-          if (page) {
-            validate_page_server_exports(
-              page.server,
-              /** @type {string} */
-              page.server_id
-            );
-            validate_common_exports(
-              page.universal,
-              /** @type {string} */
-              page.universal_id
-            );
-          }
-        }
+        if (DEV)
+          ;
         trailing_slash = get_option(nodes, "trailingSlash");
       } else if (route.endpoint) {
         const node = await route.endpoint();
         trailing_slash = node.trailingSlash;
-        if (DEV) {
-          validate_server_exports(
-            node,
-            /** @type {string} */
-            route.endpoint_id
-          );
-        }
+        if (DEV)
+          ;
       }
       const normalized = normalize_path(url.pathname, trailing_slash ?? "never");
       if (normalized !== url.pathname && !state.prerendering?.fallback) {

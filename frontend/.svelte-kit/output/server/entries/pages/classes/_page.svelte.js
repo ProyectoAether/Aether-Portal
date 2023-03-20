@@ -1,4 +1,4 @@
-import { c as create_ssr_component, h as each, e as escape, d as add_attribute, v as validate_component, f as validate_store, a as subscribe } from "../../../chunks/index3.js";
+import { c as create_ssr_component, f as each, e as escape, d as add_attribute, v as validate_component, a as subscribe } from "../../../chunks/index3.js";
 import { P as Pagination } from "../../../chunks/pagination.js";
 import { c as classSearchStore, f as filteredClasses, S as Searchbar, a as SearchOptions } from "../../../chunks/search.js";
 import { b as base } from "../../../chunks/paths.js";
@@ -34,9 +34,7 @@ const ClassSearchResult = create_ssr_component(($$result, $$props, $$bindings, s
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $classSearchStore, $$unsubscribe_classSearchStore;
   let $filteredClasses, $$unsubscribe_filteredClasses;
-  validate_store(classSearchStore, "classSearchStore");
   $$unsubscribe_classSearchStore = subscribe(classSearchStore, (value) => $classSearchStore = value);
-  validate_store(filteredClasses, "filteredClasses");
   $$unsubscribe_filteredClasses = subscribe(filteredClasses, (value) => $filteredClasses = value);
   let compactedClass = { compacted: true, sep: ":" };
   let $$settled;

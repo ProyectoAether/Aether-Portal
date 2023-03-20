@@ -19,8 +19,8 @@ const Navbar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
 				
 				</ul></div></div></nav>`;
 });
-const khaosLogo = "/_app/immutable/assets/khaos-logo-eae2f70b.png";
-const aetherLogo = "/_app/immutable/assets/aether-logo-97a898e9.png";
+const khaosLogo = "/Aether-Portal/_app/immutable/assets/khaos-logo-eae2f70b.png";
+const aetherLogo = "/Aether-Portal/_app/immutable/assets/aether-logo-97a898e9.png";
 const Footer = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   return `<footer class="${"bg-white border-t border-t-gray-100"}"><div class="${"mx-auto w-full container p-4 sm:p-6"}"><div class="${"md:flex md:justify-between"}"><ul class="${"mb-6 md:mb-0 basis-2/3 flex md:justify-center items-center gap-2 menu md:menu-horizontal w-full"}"><li><a data-testid="${"home-link"}" href="${escape(base, true) + "/"}">${validate_component(AetherPortalLogo, "AetherPortalLogo").$$render($$result, { height: "45px" }, {}, {})}</a></li>
 				<li><a href="${"https://aether.es"}" class="${"hover:underline"}"><img${add_attribute("src", aetherLogo, 0)} alt="${"Aether Logo"}" width="${"90px"}"></a></li>

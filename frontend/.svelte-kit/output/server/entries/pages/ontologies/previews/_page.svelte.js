@@ -1,4 +1,4 @@
-import { c as create_ssr_component, h as each, d as add_attribute, e as escape, v as validate_component } from "../../../../chunks/index3.js";
+import { c as create_ssr_component, f as each, d as add_attribute, e as escape, v as validate_component } from "../../../../chunks/index3.js";
 import { e as error } from "../../../../chunks/index.js";
 import { a as RDF_TYPE, d as OWL_NAMED_INDIVIDUAL, b as OWL_CLASS, e as OWL_DATATYPE_PROPERTY, f as OWL_OBJECT_PROPERTY, g as namespacesFile, n as namespaces, i as indexFile } from "../../../../chunks/data.js";
 import { c as compactURI, g as getChildren, a as getRootsURI, b as getUniformURI, i as isURI } from "../../../../chunks/utils.js";
@@ -22,7 +22,7 @@ const MetadataTableRow = create_ssr_component(($$result, $$props, $$bindings, sl
 });
 const metadataTable_svelte_svelte_type_style_lang = "";
 const css$2 = {
-  code: "table.s-K0tJegbCa8yb{font-size:clamp(0.5rem, -0.875rem + 8.333vw, 1rem)}",
+  code: "table.svelte-ltcn9p{font-size:clamp(0.5rem, -0.875rem + 8.333vw, 1rem)}",
   map: null
 };
 const MetadataTable = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -78,7 +78,7 @@ const MetadataTable = create_ssr_component(($$result, $$props, $$bindings, slots
   do {
     $$settled = true;
     stats = getStats(triples);
-    $$rendered = `<table class="${"table table-normal s-K0tJegbCa8yb"}"><tbody>${each(stringFields, (field) => {
+    $$rendered = `<table class="${"table table-normal svelte-ltcn9p"}"><tbody>${each(stringFields, (field) => {
       return `<tr><th class="${"whitespace-pre-wrap bg-base-200 uppercase"}">${escape(field)}</th>
 				<td class="${"whitespace-pre-wrap"}">${validate_component(MetadataTableRow, "MetadataTableRow").$$render(
         $$result,
@@ -186,22 +186,22 @@ function isURL(target) {
 const TriplesTable = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { compacted } = $$props;
   let { offset } = $$props;
-  let { limit } = $$props;
+  let { limit: limit2 } = $$props;
   let { triples } = $$props;
   if ($$props.compacted === void 0 && $$bindings.compacted && compacted !== void 0)
     $$bindings.compacted(compacted);
   if ($$props.offset === void 0 && $$bindings.offset && offset !== void 0)
     $$bindings.offset(offset);
-  if ($$props.limit === void 0 && $$bindings.limit && limit !== void 0)
-    $$bindings.limit(limit);
+  if ($$props.limit === void 0 && $$bindings.limit && limit2 !== void 0)
+    $$bindings.limit(limit2);
   if ($$props.triples === void 0 && $$bindings.triples && triples !== void 0)
     $$bindings.triples(triples);
   return `<div class="${"overflow-x-auto my-10"}"><table id="${"data"}" data-testid="${"triples-table"}" class="${"table table-compact w-full"}"><thead><tr><th></th>
 				<th>Subject</th>
 				<th>Predicate</th>
 				<th>Object</th></tr></thead>
-		<tbody>${each(triples.slice(offset * limit, (offset + 1) * limit), (triple, index) => {
-    return `<tr><th>${escape(index + 1 + limit * offset)}</th>
+		<tbody>${each(triples.slice(offset * limit2, (offset + 1) * limit2), (triple, index) => {
+    return `<tr><th>${escape(index + 1 + limit2 * offset)}</th>
 					<td><div class="${"flex items-center gap-3"}"><span>${escape(compacted.compacted ? compactURI(triple.subject, namespaces, compacted.sep) : triple.subject)}</span>
 							<a${add_attribute("href", triple.subject, 0)} class="${"link link-primary whitespace-nowrap bg-primary-focus p-2 rounded-md hover:bg-base-300 transition-colors"}" rel="${"noreferrer"}" target="${"_blank"}">${validate_component(LinkIcon, "LinkIcon").$$render($$result, {}, {}, {})}</a>
 						</div></td>
@@ -223,7 +223,7 @@ const TriplesTable = create_ssr_component(($$result, $$props, $$bindings, slots)
 });
 const node_svelte_svelte_type_style_lang = "";
 const css$1 = {
-  code: "input.s-iWC2NobRSDjw.s-iWC2NobRSDjw{clip:rect(0, 0, 0, 0)}input.s-iWC2NobRSDjw:checked~ul.s-iWC2NobRSDjw{display:block}label.tree-label.s-iWC2NobRSDjw.s-iWC2NobRSDjw:before{background:#0af;color:#fff;position:relative;z-index:1;float:left;margin:0 1em 0 -2em;width:1em;height:1em;border-radius:1em;content:'+';text-align:center;line-height:0.9em}.s-iWC2NobRSDjw:checked~label.tree-label.s-iWC2NobRSDjw:before{content:'–'}li.s-iWC2NobRSDjw.s-iWC2NobRSDjw:before{position:absolute;top:0;bottom:0;left:-0.5em;display:block;width:0;border-left:1px dashed #777;content:''}.tree-label.s-iWC2NobRSDjw.s-iWC2NobRSDjw:after{position:absolute;top:0;left:-1.45em;display:block;height:0.5em;width:1em;border-bottom:1px dashed #777;border-left:1px dashed #777;border-radius:0 0 0 0.3em;content:''}label.tree-label.s-iWC2NobRSDjw.s-iWC2NobRSDjw:after{border-bottom:0}.s-iWC2NobRSDjw:checked~label.tree-label.s-iWC2NobRSDjw:after{border-radius:0 0.3em 0 0;border-top:1px dashed #777;border-right:1px dashed #777;border-bottom:0;border-left:0;bottom:2px;top:0.5em}li.s-iWC2NobRSDjw.s-iWC2NobRSDjw:last-child:before{height:1em}",
+  code: "input.svelte-1voywva.svelte-1voywva{clip:rect(0, 0, 0, 0)}input.svelte-1voywva:checked~ul.svelte-1voywva{display:block}label.tree-label.svelte-1voywva.svelte-1voywva:before{background:#0af;color:#fff;position:relative;z-index:1;float:left;margin:0 1em 0 -2em;width:1em;height:1em;border-radius:1em;content:'+';text-align:center;line-height:0.9em}.svelte-1voywva:checked~label.tree-label.svelte-1voywva:before{content:'–'}li.svelte-1voywva.svelte-1voywva:before{position:absolute;top:0;bottom:0;left:-0.5em;display:block;width:0;border-left:1px dashed #777;content:''}.tree-label.svelte-1voywva.svelte-1voywva:after{position:absolute;top:0;left:-1.45em;display:block;height:0.5em;width:1em;border-bottom:1px dashed #777;border-left:1px dashed #777;border-radius:0 0 0 0.3em;content:''}label.tree-label.svelte-1voywva.svelte-1voywva:after{border-bottom:0}.svelte-1voywva:checked~label.tree-label.svelte-1voywva:after{border-radius:0 0.3em 0 0;border-top:1px dashed #777;border-right:1px dashed #777;border-bottom:0;border-left:0;bottom:2px;top:0.5em}li.svelte-1voywva.svelte-1voywva:last-child:before{height:1em}",
   map: null
 };
 const Node = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -250,10 +250,10 @@ const Node = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   do {
     $$settled = true;
     data = compacted.compacted ? compactURI(data, namespaces, compacted.sep) : data;
-    $$rendered = `<input class="${"absolute s-iWC2NobRSDjw"}" type="${"checkbox"}"${add_attribute("id", id, 0)}${add_attribute("checked", show, 1)}>
-${children.length > 0 ? `<label${add_attribute("for", id, 0)} class="${"tree-label cursor-pointer relative inline-block s-iWC2NobRSDjw"}">${escape(data)}</label>` : `<span class="${"tree-label relative inline-block s-iWC2NobRSDjw"}">${escape(data)}</span>`}
-${show ? `${visited.has(data) ? `<ul class="${"s-iWC2NobRSDjw"}">${each(children, (d, i) => {
-      return `<li class="${"py-4 leading-5 relative pl-4 pb-4 s-iWC2NobRSDjw"}">${validate_component(Node, "svelte:self").$$render(
+    $$rendered = `<input class="${"absolute svelte-1voywva"}" type="${"checkbox"}"${add_attribute("id", id, 0)}${add_attribute("checked", show, 1)}>
+${children.length > 0 ? `<label${add_attribute("for", id, 0)} class="${"tree-label cursor-pointer relative inline-block svelte-1voywva"}">${escape(data)}</label>` : `<span class="${"tree-label relative inline-block svelte-1voywva"}">${escape(data)}</span>`}
+${show ? `${visited.has(data) ? `<ul class="${"svelte-1voywva"}">${each(children, (d, i) => {
+      return `<li class="${"py-4 leading-5 relative pl-4 pb-4 svelte-1voywva"}">${validate_component(Node, "svelte:self").$$render(
         $$result,
         {
           data: d,
@@ -285,7 +285,7 @@ ${show ? `${visited.has(data) ? `<ul class="${"s-iWC2NobRSDjw"}">${each(children
 });
 const hierarchy_svelte_svelte_type_style_lang = "";
 const css = {
-  code: "li.s-kIyD0WGQ_YsC:before{position:absolute;top:0;bottom:0;left:-0.5em;display:block;width:0;border-left:1px dashed #777;content:''}",
+  code: "li.svelte-b3tyhm:before{position:absolute;top:0;bottom:0;left:-0.5em;display:block;width:0;border-left:1px dashed #777;content:''}",
   map: null
 };
 const Hierarchy = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -304,7 +304,7 @@ const Hierarchy = create_ssr_component(($$result, $$props, $$bindings, slots) =>
     $$settled = true;
     roots = getRootsURI(triples);
     $$rendered = `${roots.length > 0 ? `<ul data-testid="${"hierarchy-tree"}">${each(roots, (root) => {
-      return `<li class="${"py-4 leading-5 relative pl-4 pb-4 s-kIyD0WGQ_YsC"}">${validate_component(Node, "HierarchyNode").$$render(
+      return `<li class="${"py-4 leading-5 relative pl-4 pb-4 svelte-b3tyhm"}">${validate_component(Node, "HierarchyNode").$$render(
         $$result,
         { data: root, triples, compacted, visited },
         {
@@ -396,6 +396,7 @@ const Mappings = create_ssr_component(($$result, $$props, $$bindings, slots) => 
 					</tr>`;
   })}` : `<div class="${"flex justify-center items-center"}"><h2 class="${"text-2xl"}">No Mappings</h2></div>`}</tbody></table></div>`;
 });
+let limit = 10;
 function getAllTriples(uris, ontologies2) {
   return uris.reduce(
     (acc, curr) => {
@@ -416,7 +417,6 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   const metadata = data.metadata;
   let view = 0;
   let compacted = { compacted: true, sep: ":" };
-  let limit = 10;
   let offset = 0;
   let imports = structuredClone(metadata.imports);
   const title = indexFile[uri].title;

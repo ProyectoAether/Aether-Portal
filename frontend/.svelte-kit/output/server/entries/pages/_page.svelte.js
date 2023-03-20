@@ -1,4 +1,4 @@
-import { c as create_ssr_component, e as escape, v as validate_component, h as each } from "../../chunks/index3.js";
+import { c as create_ssr_component, e as escape, v as validate_component, f as each } from "../../chunks/index3.js";
 import { s as statsFile, i as indexFile } from "../../chunks/data.js";
 import { A as AetherPortalLogo } from "../../chunks/aetherPortalLogo.js";
 import { O as OntologyCard } from "../../chunks/ontologyCard.js";

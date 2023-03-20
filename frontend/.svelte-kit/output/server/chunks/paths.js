@@ -1,4 +1,4 @@
-const base = "";
+const base = "/Aether-Portal";
 let assets = base;
 function set_assets(path) {
   assets = path;

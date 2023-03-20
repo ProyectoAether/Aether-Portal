@@ -146,16 +146,15 @@ declare module '$env/static/private' {
 	export const PNPM_SCRIPT_SRC_DIR: string;
 	export const I3SOCK: string;
 	export const LC_PAPER: string;
-	export const npm_package_scripts_deploy: string;
 	export const npm_package_scripts_preview: string;
 	export const npm_package_devDependencies_prettier_plugin_svelte: string;
 	export const PNPM_HOME: string;
-	export const NODE_ENV: string;
 	export const npm_package_devDependencies__vitest_coverage_c8: string;
 	export const npm_package_dependencies_typescript: string;
 	export const npm_package_dependencies_daisyui: string;
 	export const npm_package_dependencies_tailwindcss: string;
 	export const INIT_CWD: string;
+	export const NODE_ENV: string;
 }
 
 /**
@@ -305,16 +304,15 @@ declare module '$env/dynamic/private' {
 		PNPM_SCRIPT_SRC_DIR: string;
 		I3SOCK: string;
 		LC_PAPER: string;
-		npm_package_scripts_deploy: string;
 		npm_package_scripts_preview: string;
 		npm_package_devDependencies_prettier_plugin_svelte: string;
 		PNPM_HOME: string;
-		NODE_ENV: string;
 		npm_package_devDependencies__vitest_coverage_c8: string;
 		npm_package_dependencies_typescript: string;
 		npm_package_dependencies_daisyui: string;
 		npm_package_dependencies_tailwindcss: string;
 		INIT_CWD: string;
+		NODE_ENV: string;
 		[key: `PUBLIC_${string}`]: undefined;
 		[key: string]: string | undefined;
 	}

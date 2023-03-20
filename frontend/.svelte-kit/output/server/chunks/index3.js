@@ -15,11 +15,6 @@ function is_function(thing) {
 function safe_not_equal(a, b) {
   return a != a ? b == b : a !== b || (a && typeof a === "object" || typeof a === "function");
 }
-function validate_store(store, name) {
-  if (store != null && typeof store.subscribe !== "function") {
-    throw new Error(`'${name}' is not a store with a 'subscribe' method`);
-  }
-}
 function subscribe(store, ...callbacks) {
   if (store == null) {
     return noop;
@@ -127,9 +122,8 @@ export {
   create_ssr_component as c,
   add_attribute as d,
   escape as e,
-  validate_store as f,
+  each as f,
   getContext as g,
-  each as h,
   is_function as i,
   missing_component as m,
   noop as n,

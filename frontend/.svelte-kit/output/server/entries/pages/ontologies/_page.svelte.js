@@ -1,4 +1,4 @@
-import { c as create_ssr_component, h as each, v as validate_component, f as validate_store, a as subscribe } from "../../../chunks/index3.js";
+import { c as create_ssr_component, f as each, v as validate_component, a as subscribe } from "../../../chunks/index3.js";
 import { i as indexFile } from "../../../chunks/data.js";
 import { O as OntologyCard } from "../../../chunks/ontologyCard.js";
 import { P as Pagination } from "../../../chunks/pagination.js";
@@ -32,11 +32,8 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let $ontologySearchStore, $$unsubscribe_ontologySearchStore;
   let $filteredOntologies, $$unsubscribe_filteredOntologies;
   let $classSearchStore, $$unsubscribe_classSearchStore;
-  validate_store(ontologySearchStore, "ontologySearchStore");
   $$unsubscribe_ontologySearchStore = subscribe(ontologySearchStore, (value) => $ontologySearchStore = value);
-  validate_store(filteredOntologies, "filteredOntologies");
   $$unsubscribe_filteredOntologies = subscribe(filteredOntologies, (value) => $filteredOntologies = value);
-  validate_store(classSearchStore, "classSearchStore");
   $$unsubscribe_classSearchStore = subscribe(classSearchStore, (value) => $classSearchStore = value);
   let $$settled;
   let $$rendered;
