@@ -3,6 +3,7 @@ WORKDIR /scripts
 COPY scripts/requirements.txt .
 RUN pip install -r requirements.txt
 COPY scripts .
+COPY input.txt .
 RUN mkdir output
 RUN python3 main.py ./input.txt ./output
 

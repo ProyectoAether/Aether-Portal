@@ -1,5 +1,5 @@
 # Simple workflow for deploying static content to GitHub Pages
-name: Deploy static content to Pages
+name: gh-pages
 
 on:
   # Runs on pushes targeting the default branch
@@ -45,7 +45,7 @@ jobs:
           source virtenv/bin/activate
           mkdir ontologies
           pip install -r requirements.txt
-          python main.py input.txt ontologies
+          python main.py ../ontologies.txt ontologies
           tar -cvf data.tar ontologies/*
 
       - name: Upload JSON files

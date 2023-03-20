@@ -31,6 +31,9 @@ def main():
     index_builder = lib.IndexBuilder()
     with open(args.input_file, "r") as fd:
         for owl_uri in tqdm.tqdm(fd.readlines()):
+            if (owl_uri == "\n"):
+                continue
+            owl_uri = owl_uri.strip()
             logging.info(f"Serializing: {owl_uri}")
             g = Graph()
             g.parse(owl_uri, format="application/rdf+xml")

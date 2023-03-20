@@ -10,3 +10,4 @@ build
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 __pycache__
+.mypy_cache

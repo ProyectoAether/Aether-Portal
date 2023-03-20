@@ -1,74 +1,32 @@
 # Aether Portal ![](https://img.shields.io/twitter/follow/aether_social?style=social)
 
-[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
-![node-current](https://img.shields.io/node/v/@sveltejs/kit)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/rdflib)
 ![](https://github.com/ProyectoAether/Aether-Portal/actions/workflows/deploy.yml/badge.svg)
 
 _`Aether Portal` is an ontology repository for visualizing and previewing the most relevant
 ontologies from the [Aether Project](https://aether.es/)._
 
-## Quickstart
-
 [ProyectoAether.github.io/Aether-Portal](https://ProyectoAether.github.io/Aether-Portal)
 
-## :computer: Development
+## :sparkles: Features
 
-### :package: Install dependencies
+- Search for class
+- Search for ontology
+- Ontology's class hierarchy
+- Ontology's metadata representation
+- Ontology's related statistics
 
-```bash
-# Frontend
-cd frontend
-npm install
+## :whale: Try out production build
 
-# Scripts
-cd scripts
-
-# a) using venv module
-python -m venv ontserpy
-source ontserpy/bin/activate
-
-# b) using pyenv
-pyenv virtualenv ontserpy
-pyenv activate ontserpy
-pip install -r requirements.txt
-```
-
-### :star2: Lint and format
-
-```bash
-# Frontend
-cd frontend
-npm run format && npm run lint
-
-# Scripts
-cd scripts
-black . && mypy .
-```
-
-### :test_tube: Testing
-
-```bash
-# Frontend
-npm run test:unit
-
-# Script
-cd scripts
-pytest
-```
-
-### :globe_with_meridians: Dev server
-
-```bash
-npm run dev
-```
-
-### :whale: Try out production build
+_It uses docker and nginx to serve static content locally_
 
 ```bash
 # https://docs.docker.com/get-docker/
 docker build -t aether-portal .
+
+# Deploy container locally on 127.0.0.1:5000/Aether-Portal
 docker run -p 5000:80 -d --rm --name AetherPortal aether-portal
+
+# Shutdown container
 docker stop AetherPortal
 ```
 
