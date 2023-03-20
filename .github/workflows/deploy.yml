@@ -3,7 +3,7 @@ name: gh-pages
 
 on:
   # Runs on pushes targeting the default branch
-  push:
+  pull_request:
     branches:
       - "feat/ci-cd"
     paths:
