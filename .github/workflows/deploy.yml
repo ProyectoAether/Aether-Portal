@@ -38,16 +38,15 @@ jobs:
       - name: Generate JSON files
         shell: bash
         run: |
-          output_dir="./frontend/src/lib/assets/ontologies"
+          output_dir="./frontend/src/lib/assets/ontologies/"
           pip install -r ./scripts/requirements.txt
           python ./scripts/main.py ./scripts/input.txt $output_dir
-          tar -cvf _ontologies $output_dir
 
       - name: Upload JSON files
         uses: actions/upload-artifact@v3
         with:
           name: ontologies-json-files
-          path: _ontologies
+          path: ./frontend/src/lib/assets/ontologies/
       - name: Clean up
         shell: bash
         run: rm -v _ontologies
@@ -65,12 +64,9 @@ jobs:
       - run: "echo Created issue number ${{ steps.create-issue.outputs.number }}"
       - run: "echo Created ${{ steps.create-issue.outputs.url }}"
 
-  deploy:
-    name: Deploy Svelte APP
+  build-page:
+    name: Build Svelte static site
     needs: update-json
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-20.04
     strategy:
       matrix:
@@ -99,24 +95,42 @@ jobs:
       - name: Move ontologies to assets/ontologies
         shell: bash
         run: |
-          output_file="./frontend/src/lib/assets/ontologies/_ontologies"
-          ls
-          mv _ontologies $output_file
-          tar -xvf $output_file
-          rm -v $output_file
+          output_file="./frontend/src/lib/assets/"
+          mv ontologies $output_file
       - name: Build
         working-directory: ./frontend
         shell: bash
         run: |
           pnpm build
           touch ./build/.nojekyll
+      - name: Upload Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: ./frontend/build
+  deploy:
+    name: Deply static site to gh pages
+    needs: update-json
+    runs-on: ubuntu-20.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Setup Pages
         uses: actions/configure-pages@v3
+        with:
+          static_site_generator: sveltekit
+      - name: Download build
+        uses: actions/download-artifact@v3
+        with:
+          name: build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload build repository
-          path: "./frontend/build"
+          path: "./build/"
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
