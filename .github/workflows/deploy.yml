@@ -29,6 +29,9 @@ jobs:
   pre-build:
     name: Updates Ontologies' JSON files
     runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./scripts
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -38,15 +41,15 @@ jobs:
       - name: Generate JSON files
         shell: bash
         run: |
-          output_dir="./frontend/src/lib/assets/ontologies/"
-          pip install -r ./scripts/requirements.txt
-          python ./scripts/main.py ./scripts/input.txt $output_dir
+          mkdir ontologies
+          pip install -r scripts/requirements.txt
+          python main.py input.txt ontologies
 
       - name: Upload JSON files
         uses: actions/upload-artifact@v3
         with:
-          name: ontologies-json-files
-          path: ./frontend/src/lib/assets/ontologies/
+          name: app-data
+          path: ontologies/
   notify-job:
     runs-on: ubuntu-20.04
     needs: pre-build
@@ -87,12 +90,12 @@ jobs:
       - name: Download ontologies and move it to the directory
         uses: actions/download-artifact@v3
         with:
-          name: ontologies-json-files
+          name: app-data
       - name: Move ontologies to assets/ontologies
         shell: bash
         run: |
-          output_file="./frontend/src/lib/assets/"
-          mv ontologies $output_file
+          ls
+          mv ontologies ./frontend/src/lib/assets/
       - name: Build
         working-directory: ./frontend
         shell: bash
@@ -105,7 +108,7 @@ jobs:
           name: build
           path: ./frontend/build
   deploy:
-    name: Deply static site to gh pages
+    name: Deploy static site to gh pages
     needs: build
     runs-on: ubuntu-20.04
     environment:
