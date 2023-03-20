@@ -4,11 +4,12 @@ name: Deploy static content to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: ["feat/ci-cd"]
-    paths:
-      - "static/public"
-  schedule:
-    - cron: "30 7 21 * *"
+    branches:
+      - "feat/ci-cd"
+  #   paths:
+  #     - "static/public/**"
+  # schedule:
+  #   - cron: "30 7 21 * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
