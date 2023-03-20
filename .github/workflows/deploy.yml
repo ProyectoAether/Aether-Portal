@@ -48,8 +48,8 @@ jobs:
       - name: Upload JSON files
         uses: actions/upload-artifact@v3
         with:
-          name: app-data
-          path: ontologies/
+          name: ontologies
+          path: ontologies
   notify-job:
     runs-on: ubuntu-20.04
     needs: pre-build
@@ -91,7 +91,7 @@ jobs:
       - name: Download ontologies and move it to the directory
         uses: actions/download-artifact@v3
         with:
-          name: app-data
+          name: ontologies
       - name: Move ontologies to assets/ontologies
         shell: bash
         run: |
