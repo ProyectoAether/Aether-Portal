@@ -113,7 +113,7 @@ jobs:
           name: build
           path: ./frontend/build.tar
   deploy:
-    name: Deploy static site to gh pages
+    name: gh pages
     needs: build
     runs-on: ubuntu-20.04
     environment:
