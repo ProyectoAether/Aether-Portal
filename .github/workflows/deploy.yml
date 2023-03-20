@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: data
-          path: ./scripts/data
+          path: ./scripts/data.tar
   notify-job:
     runs-on: ubuntu-20.04
     needs: pre-build
