@@ -41,6 +41,8 @@ jobs:
       - name: Generate JSON files
         shell: bash
         run: |
+          python -m venv virtenv
+          source virtenv/bin/activate
           mkdir ontologies
           pip install -r requirements.txt
           python main.py input.txt ontologies
@@ -106,11 +108,12 @@ jobs:
         run: |
           pnpm build
           touch ./build/.nojekyll
+          tar -cvf _build ./build/*
       - name: Upload Build
         uses: actions/upload-artifact@v3
         with:
           name: build
-          path: ./frontend/build
+          path: _build
   deploy:
     name: Deploy static site to gh pages
     needs: build
@@ -119,21 +122,20 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Setup Pages
-        uses: actions/configure-pages@v3
-        with:
-          static_site_generator: sveltekit
       - name: Download build
         uses: actions/download-artifact@v3
         with:
           name: build
+      - name: Untar build
+        run: tar -xvf _build
+      - name: Setup Pages
+        uses: actions/configure-pages@v3
+        with:
+          static_site_generator: sveltekit
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload build repository
-          path: "./build/"
+          path: "."
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
