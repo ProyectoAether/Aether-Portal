@@ -44,12 +44,13 @@ jobs:
           mkdir ontologies
           pip install -r requirements.txt
           python main.py input.txt ontologies
+          tar -cvf data ontologies/*
 
       - name: Upload JSON files
         uses: actions/upload-artifact@v3
         with:
-          name: ontologies
-          path: ontologies
+          name: data
+          path: data
   notify-job:
     runs-on: ubuntu-20.04
     needs: pre-build
@@ -91,12 +92,14 @@ jobs:
       - name: Download ontologies and move it to the directory
         uses: actions/download-artifact@v3
         with:
-          name: ontologies
+          name: data
       - name: Move ontologies to assets/ontologies
         shell: bash
         run: |
           ls
-          mv ontologies ./frontend/src/lib/assets/
+          mkdir ontologies
+          ls ./frontend/src/lib/assets/ontologies
+          tar -xvf data --directory ./frontend/src/lib/assets/ontologies
       - name: Build
         working-directory: ./frontend
         shell: bash
