@@ -3,7 +3,7 @@
 	import { indexFile } from '$lib/assets/data';
 	import namespaces from '$lib/assets/ontologies/namespaces.json';
 	import type { SearchResult } from '$lib/stores/search';
-	import LinkIcon from '$lib/svg/linkIcon.svelte';
+	import LinkIcon from '$lib/assets/svg/link-icon.svg';
 	import { compactURI } from '$lib/utils';
 	export let compacted: boolean;
 	export let results: SearchResult[];
@@ -47,7 +47,13 @@
 							<a
 								href={result.uri}
 								class="link link-primary whitespace-nowrap bg-primary-focus p-2 rounded-md hover:bg-base-300 transition-colors"
-								><LinkIcon /></a
+								><img
+									class="w-8"
+									width="40px"
+									height="40px"
+									src={LinkIcon}
+									alt="Documentation Link Icon"
+								/></a
 							>
 						</td>
 					</tr>

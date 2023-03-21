@@ -1,9 +1,8 @@
 <script lang="ts">
-	import type { CompactURIProps } from '$lib/utils';
 	import { fade } from 'svelte/transition';
 
 	export let view: number;
-	export let compacted: CompactURIProps;
+	export let compacted: boolean;
 
 	let disable = false;
 	$: disable = view === 2 ? false : true;
@@ -54,7 +53,7 @@
 				data-testid="compact-toggle"
 				id="compact"
 				class="toggle toggle-accent"
-				bind:checked={compacted.compacted}
+				bind:checked={compacted}
 			/>
 		</label>
 	{/if}

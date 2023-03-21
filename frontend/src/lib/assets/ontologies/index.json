@@ -1,91 +1,136 @@
 {
-	"ce17f638d8bc00c2db21000a07fad4871422bbed869096a824abd62d325dec72": {
-		"label": "BIGOWLWorkflows Ontology",
-		"imports": ["https://w3id.org/BIGOWLData", "https://w3id.org/BIGOWLAlgorithms"],
-		"rights": ["(c) Aether Group", "Aether"],
-		"creator": ["Aether Group"],
-		"created": "2022-07-14T09:00:00",
-		"publisher": ["Aether Group"],
-		"filename": "BIGOWLWorkflows",
-		"title": "BIGOWLWorkflows",
-		"description": " This ontology is used tto guide the correct orchestration of a workflow, including elements like tasks, components, parameters, etc. This ontology imports BIGOWLData and BIGOWLAlgorithms to define all the pieces in a workflow.",
-		"logo": "",
-		"prefix": "BIGOWLWorkflows",
-		"uri": "https://w3id.org/BIGOWLWorkflows"
-	},
-	"2a66995720d344de9e8a8fb0f05397459abceb46ad09428453a23f95c64a2429": {
-		"label": "",
-		"imports": [],
-		"rights": [],
-		"creator": ["Jos\u00e9 F. Aldana-Mart\u00edn"],
-		"created": "2022-12-16T23:59:59",
-		"publisher": [],
-		"filename": "moody - Multi-objective Optimization Ontology",
-		"title": "moody - Multi-objective Optimization Ontology",
-		"description": "moody (Multi-Objective Optimization ontologY) is a OWL2 ontology aiming to provide the ontology model to allow the semantic consolidation of the data related to multi-objective optimization experiments, including algorithms, problems and quality indicators.",
-		"logo": "https://gitlab.com/jfaldanam-phd/moody/-/raw/master/assets/icon.svg",
-		"prefix": "moody",
-		"uri": "https://w3id.org/moody#"
-	},
-	"9f2a8437caf1aac49b1942c40c4d36cd376a1e4230297a6f95a44672b3e47fb9": {
-		"label": "BIGOWLData Ontology",
-		"imports": [],
-		"rights": ["Aether", "(c) Aether Group"],
-		"creator": ["Aether Group"],
-		"created": "2022-07-14T09:00:00",
-		"publisher": ["Aether Group"],
-		"filename": "BIGOWLData",
-		"title": "BIGOWLData",
-		"description": " This ontology contains all the classes and properties related to data. Data is devoted to annotating all the data flowing throughout the analytic workflow. It is declared as EquivalentTo IO-Class of DMOP. This aligning enables datatypes defined by third parties\u2019 ontologies to be contextualised in the analysis. BIGOWLData contains the main data properties defined for this class, namely: path, to annotate the origin of data; and hasDataType, which establishes the relationship with class DataType. This last is used to define the data type, i.e. PrimitiveType (Double, Integer, Boolean, etc.) or StructuredType (Graph, Tree, Matrix, Vector, Tuple, etc.).",
-		"logo": "",
-		"prefix": "BIGOWLData",
-		"uri": "https://w3id.org/BIGOWLData"
-	},
-	"a204fa02e3baa08efecc49ccac332cadc759cb49e972cd7835757addbe0d49d7": {
-		"label": "BIGOWL Ontology",
-		"imports": [
-			"https://w3id.org/BIGOWLData",
-			"https://w3id.org/BIGOWLWorkflows",
-			"https://w3id.org/BIGOWLAlgorithms",
-			"https://w3id.org/BIGOWLProblems"
-		],
-		"rights": ["(c) Aether Group", "Aether"],
-		"creator": ["Aether Group"],
-		"created": "2022-07-14T09:00:00",
-		"publisher": ["Aether Group"],
-		"filename": "BIGOWL",
-		"title": "BIGOWL",
-		"description": " BIGOWL (BIG data analytics OWL2 ontology) acts as a formal schema for representing and consolidating knowledge in Big Data analytics. Knowledge incorporation is, in turn, beneficial for efficient algorithmic performance by taking part in the operator\u2019s design, parameter selection, and human interactive and decision-making strategies.",
-		"logo": "",
-		"prefix": "BIGOWL",
-		"uri": "https://w3id.org/BIGOWL"
-	},
-	"3268308530411688f97fb69831412349806d224004dbca744cbc1c024e8d2170": {
-		"label": "BIGOWLAlgorithms Ontology",
-		"imports": ["https://w3id.org/BIGOWLProblems", "https://w3id.org/BIGOWLData"],
-		"rights": ["Aether", "(c) Aether Group"],
-		"creator": ["Aether Group"],
-		"created": "2022-07-14T09:00:00",
-		"publisher": ["Aether Group"],
-		"filename": "BIGOWLAlgorithms",
-		"title": "BIGOWLAlgorithms",
-		"description": " This ontology covers all possible kinds. It has two main subclasses: DataMiningAlgorithm and OptimizationAlgorithm, which are used to distinguish between these two families of algorithms. The former is included in the form of equivalence with the class DM-Algorithm, which is linked from DMOP.",
-		"logo": "",
-		"prefix": "BIGOWLAlgorithms",
-		"uri": "https://w3id.org/BIGOWLAlgorithms"
-	},
-	"367746046af8964efd0bd6b25d9ad2d6a60fbbeb2b3f50e6479eed616b0fa57b": {
-		"label": "BIGOWLProblems Ontology",
-		"imports": ["https://w3id.org/BIGOWLData"],
-		"rights": ["Aether", "(c) Aether Group"],
-		"creator": ["Aether Group"],
-		"created": "2022-07-14T09:00:00",
-		"publisher": ["Aether Group"],
-		"filename": "BIGOWLProblems",
-		"title": "BIGOWLProblems",
-		"description": " This ontology is used to represent the problem class and its properties. Problem is oriented to the specific problem domain (Smart Cities, Biology, etc.).",
-		"logo": "",
-		"prefix": "BIGOWLProblems",
-		"uri": "https://w3id.org/BIGOWLProblems"
-	}
+    "ce17f638d8bc00c2db21000a07fad4871422bbed869096a824abd62d325dec72": {
+        "label": "BIGOWLWorkflows Ontology",
+        "imports": [
+            "https://w3id.org/BIGOWLData",
+            "https://w3id.org/BIGOWLAlgorithms"
+        ],
+        "rights": [
+            "(c) Aether Group",
+            "Aether"
+        ],
+        "creator": [
+            "Aether Group"
+        ],
+        "created": "2022-07-14T09:00:00",
+        "publisher": [
+            "Aether Group"
+        ],
+        "filename": "BIGOWLWorkflows",
+        "title": "BIGOWLWorkflows",
+        "description": " This ontology is used tto guide the correct orchestration of a workflow, including elements like tasks, components, parameters, etc. This ontology imports BIGOWLData and BIGOWLAlgorithms to define all the pieces in a workflow.",
+        "logo": "",
+        "prefix": "BIGOWLWorkflows",
+        "uri": "https://w3id.org/BIGOWLWorkflows"
+    },
+    "2a66995720d344de9e8a8fb0f05397459abceb46ad09428453a23f95c64a2429": {
+        "label": "",
+        "imports": [],
+        "rights": [],
+        "creator": [
+            "Jos\u00e9 F. Aldana-Mart\u00edn"
+        ],
+        "created": "2022-12-16T23:59:59",
+        "publisher": [],
+        "filename": "moody - Multi-objective Optimization Ontology",
+        "title": "moody - Multi-objective Optimization Ontology",
+        "description": "moody (Multi-Objective Optimization ontologY) is a OWL2 ontology aiming to provide the ontology model to allow the semantic consolidation of the data related to multi-objective optimization experiments, including algorithms, problems and quality indicators.",
+        "logo": "https://gitlab.com/jfaldanam-phd/moody/-/raw/master/assets/icon.svg",
+        "prefix": "moody",
+        "uri": "https://w3id.org/moody#"
+    },
+    "9f2a8437caf1aac49b1942c40c4d36cd376a1e4230297a6f95a44672b3e47fb9": {
+        "label": "BIGOWLData Ontology",
+        "imports": [],
+        "rights": [
+            "Aether",
+            "(c) Aether Group"
+        ],
+        "creator": [
+            "Aether Group"
+        ],
+        "created": "2022-07-14T09:00:00",
+        "publisher": [
+            "Aether Group"
+        ],
+        "filename": "BIGOWLData",
+        "title": "BIGOWLData",
+        "description": " This ontology contains all the classes and properties related to data. Data is devoted to annotating all the data flowing throughout the analytic workflow. It is declared as EquivalentTo IO-Class of DMOP. This aligning enables datatypes defined by third parties\u2019 ontologies to be contextualised in the analysis. BIGOWLData contains the main data properties defined for this class, namely: path, to annotate the origin of data; and hasDataType, which establishes the relationship with class DataType. This last is used to define the data type, i.e. PrimitiveType (Double, Integer, Boolean, etc.) or StructuredType (Graph, Tree, Matrix, Vector, Tuple, etc.).",
+        "logo": "",
+        "prefix": "BIGOWLData",
+        "uri": "https://w3id.org/BIGOWLData"
+    },
+    "a204fa02e3baa08efecc49ccac332cadc759cb49e972cd7835757addbe0d49d7": {
+        "label": "BIGOWL Ontology",
+        "imports": [
+            "https://w3id.org/BIGOWLData",
+            "https://w3id.org/BIGOWLWorkflows",
+            "https://w3id.org/BIGOWLAlgorithms",
+            "https://w3id.org/BIGOWLProblems"
+        ],
+        "rights": [
+            "(c) Aether Group",
+            "Aether"
+        ],
+        "creator": [
+            "Aether Group"
+        ],
+        "created": "2022-07-14T09:00:00",
+        "publisher": [
+            "Aether Group"
+        ],
+        "filename": "BIGOWL",
+        "title": "BIGOWL",
+        "description": " BIGOWL (BIG data analytics OWL2 ontology) acts as a formal schema for representing and consolidating knowledge in Big Data analytics. Knowledge incorporation is, in turn, beneficial for efficient algorithmic performance by taking part in the operator\u2019s design, parameter selection, and human interactive and decision-making strategies.",
+        "logo": "",
+        "prefix": "BIGOWL",
+        "uri": "https://w3id.org/BIGOWL"
+    },
+    "3268308530411688f97fb69831412349806d224004dbca744cbc1c024e8d2170": {
+        "label": "BIGOWLAlgorithms Ontology",
+        "imports": [
+            "https://w3id.org/BIGOWLProblems",
+            "https://w3id.org/BIGOWLData"
+        ],
+        "rights": [
+            "Aether",
+            "(c) Aether Group"
+        ],
+        "creator": [
+            "Aether Group"
+        ],
+        "created": "2022-07-14T09:00:00",
+        "publisher": [
+            "Aether Group"
+        ],
+        "filename": "BIGOWLAlgorithms",
+        "title": "BIGOWLAlgorithms",
+        "description": " This ontology covers all possible kinds. It has two main subclasses: DataMiningAlgorithm and OptimizationAlgorithm, which are used to distinguish between these two families of algorithms. The former is included in the form of equivalence with the class DM-Algorithm, which is linked from DMOP.",
+        "logo": "",
+        "prefix": "BIGOWLAlgorithms",
+        "uri": "https://w3id.org/BIGOWLAlgorithms"
+    },
+    "367746046af8964efd0bd6b25d9ad2d6a60fbbeb2b3f50e6479eed616b0fa57b": {
+        "label": "BIGOWLProblems Ontology",
+        "imports": [
+            "https://w3id.org/BIGOWLData"
+        ],
+        "rights": [
+            "Aether",
+            "(c) Aether Group"
+        ],
+        "creator": [
+            "Aether Group"
+        ],
+        "created": "2022-07-14T09:00:00",
+        "publisher": [
+            "Aether Group"
+        ],
+        "filename": "BIGOWLProblems",
+        "title": "BIGOWLProblems",
+        "description": " This ontology is used to represent the problem class and its properties. Problem is oriented to the specific problem domain (Smart Cities, Biology, etc.).",
+        "logo": "",
+        "prefix": "BIGOWLProblems",
+        "uri": "https://w3id.org/BIGOWLProblems"
+    }
 }

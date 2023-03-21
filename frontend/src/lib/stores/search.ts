@@ -75,7 +75,7 @@ export const ontologySearchStore = writable<SearchParams>({
 	options: structuredClone(defaultSearchOptions)
 });
 
-const namespaces = [
+const commonVocabNamespaces = [
 	'https://brickschema.org/schema/Brick#',
 	'http://www.w3.org/ns/csvw#',
 	'http://purl.org/dc/elements/1.1/',
@@ -117,7 +117,7 @@ export interface SearchResult {
 }
 
 function isCommonVocab(element: string): boolean {
-	for (const n of namespaces) {
+	for (const n of commonVocabNamespaces) {
 		if (element.includes(n)) {
 			return true;
 		}

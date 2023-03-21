@@ -2,14 +2,14 @@
 name: gh-pages
 
 on:
-  # Runs on pull_request targeting the default branch
+  # Runs on push or pull_request merge targeting the default branch
   push:
     branches:
-      - "feat/ci-cd"
-  #   paths:
-  #     - "ontologies.txt"
-  # schedule:
-  #   - cron: "30 7 21 * *"
+      - "main"
+    paths:
+      - "ontologies.txt"
+  schedule:
+    - cron: "30 7 21 * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:

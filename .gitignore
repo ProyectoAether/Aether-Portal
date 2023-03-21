@@ -1,13 +1,14 @@
 .DS_Store
 node_modules
 coverage
-/.svelte-kit
 /package
 .env
 .env.*
+.svelte-kit
 build
 !.env.example
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 __pycache__
 .mypy_cache
+frontend/src/lib/assets/ontologies

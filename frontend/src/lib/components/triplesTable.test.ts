@@ -1,4 +1,4 @@
-import { OWL_CLASS, OWL_ONTOLOGY, RDF_TYPE } from '$lib/uri';
+import { OWL_CLASS, OWL_ONTOLOGY, RDF_TYPE } from '$lib/assets/data';
 import { render, screen } from '@testing-library/svelte';
 import TriplesTable from './triplesTable.svelte';
 

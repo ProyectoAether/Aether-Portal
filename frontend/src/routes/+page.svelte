@@ -1,14 +1,8 @@
 <script lang="ts">
 	import Hero from '$lib/components/hero.svelte';
 	import OntologyCard from '$lib/components/card/ontologyCard.svelte';
-	import {
-		indexFile,
-		type Index,
-		type OntologyMetadata,
-		type OntologyURI,
-		type OntologyID
-	} from '$lib/assets/data';
-	function getMax(indexFile: Index): [OntologyURI, OntologyMetadata] | [] {
+	import { indexFile, type Index, type OntologyMetadata, type OntologyID } from '$lib/assets/data';
+	function getMax(indexFile: Index): [OntologyID, OntologyMetadata] | [] {
 		const entries = Object.entries(indexFile);
 		if (entries.length === 0) {
 			return [];
@@ -22,9 +16,9 @@
 				max = entries[i];
 			}
 		}
-		return max as [OntologyURI, OntologyMetadata];
+		return max as [OntologyID, OntologyMetadata];
 	}
-	function getMostRecent(indexFile: Index, maxResult = 10): [OntologyURI, OntologyMetadata][] | [] {
+	function getMostRecent(indexFile: Index, maxResult = 10): [OntologyID, OntologyMetadata][] | [] {
 		const clonedIndex = structuredClone(indexFile);
 		const result = [];
 		for (let i = 0; i < maxResult; ++i) {
@@ -50,7 +44,7 @@
 
 <main class="min-h-screen px-6">
 	<Hero />
-	<div class="my-12 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-10">
+	<div class="my-12 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-10 place-items-center">
 		{#each getMostRecent(indexFile, 10) as [id, file]}
 			<OntologyCard
 				{id}

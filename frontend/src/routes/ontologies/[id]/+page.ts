@@ -51,8 +51,9 @@ export const load = (async ({ params }) => {
 	const id = params.id as OntologyID;
 	if (!Object.keys(indexFile).includes(id)) {
 		throw error(404, {
-			message: 'Not found'
-		});
+			message: 'Not found',
+            code: 404
+		})
 	}
 	const imports = indexFile[id].imports as OntologyURI[];
 	return {

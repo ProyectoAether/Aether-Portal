@@ -1,21 +1,16 @@
 <script lang="ts">
 	import type { Triple } from '$lib/assets/data';
-	import { compactURI, getChildren, type CompactURIProps } from '$lib/utils';
+	import { compactURI, getChildren } from '$lib/utils';
 	import namespaces from '$lib/assets/ontologies/namespaces.json';
-	import { afterUpdate } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { typewriter } from '$lib/transitions/typewriter';
 	export let data: string;
 	export let triples: Triple[];
 	export let show = true;
-	export let compacted: CompactURIProps;
+	export let compacted: boolean;
 	const children = getChildren(data, triples);
-	$: data = compacted.compacted ? compactURI(data, namespaces, compacted.sep) : data;
-	export let visited: Set<string>;
+	data = compacted ? compactURI(data, namespaces, ':') : data;
 
-	afterUpdate(() => {
-		visited.add(data);
-	});
 	const id = crypto.randomUUID();
 </script>
 
@@ -30,21 +25,18 @@
 	<span in:typewriter={{ speed: 12 }} class="tree-label relative inline-block">{data}</span>
 {/if}
 {#if show}
-	{#if visited.has(data)}
-		<ul>
-			{#each children as d, i}
-				<li class="py-4 leading-5 relative pl-4 pb-4" transition:fade>
-					<svelte:self
-						bind:triples
-						data={d}
-						id={id + children.length + i}
-						bind:compacted
-						bind:visited
-					/>
-				</li>
-			{/each}
-		</ul>
-	{/if}
+	<ul>
+		{#each children as d, i}
+			<li class="py-4 leading-5 relative pl-4 pb-4" transition:fade>
+				<svelte:self
+					bind:triples
+					data={d}
+					id={id + children.length + i}
+					bind:compacted
+				/>
+			</li>
+		{/each}
+	</ul>
 {/if}
 
 <style>

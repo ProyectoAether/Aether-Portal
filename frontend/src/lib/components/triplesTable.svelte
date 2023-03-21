@@ -1,10 +1,10 @@
 <script lang="ts">
-	import { compactURI, type CompactURIProps } from '$lib/utils';
+	import { compactURI } from '$lib/utils';
 	import namespaces from '$lib/assets/ontologies/namespaces.json';
 	import type { Triple } from '$lib/assets/data';
-	import LinkIcon from '$lib/svg/linkIcon.svelte';
+	import LinkIcon from '$lib/assets/svg/link-icon.svg';
 	import Modal from '$lib/components/modal/modal.svelte';
-	export let compacted: CompactURIProps;
+	export let compacted: boolean;
 	export let offset: number;
 	export let limit: number;
 	export let triples: Triple[];
@@ -35,24 +35,27 @@
 					<td>
 						<div class="flex items-center gap-3">
 							<span>
-								{compacted.compacted
-									? compactURI(triple.subject, namespaces, compacted.sep)
-									: triple.subject}
+								{compacted ? compactURI(triple.subject, namespaces, ':') : triple.subject}
 							</span>
 							<a
 								href={triple.subject}
 								class="link link-primary whitespace-nowrap bg-primary-focus p-2 rounded-md hover:bg-base-300 transition-colors"
 								rel="noreferrer"
-								target="_blank"><LinkIcon /></a
+								target="_blank"
+								><img
+									src={LinkIcon}
+									height="40px"
+									width="40px"
+									class="w-6 h-6"
+									alt="Documentation Link Icon"
+								/></a
 							>
 						</div>
 					</td>
 					<td>
 						<div class="flex items-center gap-3">
 							<span>
-								{compacted.compacted
-									? compactURI(triple.predicate, namespaces, compacted.sep)
-									: triple.predicate}
+								{compacted ? compactURI(triple.predicate, namespaces, ':') : triple.predicate}
 							</span>
 						</div></td
 					>
@@ -60,28 +63,29 @@
 						{#if isURL(triple['object'])}
 							<div class="flex items-center gap-3">
 								<span>
-									{compacted.compacted
-										? compactURI(triple.object, namespaces, compacted.sep)
-										: triple.object}
+									{compacted ? compactURI(triple.object, namespaces, ':') : triple.object}
 								</span>
 								<a
 									href={triple.object}
 									rel="noreferrer"
 									class="link link-primary whitespace-nowrap bg-primary-focus p-2 rounded-md hover:bg-base-300 transition-colors"
-									target="_blank"><LinkIcon /></a
+									target="_blank"
+									><img
+										class="w-6 h-6"
+										height="40px"
+										width="40px"
+										src={LinkIcon}
+										alt="Documentation Link Icon"
+									/></a
 								>
 							</div>
-						{:else if triple.object.length > 30 && compactURI(triple.subject, namespaces, compacted.sep) != null}
+						{:else if triple.object.length > 30}
 							<Modal
 								value={triple.object}
-								title={compacted.compacted
-									? compactURI(triple.subject, namespaces, compacted.sep)
-									: triple.subject}
+								title={compacted ? compactURI(triple.subject, namespaces, ':') : triple.subject}
 							/>
 						{:else}
-							{compacted.compacted
-								? compactURI(triple.object, namespaces, compacted.sep)
-								: triple.object}
+							<p>{triple.object}</p>
 						{/if}
 					</td>
 				</tr>

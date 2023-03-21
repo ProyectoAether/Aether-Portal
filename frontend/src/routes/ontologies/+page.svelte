@@ -16,11 +16,7 @@
 </svelte:head>
 
 <main class="min-h-screen">
-	<Searchbar
-		bind:searchQuery={$ontologySearchStore.searchQuery}
-		title={'Search Ontologies'}
-		kbShortcut={'k'}
-	>
+	<Searchbar bind:searchQuery={$ontologySearchStore.searchQuery} title={'Search Ontologies'}>
 		<section class="container" slot="search-options">
 			<SearchOptions
 				compacted={true}

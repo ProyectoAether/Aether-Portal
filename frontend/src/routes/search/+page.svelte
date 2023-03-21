@@ -20,7 +20,6 @@
 <main>
 	<Searchbar
 		title={'Search for Classes and Properties'}
-		kbShortcut={'k'}
 		bind:searchQuery={$searchStore.searchQuery}
 	>
 		<section class="container" slot="search-options">

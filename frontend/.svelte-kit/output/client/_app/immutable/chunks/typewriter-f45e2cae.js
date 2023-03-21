@@ -1,1 +1,0 @@
-function c(t,{speed:e=1}){const o=t.childNodes.length===1&&t.childNodes[0].nodeType===Node.TEXT_NODE,n=t.textContent;if(!o||!n)throw new Error("This transition only works on elements with a single text node child");return{duration:n.length/(e*.01),tick:i=>{const r=Math.trunc(n.length*i);t.textContent=n.slice(0,r)}}}export{c as t};

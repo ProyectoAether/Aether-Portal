@@ -12,21 +12,19 @@
 		indexFile,
 		type OntologyURI,
 		type OntologyData,
-		type OntologyMetadata,
 		type Triple,
 		type OntologyID
 	} from '$lib/assets/data';
 
 	export let data: OntologyPageResponse;
-	let ontologies: OntologyData = data.ontologies;
-	const uri: OntologyURI = data.uri;
-	const metadata: OntologyMetadata = data.metadata;
+	let ontologies = data.ontologies;
+	const uri = data.uri;
+	const metadata = data.metadata;
 	let view = 0;
-	let compacted = { compacted: true, sep: ':' };
+	let compacted = true;
 	let limit = 10;
 	let offset = 0;
-
-	let imports: OntologyURI[] = structuredClone(metadata.imports) as OntologyURI[];
+	let imports = metadata.imports;
 
 	function getAllTriples(uris: OntologyURI[], ontologies: OntologyData) {
 		return uris.reduce((acc, curr) => {
