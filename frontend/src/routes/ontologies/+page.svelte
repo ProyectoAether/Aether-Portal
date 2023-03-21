@@ -3,11 +3,16 @@
 	import Pagination from '$lib/components/pagination/pagination.svelte';
 	import Searchbar from '$lib/components/searchbar/searchbar.svelte';
 	import SearchOptions from '$lib/components/searchbar/searchOptions.svelte';
-	import { classSearchStore, ontologySearchStore, filteredOntologies } from '$lib/stores/search';
+	import { ontologySearchStore, filteredOntologies } from '$lib/stores/search';
 </script>
 
 <svelte:head>
 	<title>Ontologies</title>
+	<meta
+		name="description"
+		content="Quickly filter a ontology by their name, 
+        it will show a link to redirect the user to its documentation, as well as its name/URI and label"
+	/>
 </svelte:head>
 
 <main class="min-h-screen">
@@ -18,11 +23,8 @@
 	>
 		<section class="container" slot="search-options">
 			<SearchOptions
+				compacted={true}
 				bind:alphabeticalOrder={$ontologySearchStore.options.alphabeticalOrder}
-				bind:owlClass={$classSearchStore.options.owlClass}
-				bind:owlDatatypeProperty={$classSearchStore.options.owlDatatypeProperty}
-				bind:owlObjectProperty={$classSearchStore.options.owlObjectProperty}
-				bind:owlIndividuals={$classSearchStore.options.owlNamedIndividual}
 			/>
 		</section>
 		<section class="container" slot="search-results">

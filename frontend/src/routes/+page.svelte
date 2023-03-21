@@ -35,6 +35,11 @@
 
 <svelte:head>
 	<title>Aether Portal</title>
+	<meta
+		name="description"
+		content="An ontology portal that allows for quick search and preview of the most relevant ontologies from the Aether Project.
+                Several BigData algorithms are shown here and the user can filter and get a ontology by its properties or name."
+	/>
 </svelte:head>
 
 <main class="min-h-screen px-6">

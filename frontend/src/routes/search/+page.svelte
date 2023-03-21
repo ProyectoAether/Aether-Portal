@@ -10,7 +10,12 @@
 </script>
 
 <svelte:head>
-	<title>Classes</title>
+	<title>Search</title>
+	<meta
+		name="description"
+		content="Quickly filter properties and classes of a ontology by their name, 
+        it will show a link to redirect the user to the individual's documentation external link"
+	/>
 </svelte:head>
 
 <main>
@@ -23,10 +28,6 @@
 			<SearchOptions
 				bind:compacted={compactedClass.compacted}
 				bind:alphabeticalOrder={$classSearchStore.options.alphabeticalOrder}
-				bind:owlClass={$classSearchStore.options.owlClass}
-				bind:owlDatatypeProperty={$classSearchStore.options.owlDatatypeProperty}
-				bind:owlObjectProperty={$classSearchStore.options.owlObjectProperty}
-				bind:owlIndividuals={$classSearchStore.options.owlNamedIndividual}
 			/>
 		</section>
 

@@ -43,20 +43,14 @@
 
 <svelte:head>
 	<title>{title}</title>
+	<meta
+		name="description"
+		content="Shows the ontology's metadata and statistics such as the number 
+        of classes and number of properties, it will also show the entire collection of triples
+        that the ontology stores"
+	/>
 </svelte:head>
 <main class="container min-h-screen py-6">
-	<!-- <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"> -->
-	<!-- 	<div -->
-	<!-- 		class="inline-block h-24 w-24 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]" -->
-	<!-- 		role="status" -->
-	<!-- 	> -->
-	<!-- 		<span -->
-	<!-- 			class="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]" -->
-	<!-- 			>Loading...</span -->
-	<!-- 		> -->
-	<!-- 	</div> -->
-	<!-- </div> -->
-
 	<section class="container" in:fade>
 		<MetadataTable bind:imports {metadata} triples={allTriples} />
 		<PreviewOptions bind:view bind:compacted />

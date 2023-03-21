@@ -20,6 +20,7 @@
 				data-testid="go-to-start-btn"
 				class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700"
 				on:click={() => (offset = 0)}
+				aria-label="Go to first page"
 				><svg
 					aria-hidden="true"
 					class="w-5 h-5 mr-2"
@@ -50,10 +51,12 @@
 			>
 		</li>
 	{/if}
-	<button
-		class="block px-3 py-2 ml-0 leading-tight  border border-gray-300  bg-gray-200 text-gray-700"
-		>{offset + 1}</button
-	>
+	<li>
+		<button
+			class="block px-3 py-2 ml-0 leading-tight  border border-gray-300  bg-gray-200 text-gray-700"
+			>{offset + 1}</button
+		>
+	</li>
 	{#if offset + 2 <= Math.floor(total / limit) + 1}
 		<li>
 			<button
@@ -76,6 +79,7 @@
 				data-testid="go-to-end-btn"
 				class="block px-3 py-2 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700"
 				on:click={() => (offset = Math.floor(total / limit))}
+				aria-label="Go to last page"
 				><svg
 					aria-hidden="true"
 					class="w-5 h-5 ml-2"
