@@ -168,7 +168,7 @@ class MetadataBuilder:
         for k, v in self._metadata.items():
             # TODO: modify it later to take commandline argument into account
             if k in typing.get_args(OptionalMetadataField):
-                if not v:
+                if not v and v != "imports":
                     logging.warning(f"MISSING {k}")
                 continue
             if not v:
@@ -261,9 +261,9 @@ class IndexBuilder:
         Returns:
             IndexBuilder
         """
-        # hasher = hashlib.sha256()
-        # hasher.update(uri.encode())
-        self._index[uri] = metadata
+        hasher = hashlib.sha256()
+        hasher.update(uri.encode())
+        self._index[hasher.hexdigest()] = metadata
         return self
 
 
@@ -289,7 +289,7 @@ class NamespaceBuilder:
 
     def add(
         self,
-        ontology_prefix: str,
+        ontology_preferred_prefix: str,
         namespaces: typing.Generator[tuple[str, str], None, None],
     ) -> typing.Self:
         """Updates the collection of namespaces
@@ -306,8 +306,9 @@ class NamespaceBuilder:
             if str(prefix) != "":
                 self._namespaces.update({str(uri): prefix})
             else:
-                # if str(prefix) == "" it means that this the the ontology's tuple
-                self._namespaces.update({uri: ontology_prefix})
+                # if str(prefix) == "" it means that this is the ontology's namespace tuple
+                # Just rdflib things
+                self._namespaces.update({str(uri): ontology_preferred_prefix})
         return self
 
     def _get_default_namespace(

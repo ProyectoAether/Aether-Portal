@@ -1,17 +1,13 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	export let uri: string;
+	export let id: string;
 	export let logo: string | undefined;
 	export let title: string;
 	export let label: string | undefined;
 	export let description: string | undefined;
-	import { formatURI } from '$lib/utils';
 </script>
 
-<a
-	href="{base}/ontologies/previews?uri={formatURI(uri)}"
-	class="card shadow-xl hover:shadow-sm hover:bg-base-200"
->
+<a href="{base}/ontologies/{id}" class="card shadow-xl hover:shadow-sm hover:bg-base-200">
 	{#if logo}
 		<figure class="px-10 pt-10">
 			<img src={logo} height="100px" width="100px" alt="ontology-icon" class="rounded-xl" />

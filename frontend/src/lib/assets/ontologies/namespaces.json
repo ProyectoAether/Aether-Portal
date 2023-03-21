@@ -37,7 +37,6 @@
 	"http://www.w3.org/2003/11/swrl#": "swrl",
 	"http://swrl.stanford.edu/ontologies/3.3/swrla.owl#": "swrla",
 	"http://www.w3.org/2003/11/swrlb#": "swrlb",
-	"https://w3id.org/BIGOWLAlgorithms/": "bigowla",
 	"https://w3id.org/BIGOWLProblems/Problem": "bigowlp",
 	"https://w3id.org/BIGOWLData/": "BIGOWLData",
 	"https://w3id.org/BIGOWL/": "BIGOWL",

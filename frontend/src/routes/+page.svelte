@@ -1,7 +1,13 @@
 <script lang="ts">
 	import Hero from '$lib/components/hero.svelte';
 	import OntologyCard from '$lib/components/card/ontologyCard.svelte';
-	import { indexFile, type Index, type OntologyMetadata, type OntologyURI } from '$lib/assets/data';
+	import {
+		indexFile,
+		type Index,
+		type OntologyMetadata,
+		type OntologyURI,
+		type OntologyID
+	} from '$lib/assets/data';
 	function getMax(indexFile: Index): [OntologyURI, OntologyMetadata] | [] {
 		const entries = Object.entries(indexFile);
 		if (entries.length === 0) {
@@ -27,7 +33,7 @@
 				break;
 			}
 			result.push(max);
-			delete clonedIndex[max[0]];
+			delete clonedIndex[max[0] as OntologyID];
 		}
 		return result;
 	}
@@ -45,9 +51,9 @@
 <main class="min-h-screen px-6">
 	<Hero />
 	<div class="my-12 grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-4 gap-10">
-		{#each getMostRecent(indexFile, 10) as [uri, file]}
+		{#each getMostRecent(indexFile, 10) as [id, file]}
 			<OntologyCard
-				{uri}
+				{id}
 				description={file.description}
 				label={file.label}
 				title={file.title}

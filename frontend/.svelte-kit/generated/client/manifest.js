@@ -12,10 +12,10 @@ export const server_loads = [];
 
 export const dictionary = {
 	"/": [2],
-	"/classes": [3],
-	"/help": [4],
-	"/ontologies": [5],
-	"/ontologies/previews": [6]
+	"/help": [3],
+	"/ontologies": [4],
+	"/ontologies/[id]": [5],
+	"/search": [6]
 };
 
 export const hooks = {

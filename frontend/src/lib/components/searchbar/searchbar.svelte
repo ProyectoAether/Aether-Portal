@@ -51,6 +51,7 @@
 		</div>
 		<input
 			data-testid="search-input"
+			id="search"
 			class="w-full focus:outline-none py-2 px-2"
 			type="text"
 			tabindex="0"

@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { base } from '$app/paths';
+	import { indexFile } from '$lib/assets/data';
 	import namespaces from '$lib/assets/ontologies/namespaces.json';
-	import type { ClassSearchResult } from '$lib/stores/search';
+	import type { SearchResult } from '$lib/stores/search';
 	import LinkIcon from '$lib/svg/linkIcon.svelte';
-	import { compactURI, formatURI, type CompactURIProps } from '$lib/utils';
-	export let compacted: CompactURIProps;
-	export let results: ClassSearchResult[];
+	import { compactURI } from '$lib/utils';
+	export let compacted: boolean;
+	export let results: SearchResult[];
 	export let offset: number;
 	export let limit: number;
 </script>
@@ -15,33 +16,36 @@
 		<table class="table w-full">
 			<thead>
 				<th />
-				<th>Class Name</th>
+				<th>Name</th>
+				<th>Type</th>
 				<th>Ontology</th>
 				<th>Documentation</th>
 			</thead>
 			<tbody>
 				{#each results.slice(offset * limit, (offset + 1) * limit) as result, index}
+					{@const uri = indexFile[result.ontologyID].uri}
 					<tr class="hover">
 						<th>{index + 1 + limit * offset}</th>
 						<td>
 							<p class="whitespace-nowrap">
-								{compacted.compacted
-									? compactURI(result.uri, namespaces, compacted.sep)
-									: result.uri}
+								{compacted ? compactURI(result.uri, namespaces, ':') : uri}
+							</p>
+						</td>
+						<td>
+							<p class="whitespace-nowrap">
+								{compacted ? compactURI(result.type, namespaces, ':') : uri}
 							</p>
 						</td>
 						<td>
 							<a
-								href="{base}/ontologies/previews?uri={formatURI(result.ontologyURI)}"
-								class="link link-primary link-hover whitespace-nowrap"
-								>{compacted.compacted
-									? compactURI(result.ontologyURI, namespaces, '')
-									: result.ontologyURI}</a
+								href="{base}/ontologies/{uri}"
+								class="link text-primary-focus link-hover whitespace-nowrap"
+								>{compacted ? compactURI(uri, namespaces, '') : uri}</a
 							>
 						</td>
 						<td class="flex">
 							<a
-								href={formatURI(result.uri)}
+								href={result.uri}
 								class="link link-primary whitespace-nowrap bg-primary-focus p-2 rounded-md hover:bg-base-300 transition-colors"
 								><LinkIcon /></a
 							>

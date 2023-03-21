@@ -2,11 +2,10 @@
 	import Pagination from '$lib/components/pagination/pagination.svelte';
 	import Searchbar from '$lib/components/searchbar/searchbar.svelte';
 	import SearchOptions from '$lib/components/searchbar/searchOptions.svelte';
-	import ClassSearchResult from '$lib/components/searchbar/classSearchResult.svelte';
-	import { classSearchStore, filteredClasses } from '$lib/stores/search';
-	import type { CompactURIProps } from '$lib/utils';
+	import SearchResult from '$lib/components/searchbar/searchResult.svelte';
+	import { searchStore, filtered } from '$lib/stores/search';
 
-	let compactedClass: CompactURIProps = { compacted: true, sep: ':' };
+	let compacted = true;
 </script>
 
 <svelte:head>
@@ -20,32 +19,32 @@
 
 <main>
 	<Searchbar
-		title={'Search Classes'}
+		title={'Search for Classes and Properties'}
 		kbShortcut={'k'}
-		bind:searchQuery={$classSearchStore.searchQuery}
+		bind:searchQuery={$searchStore.searchQuery}
 	>
 		<section class="container" slot="search-options">
 			<SearchOptions
-				bind:compacted={compactedClass.compacted}
-				bind:alphabeticalOrder={$classSearchStore.options.alphabeticalOrder}
+				bind:compacted
+				bind:alphabeticalOrder={$searchStore.options.alphabeticalOrder}
 			/>
 		</section>
 
 		<section class="container" slot="search-results">
-			<ClassSearchResult
-				results={$filteredClasses}
-				offset={$classSearchStore.options.offset}
-				limit={$classSearchStore.options.limit}
-				bind:compacted={compactedClass}
+			<SearchResult
+				results={$filtered}
+				offset={$searchStore.options.offset}
+				limit={$searchStore.options.limit}
+				bind:compacted
 			>
 				<h2 slot="fallback" class="p-10 italic font-bold text-3xl">No matching Classes</h2>
-			</ClassSearchResult>
-			{#if $filteredClasses.length > 0}
+			</SearchResult>
+			{#if $filtered.length > 0}
 				<div class="py-4">
 					<Pagination
-						total={$filteredClasses.length}
-						bind:offset={$classSearchStore.options.offset}
-						limit={$classSearchStore.options.limit}
+						total={$filtered.length}
+						bind:offset={$searchStore.options.offset}
+						limit={$searchStore.options.limit}
 					/>
 				</div>
 			{/if}

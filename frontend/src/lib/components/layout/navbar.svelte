@@ -23,7 +23,7 @@
 			</a>
 			<ul class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
 				<li>
-					<a data-testid="class-link" href="{base}/classes#search">Classes</a>
+					<a data-testid="class-link" href="{base}/search#search">Search</a>
 				</li>
 				<li>
 					<a data-testid="ontologies-link" href="{base}/ontologies#search">Ontologies</a>
@@ -41,7 +41,7 @@
 		<div class="navbar-start hidden lg:flex">
 			<ul class="menu menu-horizontal px-1">
 				<li>
-					<a data-testid="class-link" class="font-medium" href="{base}/classes#search">Classes</a>
+					<a data-testid="class-link" class="font-medium" href="{base}/search#search">Search</a>
 				</li>
 				<li>
 					<a data-testid="ontology-link" class="font-medium" href="{base}/ontologies#search"

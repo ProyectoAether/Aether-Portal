@@ -14,24 +14,24 @@ interface Sorter<T> {
 	getResult(): T[];
 }
 export class QuadSorter implements Sorter<Quad> {
-	private triples: Quad[];
-	constructor(triples: Quad[]) {
-		this.triples = triples;
+	private quads: Quad[];
+	constructor(quads: Quad[]) {
+		this.quads = quads;
 	}
 	public alphabeticalSort(): this {
-		this.triples = this.triples.sort((a, b) =>
+		this.quads = this.quads.sort((a, b) =>
 			a.subject.toLowerCase() >= b.subject.toLowerCase() ? 1 : -1
 		);
 		return this;
 	}
 	public reverseAlphabeticalSort(): this {
-		this.triples = this.triples.sort((a, b) =>
+		this.quads = this.quads.sort((a, b) =>
 			a.subject.toLowerCase() < b.subject.toLowerCase() ? 1 : -1
 		);
 		return this;
 	}
 	public getResult(): Quad[] {
-		return this.triples;
+		return this.quads;
 	}
 }
 export function getUniformURI(uri: string) {

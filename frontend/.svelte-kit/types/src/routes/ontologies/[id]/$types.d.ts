@@ -1,8 +1,8 @@
 import type * as Kit from '@sveltejs/kit';
 
 type Expand<T> = T extends infer O ? { [K in keyof O]: O[K] } : never;
-type RouteParams = {  }
-type RouteId = '/ontologies/previews';
+type RouteParams = { id: string }
+type RouteId = '/ontologies/[id]';
 type MaybeWithVoid<T> = {} extends T ? T | void : T;
 export type RequiredKeys<T> = { [K in keyof T]-?: {} extends { [P in K]: T[K] } ? never : K; }[keyof T];
 type OutputDataShape<T> = MaybeWithVoid<Omit<App.PageData, RequiredKeys<T>> & Partial<Pick<App.PageData, keyof T & keyof App.PageData>> & Record<string, any>>
@@ -14,4 +14,4 @@ type PageParentData = EnsureDefined<import('../../$types.js').LayoutData>;
 export type PageServerData = null;
 export type PageLoad<OutputData extends OutputDataShape<PageParentData> = OutputDataShape<PageParentData>> = Kit.Load<RouteParams, PageServerData, PageParentData, OutputData, RouteId>;
 export type PageLoadEvent = Parameters<PageLoad>[0];
-export type PageData = Expand<Omit<PageParentData, keyof Kit.AwaitedProperties<Awaited<ReturnType<typeof import('../../../../../../src/routes/ontologies/previews/+page.js').load>>>> & OptionalUnion<EnsureDefined<Kit.AwaitedProperties<Awaited<ReturnType<typeof import('../../../../../../src/routes/ontologies/previews/+page.js').load>>>>>>;
+export type PageData = Expand<Omit<PageParentData, keyof Kit.AwaitedProperties<Awaited<ReturnType<typeof import('../../../../../../src/routes/ontologies/[id]/+page.js').load>>>> & OptionalUnion<EnsureDefined<Kit.AwaitedProperties<Awaited<ReturnType<typeof import('../../../../../../src/routes/ontologies/[id]/+page.js').load>>>>>>;

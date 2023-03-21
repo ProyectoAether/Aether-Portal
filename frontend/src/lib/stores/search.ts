@@ -6,8 +6,10 @@ import {
 	OWL_NAMED_INDIVIDUAL,
 	OWL_OBJECT_PROPERTY,
 	OWL_ONTOLOGY,
+	RDF_TYPE,
 	type Index,
-	type OntologyURI,
+	type OntologyID,
+	type OWLType,
 	type Triple
 } from '$lib/assets/data';
 import type { Quad } from '$lib/assets/data';
@@ -25,7 +27,7 @@ async function getAllOntologies(index: Index): Promise<Quad[][]> {
 	const imports = Object.entries(index).map(async ([uri, file]) => {
 		const module = await import(`../../lib/assets/ontologies/${file.filename}.json`);
 		const triples = module.default as Triple[];
-		return triples.map((el) => ({ ...el, ontology: uri } as Quad));
+		return triples.map((el) => ({ ...el, ontologyID: uri } as Quad));
 	});
 	return Promise.all(imports);
 }
@@ -57,12 +59,12 @@ const defaultSearchOptions: SearchOptions = {
 	offset: 0
 };
 export const reset = () =>
-	classSearchStore.set({
+	searchStore.set({
 		data: ontologies,
 		searchQuery: '',
 		options: defaultSearchOptions
 	});
-export const classSearchStore = writable<SearchParams>({
+export const searchStore = writable<SearchParams>({
 	data: ontologies,
 	searchQuery: '',
 	options: structuredClone(defaultSearchOptions)
@@ -105,18 +107,13 @@ const namespaces = [
 	'http://www.w3.org/XML/1998/namespace'
 ];
 
-export const filteredClasses = derived(classSearchStore, classSearchHandler);
+export const filtered = derived(searchStore, searchHandler);
 export const filteredOntologies = derived(ontologySearchStore, ontologySearchHandler);
 
-export interface ClassSearchResult {
+export interface SearchResult {
 	uri: string;
-	ontologyURI: string;
-}
-
-export interface OntologySearchResult {
-	uri: OntologyURI;
-	label?: string;
-	description?: string;
+	ontologyID: OntologyID;
+	type: OWLType;
 }
 
 function isCommonVocab(element: string): boolean {
@@ -128,7 +125,7 @@ function isCommonVocab(element: string): boolean {
 	return false;
 }
 
-function ontologySearchHandler(searchStore: SearchParams): OntologySearchResult[] {
+function ontologySearchHandler(searchStore: SearchParams): OntologyID[] {
 	const { searchQuery, data: ontologies, options } = searchStore;
 	const queryFiltered = filter(
 		searchQuery,
@@ -148,19 +145,22 @@ function ontologySearchHandler(searchStore: SearchParams): OntologySearchResult[
 		? sorter.alphabeticalSort().getResult()
 		: sorter.reverseAlphabeticalSort().getResult();
 
-	const uris = new Set(sortedResult.map((el) => el.ontology));
-	const results = Array.from(uris).map((el) => ({
-		uri: el as OntologyURI
-	}));
-	return results;
+	const uris = new Set<OntologyID>(sortedResult.map((el) => el.ontologyID) as OntologyID[]);
+	return Array.from(uris);
 }
 
-function classSearchHandler(searchStore: SearchParams): ClassSearchResult[] {
+function searchHandler(searchStore: SearchParams): SearchResult[] {
 	const { searchQuery, data: ontologies, options } = searchStore;
 	const queryFiltered = filter(
 		searchQuery,
 		ontologies,
-		(el) => el.object === OWL_CLASS && !isCommonVocab(el.subject),
+		(el) =>
+			el.predicate === RDF_TYPE &&
+			(el.object === OWL_DATATYPE_PROPERTY ||
+				el.object === OWL_OBJECT_PROPERTY ||
+				el.object === OWL_NAMED_INDIVIDUAL ||
+				el.object === OWL_CLASS) &&
+			!isCommonVocab(el.subject),
 		['subject', 'ontologyURI']
 	);
 
@@ -170,5 +170,13 @@ function classSearchHandler(searchStore: SearchParams): ClassSearchResult[] {
 		? sorter.alphabeticalSort().getResult()
 		: sorter.reverseAlphabeticalSort().getResult();
 
-	return Array.from(new Set(result.map((el) => ({ uri: el.subject, ontologyURI: el.ontology }))));
+	return Array.from(
+		new Set(
+			result.map((el) => ({
+				uri: el.subject,
+				ontologyID: el.ontologyID,
+				type: el.object as OWLType
+			}))
+		)
+	);
 }

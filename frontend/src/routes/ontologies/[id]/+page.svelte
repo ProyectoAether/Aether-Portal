@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { error } from '@sveltejs/kit';
 	import MetadataTable from '$lib/components/metadata/metadataTable.svelte';
 	import TriplesTable from '$lib/components/triplesTable.svelte';
 	import Hierarchy from '$lib/components/tree/hierarchy.svelte';
@@ -8,18 +7,17 @@
 	import Mappings from '$lib/components/metadata/mappings.svelte';
 	import { fade } from 'svelte/transition';
 	import type { OntologyPageResponse } from './+page';
+	import { sha256 } from 'js-sha256';
 	import {
 		indexFile,
 		type OntologyURI,
 		type OntologyData,
 		type OntologyMetadata,
-		type Triple
+		type Triple,
+		type OntologyID
 	} from '$lib/assets/data';
 
 	export let data: OntologyPageResponse;
-	if (data.statusCode === 404 || !data.ontologies || !data.metadata || !data.uri) {
-		throw error(data.statusCode, 'Resource Not Found');
-	}
 	let ontologies: OntologyData = data.ontologies;
 	const uri: OntologyURI = data.uri;
 	const metadata: OntologyMetadata = data.metadata;
@@ -32,13 +30,13 @@
 
 	function getAllTriples(uris: OntologyURI[], ontologies: OntologyData) {
 		return uris.reduce((acc, curr) => {
-			acc.push(...ontologies[curr]);
+			acc.push(...ontologies[sha256(curr) as OntologyID]);
 			return acc;
 		}, [] as Triple[]);
 	}
 
 	$: allTriples = getAllTriples([...imports, uri], ontologies);
-	const title = indexFile[uri as OntologyURI].title;
+	const title = indexFile[sha256(uri) as OntologyID].title;
 </script>
 
 <svelte:head>

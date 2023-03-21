@@ -19,7 +19,7 @@
 	<Searchbar
 		bind:searchQuery={$ontologySearchStore.searchQuery}
 		title={'Search Ontologies'}
-		kbShortcut={'i'}
+		kbShortcut={'k'}
 	>
 		<section class="container" slot="search-options">
 			<SearchOptions
@@ -29,7 +29,7 @@
 		</section>
 		<section class="container" slot="search-results">
 			<OntologySearchResult
-				results={$filteredOntologies}
+				ids={$filteredOntologies}
 				offset={$ontologySearchStore.options.offset}
 				limit={$ontologySearchStore.options.limit}
 			>

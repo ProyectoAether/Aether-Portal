@@ -1,8 +1,8 @@
 {
-	"https://w3id.org/BIGOWLWorkflows": {
+	"ce17f638d8bc00c2db21000a07fad4871422bbed869096a824abd62d325dec72": {
 		"label": "BIGOWLWorkflows Ontology",
-		"imports": ["https://w3id.org/BIGOWLAlgorithms", "https://w3id.org/BIGOWLData"],
-		"rights": ["Aether", "(c) Aether Group"],
+		"imports": ["https://w3id.org/BIGOWLData", "https://w3id.org/BIGOWLAlgorithms"],
+		"rights": ["(c) Aether Group", "Aether"],
 		"creator": ["Aether Group"],
 		"created": "2022-07-14T09:00:00",
 		"publisher": ["Aether Group"],
@@ -13,7 +13,7 @@
 		"prefix": "BIGOWLWorkflows",
 		"uri": "https://w3id.org/BIGOWLWorkflows"
 	},
-	"https://w3id.org/moody#": {
+	"2a66995720d344de9e8a8fb0f05397459abceb46ad09428453a23f95c64a2429": {
 		"label": "",
 		"imports": [],
 		"rights": [],
@@ -27,10 +27,10 @@
 		"prefix": "moody",
 		"uri": "https://w3id.org/moody#"
 	},
-	"https://w3id.org/BIGOWLData": {
+	"9f2a8437caf1aac49b1942c40c4d36cd376a1e4230297a6f95a44672b3e47fb9": {
 		"label": "BIGOWLData Ontology",
 		"imports": [],
-		"rights": ["(c) Aether Group", "Aether"],
+		"rights": ["Aether", "(c) Aether Group"],
 		"creator": ["Aether Group"],
 		"created": "2022-07-14T09:00:00",
 		"publisher": ["Aether Group"],
@@ -41,13 +41,13 @@
 		"prefix": "BIGOWLData",
 		"uri": "https://w3id.org/BIGOWLData"
 	},
-	"https://w3id.org/BIGOWL": {
+	"a204fa02e3baa08efecc49ccac332cadc759cb49e972cd7835757addbe0d49d7": {
 		"label": "BIGOWL Ontology",
 		"imports": [
 			"https://w3id.org/BIGOWLData",
-			"https://w3id.org/BIGOWLProblems",
 			"https://w3id.org/BIGOWLWorkflows",
-			"https://w3id.org/BIGOWLAlgorithms"
+			"https://w3id.org/BIGOWLAlgorithms",
+			"https://w3id.org/BIGOWLProblems"
 		],
 		"rights": ["(c) Aether Group", "Aether"],
 		"creator": ["Aether Group"],
@@ -60,10 +60,10 @@
 		"prefix": "BIGOWL",
 		"uri": "https://w3id.org/BIGOWL"
 	},
-	"https://w3id.org/BIGOWLAlgorithms": {
+	"3268308530411688f97fb69831412349806d224004dbca744cbc1c024e8d2170": {
 		"label": "BIGOWLAlgorithms Ontology",
-		"imports": ["https://w3id.org/BIGOWLData", "https://w3id.org/BIGOWLProblems"],
-		"rights": ["(c) Aether Group", "Aether"],
+		"imports": ["https://w3id.org/BIGOWLProblems", "https://w3id.org/BIGOWLData"],
+		"rights": ["Aether", "(c) Aether Group"],
 		"creator": ["Aether Group"],
 		"created": "2022-07-14T09:00:00",
 		"publisher": ["Aether Group"],
@@ -74,7 +74,7 @@
 		"prefix": "BIGOWLAlgorithms",
 		"uri": "https://w3id.org/BIGOWLAlgorithms"
 	},
-	"https://w3id.org/BIGOWLProblems": {
+	"367746046af8964efd0bd6b25d9ad2d6a60fbbeb2b3f50e6479eed616b0fa57b": {
 		"label": "BIGOWLProblems Ontology",
 		"imports": ["https://w3id.org/BIGOWLData"],
 		"rights": ["Aether", "(c) Aether Group"],
