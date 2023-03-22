@@ -307,7 +307,7 @@ class NamespaceBuilder:
                 self._namespaces.update({str(uri): prefix})
             else:
                 # if str(prefix) == "" it means that this is the ontology's namespace tuple
-                # Just rdflib things
+                # rdflib specific thing
                 self._namespaces.update({str(uri): ontology_preferred_prefix})
         return self
 

@@ -4,9 +4,15 @@ coverage
 /package
 .env
 .env.*
-.svelte-kit
 build
 !.env.example
+build
+.svelte-kit
+/package
+.env
+.env.*
+.env.example
+.mypy_cache
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 __pycache__
