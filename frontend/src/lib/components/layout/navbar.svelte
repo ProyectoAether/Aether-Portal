@@ -5,10 +5,11 @@
 </script>
 
 <nav class="navbar bg-base-100 shadow-sm">
-	<div class="navbar-start">
+	<div class="navbar-start w-full md:w-2/3">
 		<div class="dropdown">
-			<button tabindex="0" class="btn btn-ghost md:hidden">
-				<img class="w-8 h-8" src={accordion} width="8px" height="8px" alt="Navbar accordion" />
+			<button tabindex="0" class="btn btn-ghost  md:hidden">
+				<img class="w-8" src={accordion} width="8px" height="8px" alt="Navbar accordion" />
+				<span class="sr-only">Navigation accordion</span>
 			</button>
 			<ul class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
 				<li>

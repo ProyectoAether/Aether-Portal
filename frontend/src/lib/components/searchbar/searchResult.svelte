@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import { indexFile } from '$lib/assets/data';
-	import namespaces from '$lib/assets/ontologies/namespaces.json';
+	import { indexFile, namespacesFile } from '$lib/assets/data';
 	import type { SearchResult } from '$lib/stores/search';
 	import LinkIcon from '$lib/assets/svg/link-icon.svg';
 	import { compactURI } from '$lib/utils';
@@ -13,9 +12,28 @@
 	export let offset: number;
 	export let limit: number;
 	export let alphabeticalOrder: boolean;
+
+	function sort(data: SearchResult[], alphabeticalOrder: boolean) {
+		if (alphabeticalOrder) {
+			return data.sort((a, b) =>
+				compactURI(a.uri, namespacesFile, ':').toLowerCase() >=
+				compactURI(b.uri, namespacesFile).toLowerCase()
+					? 1
+					: -1
+			);
+		} else {
+			return data.sort((a, b) =>
+				compactURI(a.uri, namespacesFile, ':').toLowerCase() <
+				compactURI(b.uri, namespacesFile).toLowerCase()
+					? 1
+					: -1
+			);
+		}
+	}
+	$: ordered = sort(results, alphabeticalOrder);
 </script>
 
-{#if results.length > 0}
+{#if ordered.length > 0}
 	<div class="overflow-x-auto">
 		<table class="table w-full">
 			<thead>
@@ -24,9 +42,9 @@
 					><span>Name</span>
 					<button on:click={() => (alphabeticalOrder = !alphabeticalOrder)}>
 						{#if alphabeticalOrder}
-							<img class="w-8 h-8" src={aZ} alt="A-Z sort" height="44px" width="44px" />
+							<img class="w-6 h-6" src={aZ} alt="A-Z sort" height="44px" width="44px" />
 						{:else}
-							<img class="w-8 h-8" src={zA} alt="Z-A sort" height="44px" width="44px" />
+							<img class="w-6 h-6" src={zA} alt="Z-A sort" height="44px" width="44px" />
 						{/if}
 					</button>
 				</th>
@@ -34,17 +52,17 @@
 				<th>Ontology</th>
 			</thead>
 			<tbody>
-				{#each results.slice(offset * limit, (offset + 1) * limit) as result, index}
+				{#each ordered.slice(offset * limit, (offset + 1) * limit) as result, index}
 					{@const uri = indexFile[result.ontologyID].uri}
 					<tr class="hover">
 						<th>{index + 1 + limit * offset}</th>
-						<td class="flex items-center gap-3">
-							<span class="whitespace-nowrap">
-								{compacted ? compactURI(result.uri, namespaces, ':') : uri}
+						<td>
+							<span class="align-middle inline-block">
+								{compacted ? compactURI(result.uri, namespacesFile, ':') : result.uri}
 							</span>
-							<a href={result.uri} class="link link-primary whitespace-nowrap"
+							<a href={result.uri} class="align-middle inline-block"
 								><img
-									class="w-8 hover:bg-base-200 rounded p-2"
+									class="w-4 mr-2"
 									width="40px"
 									height="40px"
 									src={LinkIcon}
@@ -53,19 +71,17 @@
 							>
 						</td>
 						<td>
-							<p class="whitespace-nowrap">
-								{compacted ? compactURI(result.type, namespaces, ':') : uri}
-							</p>
+							{compacted ? compactURI(result.type, namespacesFile, ':') : result.type}
 						</td>
-						<td class="flex items-center">
+						<td>
 							<a
 								href="{base}/ontologies/{sha256(uri)}"
-								class="link text-primary-focus link-hover whitespace-nowrap"
-								>{compacted ? compactURI(uri, namespaces, '') : uri}</a
+								class="link link-primary align-middle inline-block"
+								>{compacted ? compactURI(uri, namespacesFile, '') : uri}</a
 							>
-							<a href={result.uri}>
+							<a href={result.uri} class="align-middle inline-block">
 								<img
-									class="w-8 hover:bg-base-200 rounded p-2"
+									class="w-8 p-2"
 									width="40px"
 									height="40px"
 									src={LinkIcon}

@@ -39,7 +39,7 @@
 				<h2 slot="fallback" class="p-10 italic font-bold text-3xl">No matching Classes</h2>
 			</SearchResult>
 			{#if $filtered.length > 0}
-				<div class="py-8 flex justify-center">
+				<div class="py-8 flex md:justify-start justify-center mt-auto">
 					<Pagination
 						totalElements={$filtered.length}
 						bind:offset={$searchStore.options.offset}
@@ -49,17 +49,4 @@
 			{/if}
 		</section></Searchbar
 	>
-
-	<svg class="ml-2 h-4 w-4 fill-current" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-		<path
-			fill-rule="evenodd"
-			clip-rule="evenodd"
-			d="M6 7l4-4 4 4-1.414 1.414L10 4.828l-2.586 2.586L6 7z"
-		/>
-		<path
-			fill-rule="evenodd"
-			clip-rule="evenodd"
-			d="M6 13l4 4 4-4-1.414-1.414L10 15.172l-2.586-2.586L6 13z"
-		/>
-	</svg>
 </main>

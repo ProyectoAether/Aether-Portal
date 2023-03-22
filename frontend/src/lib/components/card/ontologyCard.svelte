@@ -16,7 +16,7 @@
 			<img src={logo} class="w-16" height="80px" width="80px" alt="ontology-icon" />
 		</figure>
 	{/if}
-	<div class="card-body items-center text-center">
+	<div class="card-body items-center text-center mt-auto">
 		<h2 class="card-title">{title}</h2>
 		<div class="p-4 flex flex-col gap-4">
 			<span>{label || ''}</span>

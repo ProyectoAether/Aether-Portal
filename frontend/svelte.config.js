@@ -1,6 +1,10 @@
 import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
+import indexFile from './src/lib/assets/ontologies/index.json' assert { type: "json" };
+
+const entries = Object.keys(indexFile).map((id) => `/ontologies/${id}`);
+entries.push("/", "/help", "/ontologies", "/search")
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -14,15 +18,12 @@ const config = {
 	],
 
 	kit: {
-        alias:{
-            $route: "src/routes"
-        },
-		adapter: adapter(),
-		paths: {
-			base: ''
+		alias: {
+			$route: 'src/routes'
 		},
+		adapter: adapter(),
 		prerender: {
-			handleMissingId: 'warn'
+			entries
 		}
 	}
 };

@@ -1,29 +1,32 @@
 <script lang="ts">
-	import { afterUpdate } from 'svelte';
 	export let offset: number;
 	export let totalElements: number;
 	export let elementsPerPage: number;
-	if ((offset + 1) * elementsPerPage > totalElements) {
-		offset = 0;
+	export let numButtons = 3;
+	const numPages = Math.ceil(totalElements / elementsPerPage);
+	const pages = Array(numPages)
+		.fill(0)
+		.map((_, i) => i + 1);
+	const maxStartPage = Math.max(numPages - numButtons, 0);
+	// offset + 1 is the current page number
+	$: noMorePrevious = offset + 1 === 1;
+	$: noMoreNext = offset + 1 === numPages;
+	$: startPage = Math.min(Math.max(offset - Math.floor(numButtons / 2), 0), maxStartPage);
+	$: endPage = Math.min(startPage + numButtons, numPages);
+
+	function goToPage(page: number) {
+		// offset + 1 is the current page number
+		offset = page - 1;
 	}
-	afterUpdate(() => {
-		if (totalElements < offset * elementsPerPage) {
-			offset = 0;
-		}
-	});
-	const buttons = [-1, 0, 1];
-	const numPages = Math.floor(totalElements / elementsPerPage);
-	$: noMorePrevious = offset == 0;
-	$: noMoreNext = offset == numPages;
 </script>
 
 <div class="btn-group btn-group-horizontal">
-	{#if numPages > 2}
+	{#if numPages > 1}
 		<button
 			data-testid="go-to-start-btn"
 			class="btn btn-xs md:btn-md"
 			disabled={noMorePrevious}
-			on:click={() => (offset = 0)}
+			on:click={() => goToPage(1)}
 			aria-label="Go to first page"
 			><svg
 				aria-hidden="true"
@@ -42,41 +45,30 @@
 			disabled={noMorePrevious}
 			data-testid="go-back-btn"
 			class="btn btn-xs md:btn-md"
-			on:click={() => (offset = offset - 1)}>Prev</button
+			on:click={() => goToPage(startPage + 1)}>Prev</button
 		>
 	{/if}
-	{#if offset === numPages && numPages > 1}
-		<button class="btn btn-xs md:btn-md" on:click={() => (offset = offset + buttons[0])}
-			>{offset + buttons[0]}</button
-		>
-	{/if}
-	{#each buttons as button}
-		{#if offset + button >= 0 && offset + button <= numPages}
-			<button
-				class="btn btn-xs md:btn-md {button === 0 ? 'btn-active' : ''}"
-				on:click={() => (offset = offset + button)}>{offset + 1 + button}</button
-			>
-		{/if}
-	{/each}
-	{#if offset === 0 && numPages > 2}
+	{#each pages.slice(startPage, endPage) as page}
 		<button
 			class="btn btn-xs md:btn-md"
-			on:click={() => (offset = offset + buttons[buttons.length - 1])}
-			>{buttons[buttons.length - 1] + 2 + offset}</button
+			class:btn-active={offset === page - 1}
+			on:click={() => goToPage(page)}
 		>
-	{/if}
+			{page}
+		</button>
+	{/each}
 	{#if numPages > 1}
 		<button
 			disabled={noMoreNext}
 			data-testid="go-next-btn"
 			class="btn btn-xs md:btn-md"
-			on:click={() => (offset += 1)}>Next</button
+			on:click={() => goToPage(endPage)}>Next</button
 		>
 		<button
 			data-testid="go-to-end-btn"
 			class="btn btn-xs md:btn-md"
 			disabled={noMoreNext}
-			on:click={() => (offset = numPages)}
+			on:click={() => goToPage(numPages)}
 			aria-label="Go to last page"
 			><svg
 				aria-hidden="true"

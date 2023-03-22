@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { compactURI } from '$lib/utils';
+	import { compactURI, isURI } from '$lib/utils';
 	import namespaces from '$lib/assets/ontologies/namespaces.json';
 	import type { Triple } from '$lib/assets/data';
 	import LinkIcon from '$lib/assets/svg/link-icon.svg';
@@ -8,14 +8,6 @@
 	export let offset: number;
 	export let elementsPerPage: number;
 	export let triples: Triple[];
-	function isURL(target: string): boolean {
-		try {
-			new URL(target);
-			return true;
-		} catch {
-			return false;
-		}
-	}
 </script>
 
 <div class="overflow-x-auto my-10">
@@ -33,40 +25,45 @@
 				<tr>
 					<th>{index + 1 + elementsPerPage * offset}</th>
 					<td>
-						<div class="flex items-center gap-3">
-							<span>
-								{compacted ? compactURI(triple.subject, namespaces, ':') : triple.subject}
-							</span>
-							<a href={triple.subject} rel="noreferrer" target="_blank"
-								><img
-									src={LinkIcon}
-									height="40px"
-									width="40px"
-									class="w-6 h-6"
-									alt="Documentation Link Icon"
-								/></a
-							>
-						</div>
+						<span class="inline-block align-middle">
+							{compacted ? compactURI(triple.subject, namespaces, ':') : triple.subject}
+						</span>
+						<a
+							href={triple.subject}
+							rel="noreferrer"
+							target="_blank"
+							class="inline-block align-middle"
+							><img
+								src={LinkIcon}
+								height="40px"
+								width="40px"
+								class="w-4 mr-2"
+								alt="Documentation Link Icon"
+							/></a
+						>
 					</td>
 					<td>
-						<div class="flex items-center gap-3">
-							<span>
-								{compacted ? compactURI(triple.predicate, namespaces, ':') : triple.predicate}
-							</span>
-						</div></td
-					>
-					<td class="whitespace-nowrap">
-						{#if isURL(triple['object'])}
-							<div class="flex items-center gap-3">
-								<span>
+						<span>
+							{compacted ? compactURI(triple.predicate, namespaces, ':') : triple.predicate}
+						</span>
+					</td>
+					<td>
+						{#if isURI(triple['object'])}
+							<div>
+								<span class="inline-block align-middle">
 									{compacted ? compactURI(triple.object, namespaces, ':') : triple.object}
 								</span>
-							<a href={triple.object} rel="noreferrer" target="_blank">
+								<a
+									href={triple.object}
+									rel="noreferrer"
+									target="_blank"
+									class="inline-block align-middle"
+								>
 									<img
 										src={LinkIcon}
+										class="w-4 mr-2"
 										height="40px"
 										width="40px"
-										class="w-6 h-6"
 										alt="Documentation Link Icon"
 									/>
 								</a>

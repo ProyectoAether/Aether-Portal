@@ -1,6 +1,7 @@
 import { writable, derived } from 'svelte/store';
 import {
 	indexFile,
+	namespacesFile,
 	OWL_CLASS,
 	OWL_DATATYPE_PROPERTY,
 	OWL_NAMED_INDIVIDUAL,
@@ -13,14 +14,22 @@ import {
 	type Triple
 } from '$lib/assets/data';
 import type { Quad } from '$lib/assets/data';
-import fuzzysort from 'fuzzysort';
-import { QuadSorter } from '$lib/utils';
+import Fuse from 'fuse.js';
+import { compactURI } from '$lib/utils';
 
-function filter(query: string, data: Quad[], guard: (el: Quad) => boolean, keys: string[]): Quad[] {
-	return fuzzysort
-		.go(query, data, { keys, all: true })
-		.filter((el) => el[0] && guard(el.obj) && (el.score === -Infinity || el.score > -300))
-		.map((el) => el.obj);
+function searchByQuery(
+	query: string,
+	data: Quad[],
+	typeGuard: (el: Quad) => boolean,
+	keys: string[]
+): Quad[] {
+	const filteredByType = data.filter((el) => typeGuard(el));
+	if (query.trim().length === 0) {
+		return filteredByType;
+	}
+	const fuse = new Fuse(filteredByType, { keys, findAllMatches: true });
+
+	return fuse.search(query).map((el) => el.item);
 }
 
 async function getAllOntologies(index: Index): Promise<Quad[][]> {
@@ -34,10 +43,6 @@ async function getAllOntologies(index: Index): Promise<Quad[][]> {
 const ontologies = (await Promise.all(await getAllOntologies(indexFile))).flat();
 
 export interface SearchOptions {
-	owlClass: true;
-	owlDatatypeProperty: true;
-	owlObjectProperty: true;
-	owlNamedIndividual: true;
 	limit: number;
 	offset: number;
 	alphabeticalOrder: boolean;
@@ -50,10 +55,6 @@ export interface SearchParams {
 }
 
 const defaultSearchOptions: SearchOptions = {
-	owlClass: true,
-	owlDatatypeProperty: true,
-	owlObjectProperty: true,
-	owlNamedIndividual: true,
 	alphabeticalOrder: true,
 	limit: 10,
 	offset: 0
@@ -78,12 +79,7 @@ export const ontologySearchStore = writable<SearchParams>({
 const commonVocabNamespaces = [
 	'https://brickschema.org/schema/Brick#',
 	'http://www.w3.org/ns/csvw#',
-	'http://purl.org/dc/elements/1.1/',
 	'http://www.w3.org/ns/dcat#',
-	'http://purl.org/dc/dcmitype/',
-	'http://purl.org/dc/terms/',
-	'http://purl.org/dc/dcam/',
-	'http://purl.org/net/opmv/ns#',
 	'http://usefulinc.com/ns/doap#',
 	'http://xmlns.com/foaf/0.1/',
 	'http://www.opengis.net/ont/geosparql#',
@@ -104,7 +100,13 @@ const commonVocabNamespaces = [
 	'http://www.w3.org/1999/02/22-rdf-syntax-ns#',
 	'http://www.w3.org/2000/01/rdf-schema#',
 	'http://www.w3.org/2001/XMLSchema#',
-	'http://www.w3.org/XML/1998/namespace'
+	'http://www.w3.org/XML/1998/namespace',
+	'https://w3id.org/obda/vocabulary#',
+	'http://creativecommons.org/ns#',
+	'https://doi.org/',
+	'http://www.w3.org/2003/11/swrl#',
+	'http://swrl.stanford.edu/ontologies/3.3/swrla.owl#',
+	'http://www.w3.org/2003/11/swrlb#'
 ];
 
 export const filtered = derived(searchStore, searchHandler);
@@ -126,57 +128,42 @@ function isCommonVocab(element: string): boolean {
 }
 
 function ontologySearchHandler(searchStore: SearchParams): OntologyID[] {
-	const { searchQuery, data: ontologies, options } = searchStore;
-	const queryFiltered = filter(
+	const { searchQuery, data: ontologies } = searchStore;
+	const filtered = searchByQuery(
 		searchQuery,
 		ontologies,
 		(el) =>
+			!isCommonVocab(el.subject) &&
+			el.predicate === RDF_TYPE &&
 			(el.object === OWL_ONTOLOGY ||
 				el.object === OWL_NAMED_INDIVIDUAL ||
 				el.object === OWL_DATATYPE_PROPERTY ||
-				el.object === OWL_OBJECT_PROPERTY) &&
-			!isCommonVocab(el.subject),
+				el.object === OWL_OBJECT_PROPERTY),
 		['subject', 'predicate', 'object']
 	);
 
-	const sorter = new QuadSorter(queryFiltered);
+	const result = filtered.map((el) => ({ ...el, subject: compactURI(el.subject, namespacesFile) }));
 
-	const sortedResult = options.alphabeticalOrder
-		? sorter.alphabeticalSort().getResult()
-		: sorter.reverseAlphabeticalSort().getResult();
-
-	const uris = new Set<OntologyID>(sortedResult.map((el) => el.ontologyID) as OntologyID[]);
-	return Array.from(uris);
+	return Array.from(new Set<OntologyID>(result.map((el) => el.ontologyID) as OntologyID[]));
 }
 
 function searchHandler(searchStore: SearchParams): SearchResult[] {
-	const { searchQuery, data: ontologies, options } = searchStore;
-	const queryFiltered = filter(
+	const { searchQuery, data: ontologies } = searchStore;
+	const filtered = searchByQuery(
 		searchQuery,
 		ontologies,
 		(el) =>
 			el.predicate === RDF_TYPE &&
+			!isCommonVocab(el.subject) &&
 			(el.object === OWL_DATATYPE_PROPERTY ||
 				el.object === OWL_OBJECT_PROPERTY ||
 				el.object === OWL_NAMED_INDIVIDUAL ||
-				el.object === OWL_CLASS) &&
-			!isCommonVocab(el.subject),
-		['subject', 'ontologyURI']
+				el.object === OWL_CLASS),
+		['subject', 'object']
 	);
-
-	const sorter = new QuadSorter(queryFiltered);
-
-	const result = options.alphabeticalOrder
-		? sorter.alphabeticalSort().getResult()
-		: sorter.reverseAlphabeticalSort().getResult();
-
-	return Array.from(
-		new Set(
-			result.map((el) => ({
-				uri: el.subject,
-				ontologyID: el.ontologyID,
-				type: el.object as OWLType
-			}))
-		)
-	);
+	return filtered.map((el) => ({
+		uri: el.subject,
+		ontologyID: el.ontologyID,
+		type: el.object as OWLType
+	}));
 }

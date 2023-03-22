@@ -51,6 +51,12 @@ export interface OntologyPageResponse {
 	ontologies: OntologyData;
 	uri: OntologyURI;
 }
+
+export enum _View {
+	Table,
+	Hierarchy,
+	Mapping
+}
 export const load = (async ({ params }) => {
 	const id = params.id as OntologyID;
 	if (!Object.keys(indexFile).includes(id)) {

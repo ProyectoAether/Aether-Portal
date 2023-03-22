@@ -20,16 +20,18 @@
 							alt="Aether Portal Logo"
 							width="80px"
 							height="45px"
-						/></a
-					>
-				</li>
-				<li>
-					<a href="https://aether.es" class="hover:underline">
-						<img src={AetherLogo} alt="Aether Logo" width="75px" height="45px" class="w-44" />
+						/>
+						<span class="sr-only">Aether Portal</span>
 					</a>
 				</li>
 				<li>
-					<a href="https://khaos.uma.es" class="hover:underline"
+					<a href="https://aether.es">
+						<img src={AetherLogo} alt="Aether Logo" width="75px" height="45px" class="w-44" />
+						<span class="sr-only">Aether</span>
+					</a>
+				</li>
+				<li>
+					<a href="https://khaos.uma.es"
 						><img
 							class="w-32"
 							src={KhaosLogo}
@@ -37,8 +39,9 @@
 							width="75px"
 							height="45px"
 							aria-label="Go to Khaos Research Website"
-						/></a
-					>
+						/>
+						<span class="sr-only">Khaos Research</span>
+					</a>
 				</li>
 			</ul>
 			<ul class="mb-6 md:mb-0 flex justify-center  items-center gap-2 menu menu-horizontal">
@@ -57,6 +60,7 @@
 				<li>
 					<a href="mailto:info@aether.es" aria-label="Contact to Aether Developer's Team">
 						<img class="w-11" src={EmailIcon} alt="Email Icon" />
+						<span class="sr-only">Contact us</span>
 					</a>
 				</li>
 			</ul>

@@ -37,18 +37,18 @@
 			ids={$filteredOntologies}
 			offset={$ontologySearchStore.options.offset}
 			limit={$ontologySearchStore.options.limit}
+			alphabeticalOrder={$ontologySearchStore.options.alphabeticalOrder}
 		>
 			<h2 slot="fallback" class="p-10 italic font-bold text-3xl">No matching Ontologies</h2>
 		</OntologySearchResult>
 		{#if $filteredOntologies.length > 0}
-			<Pagination
-				totalElements={$filteredOntologies.length}
-				bind:offset={$ontologySearchStore.options.offset}
-				elementsPerPage={$ontologySearchStore.options.limit}
-			/>
+			<div class="py-8 flex md:justify-start justify-center mt-auto">
+				<Pagination
+					totalElements={$filteredOntologies.length}
+					bind:offset={$ontologySearchStore.options.offset}
+					elementsPerPage={$ontologySearchStore.options.limit}
+				/>
+			</div>
 		{/if}
 	</section>
 </main>
-
-<style>
-</style>
