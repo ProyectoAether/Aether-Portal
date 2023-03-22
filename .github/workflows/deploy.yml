@@ -90,7 +90,7 @@ jobs:
       - name: Install dependencies
         working-directory: ./frontend
         shell: bash
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
       - name: Download ontologies and move it to the directory
         uses: actions/download-artifact@v3
         with:
