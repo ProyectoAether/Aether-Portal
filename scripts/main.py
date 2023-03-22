@@ -6,7 +6,7 @@ This is a script used for serializing RDF/XML format OWL ontology into multiple
 non standard format JSON files. It will calculate multiple ontologies' statistics,
 compute their metadata and collection of triples.
 
-THIS SCRIPT IS INTENDED to be used in conjunction with Aether Portal frontend 
+THIS SCRIPT IS INTENDED to be used in conjunction with Aether Portal frontend
 page, but it may be useful for other projects as well as it provides a naive
 interface for consuming ontologies' data.
 """
@@ -31,6 +31,9 @@ def main():
     index_builder = lib.IndexBuilder()
     with open(args.input_file, "r") as fd:
         for owl_uri in tqdm.tqdm(fd.readlines()):
+            if (owl_uri == "\n"):
+                continue
+            owl_uri = owl_uri.strip()
             logging.info(f"Serializing: {owl_uri}")
             g = Graph()
             g.parse(owl_uri, format="application/rdf+xml")

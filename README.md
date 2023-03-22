@@ -1,38 +1,37 @@
-# create-svelte
+# Aether Portal ![](https://img.shields.io/twitter/follow/aether_social?style=social)
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+![](https://github.com/ProyectoAether/Aether-Portal/actions/workflows/deploy.yml/badge.svg)
 
-## Creating a project
+_`Aether Portal` is an ontology repository for visualizing and previewing the most relevant
+ontologies from the [Aether Project](https://aether.es/)._
 
-If you're seeing this, you've probably already done this step. Congrats!
+[ProyectoAether.github.io/Aether-Portal](https://ProyectoAether.github.io/Aether-Portal)
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## :sparkles: Features
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- Search for class
+- Search for ontology
+- Ontology's class hierarchy
+- Ontology's metadata representation
+- Ontology's related statistics
 
-## Developing
+## :whale: Try out production build
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
+_It uses docker and nginx to serve static content locally_
 
 ```bash
-npm run build
+# https://docs.docker.com/get-docker/
+docker build -t aether-portal .
+
+# Deploy container locally on 127.0.0.1:5000/Aether-Portal
+docker run -p 5000:80 -d --rm --name AetherPortal aether-portal
+
+# Shutdown container
+docker stop AetherPortal
 ```
 
-You can preview the production build with `npm run preview`.
+## More information about AETHER
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- [Aether Project](aether.es/)
+- [El proyecto nacional 'Aether', punto de encuentro de cinco de los principales grupos de I+D en análisis de datos y Big Data](https://www.uma.es/sala-de-prensa/noticias/el-proyecto-nacional-aether-punto-de-encuentro-de-cinco-de-los-principales-grupos-de-id-en-analisis-de-datos-y-big-data/)
+- [Aether-US:Una aproximación holística de smart data para el análisis de datos guiado por el contexto: procesos de negocio inteligentes](https://investigacion.us.es/sisius/sis_proyecto.php?idproy=33855)

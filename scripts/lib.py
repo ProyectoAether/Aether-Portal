@@ -224,10 +224,15 @@ def build_metadata(
     """
     obj = []
     for s, p, o in graph:
-        obj.append({"subject": s, "predicate": p, "object": o})
-        metadata_builder.add(str(p), str(o), str(s))
+        subject_str = str(s)
+        predicate_str = str(p)
+        object_str = str(o)
+        obj.append(
+            {"subject": subject_str, "predicate": predicate_str, "object": object_str}
+        )
+        metadata_builder.add(predicate_str, object_str, subject_str)
         if stats_builder:
-            stats_builder.add(str(o))
+            stats_builder.add(object_str)
     return obj
 
 
@@ -290,13 +295,16 @@ class NamespaceBuilder:
             ontology_prefix: vann:preferredNamespacePrefix of the Ontology
             namespaces: An generator with (namespace, prefix) tuple value, this can
                         be obtained from rdflib.Graph.namespaces()
+
+        Returns:
+            NamespaceBuilder
         """
         for prefix, uri in namespaces:
             if str(prefix) != "":
                 self._namespaces.update({str(uri): prefix})
             else:
                 # if str(prefix) == "" it means that this the the ontology's tuple
-                self._namespaces.update({ontology_prefix: uri})
+                self._namespaces.update({uri: ontology_prefix})
         return self
 
     def _get_default_namespace(

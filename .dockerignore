@@ -1,0 +1,14 @@
+node_modules
+__pycache__
+.git
+.github
+.eslintignore
+.eslintrc.cjs
+.prettierignore
+.prettierrc
+tests
+.svelte-kit
+setupTest.ts
+playwright.config.ts
+
+
