@@ -6,7 +6,7 @@
 	import Modal from '$lib/components/modal/modal.svelte';
 	export let compacted: boolean;
 	export let offset: number;
-	export let limit: number;
+	export let elementsPerPage: number;
 	export let triples: Triple[];
 	function isURL(target: string): boolean {
 		try {
@@ -29,19 +29,15 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each triples.slice(offset * limit, (offset + 1) * limit) as triple, index}
+			{#each triples.slice(offset * elementsPerPage, (offset + 1) * elementsPerPage) as triple, index}
 				<tr>
-					<th>{index + 1 + limit * offset}</th>
+					<th>{index + 1 + elementsPerPage * offset}</th>
 					<td>
 						<div class="flex items-center gap-3">
 							<span>
 								{compacted ? compactURI(triple.subject, namespaces, ':') : triple.subject}
 							</span>
-							<a
-								href={triple.subject}
-								class="link link-primary whitespace-nowrap bg-primary-focus p-2 rounded-md hover:bg-base-300 transition-colors"
-								rel="noreferrer"
-								target="_blank"
+							<a href={triple.subject} rel="noreferrer" target="_blank"
 								><img
 									src={LinkIcon}
 									height="40px"
@@ -65,19 +61,15 @@
 								<span>
 									{compacted ? compactURI(triple.object, namespaces, ':') : triple.object}
 								</span>
-								<a
-									href={triple.object}
-									rel="noreferrer"
-									class="link link-primary whitespace-nowrap bg-primary-focus p-2 rounded-md hover:bg-base-300 transition-colors"
-									target="_blank"
-									><img
-										class="w-6 h-6"
+							<a href={triple.object} rel="noreferrer" target="_blank">
+									<img
+										src={LinkIcon}
 										height="40px"
 										width="40px"
-										src={LinkIcon}
+										class="w-6 h-6"
 										alt="Documentation Link Icon"
-									/></a
-								>
+									/>
+								</a>
 							</div>
 						{:else if triple.object.length > 30}
 							<Modal

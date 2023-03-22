@@ -1,14 +1,14 @@
 <script lang="ts">
+	import { View } from '$lib/utils';
 	import { fade } from 'svelte/transition';
 
-	export let view: number;
+	export let view: View;
 	export let compacted: boolean;
-
-	let disable = false;
-	$: disable = view === 2 ? false : true;
 </script>
 
-<div class="my-6 p-6 grid grid-cols-1 place-items-start gap-10 md:grid-cols-4">
+<div
+	class="my-6 p-6 grid grid-cols-1 place-items-start md:place-items-center gap-10 md:grid-cols-4"
+>
 	<label for="table-view" class="flex justify-center items-center gap-4">
 		<input
 			type="radio"
@@ -16,7 +16,7 @@
 			data-testid="table-view"
 			bind:group={view}
 			class="radio radio-info"
-			value={0}
+			value={View.Table}
 		/>
 		<span>Table</span></label
 	>
@@ -28,7 +28,7 @@
 			data-testid="hierarchy-view"
 			bind:group={view}
 			class="radio radio-info"
-			value={1}
+			value={View.Hierarchy}
 		/>
 
 		<span>Class Hierarchy</span>
@@ -41,20 +41,19 @@
 			id="mappings"
 			class="radio radio-info"
 			bind:group={view}
-			value={2}
+			value={View.Mapping}
 		/>
 		<span>Mappings</span>
 	</label>
-	{#if disable}
-		<label for="compact" class="flex justify-center items-center gap-4" transition:fade>
-			<span>Compact</span>
-			<input
-				type="checkbox"
-				data-testid="compact-toggle"
-				id="compact"
-				class="toggle toggle-accent"
-				bind:checked={compacted}
-			/>
-		</label>
-	{/if}
+	<label for="compact" class="flex justify-center items-center gap-4" transition:fade>
+		<input
+			type="checkbox"
+			data-testid="compact-toggle"
+			id="compact"
+			disabled={view !== View.Table}
+			class="toggle toggle-info"
+			bind:checked={compacted}
+		/>
+		<span>Compact</span>
+	</label>
 </div>

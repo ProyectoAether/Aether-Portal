@@ -1,6 +1,12 @@
 {
 	"compilerOptions": {
 		"paths": {
+			"$route": [
+				"../src/routes"
+			],
+			"$route/*": [
+				"../src/routes/*"
+			],
 			"$lib": [
 				"../src/lib"
 			],

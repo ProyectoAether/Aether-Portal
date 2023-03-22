@@ -6,16 +6,14 @@
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview --host",
-		"test": "playwright test",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"test:unit": "vitest",
+		"test": "vitest",
 		"coverage": "vitest run --coverage",
 		"lint": "prettier --plugin-search-dir . --check . && eslint .",
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.28.1",
 		"@popperjs/core": "^2.11.6",
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@testing-library/dom": "^9.0.0",

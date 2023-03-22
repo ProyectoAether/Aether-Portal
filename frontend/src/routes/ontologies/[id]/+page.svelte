@@ -5,8 +5,8 @@
 	import Pagination from '$lib/components/pagination/pagination.svelte';
 	import PreviewOptions from '$lib/components/previewOptions.svelte';
 	import Mappings from '$lib/components/metadata/mappings.svelte';
-	import { fade } from 'svelte/transition';
-	import type { OntologyPageResponse } from './+page';
+	import type { OntologyPageResponse } from '$route/ontologies/[id]/+page';
+	import { View } from '$lib/utils';
 	import { sha256 } from 'js-sha256';
 	import {
 		indexFile,
@@ -20,9 +20,9 @@
 	let ontologies = data.ontologies;
 	const uri = data.uri;
 	const metadata = data.metadata;
-	let view = 0;
+	let view: View = View.Table;
 	let compacted = true;
-	let limit = 10;
+	let elementsPerPage = 10;
 	let offset = 0;
 	let imports = metadata.imports;
 
@@ -47,17 +47,17 @@
 	/>
 </svelte:head>
 <main class="container min-h-screen py-6">
-	<section class="container" in:fade>
+	<section class="container">
 		<MetadataTable bind:imports {metadata} triples={allTriples} />
 		<PreviewOptions bind:view bind:compacted />
-		{#if view === 0}
-			<TriplesTable triples={allTriples} {compacted} {offset} {limit} />
-			<div class="px-4">
-				<Pagination bind:offset {limit} total={allTriples.length} />
+		{#if view === View.Table}
+			<TriplesTable triples={allTriples} {compacted} {offset} {elementsPerPage} />
+			<div class="px-4 flex justify-center container">
+				<Pagination bind:offset {elementsPerPage} totalElements={allTriples.length} />
 			</div>
-		{:else if view === 1}
-			<Hierarchy bind:compacted triples={allTriples} />
-		{:else if view === 2}
+		{:else if view === View.Hierarchy}
+			<Hierarchy triples={allTriples} />
+		{:else if view === View.Mapping}
 			<Mappings excludedURI={uri} triples={allTriples} />
 		{/if}
 	</section>

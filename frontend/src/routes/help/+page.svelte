@@ -13,7 +13,7 @@
     It is expected to be easy to understand so that any user is able to upload ontologies to the page"
 />
 <main class="min-h-screen container p-8 prose">
-	<h1>Submit a Ontology</h1>
+	<h1>Submit an Ontology</h1>
 	<blockquote>Make sure that your OWL ontology has the RDF/XML format.</blockquote>
 	<blockquote>Follow this instructions in the "main" branch</blockquote>
 	<ol>
@@ -31,7 +31,7 @@
 				</a>
 			</p>
 		</li>
-		<li>Click on ontologies.txt and start making changes.</li>
+		<li>Click on "ontologies.txt" and start making changes.</li>
 		<img src={help0} alt="File location" />
 		<img src={help1} alt="Edit button" />
 		<li>Add your Ontology's URI to the file.</li>

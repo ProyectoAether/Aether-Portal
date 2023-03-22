@@ -14,6 +14,9 @@ const config = {
 	],
 
 	kit: {
+        alias:{
+            $route: "src/routes"
+        },
 		adapter: adapter(),
 		paths: {
 			base: ''

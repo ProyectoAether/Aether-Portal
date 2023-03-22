@@ -9,7 +9,7 @@
 		type OWLType,
 		type Triple
 	} from '$lib/assets/data';
-	import MetadataTableRow from './metadataTableRow.svelte';
+	import MetadataTableRow from '$lib/components/metadata/metadataTableRow.svelte';
 
 	export let metadata: OntologyMetadata;
 	export let triples: Triple[];
@@ -104,7 +104,10 @@
 </table>
 
 <style>
-	table {
-		font-size: clamp(0.5rem, -0.875rem + 8.333vw, 1rem);
+	th {
+		font-size: calc(1vh + 0.5rem);
+	}
+	td {
+		font-size: calc(1vh + 0.5rem);
 	}
 </style>

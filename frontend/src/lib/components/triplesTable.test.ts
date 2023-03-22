@@ -13,7 +13,7 @@ describe('Triples Table', async () => {
 		const offset = 0;
 		const limit = 10;
 		const compacted = false;
-		render(TriplesTable, { triples, limit, offset, compacted });
+		render(TriplesTable, { triples, elementsPerPage: limit, offset, compacted });
 		expect(screen.getByText('Inspect')).toBeInTheDocument();
 	});
 
@@ -21,21 +21,21 @@ describe('Triples Table', async () => {
 		const offset = 0;
 		const limit = 10;
 		const compacted = true;
-		render(TriplesTable, { triples, limit, offset, compacted });
+		render(TriplesTable, { triples, elementsPerPage: limit, offset, compacted });
 		expect(screen.getAllByText('owl:Class')[0]).toBeInTheDocument();
 	});
 	it('it only shows triples in the limit', async () => {
 		const offset = 0;
 		const limit = 2;
 		const compacted = false;
-		render(TriplesTable, { triples, limit, offset, compacted });
+		render(TriplesTable, { triples, elementsPerPage: limit, offset, compacted });
 		expect(screen.queryByText('class2')).not.toBeInTheDocument();
 	});
 	it('it only shows triples in the offset-limit range', async () => {
 		const offset = 1;
 		const limit = 2;
 		const compacted = true;
-		render(TriplesTable, { triples, limit, offset, compacted });
+		render(TriplesTable, { triples, elementsPerPage: limit, offset, compacted });
 		expect(screen.queryByText('ontology')).not.toBeInTheDocument();
 		expect(screen.queryByText('class')).not.toBeInTheDocument();
 	});

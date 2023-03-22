@@ -39,7 +39,11 @@ async function getOntologies(
 		}
 		return ontologyData as OntologyData;
 	} catch {
-		throw Error('Failed fetching ontology data');
+		throw error(500, {
+			message:
+				'Failed fetching ontology data. Have you write down all imported ontologies at ontologies.txt?',
+			code: 500
+		});
 	}
 }
 export interface OntologyPageResponse {
@@ -52,8 +56,8 @@ export const load = (async ({ params }) => {
 	if (!Object.keys(indexFile).includes(id)) {
 		throw error(404, {
 			message: 'Not found',
-            code: 404
-		})
+			code: 404
+		});
 	}
 	const imports = indexFile[id].imports as OntologyURI[];
 	return {

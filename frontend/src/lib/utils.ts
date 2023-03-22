@@ -1,6 +1,12 @@
 import type { Namespace, NamespaceURI, Quad, Triple } from '$lib/assets/data';
 import { OWL_CLASS, OWL_THING, RDFS_SUBCLASS_OF, RDF_TYPE } from '$lib/assets/data';
 
+export enum View {
+	Table,
+	Hierarchy,
+	Mapping
+}
+
 export function formatURI(uri: string): string {
 	if (uri[uri.length - 1] === '#') {
 		uri = uri.slice(0, -1) + '&hasTag';

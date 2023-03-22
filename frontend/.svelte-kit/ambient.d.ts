@@ -65,7 +65,6 @@ declare module '$env/static/private' {
 	export const NVM_DIR: string;
 	export const RUSTC_WRAPPER: string;
 	export const npm_package_scripts_dev: string;
-	export const npm_package_devDependencies__playwright_test: string;
 	export const npm_package_devDependencies_prettier: string;
 	export const npm_package_dependencies_svelte: string;
 	export const LOGNAME: string;
@@ -91,7 +90,6 @@ declare module '$env/static/private' {
 	export const LC_ADDRESS: string;
 	export const XDG_RUNTIME_DIR: string;
 	export const DISPLAY: string;
-	export const npm_package_scripts_test_unit: string;
 	export const npm_package_devDependencies_postcss_load_config: string;
 	export const npm_package_dependencies__tailwindcss_line_clamp: string;
 	export const LANG: string;
@@ -216,7 +214,6 @@ declare module '$env/dynamic/private' {
 		NVM_DIR: string;
 		RUSTC_WRAPPER: string;
 		npm_package_scripts_dev: string;
-		npm_package_devDependencies__playwright_test: string;
 		npm_package_devDependencies_prettier: string;
 		npm_package_dependencies_svelte: string;
 		LOGNAME: string;
@@ -242,7 +239,6 @@ declare module '$env/dynamic/private' {
 		LC_ADDRESS: string;
 		XDG_RUNTIME_DIR: string;
 		DISPLAY: string;
-		npm_package_scripts_test_unit: string;
 		npm_package_devDependencies_postcss_load_config: string;
 		npm_package_dependencies__tailwindcss_line_clamp: string;
 		LANG: string;
