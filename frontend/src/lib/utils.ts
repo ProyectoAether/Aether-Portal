@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+import type { Namespace, NamespaceURI, Triple } from '$lib/assets/data';
+import { OWL_CLASS, OWL_THING, RDFS_SUBCLASS_OF, RDF_TYPE } from '$lib/assets/data';
+
+=======
 import type { Namespace, NamespaceURI, Quad, Triple } from '$lib/assets/data';
 import { OWL_CLASS, OWL_THING, RDFS_SUBCLASS_OF, RDF_TYPE } from '$lib/assets/data';
 
@@ -34,6 +39,7 @@ export class QuadSorter implements Sorter<Quad> {
 		return this.triples;
 	}
 }
+>>>>>>> develop
 export function getUniformURI(uri: string) {
 	if (uri[uri.length - 1] === '/' || uri[uri.length - 1] === '#') {
 		return uri.slice(0, -1);
@@ -41,6 +47,10 @@ export function getUniformURI(uri: string) {
 	return uri;
 }
 
+<<<<<<< HEAD
+//https://www.freecodecamp.org/news/how-to-validate-urls-in-javascript/
+=======
+>>>>>>> develop
 export function isURI(sequence: string | undefined): boolean {
 	if (sequence === undefined) {
 		return false;
@@ -67,10 +77,13 @@ export function getChildren(classURI: string, triples: Triple[]): string[] {
 		.filter((el) => el.predicate === RDFS_SUBCLASS_OF && el.object === classURI)
 		.map((el) => el.subject);
 }
+<<<<<<< HEAD
+=======
 export interface CompactURIProps {
 	compacted: boolean;
 	sep: string;
 }
+>>>>>>> develop
 
 export function compactURI(uri: string, namespaces: Namespace, sep = ''): string {
 	if (!isURI(uri) || uri.length === 0) {
@@ -89,6 +102,8 @@ export function compactURI(uri: string, namespaces: Namespace, sep = ''): string
 	}
 	return uri.replace(nm, namespaces[nm as NamespaceURI] + sep).slice(0, -1);
 }
+<<<<<<< HEAD
+=======
 export function expandURI(uri: string, namespaces: Namespace): string {
 	if (!isURI(uri)) {
 		return uri;
@@ -99,3 +114,4 @@ export function expandURI(uri: string, namespaces: Namespace): string {
 	}
 	return tmp;
 }
+>>>>>>> develop

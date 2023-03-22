@@ -7,7 +7,9 @@
 	export let title: string;
 </script>
 
-<a href={'#' + id} class="italic inline-block w-[200px] md:w-[260px] 2xl:w-[300px]"
+<a
+	href={'#' + id}
+	class="italic w-[200px] md:w-[260px] 2xl:w-[300px] inline-block align-middle"
 	><p class="truncate">{value}</p></a
 >
 <div class="modal" {id}>

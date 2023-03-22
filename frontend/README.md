@@ -16,6 +16,11 @@ pnpm install
 yarn install
 ```
 
+## :hammer: Build configuration
+
+At `svelte.config.js` routes needs to be specify EXPLICITLY to allow prerendering of
+dynamic routes. Note that importing JSON files is still experimental in Node.
+
 ## :sunglasses: Preview locally
 
 ```bash
@@ -25,6 +30,14 @@ yarn build && yarn preview
 ```
 
 ## :computer: Development
+
+### :globe_with_meridians: Dev server
+
+```bash
+npm run dev
+pnpm dev
+yarn dev
+```
 
 ### :star2: Lint and format
 
@@ -40,12 +53,4 @@ yarn format && yarn lint
 npm run test:unit
 pnpm test:unit
 yarn test:unit
-```
-
-### :globe_with_meridians: Dev server
-
-```bash
-npm run dev
-pnpm dev
-yarn dev
 ```

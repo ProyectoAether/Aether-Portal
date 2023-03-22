@@ -3,9 +3,9 @@ WORKDIR /scripts
 COPY scripts/requirements.txt .
 RUN pip install -r requirements.txt
 COPY scripts .
-COPY input.txt .
+COPY ../ontologies.txt .
 RUN mkdir output
-RUN python3 main.py ./input.txt ./output
+RUN python3 main.py ./ontologies.txt ./output
 
 FROM node:19.8.1 AS app-builder
 WORKDIR /app
@@ -19,7 +19,7 @@ RUN pnpm build
 
 
 FROM nginx:1.23.3 AS deploy-static
-WORKDIR /usr/share/nginx/html/Aether-Portal
+WORKDIR /usr/share/nginx/html
 RUN rm -rvf ./*
 COPY --from=app-builder /app/build .
 CMD ["nginx", "-g", "daemon off;"]

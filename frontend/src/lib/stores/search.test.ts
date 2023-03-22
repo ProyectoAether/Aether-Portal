@@ -1,6 +1,6 @@
 import type { Ontology } from '$lib/assets/types';
 import type { SearchOptions, SearchParams } from './search';
-import { classSearchStore, filteredClasses, reset as resetSearch } from './search';
+import { searchStore, filteredClasses, reset as resetSearch } from './search';
 import { get } from 'svelte/store';
 
 describe('derived store', () => {
@@ -46,15 +46,15 @@ describe('derived store', () => {
 			data: ontologies,
 			options: searchOptions
 		};
-		classSearchStore.set(input);
+		searchStore.set(input);
 		const updatedInput: SearchParams = {
 			searchQuery: 'does not match to anything',
 			data: ontologies,
 			options: searchOptions
 		};
-		classSearchStore.update(() => updatedInput);
+		searchStore.update(() => updatedInput);
 		expect(get(filteredClasses)).toStrictEqual([]);
-		expect(get(classSearchStore).options.offset).toBe(0);
+		expect(get(searchStore).options.offset).toBe(0);
 	});
 	it('filters and eliminates duplicates', () => {
 		const input: SearchParams = {
@@ -62,7 +62,7 @@ describe('derived store', () => {
 			data: ontologies,
 			options: searchOptions
 		};
-		classSearchStore.set(input);
+		searchStore.set(input);
 		expect(get(filteredClasses)).toStrictEqual([
 			{ subject: 'foo', predicate: 'bar', object: 'baz' },
 			{ subject: 'foo', predicate: 'world', object: 'hello' }
@@ -74,7 +74,7 @@ describe('derived store', () => {
 			data: ontologies,
 			options: searchOptions
 		};
-		classSearchStore.set(input);
+		searchStore.set(input);
 		expect(get(filteredClasses)).toStrictEqual([]);
 	});
 });

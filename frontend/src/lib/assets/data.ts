@@ -11,13 +11,13 @@ export interface Quad {
 	subject: string;
 	predicate: string;
 	object: string;
-	ontology: string;
+	ontologyID: OntologyID;
 }
-export type OntologyURI = keyof typeof index;
+export type OntologyID = keyof typeof index;
 export type NamespaceURI = keyof typeof namespaces;
 
 export type OntologyData = {
-	[uri in OntologyURI]: Triple[];
+	[uri in OntologyID]: Triple[];
 };
 export type Index = typeof index;
 export type Namespace = typeof namespaces;
@@ -25,9 +25,12 @@ export type Stat = typeof stats;
 
 export const namespacesFile: Namespace = namespaces;
 export const indexFile: Index = index;
+const uris = Object.values(index).map((el) => el.uri);
+export type OntologyURI = (typeof uris)[number];
 export const statsFile: Stat = stats;
 
-export type OntologyMetadata = (typeof index)['https://w3id.org/BIGOWL'];
+export type OntologyMetadata =
+	(typeof indexFile)['ce17f638d8bc00c2db21000a07fad4871422bbed869096a824abd62d325dec72'];
 
 export const RDF_TYPE = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
 export const RDFS_SUBCLASS_OF = 'http://www.w3.org/2000/01/rdf-schema#subClassOf';

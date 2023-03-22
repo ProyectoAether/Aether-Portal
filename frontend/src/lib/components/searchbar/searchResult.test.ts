@@ -1,5 +1,5 @@
-import type { Triple } from '$lib/assets/types';
-import { OWL_CLASS, RDF_TYPE } from '$lib/uri';
+import type { Triple } from '$lib/assets/data';
+import { OWL_CLASS, RDF_TYPE } from '$lib/assets/data';
 import { screen, render } from '@testing-library/svelte';
 import SearchResult from './searchResult.svelte';
 it('shows not matching result if there is not result', async () => {

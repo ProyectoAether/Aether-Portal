@@ -1,21 +1,16 @@
 <script lang="ts">
-	import { getRootsURI, type CompactURIProps } from '$lib/utils';
-	import HierarchyNode from '$lib/components/tree/node.svelte';
+	import { getRootsURI } from '$lib/utils';
+	import HierarchyNode from '$lib/components/tree/hierarchyNode.svelte';
 	import type { Triple } from '$lib/assets/data';
-	import { fade } from 'svelte/transition';
 
-	export let compacted: CompactURIProps;
-	let visited = new Set<string>();
 	export let triples: Triple[];
 	$: roots = getRootsURI(triples);
 </script>
 
 {#if roots.length > 0}
-	<ul data-testid="hierarchy-tree">
+	<ul class="pl-10 block tree" data-testid="hierarchy-tree">
 		{#each roots as root}
-			<li class="py-4 leading-5 relative pl-4 pb-4" transition:fade>
-				<HierarchyNode data={root} {triples} bind:compacted bind:visited />
-			</li>
+			<HierarchyNode uri={root} {triples} />
 		{/each}
 	</ul>
 {:else}
@@ -24,15 +19,42 @@
 	</div>
 {/if}
 
-<style>
-	li:before {
-		position: absolute;
-		top: 0;
-		bottom: 0;
-		left: -0.5em;
-		display: block;
-		width: 0;
-		border-left: 1px dashed #777;
+<style global>
+	/* Reference: https://codepen.io/axelaredz/pen/WNzPxb*/
+	.tree li::before,
+	.tree li::after {
 		content: '';
+		left: -20px;
+		position: absolute;
+		right: auto;
+	}
+	.tree li::before {
+		border-left: 1px solid #999;
+		bottom: 50px;
+		height: 100%;
+		top: 0;
+		width: 1px;
+	}
+	.tree li::after {
+		border-top: 1px solid #999;
+		height: 20px;
+		top: 30px;
+		width: 25px;
+	}
+	.tree li.parent_li > span {
+		cursor: pointer;
+	}
+	.tree > ul > li::before,
+	.tree > ul > li::after {
+		border: 0;
+	}
+	.tree li:last-child::before {
+		height: 30px;
+	}
+	.tree li.parent_li > span:hover,
+	.tree li.parent_li > span:hover + ul li span {
+		background: #eee;
+		border: 1px solid #94a0b4;
+		color: #000;
 	}
 </style>
