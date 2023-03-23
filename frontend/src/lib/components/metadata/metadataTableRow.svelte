@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { isURI } from '$lib/utils';
+
 	export let value: string[] | string | number;
 	export let field: string;
 	export let imports: string[];
@@ -23,6 +25,8 @@
 			<p>{v}</p>
 		{/if}
 	{/each}
+{:else if typeof value === 'string' && isURI(value)}
+	<a class="link link-primary" href={value}>{value}</a>
 {:else}
 	<p>{value}</p>
 {/if}

@@ -56,7 +56,7 @@
 				<Pagination bind:offset {elementsPerPage} totalElements={allTriples.length} />
 			</div>
 		{:else if view === _View.Hierarchy}
-			<Hierarchy triples={allTriples} />
+			<Hierarchy compacted triples={allTriples} />
 		{:else if view === _View.Mapping}
 			<Mappings excludedURI={uri} triples={allTriples} />
 		{/if}

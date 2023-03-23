@@ -5,8 +5,9 @@
 	export let uri: string;
 	export let triples: Triple[];
 	let show = true;
+	export let compacted = true;
 	const children = getChildren(uri, triples);
-	uri = compactURI(uri, namespaces, ':');
+	$: uri = compacted ? compactURI(uri, namespaces, ':') : uri;
 </script>
 
 <li class="m-0 pt-3 px-1 relative {children.length > 0 ? 'parent_li' : ''}">

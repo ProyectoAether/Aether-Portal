@@ -3,16 +3,20 @@
 	export let totalElements: number;
 	export let elementsPerPage: number;
 	export let numButtons = 3;
-	const numPages = Math.ceil(totalElements / elementsPerPage);
-	const pages = Array(numPages)
+
+	$: numPages = Math.ceil(totalElements / elementsPerPage);
+	$: pages = Array(numPages)
 		.fill(0)
 		.map((_, i) => i + 1);
-	const maxStartPage = Math.max(numPages - numButtons, 0);
+	$: maxStartPage = Math.max(numPages - numButtons, 0);
 	// offset + 1 is the current page number
 	$: noMorePrevious = offset + 1 === 1;
 	$: noMoreNext = offset + 1 === numPages;
 	$: startPage = Math.min(Math.max(offset - Math.floor(numButtons / 2), 0), maxStartPage);
 	$: endPage = Math.min(startPage + numButtons, numPages);
+	$: if (offset >= numPages) {
+		offset = numPages - 1;
+	}
 
 	function goToPage(page: number) {
 		// offset + 1 is the current page number
@@ -45,7 +49,7 @@
 			disabled={noMorePrevious}
 			data-testid="go-back-btn"
 			class="btn btn-xs md:btn-md"
-			on:click={() => goToPage(startPage + 1)}>Prev</button
+			on:click={() => goToPage(offset)}>Prev</button
 		>
 	{/if}
 	{#each pages.slice(startPage, endPage) as page}
@@ -62,7 +66,7 @@
 			disabled={noMoreNext}
 			data-testid="go-next-btn"
 			class="btn btn-xs md:btn-md"
-			on:click={() => goToPage(endPage)}>Next</button
+			on:click={() => goToPage(offset + 2)}>Next</button
 		>
 		<button
 			data-testid="go-to-end-btn"

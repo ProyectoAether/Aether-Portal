@@ -21,6 +21,7 @@ async function getOntology(
 		[id]: (await import(`../../../lib/assets/ontologies/${indexes[id].filename}.json`)) as Triple[]
 	};
 }
+
 async function getOntologies(
 	id: OntologyID,
 	imports: OntologyURI[],

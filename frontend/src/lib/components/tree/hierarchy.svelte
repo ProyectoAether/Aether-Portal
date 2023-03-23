@@ -3,6 +3,7 @@
 	import HierarchyNode from '$lib/components/tree/hierarchyNode.svelte';
 	import type { Triple } from '$lib/assets/data';
 
+	export let compacted = true;
 	export let triples: Triple[];
 	$: roots = getRootsURI(triples);
 </script>
@@ -10,7 +11,7 @@
 {#if roots.length > 0}
 	<ul class="pl-10 block tree" data-testid="hierarchy-tree">
 		{#each roots as root}
-			<HierarchyNode uri={root} {triples} />
+			<HierarchyNode uri={root} {compacted} {triples} />
 		{/each}
 	</ul>
 {:else}

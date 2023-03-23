@@ -4,12 +4,12 @@
 declare global {
 	namespace App {
 		interface Error {
-			code: string;
-        }
+			code: number;
+			message: string;
+		}
 		// interface Locals {}
 		// interface PageData {}
 		// interface Platform {}
-
 	}
 
 	namespace svelteHTML {

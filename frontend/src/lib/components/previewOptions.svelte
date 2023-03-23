@@ -54,7 +54,7 @@
 			type="checkbox"
 			data-testid="compact-toggle"
 			id="compact"
-			disabled={view !== _View.Table}
+			disabled={view === _View.Mapping}
 			class="toggle toggle-info"
 			bind:checked={compacted}
 		/>

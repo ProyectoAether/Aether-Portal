@@ -295,7 +295,7 @@ class NamespaceBuilder:
         """Updates the collection of namespaces
 
         Args:
-            ontology_prefix: vann:preferredNamespacePrefix of the Ontology
+            ontology_prefix: vann:preferredNamespacePrefix's object of the Ontology
             namespaces: An generator with (namespace, prefix) tuple value, this can
                         be obtained from rdflib.Graph.namespaces()
 
