@@ -28,7 +28,7 @@
 	{#if numPages > 1}
 		<button
 			data-testid="go-to-start-btn"
-			class="btn btn-xs md:btn-md"
+			class="pagination-btn"
 			disabled={noMorePrevious}
 			on:click={() => goToPage(1)}
 			aria-label="Go to first page"
@@ -48,14 +48,15 @@
 		<button
 			disabled={noMorePrevious}
 			data-testid="go-back-btn"
-			class="btn btn-xs md:btn-md"
+			class="pagination-btn"
 			on:click={() => goToPage(offset)}>Prev</button
 		>
 	{/if}
 	{#each pages.slice(startPage, endPage) as page}
 		<button
-			class="btn btn-xs md:btn-md"
-			class:btn-active={offset === page - 1}
+			class="pagination-btn {offset === page - 1
+				? 'text-white hover:bg-primary hover:border-primary bg-primary border-primary'
+				: ''}"
 			on:click={() => goToPage(page)}
 		>
 			{page}
@@ -65,12 +66,12 @@
 		<button
 			disabled={noMoreNext}
 			data-testid="go-next-btn"
-			class="btn btn-xs md:btn-md"
+			class="pagination-btn"
 			on:click={() => goToPage(offset + 2)}>Next</button
 		>
 		<button
 			data-testid="go-to-end-btn"
-			class="btn btn-xs md:btn-md"
+			class="pagination-btn"
 			disabled={noMoreNext}
 			on:click={() => goToPage(numPages)}
 			aria-label="Go to last page"

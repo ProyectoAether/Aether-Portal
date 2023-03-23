@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { statsFile } from '$lib/assets/data';
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
 	import Countup from 'svelte-countup';
 	const duration = 1200;

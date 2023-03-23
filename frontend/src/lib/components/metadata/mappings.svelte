@@ -5,7 +5,7 @@
 	export let triples: Triple[];
 	export let excludedURI: string;
 	function getOntology(uri: string): OntologyURI | undefined {
-		let result;
+		let result: string | undefined;
 		for (let i = uri.length - 1; i > 0; i--) {
 			if (uri[i] === '/' || uri[i] === '#') {
 				result = uri.slice(0, i);
@@ -57,7 +57,7 @@
 					<tr>
 						<th>{i + 1}</th>
 						<td
-							><a href={ontology} target="_blank" rel="noreferrer" class="link text-primary-focus">
+							><a href={ontology} target="_blank" rel="noreferrer" class="link text-primary">
 								{ontology}
 							</a>
 						</td>

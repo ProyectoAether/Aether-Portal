@@ -54,18 +54,17 @@
 	<blockquote>
 		For more information about notifications, check out &nbsp;
 		<a
-			class="link text-primary-focus"
+			class="link text-primary"
 			href="https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications"
 			rel="noreferrer"
 			target="_blank"
 		>
 			Github Documetation
 		</a>
-		The next steps are optional but recommended
 	</blockquote>
 	<blockquote>
 		For more information, check out&nbsp;<a
-			class="link text-primary-focus"
+			class="link text-primary"
 			href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork"
 			>Github Documentation</a
 		>.
