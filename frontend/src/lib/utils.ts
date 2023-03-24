@@ -1,6 +1,5 @@
 import { namespacesFile, type Namespace, type NamespaceURI, type Triple } from '$lib/assets/data';
 import { OWL_CLASS, OWL_THING, RDFS_SUBCLASS_OF, RDF_TYPE } from '$lib/assets/data';
-
 export function getUniformURI(uri: string) {
 	if (uri[uri.length - 1] === '/' || uri[uri.length - 1] === '#') {
 		return uri.slice(0, -1);

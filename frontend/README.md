@@ -8,6 +8,16 @@ most relevant ontologies from the Aether Project.
 
 Consumed JSON files are located at `src/lib/assets/ontologies`
 
+## :eyes: Preview without any installation needed
+
+```bash
+# In the build directory, run:
+docker run --name preview-build -p 5000:80 --rm -v $(pwd):/usr/share/nginx/html:ro -d nginx
+
+# Stop container, it will be removed due to the --rm option previously specified
+docker stop preview-build
+```
+
 ## :package: Install dependencies
 
 ```bash

@@ -1,7 +1,7 @@
 import preprocess from 'svelte-preprocess';
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
-import indexFile from './src/lib/assets/ontologies/index.json' assert { type: "json" };
+import indexFile from './src/lib/assets/ontologies/index.json' assert { type: 'json' };
 
 const entries = Object.keys(indexFile).map((id) => `/ontologies/${id}`);
 entries.push("/", "/submit", "/ontologies", "/search")
