@@ -30,26 +30,31 @@ async function getOntologies(
 	const promises = imports.map((el) => getOntology(sha256(el) as OntologyID, indexes));
 	promises.push(base);
 	try {
-		const datas = await Promise.all(promises);
+		const datas = await Promise.allSettled(promises);
 		const ontologyData = {};
 		for (const data of datas) {
-			// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-			// @ts-ignore
-			ontologyData[Object.keys(data)[0]] = Object.values(data)[0].default;
+			if (data.status === 'fulfilled') {
+				const id = Object.keys(data.value)[0];
+				// @ts-ignore
+				ontologyData[id] = data.value[id].default;
+			}
 		}
-		return ontologyData as OntologyData;
+	return ontologyData as OntologyData;
 	} catch {
 		throw error(500, {
-			message:
-				'Failed fetching ontology data. Have you write down all imported ontologies at ontologies.txt?',
+			message: 'Failed fetching ontology data',
 			code: 500
 		});
 	}
+
 }
+
+export type ImportResult = { uri: OntologyURI; status: boolean };
 export interface OntologyPageResponse {
 	metadata: OntologyMetadata;
 	ontologies: OntologyData;
 	uri: OntologyURI;
+	imports: ImportResult[];
 }
 
 export enum _View {
@@ -65,10 +70,17 @@ export const load = (async ({ params }) => {
 			code: 404
 		});
 	}
-	const imports = indexFile[id].imports as OntologyURI[];
+	const expectedImports = indexFile[id].imports as OntologyURI[];
+	const ontologiesURI = Object.values(indexFile).map((el) => el.uri);
+	const failedImports = expectedImports.filter((x) => ontologiesURI.includes(x));
+	const imports = expectedImports.map((x) => ({
+		uri: x,
+		status: failedImports.find((y) => y === x) ? true : false
+	}));
 	return {
 		metadata: indexFile[id],
-		ontologies: await getOntologies(id, imports, indexFile),
-		uri: indexFile[id].uri
+		ontologies: await getOntologies(id, expectedImports, indexFile),
+		uri: indexFile[id].uri,
+		imports
 	};
 }) satisfies PageLoad;

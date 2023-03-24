@@ -3,16 +3,19 @@
 	export let totalElements: number;
 	export let elementsPerPage: number;
 	export let numButtons = 3;
-	const numPages = Math.ceil(totalElements / elementsPerPage);
-	const pages = Array(numPages)
+	$: numPages = Math.ceil(totalElements / elementsPerPage);
+	$: pages = Array(numPages)
 		.fill(0)
 		.map((_, i) => i + 1);
-	const maxStartPage = Math.max(numPages - numButtons, 0);
+	$: maxStartPage = Math.max(numPages - numButtons, 0);
 	// offset + 1 is the current page number
 	$: noMorePrevious = offset + 1 === 1;
 	$: noMoreNext = offset + 1 === numPages;
 	$: startPage = Math.min(Math.max(offset - Math.floor(numButtons / 2), 0), maxStartPage);
 	$: endPage = Math.min(startPage + numButtons, numPages);
+	$: if (offset >= numPages) {
+		offset = numPages - 1;
+	}
 
 	function goToPage(page: number) {
 		// offset + 1 is the current page number
@@ -24,7 +27,7 @@
 	{#if numPages > 1}
 		<button
 			data-testid="go-to-start-btn"
-			class="btn btn-xs md:btn-md"
+			class="pagination-btn"
 			disabled={noMorePrevious}
 			on:click={() => goToPage(1)}
 			aria-label="Go to first page"
@@ -44,14 +47,15 @@
 		<button
 			disabled={noMorePrevious}
 			data-testid="go-back-btn"
-			class="btn btn-xs md:btn-md"
-			on:click={() => goToPage(startPage + 1)}>Prev</button
+			class="pagination-btn"
+			on:click={() => goToPage(offset)}>Prev</button
 		>
 	{/if}
 	{#each pages.slice(startPage, endPage) as page}
 		<button
-			class="btn btn-xs md:btn-md"
-			class:btn-active={offset === page - 1}
+			class="pagination-btn {offset === page - 1
+				? 'text-white hover:bg-primary hover:border-primary bg-primary border-primary'
+				: ''}"
 			on:click={() => goToPage(page)}
 		>
 			{page}
@@ -61,12 +65,12 @@
 		<button
 			disabled={noMoreNext}
 			data-testid="go-next-btn"
-			class="btn btn-xs md:btn-md"
-			on:click={() => goToPage(endPage)}>Next</button
+			class="pagination-btn"
+			on:click={() => goToPage(offset + 2)}>Next</button
 		>
 		<button
 			data-testid="go-to-end-btn"
-			class="btn btn-xs md:btn-md"
+			class="pagination-btn"
 			disabled={noMoreNext}
 			on:click={() => goToPage(numPages)}
 			aria-label="Go to last page"

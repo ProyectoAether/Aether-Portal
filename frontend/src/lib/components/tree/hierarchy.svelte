@@ -1,10 +1,15 @@
 <script lang="ts">
-	import { getRootsURI } from '$lib/utils';
+	import { compactURI, getRootsURI } from '$lib/utils';
 	import HierarchyNode from '$lib/components/tree/hierarchyNode.svelte';
-	import type { Triple } from '$lib/assets/data';
+	import { namespacesFile, type Triple } from '$lib/assets/data';
 
 	export let triples: Triple[];
-	$: roots = getRootsURI(triples);
+	$: triples = triples.map((el) => ({
+		subject: compactURI(el.subject, namespacesFile, ':'),
+		predicate: compactURI(el.predicate, namespacesFile, ':'),
+		object: compactURI(el.object, namespacesFile, ':')
+	}));
+	$: roots = getRootsURI(triples).sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1));
 </script>
 
 {#if roots.length > 0}
@@ -20,7 +25,7 @@
 {/if}
 
 <style global>
-	/* Reference: https://codepen.io/axelaredz/pen/WNzPxb*/
+	/* https://codepen.io/axelaredz/pen/WNzPxb */
 	.tree li::before,
 	.tree li::after {
 		content: '';

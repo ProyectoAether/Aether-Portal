@@ -3,8 +3,8 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/rdflib)
 
-This is a script used for serializing RDF/XML format OWL ontology into multiple
-non standard format JSON files. It will calculate multiple ontologies' statistics,
+This is a script used for serializing OWL ontology into multiple non standard 
+format JSON files. It will calculate multiple ontologies' statistics,
 compute their metadata and collection of triples.
 
 THIS SCRIPT IS INTENDED to be used in conjunction with Aether Portal frontend
