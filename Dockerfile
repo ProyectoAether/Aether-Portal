@@ -1,5 +1,7 @@
 FROM python:3.11.2 AS data-builder
 WORKDIR /scripts
+RUN python -m venv virtenv
+RUN source virtenv/bin/activate
 COPY scripts/requirements.txt .
 RUN pip install -r requirements.txt
 COPY scripts .
@@ -13,7 +15,7 @@ RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 COPY frontend/pnpm-lock.yaml .
 RUN pnpm fetch --prod
 COPY frontend .
-RUN pnpm install -r --offline --prod
+RUN pnpm install --prod
 COPY --from=data-builder /scripts/output /app/src/lib/assets/ontologies
 RUN pnpm build
 

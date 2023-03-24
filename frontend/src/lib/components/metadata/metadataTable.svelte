@@ -7,13 +7,15 @@
 		RDF_TYPE,
 		type OntologyMetadata,
 		type OWLType,
-		type Triple
+		type Triple,
+		type OntologyURI
 	} from '$lib/assets/data';
 	import MetadataTableRow from '$lib/components/metadata/metadataTableRow.svelte';
 
 	export let metadata: OntologyMetadata;
 	export let triples: Triple[];
-	export let imports: string[];
+	export let failedImports: OntologyURI[];
+	export let imports: OntologyURI[];
 	const stringFields: (keyof OntologyMetadata)[] = [
 		'title',
 		'uri',
@@ -28,16 +30,16 @@
 	];
 	function getStats(imported: Triple[]) {
 		let stats = {
-			numIndividuals: 0,
-			numClasses: 0,
-			numDatatypeProperties: 0,
-			numObjecProperties: 0
+			'Number of Individuals': 0,
+			'Number of Classes': 0,
+			'Number of Datatype Properties': 0,
+			'Number of Object Properties': 0
 		};
 		const options = {
-			[OWL_NAMED_INDIVIDUAL]: () => (stats.numIndividuals = ++stats.numIndividuals),
-			[OWL_CLASS]: () => (stats.numClasses = ++stats.numClasses),
-			[OWL_DATATYPE_PROPERTY]: () => (stats.numDatatypeProperties = ++stats.numDatatypeProperties),
-			[OWL_OBJECT_PROPERTY]: () => (stats.numObjecProperties = ++stats.numObjecProperties)
+			[OWL_NAMED_INDIVIDUAL]: () => ++stats['Number of Individuals'],
+			[OWL_CLASS]: () => ++stats['Number of Classes'],
+			[OWL_DATATYPE_PROPERTY]: () => ++stats['Number of Datatype Properties'],
+			[OWL_OBJECT_PROPERTY]: () => ++stats['Number of Object Properties']
 		};
 		for (const { predicate, object } of imported) {
 			if (predicate !== RDF_TYPE) {
@@ -59,47 +61,18 @@
 			<tr>
 				<th class="whitespace-pre-wrap bg-base-200 uppercase">{field}</th>
 				<td class="whitespace-pre-wrap">
-					<MetadataTableRow {field} value={metadata[field]} bind:imports />
+					<MetadataTableRow {field} {failedImports} value={metadata[field]} bind:imports />
 				</td>
 			</tr>
 		{/each}
-		<tr>
-			<th class="whitespace-pre-wrap bg-base-200 uppercase">Number of classes</th>
-			<td class="whitespace-pre-wrap">
-				<MetadataTableRow field="Number of classes" value={stats.numClasses} bind:imports />
-			</td>
-		</tr>
-		<tr>
-			<th class="whitespace-pre-wrap bg-base-200 uppercase">Number of datatype properties</th>
-			<td class="whitespace-pre-wrap">
-				<MetadataTableRow
-					field="Number of datatype properties"
-					value={stats.numDatatypeProperties}
-					bind:imports
-				/>
-			</td>
-		</tr>
-		<tr>
-			<th class="whitespace-pre-wrap bg-base-200 uppercase">Number of object properties</th>
-			<td class="whitespace-pre-wrap">
-				<MetadataTableRow
-					field="Number of object properties"
-					value={stats.numObjecProperties}
-					bind:imports
-				/>
-			</td>
-		</tr>
-
-		<tr>
-			<th class="whitespace-pre-wrap bg-base-200 uppercase">Number of named individuals</th>
-			<td class="whitespace-pre-wrap">
-				<MetadataTableRow
-					field="Number of named individuals"
-					value={stats.numIndividuals}
-					bind:imports
-				/>
-			</td>
-		</tr>
+		{#each Object.entries(stats) as [field, value]}
+			<tr>
+				<th class="whitespace-pre-wrap bg-base-200 uppercase">{field}</th>
+				<td class="whitespace-pre-wrap">
+					<p>{value}</p>
+				</td>
+			</tr>
+		{/each}
 	</tbody>
 </table>
 

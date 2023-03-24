@@ -15,7 +15,7 @@
 			id="table-view"
 			data-testid="table-view"
 			bind:group={view}
-			class="radio radio-info"
+			class="radio radio-primary"
 			value={_View.Table}
 		/>
 		<span>Table</span></label
@@ -27,7 +27,7 @@
 			id="hierarchy-view"
 			data-testid="hierarchy-view"
 			bind:group={view}
-			class="radio radio-info"
+			class="radio radio-primary"
 			value={_View.Hierarchy}
 		/>
 
@@ -39,7 +39,7 @@
 			type="radio"
 			data-testid="mappings-toggle"
 			id="mappings"
-			class="radio radio-info"
+			class="radio radio-primary"
 			bind:group={view}
 			value={_View.Mapping}
 		/>
@@ -55,7 +55,7 @@
 			data-testid="compact-toggle"
 			id="compact"
 			disabled={view !== _View.Table}
-			class="toggle toggle-info"
+			class="toggle toggle-primary"
 			bind:checked={compacted}
 		/>
 		<span>Compact</span>

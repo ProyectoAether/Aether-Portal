@@ -1,12 +1,13 @@
 <script lang="ts">
-	import type { Triple } from '$lib/assets/data';
+	import { namespacesFile, type Triple } from '$lib/assets/data';
 	import { compactURI, getChildren } from '$lib/utils';
-	import namespaces from '$lib/assets/ontologies/namespaces.json';
 	export let uri: string;
 	export let triples: Triple[];
 	let show = true;
-	const children = getChildren(uri, triples);
-	uri = compactURI(uri, namespaces, ':');
+	const children = getChildren(uri, triples).sort((a, b) =>
+		a.toLowerCase() > b.toLowerCase() ? 1 : -1
+	);
+	$: uri = compactURI(uri, namespacesFile, ':');
 </script>
 
 <li class="m-0 pt-3 px-1 relative {children.length > 0 ? 'parent_li' : ''}">

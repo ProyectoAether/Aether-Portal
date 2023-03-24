@@ -10,11 +10,11 @@
 	export let triples: Triple[];
 </script>
 
-<div class="overflow-x-auto my-10">
-	<table id="data" data-testid="triples-table" class=" table table-compact w-full">
+<div class="overflow-x-auto auto my-10">
+	<table id="data" data-testid="triples-table" class="table table-compact w-full table-fixed">
 		<thead>
 			<tr>
-				<th />
+				<th class="w-1/12" />
 				<th>Subject</th>
 				<th>Predicate</th>
 				<th>Object</th>
@@ -23,8 +23,8 @@
 		<tbody>
 			{#each triples.slice(offset * elementsPerPage, (offset + 1) * elementsPerPage) as triple, index}
 				<tr>
-					<th>{index + 1 + elementsPerPage * offset}</th>
-					<td>
+					<th class="w-1/12">{index + 1 + elementsPerPage * offset}</th>
+					<td class="whitespace-normal break-all">
 						<span class="inline-block align-middle">
 							{compacted ? compactURI(triple.subject, namespaces, ':') : triple.subject}
 						</span>
@@ -42,12 +42,12 @@
 							/></a
 						>
 					</td>
-					<td>
+					<td class="whitespace-normal break-all">
 						<span>
 							{compacted ? compactURI(triple.predicate, namespaces, ':') : triple.predicate}
 						</span>
 					</td>
-					<td>
+					<td class="whitespace-normal break-all">
 						{#if isURI(triple['object'])}
 							<div>
 								<span class="inline-block align-middle">

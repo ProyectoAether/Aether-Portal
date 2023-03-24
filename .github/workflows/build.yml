@@ -1,32 +1,13 @@
-# Simple workflow for deploying static content to GitHub Pages
-name: gh-pages
+name: build-artifact
 
 on:
-  # Runs on push or pull_request merge targeting the default branch
-  push:
-    branches:
-      - "main"
-    paths:
-      - "ontologies.txt"
-  schedule:
-    - cron: "30 7 21 * *"
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-permissions:
-  issues: write
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow one concurrent deployment
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
+  pull_request:
+    types:
+      - labeled
+      - synchronize
 jobs:
   pre-build:
+    if: contains(github.event.pull_request.labels.*.name, 'build')
     name: Updates Ontologies' JSON files
     runs-on: ubuntu-20.04
     defaults:
@@ -52,19 +33,6 @@ jobs:
         with:
           name: ontologies
           path: ./scripts/ontologies
-  notify-job:
-    runs-on: ubuntu-20.04
-    needs: pre-build
-    name: Create failure issue
-    if: ${{ failure() }}
-    steps:
-      - uses: actions/checkout@v3
-      - uses: JasonEtco/create-an-issue@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        id: create-issue
-      - run: "echo Created issue number ${{ steps.create-issue.outputs.number }}"
-      - run: "echo Created ${{ steps.create-issue.outputs.url }}"
 
   build:
     name: Build Svelte static site
@@ -89,8 +57,8 @@ jobs:
       - name: Install dependencies
         working-directory: ./frontend
         shell: bash
-        run: pnpm install --prod
-      - name: Create ontologies directory
+        run: pnpm install
+      - name: Move ontologies to assets/ontologies
         shell: bash
         run: mkdir ./frontend/src/lib/assets/ontologies
       - name: Download ontologies and move it to the directory
@@ -101,30 +69,9 @@ jobs:
       - name: Build
         working-directory: ./frontend
         shell: bash
-        run: |
-          pnpm build
-          touch ./build/.nojekyll
+        run: pnpm build
       - name: Upload Build
         uses: actions/upload-artifact@v3
         with:
           name: build
           path: ./frontend/build
-  deploy:
-    name: gh pages
-    needs: build
-    runs-on: ubuntu-20.04
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Download build
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: "."
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v1

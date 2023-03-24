@@ -35,9 +35,9 @@
 
 {#if ordered.length > 0}
 	<div class="overflow-x-auto">
-		<table class="table w-full">
+		<table class="table w-full table-fixed">
 			<thead>
-				<th />
+				<th class="w-1/12" />
 				<th class="flex gap-2 items-center"
 					><span>Name</span>
 					<button on:click={() => (alphabeticalOrder = !alphabeticalOrder)}>
@@ -55,8 +55,8 @@
 				{#each ordered.slice(offset * limit, (offset + 1) * limit) as result, index}
 					{@const uri = indexFile[result.ontologyID].uri}
 					<tr class="hover">
-						<th>{index + 1 + limit * offset}</th>
-						<td>
+						<th class="w-1/12">{index + 1 + limit * offset}</th>
+						<td class="whitespace-normal break-all">
 							<span class="align-middle inline-block">
 								{compacted ? compactURI(result.uri, namespacesFile, ':') : result.uri}
 							</span>
@@ -70,13 +70,13 @@
 								/></a
 							>
 						</td>
-						<td>
+						<td class="whitespace-normal break-all">
 							{compacted ? compactURI(result.type, namespacesFile, ':') : result.type}
 						</td>
-						<td>
+						<td class="whitespace-normal break-all">
 							<a
 								href="{base}/ontologies/{sha256(uri)}"
-								class="link link-primary align-middle inline-block"
+								class="link text-primary align-middle inline-block"
 								>{compacted ? compactURI(uri, namespacesFile, '') : uri}</a
 							>
 							<a href={result.uri} class="align-middle inline-block">

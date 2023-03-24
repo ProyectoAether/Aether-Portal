@@ -1,9 +1,9 @@
 <script lang="ts">
-	import help0 from '$lib/assets/img/help-0.png';
 	import help1 from '$lib/assets/img/help-1.png';
 	import help2 from '$lib/assets/img/help-2.png';
 	import help3 from '$lib/assets/img/help-3.png';
 	import help4 from '$lib/assets/img/help-4.png';
+	import help5 from '$lib/assets/img/help-5.png';
 	import githubIcon from '$lib/assets/svg/github-icon.svg';
 </script>
 
@@ -21,15 +21,17 @@
 		<li>
 			<p class="flex items-center gap-3">
 				<span> Go to our Github repository </span>
-				<a href="https://github.com/ProyectoAether/Aether-Portal" rel="noreferrer" target="_blank">
-					<img src={githubIcon} height="40px" width="40px" alt="Github Icon" />
+				<a
+					href="https://github.com/ProyectoAether/Aether-Portal/edit/main/ontologies.txt"
+					rel="noreferrer"
+					target="_blank"
+				>
+					<img class="w-8 m-0" src={githubIcon} height="40px" width="40px" alt="Github Icon" />
 				</a>
 			</p>
 		</li>
-		<li>Click on "ontologies.txt" and start making changes.</li>
-		<img src={help0} alt="File location" />
+		<li>Add your Ontology's URI to the "ontologies.txt" file.</li>
 		<img src={help1} alt="Edit button" />
-		<li>Add your Ontology's URI to the file.</li>
 		<img src={help2} alt="Edit file" />
 		<blockquote>
 			NOTE: The blank lines are only used for clarity purposes, they do not alter the correctness of
@@ -40,11 +42,29 @@
 		<img src={help3} alt="Commit change" />
 		<li>Click on create pull request.</li>
 		<img src={help4} alt="Create pull request" />
+		<li>
+			The maintainers of the website will review your uploaded ontology. Please stay tuned for any
+			comments from the maintainers. If the ontology has the expected RDF/XML form it will be served
+			to the page.
+		</li>
+		<li>OPTIONAL: Activate email notification at settings.</li>
+		<img src={help5} alt="Email Notification" />
 	</ol>
 
 	<blockquote>
+		For more information about notifications, check out &nbsp;
+		<a
+			class="link text-primary"
+			href="https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications"
+			rel="noreferrer"
+			target="_blank"
+		>
+			Github Documetation
+		</a>
+	</blockquote>
+	<blockquote>
 		For more information, check out&nbsp;<a
-			class="link text-primary-focus"
+			class="link text-primary"
 			href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request-from-a-fork"
 			>Github Documentation</a
 		>.
