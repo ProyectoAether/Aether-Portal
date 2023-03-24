@@ -1,5 +1,7 @@
 FROM python:3.11.2 AS data-builder
 WORKDIR /scripts
+RUN python -m venv virtenv
+RUN source virtenv/bin/activate
 COPY scripts/requirements.txt .
 RUN pip install -r requirements.txt
 COPY scripts .
