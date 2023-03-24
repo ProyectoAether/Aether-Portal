@@ -58,9 +58,10 @@ jobs:
         working-directory: ./frontend
         shell: bash
         run: pnpm install
-      - name: Move ontologies to assets/ontologies
+      - name: Create directory
+        working-directory: ./frontend
         shell: bash
-        run: mkdir ./frontend/src/lib/assets/ontologies
+        run: mkdir ./src/lib/assets/ontologies
       - name: Download ontologies and move it to the directory
         uses: actions/download-artifact@v3
         with:
@@ -69,7 +70,7 @@ jobs:
       - name: Build
         working-directory: ./frontend
         shell: bash
-        run: pnpm build
+        run: NODE_OPTIONS=--max-old-space-size=8192 pnpm build
       - name: Upload Build
         uses: actions/upload-artifact@v3
         with:

@@ -6,8 +6,6 @@ on:
   push:
     branches:
       - "main"
-    paths:
-      - "ontologies.txt"
   schedule:
     - cron: "30 7 21 * *"
 
@@ -102,7 +100,7 @@ jobs:
         working-directory: ./frontend
         shell: bash
         run: |
-          pnpm build
+         NODE_OPTIONS=--max-old-space-size=8192 pnpm build
           touch ./build/.nojekyll
       - name: Upload Build
         uses: actions/upload-artifact@v3

@@ -1,7 +1,10 @@
 FROM python:3.11.2 AS data-builder
 WORKDIR /scripts
-RUN python -m venv virtenv
-RUN source virtenv/bin/activate
+
+ENV VIRTUAL_ENV=/opt/venv
+RUN python3 -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
 COPY scripts/requirements.txt .
 RUN pip install -r requirements.txt
 COPY scripts .
@@ -17,7 +20,7 @@ RUN pnpm fetch --prod
 COPY frontend .
 RUN pnpm install --prod
 COPY --from=data-builder /scripts/output /app/src/lib/assets/ontologies
-RUN pnpm build
+RUN NODE_OPTIONS=--max-old-space-size=8192 pnpm build
 
 
 FROM nginx:1.23.3 AS deploy-static
