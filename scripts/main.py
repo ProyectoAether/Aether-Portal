@@ -11,6 +11,7 @@ page, but it may be useful for other projects as well as it provides a naive
 interface for consuming ontologies' data.
 """
 
+import hashlib
 import json
 import logging
 import typing
@@ -48,9 +49,11 @@ def main():
                 obj = lib.build_metadata(g, metadata_builder, stats_builder)
                 metadata = metadata_builder.build()
                 namespace_builder.add(metadata["prefix"], g.namespaces())
-                index_builder.add(metadata["uri"], metadata)
+                hasher = hashlib.sha256()
+                hasher.update(metadata["uri"].encode())
+                index_builder.add(hasher.hexdigest(), metadata)
                 with open(
-                    Path(args.output_directory, metadata["filename"] + ".json"), "w+"
+                    Path(args.output_directory, hasher.hexdigest() + ".json"), "w+"
                 ) as fd:
                     json.dump(obj, fd)
             except lib.MissingMetadataException as e:

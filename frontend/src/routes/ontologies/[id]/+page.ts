@@ -1,6 +1,5 @@
 import {
 	indexFile,
-	type Index,
 	type OntologyData,
 	type OntologyMetadata,
 	type OntologyID,
@@ -13,21 +12,19 @@ import type { PageLoad } from './$types';
 
 async function getOntology(
 	id: OntologyID,
-	indexes: Index
 ): Promise<{
 	[x: string]: Triple[];
 }> {
 	return {
-		[id]: (await import(`../../../lib/assets/ontologies/${indexes[id].filename}.json`)) as Triple[]
+		[id]: (await import(`../../../lib/assets/ontologies/${id}.json`)) as Triple[]
 	};
 }
 async function getOntologies(
 	id: OntologyID,
 	imports: OntologyURI[],
-	indexes: Index
 ): Promise<OntologyData> {
-	const base = getOntology(id, indexes);
-	const promises = imports.map((el) => getOntology(sha256(el) as OntologyID, indexes));
+	const base = getOntology(id);
+	const promises = imports.map((el) => getOntology(sha256(el) as OntologyID));
 	promises.push(base);
 	try {
 		const datas = await Promise.allSettled(promises);
@@ -79,7 +76,7 @@ export const load = (async ({ params }) => {
 	}));
 	return {
 		metadata: indexFile[id],
-		ontologies: await getOntologies(id, expectedImports, indexFile),
+		ontologies: await getOntologies(id, expectedImports),
 		uri: indexFile[id].uri,
 		imports
 	};
