@@ -31,9 +31,10 @@ def main():
     namespace_builder = lib.NamespaceBuilder()
     stats_builder = lib.StatsBuilder()
     index_builder = lib.IndexBuilder()
+    parsed_uris = set()
     with open(args.input_file, "r") as fd:
         for owl_uri in tqdm.tqdm(fd.readlines()):
-            if owl_uri == "\n":
+            if owl_uri == "\n" or owl_uri in parsed_uris:
                 continue
             owl_uri = owl_uri.strip()
             logging.info(f"Serializing: {owl_uri}")
@@ -54,6 +55,7 @@ def main():
                     f"rdflib parsers are: {typing.get_args(type_checking.RDFLIB_FORMATS)}"
                 )
                 raise ParserError(f"No rdflib parser was able to parse: {owl_uri}")
+            parsed_uris.add(owl_uri)
             metadata_builder = lib.MetadataBuilder()
             try:
                 obj = lib.build_metadata(g, metadata_builder, stats_builder)
