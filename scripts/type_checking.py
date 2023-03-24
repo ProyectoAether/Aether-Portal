@@ -1,13 +1,13 @@
 import typing
 
 RequiredMetadataField = typing.Literal[
-    "prefix",
     "title",
     "uri",
 ]
 
 
 OptionalMetadataField = typing.Literal[
+    "prefix",
     "filename",
     "logo",
     "description",

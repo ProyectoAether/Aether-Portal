@@ -4,6 +4,7 @@ import builtins
 import hashlib
 import logging
 import typing
+import uuid
 
 from rdflib import DCTERMS, OWL, RDFS, SDO, VANN, Graph, URIRef
 from rdflib._type_checking import _NamespaceSetString
@@ -134,6 +135,7 @@ class MetadataBuilder:
     """Ontology's metadata builder"""
 
     def __init__(self) -> None:
+        self.id = uuid.uuid4().hex
         self._metadata: MetadataFile = {
             # this `labels` field  is only used to get the ontology's label
             "labels": {},
@@ -164,17 +166,21 @@ class MetadataBuilder:
         self._metadata["label"] = self._metadata["labels"].get(
             self._metadata["uri"], ""
         )
-        self._metadata["filename"] = self._metadata["title"]
         for k, v in self._metadata.items():
             # TODO: modify it later to take commandline argument into account
             if k in typing.get_args(OptionalMetadataField):
-                if not v and v != "imports":
+                if not v and k != "imports":
                     logging.warning(f"MISSING {k}")
                 continue
             if not v:
+                self._metadata[k] = f"{k}_{self.id}"
+                logging.debug(f"ASSIGNING default {k}:{self._metadata[k]} value.")
+                continue
                 raise MissingMetadataException(k)
         # this `labels` field  is only used to get the ontology's label
         del self._metadata["labels"]
+
+        self._metadata["filename"] = self._metadata["title"]
         return self._metadata
 
     def add(self, field: str, value: str, uri: str) -> typing.Self:

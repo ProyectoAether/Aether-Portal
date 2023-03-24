@@ -81,10 +81,8 @@ https://alex-randles.github.io/OSCD/ontology.rdf
 https://francesnlp.github.io/EB-ontology/doc/ontology.rdf
 https://raw.githubusercontent.com/saidfathalla/EVENTSKG-Dataset/master/EVENTKG_R2.rdf
 https://pi.pauwel.be/evoc/list_W3ID/20151211/list.rdf
-https://fundaciontekniker.github.io/omicron-ontology/ontology.rdf
 https://www.irit.fr/recherches/MELODI/ontologies/ecise/ontology.rdf
 https://semantic-audio.github.io/afv/af-vocabulary.rdf
-http://wit.istc.cnr.it/arco/lode/extract?lang=en&url=%{ENV:ROOT_URL}$1.rdf
 https://francesnlp.github.io/NLS-ontology/doc/ontology.rdf
 https://lbdserver.github.io/vocabulary/lbds.rdf
 https://w3c.github.io/dpv/dpv-tech/dpv-tech.rdf

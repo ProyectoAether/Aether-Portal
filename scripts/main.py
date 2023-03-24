@@ -40,21 +40,8 @@ def main():
             logging.info(f"Serializing: {owl_uri}")
             # Since `g.parse()` may read part of the ontology file and store it at `g`
             # We create a new `g = rdflib.Graph()` to remove any added garbage
-            g = None
-            for format in typing.get_args(type_checking.RDFLIB_FORMATS):
-                g = Graph()
-                try:
-                    g.parse(owl_uri, format=format)
-                    logging.debug(f"SUCCEDED to parse {owl_uri} with {format} format")
-                    break
-                except Exception:
-                    logging.debug(f"FAILED to parse {owl_uri} with {format} format")
-                    continue
-            else:
-                logging.error(
-                    f"rdflib parsers are: {typing.get_args(type_checking.RDFLIB_FORMATS)}"
-                )
-                raise ParserError(f"No rdflib parser was able to parse: {owl_uri}")
+            g = Graph()
+            g.parse(owl_uri, format="xml")
             parsed_uris.add(owl_uri)
             metadata_builder = lib.MetadataBuilder()
             try:
