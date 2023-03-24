@@ -1,7 +1,6 @@
 //** @type {import('tailwindcss').Config} */
 const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
-
 	theme: {
 		container: {
 			center: true
@@ -15,7 +14,7 @@ const config = {
 		require('@tailwindcss/typography')
 	],
 	daisyui: {
-		themes: ['corporate']
+		themes: ['light']
 	},
 	darkMode: 'class'
 };

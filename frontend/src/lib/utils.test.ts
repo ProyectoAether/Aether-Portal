@@ -1,5 +1,5 @@
-import type { Namespace, Triple } from '$lib/assets/types';
-import { URIFormatter, isURI, compactURI, expandURI } from '$lib/utils';
+import type { Namespace, Triple } from '$lib/assets/data';
+import { isURI, compactURI, expandURI } from '$lib/utils';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 declare module 'vitest' {

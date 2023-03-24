@@ -1,1 +1,0 @@
-const t=6,e=145,s=134,n=30,o={numOntologies:6,numClasses:145,numDatatypeProperties:134,numObjectProperties:30};export{o as default,e as numClasses,s as numDatatypeProperties,n as numObjectProperties,t as numOntologies};

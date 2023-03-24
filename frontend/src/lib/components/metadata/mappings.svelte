@@ -37,7 +37,9 @@
 		}
 		return count;
 	}
-	$: mappings = Array.from(getMappings(triples)).filter(([, count]) => count.size > 0);
+	$: mappings = Array.from(getMappings(triples))
+		.filter(([, count]) => count.size > 0)
+		.sort(([, countA], [, countB]) => (countA.size > countB.size ? -1 : 1));
 </script>
 
 <div class="overflow-x-auto">
@@ -55,7 +57,7 @@
 					<tr>
 						<th>{i + 1}</th>
 						<td
-							><a href={ontology} target="_blank" rel="noreferrer" class="link link-primary">
+							><a href={ontology} target="_blank" rel="noreferrer" class="link text-primary-focus">
 								{ontology}
 							</a>
 						</td>

@@ -1,44 +1,10 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { page } from '$app/stores';
 	export let searchQuery: string;
 	export let title: string;
-	export let kbShortcut: string;
-	let searchInput: HTMLInputElement;
-	function smoothScroll(element: HTMLInputElement, offset = -350) {
-		const yOffsetPixels: number = offset;
-		const y: number = element.getBoundingClientRect().top + window.pageYOffset + yOffsetPixels;
-		window.scrollTo({ top: y, behavior: 'smooth' });
-	}
-	onMount(() => {
-		const hash = $page.url.hash;
-		if (hash === searchInput.id) {
-			smoothScroll(searchInput, 400);
-			searchInput.focus();
-		}
-		const handler = (event: KeyboardEvent) => {
-			if (event.key.toLowerCase() === kbShortcut && event.ctrlKey === true) {
-				event.preventDefault();
-				smoothScroll(searchInput);
-				searchInput.focus();
-			}
-		};
-		document.addEventListener('keydown', (event) => {
-			handler(event);
-		});
-		return () => document.removeEventListener('keydown', handler);
-	});
 </script>
 
 <form on:submit={(e) => e.preventDefault()} class="container p-10">
 	<h2 class="text-2xl font-semibold py-2 px-2">{title}</h2>
-	<div data-testid="shortcut-hint" class="italic bg-gray-200 rounded-lg px-4 py-2 inline-block">
-		<span class="text-black">Press</span>
-		<kbd class="kbd">Ctrl</kbd>
-		<span class="text-black">+</span>
-		<kbd class="kbd">{kbShortcut}</kbd>
-		<span class="text-black">to start searching</span>
-	</div>
 	<slot name="search-options" />
 	<div class="mb-4 flex items-center input input-bordered w-full max-w-x  rounded-lg shadow">
 		<div class="pl-2">
@@ -51,11 +17,11 @@
 		</div>
 		<input
 			data-testid="search-input"
+			id="search"
 			class="w-full focus:outline-none py-2 px-2"
 			type="text"
 			tabindex="0"
 			bind:value={searchQuery}
-			bind:this={searchInput}
 			placeholder={title}
 			autocomplete="off"
 		/>
