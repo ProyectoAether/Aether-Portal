@@ -8,7 +8,6 @@ RequiredMetadataField = typing.Literal[
 
 OptionalMetadataField = typing.Literal[
     "prefix",
-    "filename",
     "logo",
     "description",
     "publisher",

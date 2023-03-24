@@ -145,7 +145,6 @@ class MetadataBuilder:
             "creator": [],
             "created": "",
             "publisher": [],
-            "filename": "",
             "title": "",
             "description": "",
             "logo": "",
@@ -180,7 +179,6 @@ class MetadataBuilder:
         # this `labels` field  is only used to get the ontology's label
         del self._metadata["labels"]
 
-        self._metadata["filename"] = self._metadata["title"]
         return self._metadata
 
     def add(self, field: str, value: str, uri: str) -> typing.Self:
@@ -257,7 +255,7 @@ class IndexBuilder:
         """
         return self._index
 
-    def add(self, uri: str, metadata: MetadataFile) -> typing.Self:
+    def add(self, index: str, metadata: MetadataFile) -> typing.Self:
         """Updates the index
 
         Args:
@@ -267,9 +265,7 @@ class IndexBuilder:
         Returns:
             IndexBuilder
         """
-        hasher = hashlib.sha256()
-        hasher.update(uri.encode())
-        self._index[hasher.hexdigest()] = metadata
+        self._index[index] = metadata
         return self
 
 

@@ -33,8 +33,8 @@ function searchByQuery(
 }
 
 async function getAllOntologies(index: Index): Promise<Quad[][]> {
-	const imports = Object.entries(index).map(async ([uri, file]) => {
-		const module = await import(`../../lib/assets/ontologies/${file.filename}.json`);
+	const imports = Object.keys(index).map(async (uri) => {
+		const module = await import(`../../lib/assets/ontologies/${uri}.json`);
 		const triples = module.default as Triple[];
 		return triples.map((el) => ({ ...el, ontologyID: uri } as Quad));
 	});

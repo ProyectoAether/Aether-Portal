@@ -100,7 +100,7 @@ jobs:
         working-directory: ./frontend
         shell: bash
         run: |
-          pnpm build
+         NODE_OPTIONS=--max-old-space-size=8192 pnpm build
           touch ./build/.nojekyll
       - name: Upload Build
         uses: actions/upload-artifact@v3
@@ -122,7 +122,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: "."
+          path: .
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
