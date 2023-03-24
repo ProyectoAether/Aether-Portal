@@ -5,11 +5,11 @@ on:
   # Runs on push or pull_request merge targeting the default branch
   push:
     branches:
-      - 'main'
+      - "main"
     paths:
-      - 'ontologies.txt'
+      - "ontologies.txt"
   schedule:
-    - cron: '30 7 21 * *'
+    - cron: "30 7 21 * *"
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -22,7 +22,7 @@ permissions:
 
 # Allow one concurrent deployment
 concurrency:
-  group: 'pages'
+  group: "pages"
   cancel-in-progress: true
 
 jobs:
@@ -36,8 +36,8 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: "pip"
       - name: Generate JSON files
         shell: bash
         run: |
@@ -46,13 +46,12 @@ jobs:
           mkdir ontologies
           pip install -r requirements.txt
           python main.py ../ontologies.txt ontologies
-          tar -cvf data.tar ontologies/*
 
       - name: Upload JSON files
         uses: actions/upload-artifact@v3
         with:
-          name: data
-          path: ./scripts/data.tar
+          name: ontologies
+          path: ./scripts/ontologies
   notify-job:
     runs-on: ubuntu-20.04
     needs: pre-build
@@ -64,8 +63,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         id: create-issue
-      - run: 'echo Created issue number ${{ steps.create-issue.outputs.number }}'
-      - run: 'echo Created ${{ steps.create-issue.outputs.url }}'
+      - run: "echo Created issue number ${{ steps.create-issue.outputs.number }}"
+      - run: "echo Created ${{ steps.create-issue.outputs.url }}"
 
   build:
     name: Build Svelte static site
@@ -85,33 +84,31 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'pnpm'
+          cache: "pnpm"
           cache-dependency-path: ./frontend/pnpm-lock.yaml
       - name: Install dependencies
         working-directory: ./frontend
         shell: bash
-        run: pnpm install --no-frozen-lockfile
+        run: pnpm install --prod
+      - name: Create ontologies directory
+        shell: bash
+        run: mkdir ./frontend/src/lib/assets/ontologies
       - name: Download ontologies and move it to the directory
         uses: actions/download-artifact@v3
         with:
-          name: data
-      - name: Move ontologies to assets/ontologies
-        shell: bash
-        run: |
-          mkdir ontologies
-          tar -xvf data.tar -C ./frontend/src/lib/assets
+          name: ontologies
+          path: ./frontend/src/lib/assets/ontologies
       - name: Build
         working-directory: ./frontend
         shell: bash
         run: |
-          NODE_ENV=production pnpm build
+          pnpm build
           touch ./build/.nojekyll
-          tar -cvf build.tar ./build/*
       - name: Upload Build
         uses: actions/upload-artifact@v3
         with:
           name: build
-          path: ./frontend/build.tar
+          path: ./frontend/build
   deploy:
     name: gh pages
     needs: build
@@ -124,14 +121,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
-      - name: Untar build
-        run: |
-          tar -xvf build.tar
-          touch .nojekyll
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: './build'
+          path: "."
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1

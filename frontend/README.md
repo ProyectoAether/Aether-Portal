@@ -10,8 +10,20 @@ Consumed JSON files are located at `src/lib/assets/ontologies`
 
 ## :eyes: Preview without any installation needed
 
+1. Create a pull request that contains the `build` label.
+
+2. Download the `build` artifact from the actions tab.
+
 ```bash
-# In the build directory, run:
+mkdir app
+
+mv build.zip app
+
+cd app
+
+unzip app
+
+# Run a nginx container to host the static site
 docker run --name preview-build -p 5000:80 --rm -v $(pwd):/usr/share/nginx/html:ro -d nginx
 
 # Stop container, it will be removed due to the --rm option previously specified
