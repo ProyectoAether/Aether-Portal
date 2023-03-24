@@ -6,8 +6,6 @@ on:
   push:
     branches:
       - "main"
-    paths:
-      - "ontologies.txt"
   schedule:
     - cron: "30 7 21 * *"
 
