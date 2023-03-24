@@ -3,7 +3,6 @@
 	export let totalElements: number;
 	export let elementsPerPage: number;
 	export let numButtons = 3;
-
 	$: numPages = Math.ceil(totalElements / elementsPerPage);
 	$: pages = Array(numPages)
 		.fill(0)

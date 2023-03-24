@@ -41,8 +41,10 @@ def main():
             for format in typing.get_args(type_checking.RDFLIB_FORMATS):
                 try:
                     g.parse(owl_uri, format=format)
+                    logging.debug(f"SUCCEDED to parse {owl_uri} with {format} format")
                     break
-                except SyntaxError | ParserError:
+                except Exception:
+                    logging.debug(f"FAILED to parse {owl_uri} with {format} format")
                     continue
             else:
                 logging.error(f"No rdflib parser was able to parse: {owl_uri}")

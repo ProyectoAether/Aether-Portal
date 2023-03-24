@@ -28,7 +28,6 @@
 
 	function getAllTriples(uris: OntologyURI[], ontologies: OntologyData) {
 		return uris.reduce((acc, curr) => {
-			console.log(uris);
 			acc.push(...ontologies[sha256(curr) as OntologyID]);
 			return acc;
 		}, [] as Triple[]);
