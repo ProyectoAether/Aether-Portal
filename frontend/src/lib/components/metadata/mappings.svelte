@@ -57,7 +57,7 @@
 					<tr>
 						<th>{i + 1}</th>
 						<td
-							><a href={ontology} target="_blank" rel="noreferrer" class="link text-primary-focus">
+							><a href={ontology} target="_blank" rel="noreferrer" class="link text-primary">
 								{ontology}
 							</a>
 						</td>

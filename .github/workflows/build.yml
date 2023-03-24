@@ -1,0 +1,78 @@
+name: build-artifact
+
+on:
+  pull_request:
+    types:
+      - labeled
+      - synchronize
+jobs:
+  pre-build:
+    if: contains(github.event.pull_request.labels.*.name, 'build')
+    name: Updates Ontologies' JSON files
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./scripts
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - name: Generate JSON files
+        shell: bash
+        run: |
+          python -m venv virtenv
+          source virtenv/bin/activate
+          mkdir ontologies
+          pip install -r requirements.txt
+          python main.py ../ontologies.txt ontologies
+
+      - name: Upload JSON files
+        uses: actions/upload-artifact@v3
+        with:
+          name: ontologies
+          path: ./scripts/ontologies
+
+  build:
+    name: Build Svelte static site
+    needs: pre-build
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        node-version: [18]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 7
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+          cache-dependency-path: ./frontend/pnpm-lock.yaml
+      - name: Install dependencies
+        working-directory: ./frontend
+        shell: bash
+        run: pnpm install
+      - name: Download ontologies and move it to the directory
+        uses: actions/download-artifact@v3
+        with:
+          name: ontologies
+      - name: Move ontologies to assets/ontologies
+        shell: bash
+        run: |
+          mv ontologies ./frontend/src/lib/assets
+      - name: Build
+        working-directory: ./frontend
+        shell: bash
+        run: |
+          pnpm build
+      - name: Upload Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: ./frontend/build

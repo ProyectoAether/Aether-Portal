@@ -29,3 +29,11 @@ NamespaceFile = dict[str, str]
 StatField = typing.Literal[
     "numClasses", "numDatatypeProperties", "numObjectProperties", "numOntologies"
 ]
+
+
+RDFLIB_FORMATS = typing.Literal[
+    "turtle", "xml", "json-ld", "nt", "trix", "nquads", "n3", "hext", "json-ld"
+]
+"""This could be a issue if rdflib maintainers decides to remove some formats, 
+but right now there is no type declared for these formats in rdflib, so it is hard coded
+right now"""

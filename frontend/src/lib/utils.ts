@@ -1,45 +1,6 @@
-<<<<<<< HEAD
-import type { Namespace, NamespaceURI, Triple } from '$lib/assets/data';
+import { namespacesFile, type Namespace, type NamespaceURI, type Triple } from '$lib/assets/data';
 import { OWL_CLASS, OWL_THING, RDFS_SUBCLASS_OF, RDF_TYPE } from '$lib/assets/data';
 
-=======
-import type { Namespace, NamespaceURI, Quad, Triple } from '$lib/assets/data';
-import { OWL_CLASS, OWL_THING, RDFS_SUBCLASS_OF, RDF_TYPE } from '$lib/assets/data';
-
-export function formatURI(uri: string): string {
-	if (uri[uri.length - 1] === '#') {
-		uri = uri.slice(0, -1) + '&hasTag';
-	}
-	return uri;
-}
-
-interface Sorter<T> {
-	alphabeticalSort(): this;
-	reverseAlphabeticalSort(): this;
-	getResult(): T[];
-}
-export class QuadSorter implements Sorter<Quad> {
-	private triples: Quad[];
-	constructor(triples: Quad[]) {
-		this.triples = triples;
-	}
-	public alphabeticalSort(): this {
-		this.triples = this.triples.sort((a, b) =>
-			a.subject.toLowerCase() >= b.subject.toLowerCase() ? 1 : -1
-		);
-		return this;
-	}
-	public reverseAlphabeticalSort(): this {
-		this.triples = this.triples.sort((a, b) =>
-			a.subject.toLowerCase() < b.subject.toLowerCase() ? 1 : -1
-		);
-		return this;
-	}
-	public getResult(): Quad[] {
-		return this.triples;
-	}
-}
->>>>>>> develop
 export function getUniformURI(uri: string) {
 	if (uri[uri.length - 1] === '/' || uri[uri.length - 1] === '#') {
 		return uri.slice(0, -1);
@@ -47,10 +8,7 @@ export function getUniformURI(uri: string) {
 	return uri;
 }
 
-<<<<<<< HEAD
 //https://www.freecodecamp.org/news/how-to-validate-urls-in-javascript/
-=======
->>>>>>> develop
 export function isURI(sequence: string | undefined): boolean {
 	if (sequence === undefined) {
 		return false;
@@ -63,28 +21,29 @@ export function isURI(sequence: string | undefined): boolean {
 	}
 }
 
-export function getRootsURI(triples: Triple[]): string[] {
+export function getRootsURI(triples: Triple[], compacted = true): string[] {
+	const subclassOf = compacted
+		? compactURI(RDFS_SUBCLASS_OF, namespacesFile, ':')
+		: RDFS_SUBCLASS_OF;
+	const owlThing = compacted ? compactURI(OWL_THING, namespacesFile, ':') : OWL_THING;
+	const rdfType = compacted ? compactURI(RDF_TYPE, namespacesFile, ':') : RDF_TYPE;
+	const owlClass = compacted ? compactURI(OWL_CLASS, namespacesFile, ':') : OWL_CLASS;
 	const subClasses = triples
-		.filter((el) => el.predicate === RDFS_SUBCLASS_OF && el.object !== OWL_THING)
+		.filter((el) => el.predicate === subclassOf && el.object !== owlThing)
 		.map((el) => el.subject);
 	const classes = triples
-		.filter((el) => el.predicate === RDF_TYPE && el.object === OWL_CLASS)
+		.filter((el) => el.predicate === rdfType && el.object === owlClass)
 		.map((el) => el.subject);
 	return classes.filter((el) => !subClasses.includes(el));
 }
-export function getChildren(classURI: string, triples: Triple[]): string[] {
+export function getChildren(classURI: string, triples: Triple[], compacted = true): string[] {
+	const subclassOf = compacted
+		? compactURI(RDFS_SUBCLASS_OF, namespacesFile, ':')
+		: RDFS_SUBCLASS_OF;
 	return triples
-		.filter((el) => el.predicate === RDFS_SUBCLASS_OF && el.object === classURI)
+		.filter((el) => el.predicate === subclassOf && el.object === classURI)
 		.map((el) => el.subject);
 }
-<<<<<<< HEAD
-=======
-export interface CompactURIProps {
-	compacted: boolean;
-	sep: string;
-}
->>>>>>> develop
-
 export function compactURI(uri: string, namespaces: Namespace, sep = ''): string {
 	if (!isURI(uri) || uri.length === 0) {
 		return uri;
@@ -102,16 +61,3 @@ export function compactURI(uri: string, namespaces: Namespace, sep = ''): string
 	}
 	return uri.replace(nm, namespaces[nm as NamespaceURI] + sep).slice(0, -1);
 }
-<<<<<<< HEAD
-=======
-export function expandURI(uri: string, namespaces: Namespace): string {
-	if (!isURI(uri)) {
-		return uri;
-	}
-	let tmp = uri;
-	for (const [elUri, alias] of Object.entries(namespaces)) {
-		tmp = tmp.replace(alias + ':', elUri);
-	}
-	return tmp;
-}
->>>>>>> develop

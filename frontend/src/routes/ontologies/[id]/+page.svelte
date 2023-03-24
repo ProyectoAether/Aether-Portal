@@ -24,7 +24,7 @@
 	let compacted = true;
 	let elementsPerPage = 10;
 	let offset = 0;
-	let imports = metadata.imports;
+	let imports = data.imports;
 
 	function getAllTriples(uris: OntologyURI[], ontologies: OntologyData) {
 		return uris.reduce((acc, curr) => {
@@ -32,8 +32,10 @@
 			return acc;
 		}, [] as Triple[]);
 	}
+	let availableImports = imports.filter((el) => el.status).map((el) => el.uri);
+	let failedImports = imports.filter((el) => !el.status).map((el) => el.uri);
 
-	$: allTriples = getAllTriples([...imports, uri], ontologies);
+	$: allTriples = getAllTriples([...availableImports, uri], ontologies);
 	const title = indexFile[sha256(uri) as OntologyID].title;
 </script>
 
@@ -48,7 +50,7 @@
 </svelte:head>
 <main class="container min-h-screen py-6">
 	<section class="container px-2">
-		<MetadataTable bind:imports {metadata} triples={allTriples} />
+		<MetadataTable bind:imports={availableImports} {failedImports} {metadata} triples={allTriples} />
 		<PreviewOptions bind:view bind:compacted />
 		{#if view === _View.Table}
 			<TriplesTable triples={allTriples} {compacted} {offset} {elementsPerPage} />

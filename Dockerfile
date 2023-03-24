@@ -13,7 +13,7 @@ RUN curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm
 COPY frontend/pnpm-lock.yaml .
 RUN pnpm fetch --prod
 COPY frontend .
-RUN pnpm install -r --offline --prod
+RUN pnpm install --prod
 COPY --from=data-builder /scripts/output /app/src/lib/assets/ontologies
 RUN pnpm build
 

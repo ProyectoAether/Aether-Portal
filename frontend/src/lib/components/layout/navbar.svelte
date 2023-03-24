@@ -19,7 +19,7 @@
 					<a data-testid="ontologies-link" href="{base}/ontologies">Ontologies</a>
 				</li>
 				<li>
-					<a href="{base}/help"> Help </a>
+					<a href="{base}/submit"> Submit </a>
 				</li>
 			</ul>
 		</div>
@@ -42,7 +42,7 @@
 					<a data-testid="ontology-link" class="font-medium" href="{base}/ontologies">Ontologies</a>
 				</li>
 				<li>
-					<a class="font-medium" href="{base}/help">Help</a>
+					<a class="font-medium" href="{base}/submit">Submit</a>
 				</li>
 			</ul>
 		</div>
