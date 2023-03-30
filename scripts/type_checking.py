@@ -5,6 +5,10 @@ RequiredMetadataField = typing.Literal[
     "uri",
 ]
 
+SearcheableType = typing.Literal["class", "object_property", "data_property"]
+
+Searcheable = dict[str, dict[SearcheableType, list[str]]]
+
 
 OptionalMetadataField = typing.Literal[
     "prefix",

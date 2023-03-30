@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import builtins
-import hashlib
 import logging
 import typing
-import uuid
 
-from rdflib import DCTERMS, OWL, RDFS, SDO, VANN, Graph, URIRef
+from rdflib import DC, DCTERMS, OWL, RDF, RDFS, SDO, VANN, Graph, URIRef
 from rdflib._type_checking import _NamespaceSetString
 from rdflib.namespace import NamespaceManager
 from rdflib.term import _is_valid_uri
@@ -16,19 +14,26 @@ from type_checking import (
     MetadataFile,
     NamespaceFile,
     OptionalMetadataField,
+    Searcheable,
+    SearcheableType,
     StatField,
 )
 
 _URIREF_TO_METADATA_FIELDS: dict[URIRef, MetadataField] = {
     VANN.preferredNamespacePrefix: "prefix",
     SDO.logo: "logo",
+    VANN.preferredNamespaceUri: "uri",
     DCTERMS.description: "description",
     DCTERMS.title: "title",
-    VANN.preferredNamespaceUri: "uri",
     DCTERMS.publisher: "publisher",
     DCTERMS.creator: "creator",
     DCTERMS.created: "created",
     DCTERMS.rights: "rights",
+    DC.description: "description",
+    DC.title: "title",
+    DC.publisher: "publisher",
+    DC.creator: "creator",
+    DC.rights: "rights",
     OWL.imports: "imports",
     RDFS.label: "labels",
 }
@@ -39,6 +44,13 @@ _URIREF_TO_STATS_FIELDS: dict[URIRef, StatField] = {
     OWL.DatatypeProperty: "numDatatypeProperties",
     OWL.ObjectProperty: "numObjectProperties",
     OWL.Ontology: "numOntologies",
+}
+
+
+_URIREF_TO_SEARCHEABLE: dict[URIRef, SearcheableType] = {
+    OWL.Class: "class",
+    OWL.DatatypeProperty: "object_property",
+    OWL.ObjectProperty: "data_property",
 }
 
 
@@ -131,11 +143,44 @@ class MetadataValidator:
                     raise InvalidMetadataValueException(field, value)
 
 
+class SearchBuilder:
+    def __init__(self) -> None:
+        self._data: Searcheable = {}
+
+    def build(self) -> Searcheable:
+        return self._data
+
+    def add(self, graph: Graph, ontology_uri: str) -> None:
+        subset = self._data.get(
+            _compact_uri(URIRef(ontology_uri), graph),
+            {
+                "class": [],
+                "object_property": [],
+                "data_property": [],
+            },
+        )
+        for s, p, o in graph:
+            if URIRef(str(p)) != RDF.type:
+                continue
+            key = _URIREF_TO_SEARCHEABLE.get(URIRef(str(o)), None)
+            if key:
+                subset[key].append(_compact_uri(URIRef(str(s)), graph))
+        self._data.update({ontology_uri: subset})
+
+
+def _compact_uri(uri: URIRef, graph: Graph) -> str:
+    try:
+        return graph.compute_qname(uri)[-1]
+    except ValueError:
+        return uri
+
+
 class MetadataBuilder:
     """Ontology's metadata builder"""
 
-    def __init__(self) -> None:
-        self.id = uuid.uuid4().hex
+    def __init__(self, ontology_uri: str) -> None:
+        self._provided_ontology_uri = ontology_uri
+        self._computed_ontology_uris: list[str] = []
         self._metadata: MetadataFile = {
             # this `labels` field  is only used to get the ontology's label
             "labels": {},
@@ -143,10 +188,10 @@ class MetadataBuilder:
             "imports": [],
             "rights": [],
             "creator": [],
-            "created": "",
+            "created": [],
             "publisher": [],
-            "title": "",
-            "description": "",
+            "title": [],
+            "description": [],
             "logo": "",
             "prefix": "",
             "uri": "",
@@ -162,9 +207,36 @@ class MetadataBuilder:
         Raises:
             MissingMetadataException: If any field is missing
         """
+        if not self._metadata["uri"]:
+            if len(self._computed_ontology_uris) > 0:
+                computed_uri = [
+                    uri
+                    for uri in self._computed_ontology_uris
+                    if uri not in self._metadata["imports"]
+                ]
+                if len(computed_uri) > 0:
+                    self._metadata["uri"] = computed_uri[0]
+            else:
+                logging.warning(
+                    f"For {self._provided_ontology_uri}, the provided Ontology URI is used instead of the vann:preferredNamespaceUri."
+                )
+                self._metadata["uri"] = self._provided_ontology_uri
         self._metadata["label"] = self._metadata["labels"].get(
             self._metadata["uri"], ""
         )
+        # this `labels` field  is only used to get the ontology's label
+        del self._metadata["labels"]
+        if not self._metadata["title"]:
+            if self._metadata["label"]:
+                logging.warning(
+                    f"For {self._provided_ontology_uri}, the provided label is used instead of the dc:title or dcterms:title"
+                )
+                self._metadata["title"] = self._metadata["label"]
+            else:
+                logging.warning(
+                    f"For {self._provided_ontology_uri}, the provided URI is used instead of the dc:title or dcterms:title"
+                )
+                self._metadata["title"] = self._metadata["uri"]
         for k, v in self._metadata.items():
             # TODO: modify it later to take commandline argument into account
             if k in typing.get_args(OptionalMetadataField):
@@ -172,12 +244,7 @@ class MetadataBuilder:
                     logging.warning(f"MISSING {k}")
                 continue
             if not v:
-                self._metadata[k] = f"{k}_{self.id}"
-                logging.debug(f"ASSIGNING default {k}:{self._metadata[k]} value.")
-                continue
                 raise MissingMetadataException(k)
-        # this `labels` field  is only used to get the ontology's label
-        del self._metadata["labels"]
 
         return self._metadata
 
@@ -188,7 +255,8 @@ class MetadataBuilder:
         Args:
             field: Field to be updated
             value: Value used to update the field
-            uri: Ontology's URI
+            uri: Subject value of the triple, it is used internally for
+                computing the ontology URI, in case that the correct URI is not provided.
 
         Returns:
             MetadataBuilder: Metadata Builder
@@ -196,6 +264,10 @@ class MetadataBuilder:
         Raises:
             InvalidMetadataValueException
         """
+        # TODO: refactor
+        if URIRef(field) == RDF.type and URIRef(value) == OWL.Ontology:
+            self._computed_ontology_uris.append(uri)
+
         _field = _URIREF_TO_METADATA_FIELDS.get(URIRef(field), None)
         if not _field:
             return self
@@ -238,6 +310,7 @@ def build_metadata(
         metadata_builder.add(predicate_str, object_str, subject_str)
         if stats_builder:
             stats_builder.add(object_str)
+
     return obj
 
 
