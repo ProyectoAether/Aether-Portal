@@ -1,39 +1,22 @@
 <script lang="ts">
 	import { base } from '$app/paths';
-	import { indexFile, namespacesFile } from '$lib/assets/data';
-	import type { SearchResult } from '$lib/stores/search';
 	import LinkIcon from '$lib/assets/svg/link-icon.svg';
-	import { compactURI } from '$lib/utils';
 	import { sha256 } from 'js-sha256';
 	import aZ from '$lib/assets/svg/a-z.svg';
 	import zA from '$lib/assets/svg/z-a.svg';
-	export let compacted: boolean;
+	import type { SearchResult } from '$lib/components/searchbar/types';
+	import { namespacesFile } from '$lib/assets/data';
+
 	export let results: SearchResult[];
 	export let offset: number;
 	export let limit: number;
 	export let alphabeticalOrder: boolean;
-
-	function sort(data: SearchResult[], alphabeticalOrder: boolean) {
-		if (alphabeticalOrder) {
-			return data.sort((a, b) =>
-				compactURI(a.uri, namespacesFile, ':').toLowerCase() >=
-				compactURI(b.uri, namespacesFile).toLowerCase()
-					? 1
-					: -1
-			);
-		} else {
-			return data.sort((a, b) =>
-				compactURI(a.uri, namespacesFile, ':').toLowerCase() <
-				compactURI(b.uri, namespacesFile).toLowerCase()
-					? 1
-					: -1
-			);
-		}
-	}
-	$: ordered = sort(results, alphabeticalOrder);
+	$: alphabeticalOrder
+		? results.sort((a, b) => (a.compacted.toLowerCase() > b.compacted.toLowerCase() ? 1 : -1))
+		: results.sort((a, b) => (a.compacted.toLowerCase() < b.compacted.toLowerCase() ? 1 : -1));
 </script>
 
-{#if ordered.length > 0}
+{#if results.length > 0}
 	<div class="overflow-x-auto">
 		<table class="table w-full table-fixed">
 			<thead>
@@ -52,15 +35,14 @@
 				<th>Ontology</th>
 			</thead>
 			<tbody>
-				{#each ordered.slice(offset * limit, (offset + 1) * limit) as result, index}
-					{@const uri = indexFile[result.ontologyID].uri}
+				{#each results.slice(offset * limit, (offset + 1) * limit) as s, index}
 					<tr class="hover">
 						<th class="w-1/12">{index + 1 + limit * offset}</th>
 						<td class="whitespace-normal break-all">
-							<span class="align-middle inline-block">
-								{compacted ? compactURI(result.uri, namespacesFile, ':') : result.uri}
+							<span class="align-middle">
+								{s.compacted}
 							</span>
-							<a href={result.uri} class="align-middle inline-block"
+							<a href={s.uri} class="align-middle inline-block"
 								><img
 									class="w-4 mr-2"
 									width="40px"
@@ -70,16 +52,16 @@
 								/></a
 							>
 						</td>
-						<td class="whitespace-normal break-all">
-							{compacted ? compactURI(result.type, namespacesFile, ':') : result.type}
+						<td class="whitespace-normal break-all capitalize">
+							{s.data_type.replace('_', ' ')}
 						</td>
 						<td class="whitespace-normal break-all">
 							<a
-								href="{base}/ontologies/{sha256(uri)}"
-								class="link text-primary align-middle inline-block"
-								>{compacted ? compactURI(uri, namespacesFile, '') : uri}</a
+								href="{base}/ontologies/{sha256(s.ontology)}"
+								class="link text-primary align-middle inline"
+								>{namespacesFile[s.ontology] || s.ontology}</a
 							>
-							<a href={result.uri} class="align-middle inline-block">
+							<a href={s.ontology} class="align-middle inline-block">
 								<img
 									class="w-8 p-2"
 									width="40px"

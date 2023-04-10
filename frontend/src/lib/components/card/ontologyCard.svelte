@@ -1,15 +1,15 @@
 <script lang="ts">
 	import { base } from '$app/paths';
 	export let id: string;
-	export let logo: string | undefined;
-	export let title: string;
-	export let label: string | undefined;
-	export let description: string | undefined;
+	export let logo: string | undefined = undefined;
+	export let title: string | undefined = undefined;
+	export let label: string | undefined = undefined;
+	export let description: string | undefined = undefined;
 </script>
 
 <a
 	href="{base}/ontologies/{id}"
-	class="card card-normal shadow-xl hover:shadow-sm hover:bg-base-200 h-96"
+	class="card card-normal shadow-xl hover:shadow-sm hover:bg-base-200 h-96 md:w-96 w-80"
 >
 	{#if logo}
 		<figure class="px-10 pt-10">

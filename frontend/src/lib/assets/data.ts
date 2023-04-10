@@ -1,6 +1,8 @@
 import index from '$lib/assets/ontologies/index.json';
 import namespaces from '$lib/assets/ontologies/namespaces.json';
 import stats from '$lib/assets/ontologies/stats.json';
+import searchable from '$lib/assets/ontologies/searchable.json';
+import { fromJSON } from "arquero";
 
 export interface Triple {
 	subject: string;
@@ -28,6 +30,15 @@ export const indexFile: Index = index;
 const uris = Object.values(index).map((el) => el.uri);
 export type OntologyURI = (typeof uris)[number];
 export const statsFile: Stat = stats;
+
+export type Searchable = {
+    "uri": string[],
+    "ontology":string[],
+    "data_type": string[]
+    "compacted": string[]
+};
+
+export const searchableFile = fromJSON(JSON.stringify(searchable), {});
 
 export type OntologyMetadata =
 	(typeof indexFile)['ce17f638d8bc00c2db21000a07fad4871422bbed869096a824abd62d325dec72'];

@@ -59,13 +59,9 @@ def main():
                 ) as fd:
                     json.dump(obj, fd)
             except lib.MissingMetadataException as e:
-                match args.strictness:
-                    case "MINIMUM":
-                        if e.field in ("uri", "title"):
-                            raise e
-                        logging.warning(f"{owl_uri}: {e.message}")
-                    case "STRICT":
-                        raise e
+                if e.field in ("uri", "title"):
+                    logging.warning(f"{owl_uri}: {e.message}")
+                    raise e
     logging.info(
         "Serializing `searchable.json`, `namespaces.json`, `stats.json` and `index.json`."
     )
@@ -73,7 +69,10 @@ def main():
         [
             (search_builder.build(), "searchable.json"),
             (namespace_builder.build(), "namespaces.json"),
-            (stats_builder.build(), "stats.json"),
+            (
+                {**stats_builder.build(), "numOntologies": len(parsed_uris)},
+                "stats.json",
+            ),
             (index_builder.build(), "index.json"),
         ]
     ):
