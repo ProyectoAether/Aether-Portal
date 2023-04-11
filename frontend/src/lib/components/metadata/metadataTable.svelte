@@ -19,7 +19,6 @@
 	const stringFields: (keyof OntologyMetadata)[] = [
 		'title',
 		'uri',
-		'label',
 		'prefix',
 		'description',
 		'creator',
@@ -59,7 +58,7 @@
 	<tbody>
 		{#each stringFields as field}
 			<tr>
-				<th class="whitespace-pre-wrap bg-base-200 uppercase">{field}</th>
+				<th class="text-primary whitespace-pre-wrap bg-base-200 uppercase">{field}</th>
 				<td class="whitespace-pre-wrap">
 					<MetadataTableRow {field} {failedImports} value={metadata[field]} bind:imports />
 				</td>
@@ -67,7 +66,7 @@
 		{/each}
 		{#each Object.entries(stats) as [field, value]}
 			<tr>
-				<th class="whitespace-pre-wrap bg-base-200 uppercase">{field}</th>
+				<th class="text-primary whitespace-pre-wrap bg-base-200 uppercase">{field}</th>
 				<td class="whitespace-pre-wrap">
 					<p>{value}</p>
 				</td>

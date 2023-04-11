@@ -41,6 +41,8 @@
         "@sveltejs/kit": "^1.5.0",
         "@tailwindcss/line-clamp": "^0.4.2",
         "@tailwindcss/typography": "^0.5.9",
+        "@types/js-levenshtein": "^1.1.1",
+        "arquero": "^5.1.0",
         "autoprefixer": "^10.4.7",
         "daisyui": "^2.50.1",
         "fuse.js": "^6.6.2",

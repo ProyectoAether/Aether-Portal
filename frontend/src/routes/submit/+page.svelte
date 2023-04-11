@@ -14,9 +14,47 @@
     It is expected to be easy to understand so that any user is able to upload ontologies to the page"
 />
 <main class="min-h-screen container p-8 prose">
-	<h1>Submit an Ontology</h1>
-	<blockquote>Make sure that your OWL ontology has the RDF/XML format.</blockquote>
-	<blockquote>Follow this instructions in the "main" branch of the repository.</blockquote>
+	<h1 class="text-primary">Submit an Ontology</h1>
+	<h2 class="text-secondary">Prerrequisites</h2>
+	<ul>
+		<li>
+			Your OWL ontology must have one of the following standard formats:
+			<ul>
+				<li>XML</li>
+				<li>JSON-LD</li>
+				<li>Turtle</li>
+				<li>N3</li>
+				<li>NQuads</li>
+				<li>Hex tuples</li>
+				<li>NT</li>
+				<li>Trix</li>
+			</ul>
+		</li>
+		<li>
+			Your OWL ontology should have the following properties in order to avoid undefined behaviour:
+			<ul>
+				<li>http://purl.org/dc/terms/title</li>
+				<li>http://purl.org/vocab/vann/preferredNamespaceUri</li>
+			</ul>
+		</li>
+		<li>
+			Your OWL ontology can be improved by providing the following values:
+			<ul>
+				<li>http://purl.org/dc/terms/created</li>
+				<li>http://purl.org/dc/terms/rights</li>
+				<li>http://purl.org/dc/terms/description</li>
+				<li>http://purl.org/dc/terms/publisher</li>
+				<li>http://purl.org/dc/terms/creator</li>
+				<li>http://purl.org/dc/terms/title</li>
+				<li>http://purl.org/vocab/vann/preferredNamespaceUri</li>
+			</ul>
+		</li>
+	</ul>
+	<h2 class="text-secondary">Steps</h2>
+	<blockquote>
+		The next section assumes that you are making changes in the "main" branch of the Github
+		repository.
+	</blockquote>
 	<ol>
 		<li>
 			<p class="flex items-center gap-3">

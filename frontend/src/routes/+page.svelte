@@ -23,7 +23,6 @@
 			<OntologyCard
 				{id}
 				description={file.description}
-				label={file.label}
 				title={file.title}
 				logo={file.logo}
 			/>

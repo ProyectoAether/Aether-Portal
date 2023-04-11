@@ -25,7 +25,7 @@
 				<tr>
 					<th class="w-1/12">{index + 1 + elementsPerPage * offset}</th>
 					<td class="whitespace-normal break-all">
-						<span class="inline-block align-middle">
+						<span class="align-middle">
 							{compacted ? compactURI(triple.subject, namespaces, ':') : triple.subject}
 						</span>
 						<a
@@ -50,7 +50,7 @@
 					<td class="whitespace-normal break-all">
 						{#if isURI(triple['object'])}
 							<div>
-								<span class="inline-block align-middle">
+								<span class="inline align-middle">
 									{compacted ? compactURI(triple.object, namespaces, ':') : triple.object}
 								</span>
 								<a
