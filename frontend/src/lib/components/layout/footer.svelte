@@ -8,7 +8,7 @@
 	import { base } from '$app/paths';
 </script>
 
-<footer class="bg-white border-t border-t-gray-100">
+<footer class="bg border-t border-t-gray-100 h-full">
 	<div class="mx-auto w-full container p-4 sm:p-6">
 		<div class="flex md:justify-between">
 			<ul class="mb-6 md:mb-0 flex md:justify-center items-center gap-2 menu md:menu-horizontal">

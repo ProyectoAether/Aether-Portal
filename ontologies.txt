@@ -1,3 +1,18 @@
+https://w3c.github.io/dpv/dpv-skos/dpv.rdf
+https://w3c.github.io/dpv/dpv-skos/dpv-tech/dpv-tech.rdf
+https://w3c.github.io/dpv/dpv-skos/dpv-pd/dpv-pd.rdf
+https://w3c.github.io/dpv/dpv-owl/dpv.rdf
+https://w3c.github.io/dpv/dpv-skos/risk/risk.rdf
+https://w3c.github.io/dpv/dpv-skos/dpv-legal/dpv-legal.rdf
+https://raw.githubusercontent.com/qasimkhalid/SBEO/master/Serialization/sbeo.rdf
+https://rub-informatik-im-bauwesen.github.io/exdoc/ExtendedDocument.rdf
+https://www.projekt-scope.de/ontologies/ops/ops.rdf
+https://renerick.github.io/UsabilityOntology/UsabilityOntology.rdf
+https://pi.pauwel.be/evoc/express_W3ID/20151211/express.rdf
+https://cefriel.github.io/survey-ontology/docs/ontology.rdf
+http://bosatsu.net/foaf/brian.rdf
+http://dgarijo.github.io/ResearchObjects/acs2016/description.rdf
+https://medal.ctb.upm.es/projects/DISNET/ontologies/sem-disnet/ontology.rdf
 https://w3id.org/moody#
 
 https://w3id.org/BIGOWLWorkflows
@@ -6,7 +21,6 @@ https://w3id.org/BIGOWL/
 https://w3id.org/BIGOWLAlgorithms
 https://w3id.org/BIGOWLProblems
 
-https://www.irit.fr/recherches/MELODI/ontologies/cise/ontology.rdf
 https://adlnet.github.io/xapi-ontology/ontology.rdf
 https://raw.githubusercontent.com/phuse-org/CTDasRDF/master/data/rdf/meta-model-schema.rdf
 https://raw.githubusercontent.com/phuse-org/CTDasRDF/master/data/rdf/ct-schema.rdf
@@ -15,11 +29,8 @@ https://raw.githubusercontent.com/phuse-org/CTDasRDF/master/data/rdf/sdtm-termin
 https://alexdonkers.github.io/ofo/ofo.rdf
 https://alex-randles.github.io/Change-Detection-Ontology/ontology.rdf
 https://drugs4covid.github.io/EBOCA-Evidences-Ontology/ontology.rdf
-https://medal.ctb.upm.es/projects/DISNET/ontologies/sem-disnet/ontology.rdf
 https://raw.githubusercontent.com/RUB-Informatik-im-Bauwesen/srt/main/Ontology_for_Spatial_Reasoning_in_Tunnel_Projects_(srt).rdf
 https://asisp.intesasanpaolo.com/intesa-web/resources/documenti/dba/dba.rdf
-https://mikel-egana-aranguren.github.io/Transparent-Relations-Ontology/release/ontology.rdf
-http://dgarijo.github.io/ResearchObjects/acs2016/description.rdf
 https://icdd.vm.rub.de/ontology/bcom/BuildingConcreteMonitoring.rdf
 https://alex-randles.github.io/MQV/ontology.rdf
 https://alex-randles.github.io/MQIO/ontology.rdf
@@ -38,7 +49,6 @@ https://leonvanwissen.nl/vocab/roar/roar.rdf
 http://openscience.adaptcentre.ie/GDPR-checklist-demo/demo/data.rdf
 https://w3c-lbd-cg.github.io/bot/bot.rdf
 http://camwebb.info/swdata/index.rdf
-http://bosatsu.net/foaf/brian.rdf
 https://raw.githubusercontent.com/kensipe/rdf/master/kensipe.rdf
 http://paul-erickson.net/foaf/paul.rdf
 https://www.projekt-scope.de/ontologies/omg/omg.rdf
@@ -81,7 +91,6 @@ https://alex-randles.github.io/OSCD/ontology.rdf
 https://francesnlp.github.io/EB-ontology/doc/ontology.rdf
 https://raw.githubusercontent.com/saidfathalla/EVENTSKG-Dataset/master/EVENTKG_R2.rdf
 https://pi.pauwel.be/evoc/list_W3ID/20151211/list.rdf
-https://www.irit.fr/recherches/MELODI/ontologies/ecise/ontology.rdf
 https://semantic-audio.github.io/afv/af-vocabulary.rdf
 https://francesnlp.github.io/NLS-ontology/doc/ontology.rdf
 https://lbdserver.github.io/vocabulary/lbds.rdf
@@ -92,16 +101,3 @@ https://w3c.github.io/dpv/dpv-pd/dpv-pd.rdf
 https://w3c.github.io/dpv/dpv/dpv.rdf
 https://w3c.github.io/dpv/risk/risk.rdf
 https://w3c.github.io/dpv/dpv-legal/dpv-legal.rdf
-https://w3c.github.io/dpv/dpv-skos/dpv.rdf
-https://w3c.github.io/dpv/dpv-skos/dpv-tech/dpv-tech.rdf
-https://w3c.github.io/dpv/dpv-skos/dpv-pd/dpv-pd.rdf
-https://w3c.github.io/dpv/dpv-owl/dpv.rdf
-https://w3c.github.io/dpv/dpv-skos/risk/risk.rdf
-https://w3c.github.io/dpv/dpv-skos/dpv-legal/dpv-legal.rdf
-https://raw.githubusercontent.com/qasimkhalid/SBEO/master/Serialization/sbeo.rdf
-https://rub-informatik-im-bauwesen.github.io/exdoc/ExtendedDocument.rdf
-https://delaramglp.github.io/AIRO/AIRODocumentation/ontology.rdf
-https://www.projekt-scope.de/ontologies/ops/ops.rdf
-https://renerick.github.io/UsabilityOntology/UsabilityOntology.rdf
-https://pi.pauwel.be/evoc/express_W3ID/20151211/express.rdf
-https://cefriel.github.io/survey-ontology/docs/ontology.rdf

@@ -14,15 +14,12 @@ interface for consuming ontologies' data.
 import hashlib
 import json
 import logging
-import typing
 from pathlib import Path
 
 import cmd_parser
 import lib
 import tqdm
-import type_checking
 from rdflib import Graph
-from rdflib.exceptions import ParserError
 
 
 def main():
@@ -32,22 +29,27 @@ def main():
     namespace_builder = lib.NamespaceBuilder()
     stats_builder = lib.StatsBuilder()
     index_builder = lib.IndexBuilder()
+    search_builder = lib.SearchBuilder()
     parsed_uris = set()
     with open(args.input_file, "r") as fd:
         for owl_uri in tqdm.tqdm(fd.readlines()):
+            logging.info(f"Serializing: {owl_uri}")
+            # Ignore blank lines and already parsed URIs
             if owl_uri == "\n" or owl_uri in parsed_uris:
                 continue
             owl_uri = owl_uri.strip()
-            logging.info(f"Serializing: {owl_uri}")
             # Since `g.parse()` may read part of the ontology file and store it at `g`
             # We create a new `g = rdflib.Graph()` to remove any added garbage
             g = Graph()
             g.parse(owl_uri, format="xml")
             parsed_uris.add(owl_uri)
-            metadata_builder = lib.MetadataBuilder()
+            metadata_builder = lib.MetadataBuilder(owl_uri)
             try:
                 obj = lib.build_metadata(g, metadata_builder, stats_builder)
                 metadata = metadata_builder.build()
+                g = Graph()
+                g.parse(owl_uri, format="xml")
+                search_builder.add(g, metadata["uri"])
                 namespace_builder.add(metadata["prefix"], g.namespaces())
                 hasher = hashlib.sha256()
                 hasher.update(metadata["uri"].encode())
@@ -57,18 +59,20 @@ def main():
                 ) as fd:
                     json.dump(obj, fd)
             except lib.MissingMetadataException as e:
-                match args.strictness:
-                    case "MINIMUM":
-                        if e.field in ("uri", "title"):
-                            raise e
-                        logging.warning(f"{owl_uri}: {e.message}")
-                    case "STRICT":
-                        raise e
-    logging.info("Serializing `namespaces.json`, `stats.json` and `index.json`.")
+                if e.field in ("uri", "title"):
+                    logging.warning(f"{owl_uri}: {e.message}")
+                    raise e
+    logging.info(
+        "Serializing `searchable.json`, `namespaces.json`, `stats.json` and `index.json`."
+    )
     for data, filename in tqdm.tqdm(
         [
+            (search_builder.build(), "searchable.json"),
             (namespace_builder.build(), "namespaces.json"),
-            (stats_builder.build(), "stats.json"),
+            (
+                {**stats_builder.build(), "numOntologies": len(parsed_uris)},
+                "stats.json",
+            ),
             (index_builder.build(), "index.json"),
         ]
     ):
