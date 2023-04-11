@@ -40,8 +40,25 @@ yarn install
 
 ## :hammer: Build configuration
 
-At `svelte.config.js` routes needs to be specify EXPLICITLY to allow prerendering of
-dynamic routes. Note that importing JSON files is still experimental in Node.
+At `svelte.config.js` routes needs to be EXPLICITLY specified to allow prerendering of
+dynamic routes.
+
+```javascript
+import indexFile from './src/lib/assets/ontologies/index.json' assert { type: 'json' };
+
+const entries = Object.keys(indexFile).map((id) => `/ontologies/${id}`);
+entries.push("/", "/submit", "/ontologies", "/search")
+
+const config = {
+	kit: {
+		prerender: {
+			entries
+		}
+	}
+};
+
+export default config;
+```
 
 ## :sunglasses: Preview locally
 

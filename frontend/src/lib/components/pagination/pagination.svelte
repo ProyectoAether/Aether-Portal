@@ -54,7 +54,7 @@
 	{#each pages.slice(startPage, endPage) as page}
 		<button
 			class="pagination-btn {offset === page - 1
-				? 'text-white hover:bg-primary hover:border-primary bg-primary border-primary'
+				? 'text-white hover:bg-secondary hover:border-secondary bg-secondary border-secondary'
 				: ''}"
 			on:click={() => goToPage(page)}
 		>

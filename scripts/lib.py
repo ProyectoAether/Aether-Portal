@@ -37,7 +37,6 @@ _URIREF_TO_METADATA_FIELDS: dict[URIRef, MetadataField] = {
     DC.creator: "creator",
     DC.rights: "rights",
     OWL.imports: "imports",
-    RDFS.label: "labels",
 }
 
 
@@ -185,10 +184,8 @@ class MetadataBuilder:
         self._provided_ontology_uri = ParsedURL(ontology_uri)
         self._computed_ontology_uris: set[ParsedURL] = set()
         self._metadata: MetadataFile = {
-            "labels": {},
             "titles": {},
             "descriptions": {},
-            "label": "",
             "title": "",
             "description": "",
             "uri": "",
@@ -223,16 +220,7 @@ class MetadataBuilder:
                 )
                 self._metadata["uri"] = self._provided_ontology_uri
 
-        self._metadata["label"] = self._metadata["labels"].get(
-            self._metadata["uri"], ""
-        )
         if not self._metadata["titles"]:
-            if self._metadata["label"]:
-                logging.warning(
-                    f"For {self._provided_ontology_uri.uri}, the provided label is used instead of the dc:title or dcterms:title"
-                )
-                self._metadata["title"] = self._metadata["label"]
-            else:
                 logging.warning(
                     f"For {self._provided_ontology_uri.uri}, the provided URI is used instead of the dc:title or dcterms:title"
                 )
@@ -404,9 +392,7 @@ class NamespaceBuilder:
             NamespaceBuilder
         """
         for prefix, uri in namespaces:
-            if str(prefix) != "":
-                self._namespaces.update({str(uri): prefix})
-            else:
+            if str(prefix) == "":
                 # if str(prefix) == "" it means that this is the ontology's namespace tuple
                 # rdflib specific thing
                 self._namespaces.update({str(uri): ontology_preferred_prefix})

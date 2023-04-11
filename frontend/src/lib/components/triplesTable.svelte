@@ -50,7 +50,7 @@
 					<td class="whitespace-normal break-all">
 						{#if isURI(triple['object'])}
 							<div>
-								<span class="inline-block align-middle">
+								<span class="inline align-middle">
 									{compacted ? compactURI(triple.object, namespaces, ':') : triple.object}
 								</span>
 								<a

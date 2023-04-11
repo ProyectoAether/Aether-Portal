@@ -4,7 +4,7 @@
 </script>
 
 <form on:submit={(e) => e.preventDefault()} class="container p-10">
-	<h2 class="text-2xl font-semibold py-2 px-2">{title}</h2>
+	<h2 class="text-2xl font-semibold py-2 px-2 text-primary">{title}</h2>
 	<slot name="search-options" />
 	<div class="mb-4 flex items-center input input-bordered w-full max-w-x  rounded-lg shadow">
 		<div class="pl-2">

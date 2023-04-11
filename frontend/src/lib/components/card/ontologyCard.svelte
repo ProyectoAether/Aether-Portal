@@ -3,7 +3,6 @@
 	export let id: string;
 	export let logo: string | undefined = undefined;
 	export let title: string | undefined = undefined;
-	export let label: string | undefined = undefined;
 	export let description: string | undefined = undefined;
 </script>
 
@@ -17,9 +16,8 @@
 		</figure>
 	{/if}
 	<div class="card-body items-center text-center mt-auto">
-		<h2 class="card-title">{title}</h2>
+		<h2 class="card-title break-all text-primary">{title}</h2>
 		<div class="p-4 flex flex-col gap-4">
-			<span>{label || ''}</span>
 			<span class="italic text-base-content line-clamp-3">{description || ''}</span>
 		</div>
 	</div>

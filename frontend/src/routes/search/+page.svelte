@@ -36,7 +36,7 @@
 	/>
 </svelte:head>
 
-<main>
+<main class="min-h-screen">
 	<Searchbar title={'Search for Classes and Properties'} bind:searchQuery={search.searchQuery}>
 		<section class="container" slot="search-results">
 			<SearchResultComponent

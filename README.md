@@ -30,6 +30,13 @@ docker run -p 5000:80 -d --rm --name AetherPortal aether-portal
 docker stop AetherPortal
 ```
 
+## :computer: Development
+
+This repository has 2 separate modules:
+
+- [frontend](https://github.com/ProyectoAether/Aether-Portal/tree/main/frontend)
+- [scripts](https://github.com/ProyectoAether/Aether-Portal/tree/main/scripts)
+
 ## :newspaper: More information about AETHER
 
 - [Aether Project](aether.es/)

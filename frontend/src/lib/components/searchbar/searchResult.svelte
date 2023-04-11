@@ -5,7 +5,7 @@
 	import aZ from '$lib/assets/svg/a-z.svg';
 	import zA from '$lib/assets/svg/z-a.svg';
 	import type { SearchResult } from '$lib/components/searchbar/types';
-	import { namespacesFile } from '$lib/assets/data';
+	import { indexFile, namespacesFile } from '$lib/assets/data';
 
 	export let results: SearchResult[];
 	export let offset: number;
@@ -19,7 +19,7 @@
 {#if results.length > 0}
 	<div class="overflow-x-auto">
 		<table class="table w-full table-fixed">
-			<thead>
+			<thead class="text-primary">
 				<th class="w-1/12" />
 				<th class="flex gap-2 items-center"
 					><span>Name</span>
@@ -55,11 +55,11 @@
 						<td class="whitespace-normal break-all capitalize">
 							{s.data_type.replace('_', ' ')}
 						</td>
-						<td class="whitespace-normal break-all">
+						<td class="whitespace-normal break-words">
 							<a
 								href="{base}/ontologies/{sha256(s.ontology)}"
-								class="link text-primary align-middle inline"
-								>{namespacesFile[s.ontology] || s.ontology}</a
+								class="link text-primary align-middle"
+								>{indexFile[sha256(s.ontology)].title || s.ontology}</a
 							>
 							<a href={s.ontology} class="align-middle inline-block">
 								<img

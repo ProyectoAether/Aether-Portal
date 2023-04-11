@@ -51,7 +51,6 @@ class Searchable(typing.TypedDict):
 TemporalFields = typing.Literal[
     "titles",
     "descriptions",
-    "labels",
 ]
 
 OptionalMetadataField = typing.Literal[
@@ -63,7 +62,6 @@ OptionalMetadataField = typing.Literal[
     "created",
     "rights",
     "imports",
-    "label",
 ]
 
 MetadataField = typing.Literal[
