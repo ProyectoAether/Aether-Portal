@@ -25,15 +25,14 @@ export function getRootsURI(triples: Triple[], compacted = true): string[] {
 		? compactURI(RDFS_SUBCLASS_OF, namespacesFile, ':')
 		: RDFS_SUBCLASS_OF;
 	const owlThing = compacted ? compactURI(OWL_THING, namespacesFile, ':') : OWL_THING;
-	const rdfType = compacted ? compactURI(RDF_TYPE, namespacesFile, ':') : RDF_TYPE;
-	const owlClass = compacted ? compactURI(OWL_CLASS, namespacesFile, ':') : OWL_CLASS;
+
 	const subClasses = triples
 		.filter((el) => el.predicate === subclassOf && el.object !== owlThing)
 		.map((el) => el.subject);
-	const classes = triples
-		.filter((el) => el.predicate === rdfType && el.object === owlClass)
-		.map((el) => el.subject);
-	return classes.filter((el) => !subClasses.includes(el));
+	const classes = new Set(
+		triples.filter((el) => el.predicate === subclassOf).map((el) => el.object)
+	);
+	return Array.from(classes).filter((el) => !subClasses.includes(el));
 }
 export function getChildren(classURI: string, triples: Triple[], compacted = true): string[] {
 	const subclassOf = compacted
@@ -60,3 +59,4 @@ export function compactURI(uri: string, namespaces: Namespace, sep = ''): string
 	}
 	return uri.replace(nm, namespaces[nm as NamespaceURI] + sep).slice(0, -1);
 }
+

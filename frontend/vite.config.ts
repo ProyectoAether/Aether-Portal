@@ -11,7 +11,7 @@ const config: UserConfig & { test: VitestConfig['test'] } = {
 	},
 
 	optimizeDeps: {
-		include: ['svelte-countup', 'fuzzysort']
+		include: ['svelte-countup', "js-levenshtein"]
 	},
 	build: {
 		target: 'esnext'

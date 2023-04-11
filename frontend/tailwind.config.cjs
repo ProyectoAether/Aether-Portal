@@ -14,7 +14,21 @@ const config = {
 		require('@tailwindcss/typography')
 	],
 	daisyui: {
-		themes: ['light']
+		themes: [
+			{
+				aether: {
+					primary: '#201d7f',
+					secondary: '#FF4B36',
+					accent: '#37CDBE',
+					neutral: '#686c81',
+					'base-100': '#FFFFFF',
+					info: '#3ABFF8',
+					success: '#36D399',
+					warning: '#FBBD23',
+					error: '#F87272'
+				}
+			}
+		]
 	},
 	darkMode: 'class'
 };

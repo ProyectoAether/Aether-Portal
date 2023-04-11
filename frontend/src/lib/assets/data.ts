@@ -1,6 +1,8 @@
 import index from '$lib/assets/ontologies/index.json';
 import namespaces from '$lib/assets/ontologies/namespaces.json';
 import stats from '$lib/assets/ontologies/stats.json';
+import searchable from '$lib/assets/ontologies/searchable.json';
+import { fromJSON } from "arquero";
 
 export interface Triple {
 	subject: string;
@@ -29,13 +31,21 @@ const uris = Object.values(index).map((el) => el.uri);
 export type OntologyURI = (typeof uris)[number];
 export const statsFile: Stat = stats;
 
+export type Searchable = {
+    "uri": string[],
+    "ontology":string[],
+    "data_type": string[]
+    "compacted": string[]
+};
+
+export const searchableFile = fromJSON(JSON.stringify(searchable), {});
+
 export type OntologyMetadata =
 	(typeof indexFile)['ce17f638d8bc00c2db21000a07fad4871422bbed869096a824abd62d325dec72'];
 
 export const RDF_TYPE = 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type';
 export const RDFS_SUBCLASS_OF = 'http://www.w3.org/2000/01/rdf-schema#subClassOf';
 export const RDFS_DATATYPE = 'http://www.w3.org/2000/01/rdf-schema#Datatype';
-export const RDFS_LABEL = 'http://www.w3.org/2000/01/rdf-schema#label';
 export const TERMS_DESCRIPTION = 'http://purl.org/dc/terms/description';
 export const OWL_CLASS = 'http://www.w3.org/2002/07/owl#Class';
 export const OWL_DATATYPE_PROPERTY = 'http://www.w3.org/2002/07/owl#DatatypeProperty';

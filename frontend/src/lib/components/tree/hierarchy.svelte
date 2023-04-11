@@ -10,6 +10,7 @@
 		object: compactURI(el.object, namespacesFile, ':')
 	}));
 	$: roots = getRootsURI(triples).sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1));
+	$: console.log(roots, triples);
 </script>
 
 {#if roots.length > 0}

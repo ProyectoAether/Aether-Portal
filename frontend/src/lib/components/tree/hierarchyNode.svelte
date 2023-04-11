@@ -18,7 +18,7 @@
 		on:click={() => (show = !show)}
 		on:keypress
 	>
-		{uri}
+		<a href={uri} class="text-primary">{uri}</a>
 	</span>
 	{#if show}
 		<ul class="m-0 pl-10 block">

@@ -2,9 +2,28 @@
 	import OntologySearchResult from '$lib/components/searchbar/ontologySearchResult.svelte';
 	import Pagination from '$lib/components/pagination/pagination.svelte';
 	import Searchbar from '$lib/components/searchbar/searchbar.svelte';
-	import { ontologySearchStore, filteredOntologies } from '$lib/stores/search';
 	import aZ from '$lib/assets/svg/a-z.svg';
 	import zA from '$lib/assets/svg/z-a.svg';
+	import { indexFile, type Index, type OntologyID } from '$lib/assets/data';
+	const search = {
+		searchQuery: '',
+		options: {
+			alphabeticalOrder: true,
+			minScore: 1,
+			offset: 0,
+			limit: 10
+		}
+	};
+	function ontologySearchByQuery(query: string, data: Index): OntologyID[] {
+		const collection = Object.entries(data);
+		if (query.length === 0) {
+			return collection.map(([id]) => id) as OntologyID[];
+		}
+		return collection
+			.filter(([, metadata]) => metadata.title.toLowerCase().includes(query.toLowerCase()))
+			.map(([id]) => id) as OntologyID[];
+	}
+	$: filtered = ontologySearchByQuery(search.searchQuery, indexFile);
 </script>
 
 <svelte:head>
@@ -17,15 +36,14 @@
 </svelte:head>
 
 <main class="min-h-screen">
-	<Searchbar bind:searchQuery={$ontologySearchStore.searchQuery} title={'Search Ontologies'} />
+	<Searchbar bind:searchQuery={search.searchQuery} title={'Search Ontologies'} />
 
-	<section class="container pl-10">
+	<section class="container px-10 gap-4 grid  md:grid-cols-2 md:place-items-center">
 		<button
-			on:click={() =>
-				($ontologySearchStore.options.alphabeticalOrder =
-					!$ontologySearchStore.options.alphabeticalOrder)}
+			class="place-self-end md:place-self-center"
+			on:click={() => (search.options.alphabeticalOrder = !search.options.alphabeticalOrder)}
 		>
-			{#if $ontologySearchStore.options.alphabeticalOrder}
+			{#if search.options.alphabeticalOrder}
 				<img class="w-8 h-8" src={aZ} alt="A-Z sort" height="44px" width="44px" />
 			{:else}
 				<img class="w-8 h-8" src={zA} alt="Z-A sort" height="44px" width="44px" />
@@ -34,19 +52,19 @@
 	</section>
 	<section class="container">
 		<OntologySearchResult
-			ids={$filteredOntologies}
-			offset={$ontologySearchStore.options.offset}
-			limit={$ontologySearchStore.options.limit}
-			alphabeticalOrder={$ontologySearchStore.options.alphabeticalOrder}
+			ids={filtered}
+			offset={search.options.offset}
+			limit={search.options.limit}
+			alphabeticalOrder={search.options.alphabeticalOrder}
 		>
-			<h2 slot="fallback" class="p-10 italic font-bold text-3xl">No matching Ontologies</h2>
+			<h2 slot="fallback" class="h-96 p-10 italic font-bold text-3xl">No matching Ontologies</h2>
 		</OntologySearchResult>
-		{#if $filteredOntologies.length > 0}
+		{#if filtered.length > 0}
 			<div class="py-8 flex md:justify-start justify-center mt-auto">
 				<Pagination
-					totalElements={$filteredOntologies.length}
-					bind:offset={$ontologySearchStore.options.offset}
-					elementsPerPage={$ontologySearchStore.options.limit}
+					totalElements={filtered.length}
+					bind:offset={search.options.offset}
+					elementsPerPage={search.options.limit}
 				/>
 			</div>
 		{/if}

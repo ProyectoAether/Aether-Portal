@@ -1,10 +1,7 @@
 import argparse
-import typing
 
 import pathtype
 from rdflib import DCTERMS
-
-LEVELS = typing.Literal["MINIMUM", "STRICT"]
 
 args_parser = argparse.ArgumentParser(
     prog="OntoSerPy",
@@ -23,13 +20,4 @@ args_parser.add_argument(
     "output_directory",
     help="Path of the output directory",
     type=pathtype.PathType(exists=True, type="dir"),
-)
-
-args_parser.add_argument(
-    "-s",
-    "--strictness",
-    help="Level of strictness of the ontologies' file: available levels are MINIMUM and STRICT (default: MINIMUM)",
-    required=False,
-    choices=typing.get_args(LEVELS),
-    default="MINIMUM",
 )
