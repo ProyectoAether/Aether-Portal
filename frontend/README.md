@@ -40,14 +40,14 @@ yarn install
 
 ## :hammer: Build configuration
 
-At `svelte.config.js` routes needs to be EXPLICITLY specified to allow prerendering of
-dynamic routes.
+At [svelte.config.js](https://github.com/ProyectoAether/Aether-Portal/blob/main/frontend/svelte.config.js#L6-L7)
+routes have to be EXPLICITLY specified to allow prerendering of dynamic routes.
 
 ```javascript
 import indexFile from './src/lib/assets/ontologies/index.json' assert { type: 'json' };
 
 const entries = Object.keys(indexFile).map((id) => `/ontologies/${id}`);
-entries.push("/", "/submit", "/ontologies", "/search")
+entries.push('/', '/submit', '/ontologies', '/search');
 
 const config = {
 	kit: {

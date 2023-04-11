@@ -3,12 +3,13 @@
 import builtins
 import logging
 import typing
+from typing_extensions import Self
 
-from rdflib import DC, DCTERMS, OWL, RDF, RDFS, SDO, VANN, Graph, URIRef
+from rdflib import DC, DCTERMS, OWL, RDF, SDO, VANN, Graph, URIRef
 from rdflib._type_checking import _NamespaceSetString
 from rdflib.namespace import NamespaceManager
 from rdflib.term import _is_valid_uri
-from type_checking import (
+from ontoserpy.type_checking import (
     IndexFile,
     MetadataField,
     MetadataFile,
@@ -73,7 +74,7 @@ class StatsBuilder:
         """
         return self._stats
 
-    def add(self, field: str) -> typing.Self:
+    def add(self, field: str) -> Self:
         """Updates stats count, it will not do anything if the field does not exist
 
         Args:
@@ -155,7 +156,7 @@ class SearchBuilder:
     def build(self) -> Searchable:
         return self._data
 
-    def add(self, graph: Graph, ontology_uri: str) -> typing.Self:
+    def add(self, graph: Graph, ontology_uri: str) -> Self:
         for s, p, o in graph:
             if URIRef(str(p)) != RDF.type:
                 continue
@@ -172,9 +173,9 @@ class SearchBuilder:
 def _compact_uri(uri: URIRef, graph: Graph) -> str:
     try:
         result = graph.compute_qname(uri)[-1]
-        return result if result else uri
+        return result if result else str(uri)
     except ValueError:
-        return uri
+        return str(uri)
 
 
 class MetadataBuilder:
@@ -221,10 +222,10 @@ class MetadataBuilder:
                 self._metadata["uri"] = self._provided_ontology_uri
 
         if not self._metadata["titles"]:
-                logging.warning(
-                    f"For {self._provided_ontology_uri.uri}, the provided URI is used instead of the dc:title or dcterms:title"
-                )
-                self._metadata["title"] = self._metadata["uri"]
+            logging.warning(
+                f"For {self._provided_ontology_uri.uri}, the provided URI is used instead of the dc:title or dcterms:title"
+            )
+            self._metadata["title"] = self._metadata["uri"]
         elif len(self._metadata["titles"]) == 1:
             self._metadata["title"] = next(iter(self._metadata["titles"].values()))
         else:
@@ -256,7 +257,7 @@ class MetadataBuilder:
 
         return self._metadata
 
-    def add(self, field: str, value: str, uri: str) -> typing.Self:
+    def add(self, field: str, value: str, uri: str) -> Self:
         """Updates the Ontology's metadata dictionary, it will ignore any field
         that does not exist in the MetadataField Literal
 
@@ -342,7 +343,7 @@ class IndexBuilder:
         """
         return self._index
 
-    def add(self, index: str, metadata: MetadataFile) -> typing.Self:
+    def add(self, index: str, metadata: MetadataFile) -> Self:
         """Updates the index
 
         Args:
@@ -380,7 +381,7 @@ class NamespaceBuilder:
         self,
         ontology_preferred_prefix: str,
         namespaces: typing.Generator[tuple[str, str], None, None],
-    ) -> typing.Self:
+    ) -> Self:
         """Updates the collection of namespaces
 
         Args:

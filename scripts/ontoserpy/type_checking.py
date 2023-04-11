@@ -10,7 +10,7 @@ class ParsedURL:
         _parsed = urlparse(url)
         self._uri = url
         self._netloc = _parsed.netloc
-        self._path = _parsed.path
+        self._path = _parsed.path if url[-1] == "/" else _parsed.path + "/"
 
     def __hash__(self):
         return hash((self._netloc, self._path))

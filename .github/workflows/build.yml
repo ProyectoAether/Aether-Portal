@@ -10,9 +10,6 @@ jobs:
     if: contains(github.event.pull_request.labels.*.name, 'build')
     name: Updates Ontologies' JSON files
     runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: ./scripts
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -25,8 +22,8 @@ jobs:
           python -m venv virtenv
           source virtenv/bin/activate
           mkdir ontologies
-          pip install -r requirements.txt
-          python main.py ../ontologies.txt ontologies
+          pip install -r scripts/requirements.txt
+          PYTHONPATH=scripts python scripts/ontoserpy/main.py ontologies.txt frontend/src/lib/assets/ontologies/
 
       - name: Upload JSON files
         uses: actions/upload-artifact@v3

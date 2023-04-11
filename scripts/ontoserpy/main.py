@@ -1,35 +1,31 @@
-# -*- coding: utf-8 -*-
-
-"""OntoSerPy
-
-This is a script used for serializing OWL ontology into multiple non standard 
-format JSON files. It will calculate multiple ontologies' statistics,
-compute their metadata and collection of triples.
-
-THIS SCRIPT IS INTENDED to be used in conjunction with Aether Portal frontend
-page, but it may be useful for other projects as well as it provides a naive
-interface for consuming ontologies' data.
-"""
-
 import hashlib
 import json
 import logging
 from pathlib import Path
 
-import cmd_parser
-import lib
 import tqdm
 from rdflib import Graph
+
+from ontoserpy.cmd_parser import args_parser
+from ontoserpy.lib import (
+    IndexBuilder,
+    MetadataBuilder,
+    MissingMetadataException,
+    NamespaceBuilder,
+    SearchBuilder,
+    StatsBuilder,
+    build_metadata,
+)
 
 
 def main():
     logging.basicConfig(level=logging.DEBUG)
-    args = cmd_parser.args_parser.parse_args()
+    args = args_parser.parse_args()
 
-    namespace_builder = lib.NamespaceBuilder()
-    stats_builder = lib.StatsBuilder()
-    index_builder = lib.IndexBuilder()
-    search_builder = lib.SearchBuilder()
+    namespace_builder = NamespaceBuilder()
+    stats_builder = StatsBuilder()
+    index_builder = IndexBuilder()
+    search_builder = SearchBuilder()
     parsed_uris = set()
     with open(args.input_file, "r") as fd:
         for owl_uri in tqdm.tqdm(fd.readlines()):
@@ -43,9 +39,9 @@ def main():
             g = Graph()
             g.parse(owl_uri, format="xml")
             parsed_uris.add(owl_uri)
-            metadata_builder = lib.MetadataBuilder(owl_uri)
+            metadata_builder = MetadataBuilder(owl_uri)
             try:
-                obj = lib.build_metadata(g, metadata_builder, stats_builder)
+                obj = build_metadata(g, metadata_builder, stats_builder)
                 metadata = metadata_builder.build()
                 g = Graph()
                 g.parse(owl_uri, format="xml")
@@ -58,7 +54,7 @@ def main():
                     Path(args.output_directory, hasher.hexdigest() + ".json"), "w+"
                 ) as fd:
                     json.dump(obj, fd)
-            except lib.MissingMetadataException as e:
+            except MissingMetadataException as e:
                 if e.field in ("uri", "title"):
                     logging.warning(f"{owl_uri}: {e.message}")
                     raise e
