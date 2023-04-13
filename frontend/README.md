@@ -47,7 +47,11 @@ routes have to be EXPLICITLY specified to allow prerendering of dynamic routes.
 import indexFile from './src/lib/assets/ontologies/index.json' assert { type: 'json' };
 
 const entries = Object.keys(indexFile).map((id) => `/ontologies/${id}`);
+<<<<<<< HEAD
 entries.push('/', '/submit', '/ontologies', '/search');
+=======
+entries.push("/", "/submit", "/ontologies", "/search")
+>>>>>>> main
 
 const config = {
 	kit: {

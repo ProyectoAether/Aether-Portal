@@ -5,7 +5,6 @@ from pathlib import Path
 
 import tqdm
 from rdflib import Graph
-
 from ontoserpy.cmd_parser import args_parser
 from ontoserpy.lib import (
     IndexBuilder,
