@@ -12,7 +12,7 @@
 
 <div class="overflow-x-auto auto my-10">
 	<table id="data" data-testid="triples-table" class="table table-compact w-full table-fixed">
-		<thead>
+		<thead class="text-primary">
 			<tr>
 				<th class="w-1/12" />
 				<th>Subject</th>
@@ -23,7 +23,7 @@
 		<tbody>
 			{#each triples.slice(offset * elementsPerPage, (offset + 1) * elementsPerPage) as triple, index}
 				<tr>
-					<th class="w-1/12">{index + 1 + elementsPerPage * offset}</th>
+					<th class="w-1/12 text-primary">{index + 1 + elementsPerPage * offset}</th>
 					<td class="whitespace-normal break-all">
 						<span class="align-middle">
 							{compacted ? compactURI(triple.subject, namespaces, ':') : triple.subject}

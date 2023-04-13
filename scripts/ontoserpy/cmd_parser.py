@@ -1,6 +1,6 @@
 import argparse
 
-import pathtype
+from ontoserpy.pathtype import PathType
 from rdflib import DCTERMS
 
 args_parser = argparse.ArgumentParser(
@@ -14,10 +14,10 @@ compute their metadata and collection of triples.
 args_parser.add_argument(
     "input_file",
     help="Path of the file with the RDF/XML format ontologies' URI",
-    type=pathtype.PathType(exists=True, type="file"),
+    type=PathType(exists=True, type="file"),
 )
 args_parser.add_argument(
     "output_directory",
     help="Path of the output directory",
-    type=pathtype.PathType(exists=True, type="dir"),
+    type=PathType(exists=True, type="dir"),
 )

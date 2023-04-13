@@ -7,18 +7,18 @@
 	const children = getChildren(uri, triples).sort((a, b) =>
 		a.toLowerCase() > b.toLowerCase() ? 1 : -1
 	);
-	$: uri = compactURI(uri, namespacesFile, ':');
+	$: compactedUri = compactURI(uri, namespacesFile, ':');
 </script>
 
 <li class="m-0 pt-3 px-1 relative {children.length > 0 ? 'parent_li' : ''}">
 	<span
-		class="border border-gray-400 rounded-md px-3 py-2 inline-block"
+		class="border border-gray-400 rounded-md px-3 py-2 inline-block text-primary"
 		class:caret={children.length > 0}
 		class:caret-down={show}
 		on:click={() => (show = !show)}
 		on:keypress
 	>
-		<a href={uri} class="text-primary">{uri}</a>
+		{compactedUri}
 	</span>
 	{#if show}
 		<ul class="m-0 pl-10 block">

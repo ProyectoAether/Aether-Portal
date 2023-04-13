@@ -20,7 +20,7 @@
 		}
 		return data
 			.filter(
-				escape((el: SearchResult) => el.compacted.toUpperCase().includes(query.toUpperCase()))
+				escape((el: SearchResult) => el.uri.toUpperCase().includes(query.toUpperCase()))
 			)
 			.objects() as SearchResult[];
 	}

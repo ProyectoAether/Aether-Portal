@@ -36,14 +36,18 @@ jobs:
         with:
           python-version: "3.11"
           cache: "pip"
-      - name: Generate JSON files
+      - name: Install dependencies
         shell: bash
         run: |
           python -m venv virtenv
           source virtenv/bin/activate
+          pip install -r scripts/requirements.txt
+      - name: Test code
+        run: pytest scripts
+      - name: Generate JSON files 
+        run: |
           mkdir ontologies
-          pip install -r requirements.txt
-          python main.py ../ontologies.txt ontologies
+          PYTHONPATH=scripts python scripts/ontoserpy/main.py ontologies.txt scripts/ontologies
 
       - name: Upload JSON files
         uses: actions/upload-artifact@v3
