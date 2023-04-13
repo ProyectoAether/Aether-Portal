@@ -37,7 +37,7 @@
 			<tbody>
 				{#each results.slice(offset * limit, (offset + 1) * limit) as s, index}
 					<tr class="hover">
-						<th class="w-1/12">{index + 1 + limit * offset}</th>
+						<th class="w-1/12 text-primary">{index + 1 + limit * offset}</th>
 						<td class="whitespace-normal break-all">
 							<span class="align-middle">
 								{s.compacted}
