@@ -68,6 +68,10 @@ jobs:
         with:
           name: ontologies
           path: ./frontend/src/lib/assets/ontologies
+      - name: Create soft link to public directory
+        working-directory: ./frontend/static/public
+        shell: bash
+        run: ln -s ../../src/lib/assets/ontologies/* .
       - name: Build
         working-directory: ./frontend
         shell: bash
