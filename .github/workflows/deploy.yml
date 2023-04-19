@@ -22,9 +22,9 @@ permissions:
 concurrency:
   group: "pages"
   cancel-in-progress: true
-
+    
 jobs:
-  pre-build:
+  script-dependencies:
     name: Updates Ontologies' JSON files
     runs-on: ubuntu-20.04
     steps:
@@ -39,16 +39,46 @@ jobs:
           python -m venv virtenv
           source virtenv/bin/activate
           pip install -r scripts/requirements.txt
-          pip install pytest
+      - name: Cache virtualenv
+        uses: actions/cache@v3
+        with:
+          path: virtenv
+          key: venv
+
+  test-code:
+    name: Test script
+    runs-on: ubuntu-20.04
+    needs: script-dependencies
+    steps:
+      - uses: actions/checkout@v3
+      - name: Restore virtualenv
+        uses: actions/cache@v3
+        with:
+          path: virtenv
+          key: venv
       - name: Test code
         shell: bash
-        run: pytest scripts
+        run: |
+          source virtenv/bin/activate
+          pytest scripts
+
+  json-generation:
+    name: Generate JSON files
+    runs-on: ubuntu-20.04
+    needs: test-code
+    steps:
+      - uses: actions/checkout@v3
+      - name: Restore virtualenv
+        uses: actions/cache@v3
+        with:
+          path: virtenv
+          key: venv
       - name: Generate JSON files 
         shell: bash
         run: |
-          mkdir ontologies
+          source virtenv/bin/activate
+          mkdir scripts/ontologies
           PYTHONPATH=scripts python scripts/ontoserpy/main.py ontologies.txt scripts/ontologies
-
       - name: Upload JSON files
         uses: actions/upload-artifact@v3
         with:
@@ -56,7 +86,7 @@ jobs:
           path: ./scripts/ontologies
   notify-job:
     runs-on: ubuntu-20.04
-    needs: pre-build
+    needs: [json-generation, test-code]
     name: Create failure issue
     if: ${{ failure() }}
     steps:
@@ -68,33 +98,53 @@ jobs:
       - run: "echo Created issue number ${{ steps.create-issue.outputs.number }}"
       - run: "echo Created ${{ steps.create-issue.outputs.url }}"
 
-  build:
-    name: Build Svelte static site
-    needs: pre-build
+  frontend-dependencies:
+    name: Install frontend dependencies
     runs-on: ubuntu-20.04
-    strategy:
-      matrix:
-        node-version: [18]
+    needs: json-generation
+    outputs:
+        STORE_PATH: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - uses: actions/checkout@v3
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 7
-      - name: Use Node.js ${{ matrix.node-version }}
+
+      - name: Install Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-          cache-dependency-path: ./frontend/pnpm-lock.yaml
-      - name: Install dependencies
+          node-version: 18
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: false
+      - name: Get pnpm store directory
+        id: pnpm-cache
         working-directory: ./frontend
         shell: bash
-        run: pnpm install --prod
-      - name: Create ontologies directory
+        run: |
+          echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          key: pnpm
+          path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+      - name: Install dependencies
+        working-directory: ./frontend
+        run: pnpm install
+
+  build:
+    name: Build Svelte static site
+    needs: frontend-dependencies
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create directories
+        working-directory: ./frontend
         shell: bash
-        run: mkdir ./frontend/src/lib/assets/ontologies
+        run: |
+          mkdir ./src/lib/assets/ontologies
+          mkdir ./static/public
       - name: Download ontologies and move it to the directory
         uses: actions/download-artifact@v3
         with:
@@ -104,12 +154,21 @@ jobs:
         working-directory: ./frontend/static/public
         shell: bash
         run: ln -s ../../src/lib/assets/ontologies/* .
+      - name: Restore PNPM packages
+        uses: actions/cache@v3
+        with:
+          key: pnpm
+          path: ${{ needs.frontend-dependencies.outputs.STORE_PATH }}
+      - uses: pnpm/action-setup@v2
+        name: Install pnpm
+        id: pnpm-install
+        with:
+          version: 8
+          run_install: true
       - name: Build
         working-directory: ./frontend
         shell: bash
-        run: |
-         NODE_OPTIONS=--max-old-space-size=8192 pnpm build
-          touch ./build/.nojekyll
+        run: NODE_OPTIONS=--max-old-space-size=8192 pnpm build
       - name: Upload Build
         uses: actions/upload-artifact@v3
         with:

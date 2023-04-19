@@ -11,10 +11,11 @@ const config: UserConfig & { test: VitestConfig['test'] } = {
 	},
 
 	optimizeDeps: {
-		include: ['svelte-countup', "js-levenshtein"]
+		include: ['svelte-countup']
 	},
 	build: {
-		target: 'esnext'
+		target: 'esnext',
+        sourcemap: 'inline'
 	},
 	test: {
 		// jest like globals

@@ -44,7 +44,7 @@ def test_namespacebuilder(ontology: Graph):
     builder.add(preferred_prefix, ontology.namespaces())
     namespaces = builder.build()
     assert namespaces[ontology_uri] == "foo"
-    assert namespaces[DCTERMS._NS] == "cdterms"
+    assert namespaces[DCTERMS._NS] == "dcterms"
     assert namespaces[VANN._NS] == "vann"
     assert namespaces[RDFS._NS] == "rdfs"
     assert namespaces[RDF._NS] == "rdf"
