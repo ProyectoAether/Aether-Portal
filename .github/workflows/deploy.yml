@@ -27,9 +27,6 @@ jobs:
   pre-build:
     name: Updates Ontologies' JSON files
     runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: ./scripts
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
