@@ -18,3 +18,4 @@ vite.config.ts.timestamp-*
 __pycache__
 .mypy_cache
 frontend/src/lib/assets/ontologies
+frontend/static/public

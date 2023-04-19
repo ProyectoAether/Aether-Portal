@@ -27,9 +27,6 @@ jobs:
   pre-build:
     name: Updates Ontologies' JSON files
     runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: ./scripts
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
@@ -43,8 +40,10 @@ jobs:
           source virtenv/bin/activate
           pip install -r scripts/requirements.txt
       - name: Test code
+        shell: bash
         run: pytest scripts
       - name: Generate JSON files 
+        shell: bash
         run: |
           mkdir ontologies
           PYTHONPATH=scripts python scripts/ontoserpy/main.py ontologies.txt scripts/ontologies
@@ -100,6 +99,10 @@ jobs:
         with:
           name: ontologies
           path: ./frontend/src/lib/assets/ontologies
+      - name: Create soft link to public directory
+        working-directory: ./frontend/static/public
+        shell: bash
+        run: ln -s ../../src/lib/assets/ontologies/* .
       - name: Build
         working-directory: ./frontend
         shell: bash
