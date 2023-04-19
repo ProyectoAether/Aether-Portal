@@ -22,6 +22,7 @@ jobs:
           python -m venv virtenv
           source virtenv/bin/activate
           pip install -r scripts/requirements.txt
+          pip install pytest
       - name: Test code
         shell: bash
         run: pytest scripts
