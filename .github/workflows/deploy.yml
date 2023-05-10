@@ -131,7 +131,7 @@ jobs:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
       - name: Install dependencies
         working-directory: ./frontend
-        run: pnpm install
+        run: pnpm install --prod
 
   build:
     name: Build Svelte static site
