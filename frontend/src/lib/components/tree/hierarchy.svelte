@@ -9,8 +9,9 @@
 		predicate: compactURI(el.predicate, namespacesFile, ':'),
 		object: compactURI(el.object, namespacesFile, ':')
 	}));
-	$: roots = getRootsURI(triples).sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1));
-	$: console.log(roots, triples);
+	$: roots = getRootsURI(triples)
+		.map((el) => compactURI(el, namespacesFile, ':'))
+		.sort((a, b) => (a.toLowerCase() > b.toLowerCase() ? 1 : -1));
 </script>
 
 {#if roots.length > 0}

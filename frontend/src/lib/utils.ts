@@ -20,43 +20,48 @@ export function isURI(sequence: string | undefined): boolean {
 	}
 }
 
-export function getRootsURI(triples: Triple[], compacted = true): string[] {
-	const subclassOf = compacted
-		? compactURI(RDFS_SUBCLASS_OF, namespacesFile, ':')
-		: RDFS_SUBCLASS_OF;
-	const owlThing = compacted ? compactURI(OWL_THING, namespacesFile, ':') : OWL_THING;
-
+export function getRootsURI(triples: Triple[]): string[] {
+	const subclassOf = compactURI(RDFS_SUBCLASS_OF, namespacesFile, ':');
+	const owlThing = compactURI(OWL_THING, namespacesFile, ':');
+	const rdfType = compactURI(RDF_TYPE, namespacesFile, ':');
+	const owlClass = compactURI(OWL_CLASS, namespacesFile, ':');
 	const subClasses = triples
 		.filter((el) => el.predicate === subclassOf && el.object !== owlThing)
 		.map((el) => el.subject);
-	const classes = new Set(
-		triples.filter((el) => el.predicate === subclassOf).map((el) => el.object)
-	);
-	return Array.from(classes).filter((el) => !subClasses.includes(el));
+
+	const classes = triples
+		.filter((el) => el.predicate === rdfType && el.object === owlClass)
+		.map((el) => el.subject);
+
+	return Array.from(new Set(classes.filter((el) => !subClasses.includes(el))));
 }
 export function getChildren(classURI: string, triples: Triple[], compacted = true): string[] {
 	const subclassOf = compacted
 		? compactURI(RDFS_SUBCLASS_OF, namespacesFile, ':')
 		: RDFS_SUBCLASS_OF;
-	return triples
-		.filter((el) => el.predicate === subclassOf && el.object === classURI)
-		.map((el) => el.subject);
+	return Array.from(
+		new Set(
+			triples
+				.filter((el) => el.predicate === subclassOf && el.object === classURI)
+				.map((el) => el.subject)
+		)
+	);
 }
 export function compactURI(uri: string, namespaces: Namespace, sep = ''): string {
 	if (!isURI(uri) || uri.length === 0) {
 		return uri;
 	}
-	if (uri[uri.length - 1] !== '/') {
+	if (uri[uri.length - 1] !== '/' && uri[uri.length - 1] !== '#') {
 		uri += '/';
 	}
 	const isOntology = Object.keys(namespaces).find((el) => el === uri);
 	if (isOntology) {
 		return uri.replace(isOntology, namespaces[isOntology as NamespaceURI]);
 	}
+
 	const nm = Object.keys(namespaces).find((el) => uri.includes(el));
 	if (!nm) {
 		return uri.slice(0, -1);
 	}
 	return uri.replace(nm, namespaces[nm as NamespaceURI] + sep).slice(0, -1);
 }
-

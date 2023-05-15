@@ -386,14 +386,14 @@ class NamespaceBuilder:
 
         Args:
             ontology_prefix: vann:preferredNamespacePrefix's object of the Ontology
-            namespaces: An generator with (namespace, prefix) tuple value, this can
+            namespaces: An generator with (prefix, uri) tuple value, this can
                         be obtained from rdflib.Graph.namespaces()
 
         Returns:
             NamespaceBuilder
         """
         for prefix, uri in namespaces:
-            if str(prefix) == "":
+            if str(prefix) == "" and ontology_preferred_prefix != "":
                 # if str(prefix) == "" it means that this is the ontology's namespace tuple
                 # rdflib specific thing
                 self._namespaces.update({str(uri): ontology_preferred_prefix})
