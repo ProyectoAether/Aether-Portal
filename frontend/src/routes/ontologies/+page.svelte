@@ -20,7 +20,11 @@
 			return collection.map(([id]) => id) as OntologyID[];
 		}
 		return collection
-			.filter(([, metadata]) => metadata.title.toLowerCase().includes(query.toLowerCase()))
+			.filter(
+				([, metadata]) =>
+					metadata.title.toLowerCase().includes(query.toLowerCase()) ||
+					metadata.description.toLowerCase().includes(query.toLowerCase())
+			)
 			.map(([id]) => id) as OntologyID[];
 	}
 	$: filtered = ontologySearchByQuery(search.searchQuery, indexFile);
