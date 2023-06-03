@@ -1,13 +1,54 @@
 <script lang="ts">
 	import { compactURI, isURI } from '$lib/utils';
 	import namespaces from '$lib/assets/ontologies/namespaces.json';
-	import type { Triple } from '$lib/assets/data';
+	import {
+		OWL_CLASS,
+		OWL_DATATYPE_PROPERTY,
+		OWL_NAMED_INDIVIDUAL,
+		OWL_OBJECT_PROPERTY,
+		type OWLType,
+		type Triple
+	} from '$lib/assets/data';
 	import LinkIcon from '$lib/assets/svg/link-icon.svg';
 	import Modal from '$lib/components/modal/modal.svelte';
 	export let compacted: boolean;
 	export let offset: number;
 	export let elementsPerPage: number;
 	export let triples: Triple[];
+	export let tableFilter: OWLType[];
+	function getFilteredTriple(triples: Triple[], filters: OWLType[]): Triple[] {
+		const res: Triple[] = [];
+		for (const f of filters) {
+			res.push(...triples.filter((x) => x.object === f));
+		}
+		return res;
+	}
+
+	const order = [OWL_CLASS, OWL_OBJECT_PROPERTY, OWL_DATATYPE_PROPERTY, OWL_NAMED_INDIVIDUAL];
+
+	function compareObjects(a: Triple, b: Triple) {
+		const objectA = a.object;
+		const objectB = b.object;
+
+		// Check if the subjects are in the order array
+		const isObjectAValid = order.includes(objectA);
+		const isObjectBValid = order.includes(objectB);
+
+		// If both subjects are in the order array, compare their indexes
+		if (isObjectAValid && isObjectBValid) {
+			const indexA = order.indexOf(objectA);
+			const indexB = order.indexOf(objectB);
+
+			return indexA - indexB;
+		} else if (isObjectAValid) {
+			// If only subject A is valid, put subject B last
+			return -1;
+		} else {
+			// If only subject B is valid, put subject A last
+			return 1;
+		} // Get the indexes of the subjects in the order array
+	}
+	$: data = getFilteredTriple(triples.sort(compareObjects), tableFilter);
 </script>
 
 <div class="overflow-x-auto auto my-10">
@@ -21,7 +62,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each triples.slice(offset * elementsPerPage, (offset + 1) * elementsPerPage) as triple, index}
+			{#each data.slice(offset * elementsPerPage, (offset + 1) * elementsPerPage) as triple, index}
 				<tr>
 					<th class="w-1/12 text-primary">{index + 1 + elementsPerPage * offset}</th>
 					<td class="whitespace-normal break-all">

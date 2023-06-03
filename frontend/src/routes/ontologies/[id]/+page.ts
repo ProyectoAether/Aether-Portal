@@ -10,19 +10,14 @@ import { error } from '@sveltejs/kit';
 import { sha256 } from 'js-sha256';
 import type { PageLoad } from './$types';
 
-async function getOntology(
-	id: OntologyID,
-): Promise<{
+async function getOntology(id: OntologyID): Promise<{
 	[x: string]: Triple[];
 }> {
 	return {
 		[id]: (await import(`../../../lib/assets/ontologies/${id}.json`)) as Triple[]
 	};
 }
-async function getOntologies(
-	id: OntologyID,
-	imports: OntologyURI[],
-): Promise<OntologyData> {
+async function getOntologies(id: OntologyID, imports: OntologyURI[]): Promise<OntologyData> {
 	const base = getOntology(id);
 	const promises = imports.map((el) => getOntology(sha256(el) as OntologyID));
 	promises.push(base);
@@ -36,14 +31,13 @@ async function getOntologies(
 				ontologyData[id] = data.value[id].default;
 			}
 		}
-	return ontologyData as OntologyData;
+		return ontologyData as OntologyData;
 	} catch {
 		throw error(500, {
 			message: 'Failed fetching ontology data',
 			code: 500
 		});
 	}
-
 }
 
 export type ImportResult = { uri: OntologyURI; status: boolean };

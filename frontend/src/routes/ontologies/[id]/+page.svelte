@@ -13,8 +13,14 @@
 		type OntologyURI,
 		type OntologyData,
 		type Triple,
-		type OntologyID
+		type OntologyID,
+		type OWLType,
+		OWL_NAMED_INDIVIDUAL,
+		OWL_DATATYPE_PROPERTY,
+		OWL_OBJECT_PROPERTY,
+		OWL_CLASS
 	} from '$lib/assets/data';
+	import TableFilter from '$lib/components/tableFilter.svelte';
 
 	export let data: OntologyPageResponse;
 	let ontologies = data.ontologies;
@@ -25,6 +31,13 @@
 	let elementsPerPage = 10;
 	let offset = 0;
 	let imports = data.imports;
+
+	let tableFilter: OWLType[] = [
+		OWL_CLASS,
+		OWL_OBJECT_PROPERTY,
+		OWL_DATATYPE_PROPERTY,
+		OWL_NAMED_INDIVIDUAL
+	];
 
 	function getAllTriples(uris: OntologyURI[], ontologies: OntologyData) {
 		return uris.reduce((acc, curr) => {
@@ -50,10 +63,16 @@
 </svelte:head>
 <main class="container min-h-screen py-6">
 	<section class="container px-2">
-		<MetadataTable bind:imports={availableImports} {failedImports} {metadata} triples={allTriples} />
+		<MetadataTable
+			bind:imports={availableImports}
+			{failedImports}
+			{metadata}
+			triples={allTriples}
+		/>
 		<PreviewOptions bind:view bind:compacted />
+		<TableFilter bind:tableFilter disabled={view !== _View.Table} />
 		{#if view === _View.Table}
-			<TriplesTable triples={allTriples} {compacted} {offset} {elementsPerPage} />
+			<TriplesTable {tableFilter} triples={allTriples} {compacted} {offset} {elementsPerPage} />
 			<div class="px-4 flex justify-center md:justify-start container mt-auto">
 				<Pagination bind:offset {elementsPerPage} totalElements={allTriples.length} />
 			</div>

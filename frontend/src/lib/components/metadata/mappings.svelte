@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { OWL_CLASS, namespacesFile, type OntologyURI, type Triple } from '$lib/assets/data';
-	import { compactURI, getUniformURI, isURI } from '$lib/utils';
+	import { OWL_CLASS, type OntologyURI, type Triple } from '$lib/assets/data';
+	import { getUniformURI, isURI } from '$lib/utils';
 
 	export let triples: Triple[];
 	export let excludedURI: string;
@@ -38,7 +38,7 @@
 		}
 		return count;
 	}
-	function compactMapping(mapping, ontology) {
+	function compactMapping(mapping: OntologyURI, ontology: OntologyURI) {
 		mapping = mapping.replace(ontology, '');
 		mapping = mapping.replace('/', '');
 		mapping = mapping.replace('#', '');
@@ -72,7 +72,7 @@
 							<label tabindex="0" class="btn m-1">{count.size}</label>
 							<ul
 								tabindex="0"
-								class="dropdown-content absolute menu p-2 shadow bg-base-100 rounded-box"
+								class="dropdown-content absolute menu p-2 shadow bg-base-100 rounded-box shadow-2xl"
 							>
 								{#each Array.from(count) as c}
 									<li>
