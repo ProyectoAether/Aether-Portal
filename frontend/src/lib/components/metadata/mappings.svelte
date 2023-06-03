@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { OntologyURI, Triple } from '$lib/assets/data';
+	import { OWL_CLASS, type OntologyURI, type Triple } from '$lib/assets/data';
 	import { getUniformURI, isURI } from '$lib/utils';
 
 	export let triples: Triple[];
@@ -14,61 +14,80 @@
 		}
 		return isURI(result) ? (result as OntologyURI) : undefined;
 	}
-	type TripleKey = 'object' | 'predicate' | 'subject';
 	function getMappings(data: Triple[]) {
 		const count = new Map<OntologyURI, Set<OntologyURI>>();
 		for (const d of data) {
-			for (const s of ['object', 'predicate', 'subject']) {
-				let ontology = getOntology(d[s as TripleKey]) as OntologyURI;
-				if (ontology === undefined || ontology === getUniformURI(excludedURI)) {
-					continue;
-				}
+			if (d.object != OWL_CLASS) {
+				continue;
+			}
+			let ontology = getOntology(d.subject) as OntologyURI;
+			if (ontology === undefined || ontology === getUniformURI(excludedURI)) {
+				continue;
+			}
 
-				if (new URL(ontology).pathname === '/') {
-					ontology = d[s as TripleKey] as OntologyURI;
-				}
-				let currSet = count.get(ontology);
-				if (currSet !== undefined) {
-					count.set(ontology, currSet.add(d[s as TripleKey] as OntologyURI));
-				} else {
-					count.set(ontology, new Set());
-				}
+			if (new URL(ontology).pathname === '/') {
+				ontology = d.subject as OntologyURI;
+			}
+			let currSet = count.get(ontology);
+
+			if (currSet !== undefined) {
+				count.set(ontology, currSet.add(d.subject));
+			} else {
+				count.set(ontology, new Set([d.subject]));
 			}
 		}
 		return count;
+	}
+	function compactMapping(mapping: OntologyURI, ontology: OntologyURI) {
+		mapping = mapping.replace(ontology, '');
+		mapping = mapping.replace('/', '');
+		mapping = mapping.replace('#', '');
+		return mapping;
 	}
 	$: mappings = Array.from(getMappings(triples))
 		.filter(([, count]) => count.size > 0)
 		.sort(([, countA], [, countB]) => (countA.size > countB.size ? -1 : 1));
 </script>
 
-<div class="overflow-x-auto">
+{#if mappings.length > 0}
 	<table class="table w-full">
 		<thead>
 			<tr>
 				<th />
 				<th>Ontology</th>
-				<th>Mappings</th>
+				<th>Referenced classes</th>
 			</tr>
 		</thead>
 		<tbody>
-			{#if mappings.length > 0}
-				{#each mappings as [ontology, count], i}
-					<tr>
-						<th>{i + 1}</th>
-						<td
-							><a href={ontology} target="_blank" rel="noreferrer" class="link text-primary">
-								{ontology}
-							</a>
-						</td>
-						<td>{count.size}</td>
-					</tr>
-				{/each}
-			{:else}
-				<div class="flex justify-center items-center">
-					<h2 class="text-2xl">No Mappings</h2>
-				</div>
-			{/if}
+			{#each mappings as [ontology, count], i}
+				<tr>
+					<th>{i + 1}</th>
+					<td
+						><a href={ontology} target="_blank" rel="noreferrer" class="link text-primary">
+							{ontology}
+						</a>
+					</td>
+					<td>
+						<div class="dropdown dropdown-top">
+							<label tabindex="0" class="btn m-1">{count.size}</label>
+							<ul
+								tabindex="0"
+								class="dropdown-content absolute menu p-2 shadow bg-base-100 rounded-box shadow-2xl"
+							>
+								{#each Array.from(count) as c}
+									<li>
+										<a target="_blank" rel="noreferrer" href={c}>{compactMapping(c, ontology)}</a>
+									</li>
+								{/each}
+							</ul>
+						</div></td
+					>
+				</tr>
+			{/each}
 		</tbody>
 	</table>
-</div>
+{:else}
+	<div class="flex justify-center items-center">
+		<h2 class="text-2xl">No Mappings</h2>
+	</div>
+{/if}
