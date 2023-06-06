@@ -71,7 +71,6 @@
 			triples={allTriples}
 		/>
 		<PreviewOptions bind:view bind:compacted />
-		<TableFilter bind:tableFilter disabled={view !== _View.Table} />
 		{#if view === _View.Table}
 			<TableFilter bind:tableFilter />
 			<TriplesTable
