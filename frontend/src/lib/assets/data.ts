@@ -2,7 +2,7 @@ import index from '$lib/assets/ontologies/index.json';
 import namespaces from '$lib/assets/ontologies/namespaces.json';
 import stats from '$lib/assets/ontologies/stats.json';
 import searchable from '$lib/assets/ontologies/searchable.json';
-import { fromJSON } from "arquero";
+import { fromJSON } from 'arquero';
 
 export interface Triple {
 	subject: string;
@@ -32,10 +32,10 @@ export type OntologyURI = (typeof uris)[number];
 export const statsFile: Stat = stats;
 
 export type Searchable = {
-    "uri": string[],
-    "ontology":string[],
-    "data_type": string[]
-    "compacted": string[]
+	uri: string[];
+	ontology: string[];
+	data_type: string[];
+	compacted: string[];
 };
 
 export const searchableFile = fromJSON(JSON.stringify(searchable), {});
@@ -54,9 +54,11 @@ export const OWL_NAMED_INDIVIDUAL = 'http://www.w3.org/2002/07/owl#NamedIndividu
 export const OWL_ONTOLOGY = 'http://www.w3.org/2002/07/owl#Ontology';
 export const OWL_IMPORTS = 'http://www.w3.org/2002/07/owl#imports';
 export const OWL_THING = 'http://www.w3.org/2002/07/owl#Thing';
+export const OTHERS = 'OTHERS';
 
 export type OWLType =
 	| typeof OWL_NAMED_INDIVIDUAL
 	| typeof OWL_DATATYPE_PROPERTY
 	| typeof OWL_OBJECT_PROPERTY
-	| typeof OWL_CLASS;
+	| typeof OWL_CLASS
+	| typeof OTHERS;
