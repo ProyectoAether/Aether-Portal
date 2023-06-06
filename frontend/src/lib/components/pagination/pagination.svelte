@@ -14,7 +14,7 @@
 	$: startPage = Math.min(Math.max(offset - Math.floor(numButtons / 2), 0), maxStartPage);
 	$: endPage = Math.min(startPage + numButtons, numPages);
 	$: if (offset >= numPages) {
-		offset = numPages - 1;
+		offset = 0;
 	}
 
 	function goToPage(page: number) {

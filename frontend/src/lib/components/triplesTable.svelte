@@ -11,13 +11,22 @@
 	} from '$lib/assets/data';
 	import LinkIcon from '$lib/assets/svg/link-icon.svg';
 	import Modal from '$lib/components/modal/modal.svelte';
+
 	export let compacted: boolean;
 	export let offset: number;
 	export let elementsPerPage: number;
 	export let triples: Triple[];
 	export let tableFilter: OWLType[];
+	export let numElements: number;
+
 	function getFilteredTriple(triples: Triple[], filters: OWLType[]): Triple[] {
-		const res: Triple[] = [];
+		const allFilters = [
+			OWL_CLASS,
+			OWL_OBJECT_PROPERTY,
+			OWL_DATATYPE_PROPERTY,
+			OWL_NAMED_INDIVIDUAL
+		];
+		const res = triples.filter((x) => !allFilters.includes(x.object));
 		for (const f of filters) {
 			res.push(...triples.filter((x) => x.object === f));
 		}
@@ -48,7 +57,8 @@
 			return 1;
 		} // Get the indexes of the subjects in the order array
 	}
-	$: data = getFilteredTriple(triples.sort(compareObjects), tableFilter);
+	$: data = getFilteredTriple(triples, tableFilter).sort(compareObjects);
+	$: numElements = data.length;
 </script>
 
 <div class="overflow-x-auto auto my-10">
