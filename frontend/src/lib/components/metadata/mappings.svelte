@@ -72,11 +72,16 @@
 							<label tabindex="0" class="btn m-1">{count.size}</label>
 							<ul
 								tabindex="0"
-								class="dropdown-content absolute menu p-2 shadow bg-base-100 rounded-box shadow-2xl"
+								class="dropdown-content h-44 overflow-y-auto absolute flex flex-col bg-base-100 shadow-2xl"
 							>
 								{#each Array.from(count) as c}
 									<li>
-										<a target="_blank" rel="noreferrer" href={c}>{compactMapping(c, ontology)}</a>
+										<a
+											class="hover:bg-base-200 p-4 inline-block w-full"
+											target="_blank"
+											rel="noreferrer"
+											href={c}>{compactMapping(c, ontology)}</a
+										>
 									</li>
 								{/each}
 							</ul>

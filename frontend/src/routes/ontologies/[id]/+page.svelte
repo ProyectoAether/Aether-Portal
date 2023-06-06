@@ -48,8 +48,9 @@
 	let availableImports = imports.filter((el) => el.status).map((el) => el.uri);
 	let failedImports = imports.filter((el) => !el.status).map((el) => el.uri);
 
-	$: allTriples = getAllTriples([...availableImports, uri], ontologies);
 	const title = indexFile[sha256(uri) as OntologyID].title;
+	let allTriples = getAllTriples([...availableImports, uri], ontologies);
+	let numElements = allTriples.length;
 </script>
 
 <svelte:head>
@@ -72,9 +73,17 @@
 		<PreviewOptions bind:view bind:compacted />
 		<TableFilter bind:tableFilter disabled={view !== _View.Table} />
 		{#if view === _View.Table}
-			<TriplesTable {tableFilter} triples={allTriples} {compacted} {offset} {elementsPerPage} />
+			<TableFilter bind:tableFilter />
+			<TriplesTable
+				{tableFilter}
+				bind:numElements
+				triples={allTriples}
+				{compacted}
+				{offset}
+				{elementsPerPage}
+			/>
 			<div class="px-4 flex justify-center md:justify-start container mt-auto">
-				<Pagination bind:offset {elementsPerPage} totalElements={allTriples.length} />
+				<Pagination bind:offset {elementsPerPage} totalElements={numElements} />
 			</div>
 		{:else if view === _View.Hierarchy}
 			<Hierarchy triples={allTriples} />
