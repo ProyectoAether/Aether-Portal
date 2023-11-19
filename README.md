@@ -1,4 +1,4 @@
-# Aether Portal ![](https://img.shields.io/twitter/follow/aether_social?style=social)
+#Aether Portal ![](https://img.shields.io/twitter/follow/aether_social?style=social)
 
 ![](https://github.com/ProyectoAether/Aether-Portal/actions/workflows/deploy.yml/badge.svg)
 
@@ -36,6 +36,18 @@ This repository has 2 separate modules:
 
 - [frontend](https://github.com/ProyectoAether/Aether-Portal/tree/main/frontend)
 - [scripts](https://github.com/ProyectoAether/Aether-Portal/tree/main/scripts)
+
+In order to run the development app:
+
+```bash
+# In the project root directory
+# These steps should be performed after installing the dependencies
+
+mkdir frontend/src/lib/assets/ontologies
+PYTHONPATH=scripts python3 scripts/ontoserpy/main.py ontologies.txt frontend/src/lib/assets/ontologies
+cd frontend
+pnpm dev
+```
 
 ## :newspaper: More information about AETHER
 
