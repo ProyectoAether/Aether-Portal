@@ -9,3 +9,4 @@ https://w3id.org/BIGOWLWorkflows
 https://w3id.org/BIGOWLProblems
 https://w3id.org/BIGOWLData
 https://w3id.org/BIGOWLAlgorithms
+https://w3id.org/moody
