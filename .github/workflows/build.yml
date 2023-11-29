@@ -5,9 +5,17 @@ on:
     types:
       - labeled
       - synchronize
+  workflow_call: #Make this workflow reusable
+    inputs:
+        called:
+          description: 'To check if it was called by another workflow'
+          type: boolean
+          required: false
+          default: true
+
 jobs:
   script-dependencies:
-    if: contains(github.event.pull_request.labels.*.name, 'build')
+    if: ${{ (inputs.called)  ||  (contains(github.event.pull_request.labels.*.name, 'build')) }}
     name: Updates Ontologies' JSON files
     runs-on: ubuntu-20.04
     steps:
@@ -103,7 +111,7 @@ jobs:
         working-directory: ./frontend
         run: pnpm install --prod
   build:
-    name: Build Svelte static site
+    name: Build and test Svelte static site
     needs: frontend-dependencies
     runs-on: ubuntu-20.04
     steps:
@@ -137,7 +145,18 @@ jobs:
       - name: Build
         working-directory: ./frontend
         shell: bash
-        run: NODE_OPTIONS=--max-old-space-size=8192 npm build
+        run: NODE_OPTIONS=--max-old-space-size=8192 pnpm build
+      - name: Install Playwright
+        working-directory: ./frontend
+        run: pnpm exec playwright install --with-deps
+      - name: Run Playwright tests
+        working-directory: ./frontend
+        run: pnpm exec playwright test
+      - name: Upload Build
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: ./frontend/build
       - name: Upload Build
         uses: actions/upload-artifact@v3
         with:
