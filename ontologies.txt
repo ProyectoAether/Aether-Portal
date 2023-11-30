@@ -33,7 +33,6 @@ https://herculescrue.github.io/ROH/mirror/oa/oa.rdf
 https://herculescrue.github.io/ROH/roh/knowledge-area/unesco-knowledge-area.rdf
 https://herculescrue.github.io/ROH/mirror/geonames/geonames.rdf
 https://herculescrue.github.io/ROH/roh/core/roh-core.rdf
-https://consolidproject.github.io/vocabulary/ontology.rdf
 https://leonvanwissen.nl/vocab/roar/roar.rdf
 http://openscience.adaptcentre.ie/GDPR-checklist-demo/demo/data.rdf
 https://w3c-lbd-cg.github.io/bot/bot.rdf
@@ -100,7 +99,6 @@ https://w3c.github.io/dpv/dpv-skos/risk/risk.rdf
 https://w3c.github.io/dpv/dpv-skos/dpv-legal/dpv-legal.rdf
 https://raw.githubusercontent.com/qasimkhalid/SBEO/master/Serialization/sbeo.rdf
 https://rub-informatik-im-bauwesen.github.io/exdoc/ExtendedDocument.rdf
-https://delaramglp.github.io/AIRO/AIRODocumentation/ontology.rdf
 https://www.projekt-scope.de/ontologies/ops/ops.rdf
 https://renerick.github.io/UsabilityOntology/UsabilityOntology.rdf
 https://pi.pauwel.be/evoc/express_W3ID/20151211/express.rdf
