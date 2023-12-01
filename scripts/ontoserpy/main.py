@@ -1,8 +1,9 @@
 import hashlib
 import json
-import logging
 from pathlib import Path
 from rdflib.namespace import NamespaceManager
+
+from ontoserpy.logger import logger
 
 import tqdm
 from rdflib import Graph
@@ -19,8 +20,8 @@ from ontoserpy.lib import (
 from urllib.error import URLError
 
 
+
 def main():
-    logging.basicConfig(level=logging.DEBUG)
     args = args_parser.parse_args()
 
     namespace_builder = NamespaceBuilder()
@@ -31,7 +32,7 @@ def main():
     g = Graph()
     with open(args.input_file, "r") as fd:
         for owl_uri in tqdm.tqdm(fd.readlines()):
-            logging.info(f"Serializing: {owl_uri}")
+            logger.info(f"Serializing: {owl_uri}")
             # Ignore blank lines and already parsed URIs
             if owl_uri == "\n" or owl_uri in parsed_uris:
                 continue
@@ -43,13 +44,21 @@ def main():
             while num_retries < MAX_RETRIES:
                 try:
                     g.remove((None,None,None))
-                # Remove all namespace bindings
+                    # Remove all namespace bindings
                     g.namespace_manager = NamespaceManager(Graph(), bind_namespaces="none")
                     g.parse(owl_uri, format="xml")
-                    num_retries += 1
-                except URLError as e:
+                    break
+                except Exception as e:
                     if num_retries < MAX_RETRIES:
+                        logger.warning(f"{owl_uri}: Failed to parse. Trying again...")
+                        num_retries += 1
                         pass
+            if num_retries >= MAX_RETRIES:
+                    logger.warning(f"{owl_uri}: MAX retries exceeded. Pls check if URL still works...")
+                    g.remove((None,None,None))
+                    g.namespace_manager = NamespaceManager(Graph(), bind_namespaces="none")
+                    continue
+
             num_retries = 0
             parsed_uris.add(owl_uri)
             metadata_builder = MetadataBuilder(owl_uri)
@@ -67,9 +76,9 @@ def main():
                     json.dump(obj, fd)
             except MissingMetadataException as e:
                 if e.field in ("uri", "title"):
-                    logging.warning(f"{owl_uri}: {e.message}")
+                    logger.warning(f"{owl_uri}: {e.message}")
                     raise e
-    logging.info(
+    logger.info(
         "Serializing `searchable.json`, `namespaces.json`, `stats.json` and `index.json`."
     )
     for data, filename in tqdm.tqdm(

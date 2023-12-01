@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import builtins
-import logging
 import typing
 from typing_extensions import Self
 
@@ -21,6 +20,7 @@ from ontoserpy.type_checking import (
     StatField,
     TemporalFields,
 )
+from ontoserpy.logger import logger
 
 _URIREF_TO_METADATA_FIELDS: dict[URIRef, MetadataField] = {
     VANN.preferredNamespacePrefix: "prefix",
@@ -216,13 +216,13 @@ class MetadataBuilder:
                 if len(computed_uri) > 0:
                     self._metadata["uri"] = next(iter(computed_uri))
             else:
-                logging.warning(
+                logger.warning(
                     f"For {self._provided_ontology_uri.uri}, the provided Ontology URI is used instead of the vann:preferredNamespaceUri."
                 )
                 self._metadata["uri"] = self._provided_ontology_uri
 
         if not self._metadata["titles"]:
-            logging.warning(
+            logger.warning(
                 f"For {self._provided_ontology_uri.uri}, the provided URI is used instead of the dc:title or dcterms:title"
             )
             self._metadata["title"] = self._metadata["uri"]
@@ -250,7 +250,7 @@ class MetadataBuilder:
                 self._metadata[k] = [x.uri for x in v]
             if k in typing.get_args(OptionalMetadataField):
                 if not v and k != "imports":
-                    logging.warning(f"MISSING {k}")
+                    logger.warning(f"MISSING {k}")
                 continue
             if not v:
                 raise MissingMetadataException(k)
