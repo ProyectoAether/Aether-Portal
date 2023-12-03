@@ -16,6 +16,8 @@
 			</svg>
 		</div>
 		<input
+			name="search"
+			aria-label="Search element inside the ontologies"
 			data-testid="search-input"
 			id="search"
 			class="w-full focus:outline-none py-2 px-2"
